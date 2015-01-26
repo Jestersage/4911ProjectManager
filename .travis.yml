@@ -4,3 +4,8 @@ script:
   - # do stuff with Java 8
 jdk:
   - oraclejdk8
+deploy:
+  provider: openshift
+  user: "birch0930@gmail.com"
+  password: "Comp4911" # can be encrypted
+  domain: "atdefault"
