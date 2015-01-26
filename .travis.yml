@@ -1,11 +1,15 @@
 language: java
 script:
-  - jdk_switcher use oraclejdk8
-  - # do stuff with Java 8
+- jdk_switcher use oraclejdk8
+- 
 jdk:
   - oraclejdk8
 deploy:
   provider: openshift
-  user: "birch0930@gmail.com"
-  password: "Comp4911" # can be encrypted
-  domain: "atdefault"
+  user: birch0930@gmail.com
+  password:
+    secure: TxYqDVItZmOdN+8HpVUlGPP+xiG8U+Ixo6E4x+FEFsmHA1nhWcAjoPpPtjIvQKkP4UF2kmrVWLwbHI/LY4knLV0hqdnDmkdjjHYmEZgEuciFGT+j4H1cQsHnkD57ghyz8EZjXfP/U85o8ofxwuKqbewxeqgdjn7j9Jig08meuXw=
+  app: pms
+  domain: atdefault
+  on:
+    repo: CalvinChiu/AtDefault
