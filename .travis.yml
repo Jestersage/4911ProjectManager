@@ -4,7 +4,10 @@ jdk:
   - oraclejdk8
 deploy:
   provider: openshift
-   api_key:
-    secure: TxYqDVItZmOdN+8HpVUlGPP+xiG8U+Ixo6E4x+FEFsmHA1nhWcAjoPpPtjIvQKkP4UF2kmrVWLwbHI/LY4knLV0hqdnDmkdjjHYmEZgEuciFGT+j4H1cQsHnkD57ghyz8EZjXfP/U85o8ofxwuKqbewxeqgdjn7j9Jig08meuXw=
+  user: birch0930@gmail.com
+  password:
+     secure: TxYqDVItZmOdN+8HpVUlGPP+xiG8U+Ixo6E4x+FEFsmHA1nhWcAjoPpPtjIvQKkP4UF2kmrVWLwbHI/LY4knLV0hqdnDmkdjjHYmEZgEuciFGT+j4H1cQsHnkD57ghyz8EZjXfP/U85o8ofxwuKqbewxeqgdjn7j9Jig08meuXw=
   app: pms
   domain: atdefault
+  on:
+    all_branches: true
