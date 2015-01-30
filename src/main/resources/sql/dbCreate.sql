@@ -1,3 +1,11 @@
+CREATE DATABASE pms;
+--
+GRANT ALL PRIVILEGES ON pms.* TO username@localhost IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON pms.* TO username@"%" IDENTIFIED BY 'password';
+--
+use pms;
+--
+--
 ALTER TABLE employee DROP FOREIGN KEY FKemployee94085;
 ALTER TABLE employee DROP FOREIGN KEY FKemployee160589;
 ALTER TABLE permissionAssign DROP FOREIGN KEY FKpermission315525;
@@ -50,12 +58,12 @@ CREATE TABLE Role (
   name   varchar(255) NOT NULL, 
   PRIMARY KEY (roleID));
 CREATE TABLE employee (
-  employeeID   int(10) NOT NULL AUTO_INCREMENT, 
+  employeeID   varchar(10) NOT NULL, 
   email        varchar(255) NOT NULL, 
   firstName    varchar(255) NOT NULL, 
   lastName     varchar(255) NOT NULL, 
   payGrade     int(10) NOT NULL, 
-  supervisorID int(10) NOT NULL, 
+  supervisorID varchar(10) NOT NULL, 
   username     varchar(255) NOT NULL, 
   CONSTRAINT employeeID 
     PRIMARY KEY (employeeID));

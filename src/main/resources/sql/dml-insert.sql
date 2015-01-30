@@ -35,6 +35,3 @@ INSERT INTO roleAssign
   (roleID, employeeID) 
 VALUES 
   (1, 123456);
-
-
-
