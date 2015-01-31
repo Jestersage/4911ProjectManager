@@ -9,6 +9,9 @@ import ca.bcit.info.pms.service.EmployeeService;
 @ConversationScoped
 public class EmployeeController
 {
+//	private String id, email, firstName, lastName,  supervisorID, username;
+//	private int activeStatus, version;
+//	private double payGrade;
 	@Inject
 	EmployeeService empService;
 	
