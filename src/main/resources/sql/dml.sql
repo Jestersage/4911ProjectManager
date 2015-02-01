@@ -35,14 +35,14 @@ WHERE
   employeeID = 124816;
 --
 --
---DELETE -- Variables only
---Order: deelete roleAssign, SELECT username
+-- DELETE -- Variables only
+-- Order: deelete roleAssign, SELECT username
 DELETE from roleAssign
   WHERE employeeID = 124816;
 SELECT username
   FROM employee 
   WHERE employeeID = 124816;
---store username
+-- store username
 DELETE from employee
   WHERE employeeID = 124816;
 DELETE from Credential
