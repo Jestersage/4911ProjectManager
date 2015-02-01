@@ -26,8 +26,8 @@ CREATE TABLE Credential (
   password varchar(512) NOT NULL, 
   PRIMARY KEY (username));
 CREATE TABLE Paygrade (
-  paygradeID int(10) NOT NULL AUTO_INCREMENT, 
-  name       int(10) NOT NULL, 
+  paygradeID int(10) NOT NULL, 
+  name       varchar(10) NOT NULL, 
   CONSTRAINT paygradeID 
     PRIMARY KEY (paygradeID));
 CREATE TABLE permissionAssign (
@@ -42,12 +42,12 @@ CREATE TABLE roleAssign (
     PRIMARY KEY (roleID, 
   employeeID));
 CREATE TABLE Permission (
-  permissionID int(10) NOT NULL AUTO_INCREMENT, 
+  permissionID int(10) NOT NULL, 
   name         varchar(255) NOT NULL, 
   CONSTRAINT permissionID 
     PRIMARY KEY (permissionID));
 CREATE TABLE Role (
-  roleID int(10) NOT NULL AUTO_INCREMENT, 
+  roleID int(10) NOT NULL, 
   name   varchar(255) NOT NULL, 
   PRIMARY KEY (roleID));
 CREATE TABLE employee (
