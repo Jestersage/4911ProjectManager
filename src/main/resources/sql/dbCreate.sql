@@ -1,3 +1,26 @@
+DROP DATABASE pms;
+CREATE DATABASE pms;
+--
+GRANT ALL PRIVILEGES ON pms.* TO username@localhost IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON pms.* TO username@"%" IDENTIFIED BY 'password';
+--
+use pms;
+--
+ALTER TABLE employee DROP FOREIGN KEY FKemployee160589;
+ALTER TABLE permissionAssign DROP FOREIGN KEY FKpermission315525;
+ALTER TABLE permissionAssign DROP FOREIGN KEY FKpermission966818;
+ALTER TABLE roleAssign DROP FOREIGN KEY FKroleAssign822707;
+ALTER TABLE roleAssign DROP FOREIGN KEY FKroleAssign974720;
+ALTER TABLE employee DROP FOREIGN KEY FKemployee427530;
+ALTER TABLE employee DROP FOREIGN KEY FKemployee94085;
+DROP TABLE IF EXISTS Credential;
+DROP TABLE IF EXISTS Paygrade;
+DROP TABLE IF EXISTS permissionAssign;
+DROP TABLE IF EXISTS roleAssign;
+DROP TABLE IF EXISTS Permission;
+DROP TABLE IF EXISTS Role;
+DROP TABLE IF EXISTS employee;
+--
 CREATE TABLE Credential (
   username varchar(255) NOT NULL, 
   password varchar(512) NOT NULL, 
