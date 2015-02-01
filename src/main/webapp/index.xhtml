@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Project Management System</title>
+</h:head>
+<h:body>
+	<h:form id="login">
+		<h1>Project Management System</h1>
+		<div class="ui-grid ui-grid-responsive">
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-4">Username:</div>
+				<div class="ui-grid-col-8">
+					<p:inputText id="username" label="Username" required="true" />
+				</div>
+			</div>
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-4">Password:</div>
+				<div class="ui-grid-col-8">
+					<p:password id="password" label="Password" required="true" />
+				</div>
+			</div>
+			<div>
+				<p:commandButton id="btnLogin" value="Login"  />
+			</div>
+		</div>
+
+	</h:form>
+</h:body>
+</html>

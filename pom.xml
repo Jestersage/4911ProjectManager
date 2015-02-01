@@ -27,12 +27,6 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>7.0</version>
-			<scope>provided</scope>
-		</dependency>
 
 		<!-- Import the EJB API -->
 		<dependency>
@@ -48,7 +42,8 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Import the CDI API, we use provided scope as the API is included in JBoss WildFly -->
+		<!-- Import the CDI API, we use provided scope as the API is included in 
+			JBoss WildFly -->
 		<dependency>
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
@@ -86,6 +81,11 @@
 			<groupId>org.jboss.spec.javax.faces</groupId>
 			<artifactId>jboss-jsf-api_2.2_spec</artifactId>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>5.0</version>
 		</dependency>
 
 		<dependency>
