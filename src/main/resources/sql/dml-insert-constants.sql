@@ -1,4 +1,4 @@
---FOR ADDING TABLE DATAS THAT SHOULD STAY CONSTANT
+-- FOR ADDING TABLE DATAS THAT SHOULD STAY CONSTANT
 --
 --
 INSERT INTO Paygrade
@@ -42,19 +42,34 @@ VALUES
   (08, "P6");
 --
 --
-INSERT INTO permissionAssign
-  (permissionID, roleID) 
-VALUES 
-  (1, 1);
---
---
 INSERT INTO Permission
   (permissionID, name) 
 VALUES 
   (1, "All ACCESS");
+--
+INSERT INTO Permission
+  (permissionID, name) 
+VALUES 
+  (2, "BASIC");
 --
 --
 INSERT INTO Role
   (roleID, name) 
 VALUES 
   (1, "Project Manager");
+--
+INSERT INTO Role
+  (roleID, name) 
+VALUES 
+  (2, "Standard");
+--
+--
+INSERT INTO permissionAssign
+  (permissionID, roleID) 
+VALUES 
+  (1, 1);
+--
+INSERT INTO permissionAssign
+  (permissionID, roleID) 
+VALUES 
+  (2, 2);
