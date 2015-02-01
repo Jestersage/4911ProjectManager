@@ -17,6 +17,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import ca.bcit.info.pms.model.Credentials;
 import ca.bcit.info.pms.model.Employee;
 
 @Stateless
@@ -169,16 +170,21 @@ public class EmployeeManager {
 //		return added;
 //	}
 	
-    public void persist(Employee employee) {
+    public void persistEmployee(Employee employee) {
+    	boolean exist = false;
 		List<Employee> allEmployees = null;
 		allEmployees = this.getAll();
 		for(Employee oldRecord : allEmployees){
 			if(oldRecord.getId().equalsIgnoreCase(employee.getId())) {
+				exist = true;
 				System.out.println("Record already exist!");
 			}
-			else
-				entityManager.persist(employee);
 		}
-		
+		if(!exist)
+			entityManager.persist(employee);	
+    }
+    
+    public void persistCredential(Credentials credential) {
+		entityManager.persist(credential);
     }
 }
