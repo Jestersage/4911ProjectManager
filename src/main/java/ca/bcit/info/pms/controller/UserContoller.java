@@ -1,4 +1,4 @@
-package ca.bcit.info.pms.view;
+package ca.bcit.info.pms.controller;
 
 import java.io.Serializable;
 
