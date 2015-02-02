@@ -22,7 +22,7 @@ import ca.bcit.info.pms.model.Employee;
 
 @Stateless
 @LocalBean
-public class EmployeeManager {	
+public class EmployeeManager  implements Serializable {	
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -31,6 +31,12 @@ public class EmployeeManager {
 		return this.entityManager.find(Employee.class, id);
 	}
 
+	
+	@SuppressWarnings("unchecked")
+	public List<Credentials> getCredentials() {
+
+		return this.entityManager.createQuery("select c from Credentials c",Credentials.class ).getResultList();
+	}
 	/*
 	 * Support updating and deleting Employee entities
 	 */
