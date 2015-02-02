@@ -17,17 +17,17 @@
 			<div class="ui-grid-row">
 				<div class="ui-grid-col-4">#{msgs.auth_username}:</div>
 				<div class="ui-grid-col-8">
-					<p:inputText id="username" label="#{msgs.auth_username}" required="true" />
+					<p:inputText id="username" label="#{msgs.auth_username}" required="true"  value="#{userContoller.credential.username}"/>
 				</div>
 			</div>
 			<div class="ui-grid-row">
 				<div class="ui-grid-col-4">#{msgs.auth_password}:</div>
 				<div class="ui-grid-col-8">
-					<p:password id="password" label="#{msgs.auth_password}" required="true" />
+					<p:password id="password" label="#{msgs.auth_password}" required="true"  value="#{userContoller.credential.password}"/>
 				</div>
 			</div>
 			<div>
-				<p:commandButton id="btnLogin" value="#{msgs.auth_submit}"  />
+				<p:commandButton id="btnLogin" value="#{msgs.auth_submit}"  action="#{userContoller.login}"  />
 			</div>
 		</div>
 
