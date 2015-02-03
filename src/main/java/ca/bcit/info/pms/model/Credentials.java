@@ -17,6 +17,15 @@ import java.lang.Override;
 @Table(name = "Credentials")
 public class Credentials implements Serializable {
 
+	public Credentials() {
+	}
+	
+	public Credentials(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", updatable = false, nullable = false)

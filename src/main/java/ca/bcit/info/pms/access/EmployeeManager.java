@@ -152,7 +152,7 @@ public class EmployeeManager  implements Serializable {
 	 * HtmlSelectOneMenu)
 	 */
 
-	public List<Employee> getAll() {
+	public List<Employee> getAllEmployee() {
 
 		CriteriaQuery<Employee> criteria = this.entityManager
 				.getCriteriaBuilder().createQuery(Employee.class);
@@ -160,6 +160,19 @@ public class EmployeeManager  implements Serializable {
 				criteria.select(criteria.from(Employee.class))).getResultList();
 	}
 
+	/*
+	 * Support listing and POSTing back Credentials entities (e.g. from inside an
+	 * HtmlSelectOneMenu)
+	 */
+
+	public List<Credentials> getAllCredentials() {
+
+		CriteriaQuery<Credentials> criteria = this.entityManager
+				.getCriteriaBuilder().createQuery(Credentials.class);
+		return this.entityManager.createQuery(
+				criteria.select(criteria.from(Credentials.class))).getResultList();
+	}
+	
 	/*
 	 * Support adding children to bidirectional, one-to-many tables
 	 */
@@ -179,11 +192,11 @@ public class EmployeeManager  implements Serializable {
     public void persistEmployee(Employee employee) {
     	boolean exist = false;
 		List<Employee> allEmployees = null;
-		allEmployees = this.getAll();
+		allEmployees = this.getAllEmployee();
 		for(Employee oldRecord : allEmployees){
 			if(oldRecord.getId().equalsIgnoreCase(employee.getId())) {
 				exist = true;
-				System.out.println("Record already exist!");
+				System.out.println("Record(Employee) already exist!");
 			}
 		}
 		if(!exist)
@@ -191,6 +204,16 @@ public class EmployeeManager  implements Serializable {
     }
     
     public void persistCredential(Credentials credential) {
-		entityManager.persist(credential);
+    	boolean exist = false;
+		List<Credentials> allCredentials = null;
+		allCredentials = this.getAllCredentials();
+		for(Credentials oldRecord : allCredentials){
+			if(oldRecord.getUsername().equals(credential.getUsername())) {
+				exist = true;
+				System.out.println("Record(Credential) already exist!");
+			}
+		}
+		if(!exist)
+			entityManager.persist(credential);
     }
 }

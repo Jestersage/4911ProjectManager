@@ -29,11 +29,19 @@
 			<div>
 				<p:commandButton id="btnLogin" value="#{msgs.auth_submit}"  action="#{userContoller.login}"  />
 			</div>
-			<div>
-				<p:commandButton id="btnTest" value="TEST"  action="#{empController.addEmployee}"  />
-			</div>
+
 		</div>
 
+	</h:form>
+	<h:form>
+		<div>
+			<p:commandButton id="btnAddEmp" value="Test Add Employee"  action="#{empController.addEmployee}"  />
+		</div>
+	</h:form>
+	<h:form>
+		<div>
+			<p:commandButton id="btnAddCreden" value="Test Add Credential"  action="#{empController.addCredential}"  />
+		</div>
 	</h:form>
 </h:body>
 </html>
