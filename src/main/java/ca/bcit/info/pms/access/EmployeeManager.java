@@ -41,7 +41,7 @@ public class EmployeeManager  implements Serializable {
 	 * Support updating and deleting Employee entities
 	 */
 
-	public String update(Employee employee) {
+	public String updateEmployee(Employee employee) {
 		try {
 			if (employee.getId() == null) {
 				this.entityManager.persist(employee);

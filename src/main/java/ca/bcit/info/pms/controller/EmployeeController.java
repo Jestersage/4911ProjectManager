@@ -43,4 +43,13 @@ public class EmployeeController implements Serializable {
 		empManager.persistCredential(creden);
 		creden = new Credentials();
 	}
+	
+	/**
+	 * Add new Employee to database.
+	 */
+	public void updateEmployee() {
+		newEmp = new Employee("A00123456", "aa@bb.cc", "huanan", "wang", 11.11, "a12345678", "fredxie", 1);
+		empManager.updateEmployee(newEmp);
+		newEmp = new Employee();
+	}
 }
