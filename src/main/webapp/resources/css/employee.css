@@ -1,0 +1,44 @@
+#data {
+	margin: 1em;
+	background-color: grey;
+	height: 100%;
+}
+
+#notificationNewEmployee {
+	margin: 1em;
+	background-color: white;
+	height: 70%%;
+}
+
+#newEmployeeButtons {
+	margin-top: 1.5em;
+	margin-left: 6em;
+}
+
+#searchFilters {
+	background-color: grey;
+	margin-right: 1em;
+	
+}
+#searchResults {
+	background-color: grey;
+	margin-right: 1em;
+}
+#dashboard {
+	height: 80%;
+}
+#search {
+	height: 20%;
+}
+#row1 {
+	height: 50%;
+}
+#row2 {
+	height: 50%;
+}
+
+/* overrides style from master template */
+/* makes the div of the content expands to acomodate all elements */
+#mainArea {
+	height: 100%;
+}

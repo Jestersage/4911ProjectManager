@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title></title>
+	<h:outputStylesheet library="css" name="reset.css" />
+	<h:outputStylesheet name="grid/grid.css" library="primefaces" />
+	<h:outputStylesheet library="css" name="template.css" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/masterLayout.xhtml">
+	
+        <ui:define name="windowTitle">#{msgs.newEmployee}</ui:define>
+        
+		<ui:define name="additionalStyleSheets">
+			<h:outputStylesheet library="css" name="employee.css" />
+		</ui:define>
+
+		<div class="ui-grid ui-grid-responsive" id="wrapper">
+			<ui:define name="breadcrumb">
+			<div id="breadcrumb">
+				<p:breadCrumb>
+					<p:menuitem value="item1" url="#" />
+					<p:menuitem value="item1" url="#" />
+					<p:menuitem value="item1" url="#" />		
+				</p:breadCrumb>
+				</div>
+			</ui:define>
+
+			<ui:define name="content">
+
+				<div class="ui-grid ui-grid-responsive">
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-6" id="data">
+							<h:form>
+								<h:panelGrid columns="4" cellpadding="10">
+									<h:outputLabel for="itUserId" value="#{msgs.id}" />
+									<p:inputText id="itUserId" value="" required="true" />
+									<h:message for="itUserId" />
+									<h:outputText value="" />
+
+									<p:outputLabel for="itFirstName" value="#{msgs.firstName}" />
+									<p:inputText id="itFirstName" value="" required="true" />
+									<h:message for="itFirstName" />
+									<h:outputText value="" />
+
+									<p:outputLabel for="itLastName" value="#{msgs.lastName}" />
+									<p:inputText id="itLastName" value="" required="true" />
+									<h:message for="itLastName" />
+									<h:outputText value="" />
+
+									<p:outputLabel for="itUserName" value="#{msgs.userName}" />
+									<p:inputText id="itUserName" value="" required="true" />
+									<h:message for="itUserName" />
+									<h:outputText value="" />
+
+									<p:outputLabel for="mnRole" value="#{msgs.role}" />
+									<p:selectOneMenu id="mnRole" value="" style="width:200px">
+										<f:selectItem itemLabel="Select one role" itemValue=""
+											noSelectionOption="true" />
+										<f:selectItems value="" />
+									</p:selectOneMenu>
+									<h:message for="mnRole" />
+									<h:outputText value="" />
+
+									<p:outputLabel for="mnPayLevel" value="#{msgs.payLevel}" />
+									<p:selectOneMenu id="mnPayLevel" value="" style="width:200px">
+										<f:selectItem itemLabel="Select one pay level" itemValue=""
+											noSelectionOption="true" />
+										<f:selectItems value="" />
+									</p:selectOneMenu>
+									<h:message for="mnPayLevel" />
+									<h:outputText value="" />
+
+									<p:outputLabel for="mnSupervisor" value="#{msgs.supervisor}" />
+									<p:selectOneMenu id="mnSupervisor" value="" style="width:200px">
+										<f:selectItem itemLabel="Select one supervisor" itemValue=""
+											noSelectionOption="true" />
+										<f:selectItems value="" />
+									</p:selectOneMenu>
+									<h:message for="mnSupervisor" />
+									<h:outputText value="" />
+
+									<p:outputLabel for="mnProject" value="Initial #{msgs.project}" />
+									<p:selectOneMenu id="mnProject" value="" style="width:200px">
+										<f:selectItem itemLabel="Select one project" itemValue=""
+											noSelectionOption="true" />
+										<f:selectItems value="" />
+									</p:selectOneMenu>
+									<h:message for="mnProject" />
+									<h:outputText value="" />
+								</h:panelGrid>
+								<!-- end of new employee data -->
+
+
+								<div id="newEmployeeButtons">
+									<p:commandButton value="#{msgs.save}" id="btnSaveNewEmployee"
+										update="" icon="ui-icon-disk" />
+									<p:commandButton value="#{msgs.clear}" id="btnClearFields"
+										update="" icon="ui-icon-disk" />
+								</div>
+							</h:form>
+							<!-- end of employee form -->
+						</div>
+						<!-- end of data div. Employee information -->
+
+						<div class="ui-grid-col-6" id="notificationNewEmployee">
+
+							<h:panelGrid columns="2" cellpadding="10">
+
+								<p:outputLabel for="txtID" value="#{msgs.id}" />
+								<h:outputText id="txtID" value="" />
+
+								<p:outputLabel for="txtFirstName" value="#{msgs.firstName}" />
+								<h:outputText id="txtFirstName" value="" />
+
+								<p:outputLabel for="txtLastName" value="#{msgs.lastName}" />
+								<h:outputText id="txtLastName" value="" />
+
+								<p:outputLabel for="txtUserName" value="#{msgs.userName}" />
+								<h:outputText id="txtUserName" value="" />
+
+								<p:outputLabel for="txtRole" value="#{msgs.role}" />
+								<h:outputText id="txtRole" value="" />
+
+								<p:outputLabel for="txtPayLevel" value="#{msgs.payLevel}" />
+								<h:outputText id="txtPayLevel" value="" />
+
+								<p:outputLabel for="txtSupervisor" value="#{msgs.supervisor}" />
+								<h:outputText id="txtSupervisor" value="" />
+
+								<p:outputLabel for="txtProject" value="#{msgs.project}" />
+								<h:outputText id="txtProject" value="" />
+
+							</h:panelGrid>
+						</div>
+						<!-- end of notificationEmployee div -->
+					</div>
+				</div>
+			</ui:define>
+		</div>
+		<!-- end of wrapper -->
+	</ui:composition>
+</h:body>
+<!-- end of body -->
+</html>

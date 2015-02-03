@@ -1,0 +1,33 @@
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+#wrapper {
+	height: 20%;
+	width: 20%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5em;
+}
+
+#userLogin {
+	height: 100%;
+	width: 100%;
+	background-color: grey;
+	padding: 1em;
+}
+
+#errorMessages {
+	background-color: green;
+	width: 80%;
+}
+
+
+#inputFields {
+	   font-size: 16px;
+	
+}
+.marginOneEm {
+    margin: 1em;
+}

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title></title>
+    <h:outputStylesheet library="css" name="template.css" />
+    <h:outputStylesheet library="css" name="reset.css" />
+    <h:outputStylesheet name="grid/grid.css" library="primefaces" />
+</h:head>
+
+<h:body>
+
+    <div class="ui-grid ui-grid-responsive" id="wrapper">
+
+        <div class="ui-grid-row" id="header">
+
+            <div class="ui-grid-col-12">
+
+                <div class="ui-grid ui-grid-responsive">
+
+                    <div class="ui-grid-row">
+
+                        <div id="company" class="ui-grid-col-2">
+                            <h:graphicImage id="logo" value="" width="150" height="55" />
+                            <h1 id="companyName">Company Name</h1>
+                        </div>
+                        <!-- end of company -->
+
+                        <div id="topMenu" class="ui-grid-col-8">
+                            <div id="menu" class="center">
+                                <p:menubar>
+                                    <p:submenu label="Menu1" icon="">
+                                        <p:menuitem value="" url="" />
+                                        <p:menuitem value="" url="#" />
+                                        <p:menuitem value="" url="#" />
+                                    </p:submenu>
+                                    <p:submenu label="Menu2" icon="">
+                                        <p:menuitem value="" url="" />
+                                        <p:menuitem value="" url="#" />
+                                        <p:menuitem value="" url="#" />
+                                    </p:submenu>
+                                    <p:submenu label="Menu3" icon="">
+                                        <p:menuitem value="" url="" />
+                                        <p:menuitem value="" url="#" />
+                                        <p:menuitem value="" url="#" />
+                                    </p:submenu>
+                                    <p:submenu label="Menu4" icon="">
+                                        <p:menuitem value="" url="" />
+                                        <p:menuitem value="" url="#" />
+                                        <p:menuitem value="" url="#" />
+                                    </p:submenu>
+                                </p:menubar>
+                            </div>
+                            <!-- end of menu -->
+                        </div>
+                        <!--  end of topMenu div -->
+
+                        <div id="userSettings" class="ui-grid-col-2">
+                            <div id="userButtons" class="center">
+
+                                <p:menubar>
+                                    <p:submenu label="User" icon="">
+                                        <p:menuitem value="" url="" />
+                                        <p:menuitem value="" url="#" />
+                                        <p:menuitem value="" url="#" />
+                                    </p:submenu>
+                                    <p:menuitem value="" url="" icon="" />
+                                </p:menubar>
+
+                            </div>
+                            <!-- end of userButtons div -->
+                        </div>
+                        <!-- end of userSettings div -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end of header -->
+
+        <div class="ui-grid-row" id="mainArea">
+            <div class="ui-grid-col-2" id="leftMenu">leftMenu</div>
+            <!-- end of leftMenu -->
+            <div class="ui-grid-col-10" id="content">
+                content
+
+                <div class="ui-grid ui-grid-responsive" id="notification">
+                    <div class="ui-grid-row">
+                        <div class="ui-grid-col-12">notifications</div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            </div>
+            <!-- end of content -->
+        </div>
+        <!-- end of mainArea -->
+
+        <div class="ui-grid-row" id="footer">
+            <div class="ui-grid-col-12">footer</div>
+        </div>
+        <!-- end of footer -->
+
+    </div>
+    <!-- end of wrapper -->
+
+</h:body>
+<!-- end of body -->
+</html>

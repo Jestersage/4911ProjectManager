@@ -1,0 +1,122 @@
+/******* GLOBAL STYLES *******/
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+	font-size: 12px;
+}
+
+p {
+	font-size: 12px;
+}
+
+/******************************/
+/* wraps the whole page */
+#wrapper {
+	height: 100%;
+	width: 100%;
+}
+
+#header {
+    border: dotted grey 1px;
+	height: 15%;
+}
+/* contains everything that is not the header */
+#mainArea {
+    border: dotted grey 1px;
+	height: 75%;
+	width: 100%
+}
+/* where most of the information is displayed */
+#content {
+    border: dotted grey 1px;
+	height: 100%;
+	padding-left: 1.5em;
+}
+
+#leftMenu {
+    border: dotted grey 1px;
+}
+
+#footer {
+    border: dotted grey 1px;
+	height: 10%;
+	position: relative;
+	bottom: 0;
+}
+
+/******* header styles *******/
+#company {
+	display: table;
+}
+
+#logo {
+	float: left;
+	margin: 1em;
+}
+
+#companyName {
+	vertical-align: middle;
+	display: table-cell;
+}
+
+#menu {
+	margin-top: 1.5em;
+	font-size: 10px;
+	width: 60%;
+}
+
+#userButtons {
+	background-color: white;
+	margin-top: 1.5em;
+	font-size: 10px;
+	width: 60%;
+}
+
+/******* mainArea *********/
+#notification {
+	background-color: white;
+	width: 80%;
+	margin: 1em 1em 1em 0em;
+	padding: 0.5em;
+	/* change later */
+	/* display: hidden; */
+}
+
+#breadcrumb {
+	width: 30%;
+}
+#pageTitle {
+	width: 90%;
+	margin: 1em 1em 1em 0em;
+}
+
+/******* Classes *********/
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
+}
+
+.inline {
+	display: inline;
+}
+
+.mg-left-md {
+	margin-left: 2em;
+}
+
+.sectionSeparator {
+	width: 80%;
+	margin-left: 0;
+	margin-top: 1em;
+	color: grey;
+}
+
+.marginOneEm {
+    margin: 1em;
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/masterLayout.xhtml">
+		<ui:define name="windowTitle">#{msgs.employees}</ui:define>
+		<ui:define name="additionalStyleSheets">
+			<h:outputStylesheet library="css" name="viewAllEmployees.css" />
+		</ui:define>
+		<ui:define name="content">
+
+			<div class="ui-grid ui-grid-responsive">
+				<div class="ui-grid-row">
+					<div class="ui-grid-col-7">
+						<div id="employeesDataTable">
+							<p:dataTable var="" value="">
+
+								<p:column headerText="#{msgs.id}">
+									<h:outputText value="" />
+								</p:column>
+
+								<p:column headerText="#{msgs.firstName}">
+									<h:outputText value="" />
+								</p:column>
+
+								<p:column headerText="#{msgs.lastName}">
+									<h:outputText value="" />
+								</p:column>
+
+								<p:column headerText="#{msgs.supervisor}">
+									<h:outputText value="" />
+								</p:column>
+
+							</p:dataTable>
+						</div>
+					</div>
+					<div class="ui-grid-col-5">right</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
