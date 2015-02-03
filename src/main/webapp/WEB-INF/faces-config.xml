@@ -9,7 +9,7 @@
 			<default-locale>en</default-locale>
 		</locale-config>
 		<resource-bundle>
-			<base-name>ca.bcit.info.pms.messages</base-name>
+			<base-name>messages</base-name>
 			<var>msgs</var>
 		</resource-bundle>
 	</application>
