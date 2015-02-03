@@ -21,7 +21,7 @@ DROP TABLE IF EXISTS Permission;
 DROP TABLE IF EXISTS Role;
 DROP TABLE IF EXISTS employee;
 --
-CREATE TABLE Credential (
+CREATE TABLE Credentials (
   username varchar(255) NOT NULL, 
   password varchar(512) NOT NULL, 
   PRIMARY KEY (username));
@@ -67,4 +67,4 @@ ALTER TABLE permissionAssign ADD INDEX FKpermission966818 (permissionID), ADD CO
 ALTER TABLE roleAssign ADD INDEX FKroleAssign822707 (roleID), ADD CONSTRAINT FKroleAssign822707 FOREIGN KEY (roleID) REFERENCES Role (roleID);
 ALTER TABLE roleAssign ADD INDEX FKroleAssign974720 (employeeID), ADD CONSTRAINT FKroleAssign974720 FOREIGN KEY (employeeID) REFERENCES employee (employeeID);
 ALTER TABLE employee ADD INDEX FKemployee427530 (supervisorID), ADD CONSTRAINT FKemployee427530 FOREIGN KEY (supervisorID) REFERENCES employee (employeeID);
-ALTER TABLE employee ADD INDEX FKemployee94085 (username), ADD CONSTRAINT FKemployee94085 FOREIGN KEY (username) REFERENCES Credential (username);
+ALTER TABLE employee ADD INDEX FKemployee94085 (username), ADD CONSTRAINT FKemployee94085 FOREIGN KEY (username) REFERENCES Credentials (username);
