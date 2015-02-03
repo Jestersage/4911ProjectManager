@@ -1,8 +1,8 @@
 DROP DATABASE pms;
 CREATE DATABASE pms;
 --
-GRANT ALL PRIVILEGES ON pms.* TO username@localhost IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON pms.* TO username@"%" IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON pms.* TO atdefault@localhost IDENTIFIED BY 'atdefault';
+GRANT ALL PRIVILEGES ON pms.* TO atdefault@"%" IDENTIFIED BY 'atdefault';
 --
 use pms;
 --
