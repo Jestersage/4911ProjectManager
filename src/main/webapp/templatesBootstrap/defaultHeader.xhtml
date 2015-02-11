@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+	<title>IGNORED</title>
+
+</h:head>
+<h:body>
+	<ui:composition>
+
+		<nav class="navbar navbar-default navbar-fixed-top"> <!-- Brand and toggle get grouped for better mobile display -->
+		<div id="header" class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Company Name</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">#{msgs.myPage}<span
+							class="sr-only">(current)</span></a></li>
+					<li><a href="#">#{msgs.project}</a></li>
+					<li><a href="#">#{msgs.workPackage}</a></li>
+					<li><a href="#">#{msgs.employees}</a></li>
+					<li><a href="#">#{msgs.assignments}</a></li>
+					<li><a href="#">#{msgs.reports}</a></li>
+				</ul>
+
+
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<form id="search" class="navbar-form" role="search">
+							<div class="form-group">
+								<div class="input-group">
+									<div class="input-group-btn">
+										<button type="button" class="btn btn-default dropdown-toggle"
+											data-toggle="dropdown" aria-expanded="false">
+											#{msgs.options} <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li><a href="#">#{msgs.project}</a></li>
+											<li><a href="#">#{msgs.workPackage}</a></li>
+											<li><a href="#">#{msgs.employees}</a></li>
+										</ul>
+									</div>
+									<!-- /btn-group -->
+									<input type="text" size="15" class="form-control"
+										aria-label="..." />
+								</div>
+								<!-- /input-group -->
+							</div>
+							<button type="submit" class="btn btn-default">Go</button>
+						</form>
+
+
+					</li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false">User
+							<span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">#{msgs.firstName} #{msgs.lastName}</a></li>
+							<li class="divider"></li>
+							<li><a href="#">#{msgs.logout}</a></li>
+							<li><a href="#">#{msgs.settings}</a></li>
+						</ul></li>
+					<li><a href="#">#{msgs.help} <span
+							class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+					</a></li>
+				</ul>
+
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		</nav>
+	</ui:composition>
+</h:body>
+</html>
