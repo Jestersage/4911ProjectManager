@@ -30,12 +30,11 @@ body > .container-fluid {
 	border: dotted grey 1px;
     height: 15%;
 	width: 95%;	
-	overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 /* contains everything that is not the header */
 #mainArea {
 	border: dotted grey 1px;
-	height: 95%;
+	height: 100%;
 	width: 100%;
 	
 }

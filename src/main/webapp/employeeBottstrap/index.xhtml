@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+	<title></title>
+	<h:outputStylesheet library="css" name="reset.css" />
+	<h:outputStylesheet library="css" name="template.css" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
+
+		<ui:define name="windowTitle">#{msgs.myPage}</ui:define>
+
+		<ui:define name="additionalStyleSheets">
+			<h:outputStylesheet library="css" name="employee.css" />
+		</ui:define>
+
+		<div class="container-fluid" id="wrapper">
+			<ui:define name="breadcrumb">
+				<div id="breadcrumb">
+					<ol class="breadcrumb">
+						<li><a href="#">My Page</a></li>
+					</ol>
+				</div>
+			</ui:define>
+
+			<ui:define name="content">
+
+
+				<div class="container-fluid" id="search">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-6 bg-primary"
+							id="searchFilters">left</div>
+						<div class="bg-info" id="searchResults">right</div>
+
+					</div>
+				</div>
+				<div id="dashboard">
+					<div class="container-fluid" id="row1">
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
+								<h2>#{msgs.project}</h2>
+								<hr class="sectionSeparator" />
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4" id="middleSection">
+								<h2>#{msgs.workPackage}</h2>
+								<hr class="sectionSeparator" />
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4" id="rightSection">
+								<h2>#{msgs.assignments}</h2>
+								<hr class="sectionSeparator" />
+							</div>
+						</div>
+					</div>
+					<div class="container-fluid" id="row2">
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
+								<h2>#{msgs.employees}</h2>
+								<hr class="sectionSeparator" />
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4" id="middleSection">
+								<h2>#{msgs.reports}</h2>
+								<hr class="sectionSeparator" />
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-4" id="rightSection">
+								<h2>#{msgs.rates}</h2>
+								<hr class="sectionSeparator" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</ui:define>
+		</div>
+		<!-- end of wrapper -->
+	</ui:composition>
+</h:body>
+<!-- end of body -->
+</html>

@@ -1,6 +1,5 @@
 #data {
 	margin: 1em;
-	background-color: grey;
 	height: 100%;
 }
 
@@ -9,30 +8,34 @@
 	background-color: white;
 	height: 70%%;
 }
+#notificationNewEmployee outputLabel, outputText{
+    margin-bottom: 2em;
+}
 
-#newEmployeeButtons {
-	margin-top: 1.5em;
-	margin-left: 6em;
+#newEmployeeButtons input {
+	margin: 1em;
 }
 
 #searchFilters {
-	background-color: grey;
 	margin-right: 1em;
-	
 }
+
 #searchResults {
-	background-color: grey;
 	margin-right: 1em;
 }
+
 #dashboard {
 	height: 80%;
 }
+
 #search {
 	height: 20%;
 }
+
 #row1 {
 	height: 50%;
 }
+
 #row2 {
 	height: 50%;
 }
