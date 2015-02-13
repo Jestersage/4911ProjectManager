@@ -16,8 +16,29 @@
 			<h:outputStylesheet library="css" name="viewAllEmployees.css" />
 		</ui:define>
 		<ui:define name="content">
+			<div class="col-xs-12 col-sm-12 colmd-12">
 
-			<div class="container-fluid">
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+
+						<div id="breadcrumb">
+							<ol class="breadcrumb">
+								<li><a href="#">My Page</a></li>
+								<li><a href="#">New Employee</a></li>
+							</ol>
+						</div>
+
+						<div id="pageTitle">
+							<h1>#{msgs.employees}</h1>
+						</div>
+						<ui:insert name="notificationArea">
+							<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
+						</ui:insert>
+					</div>
+				</div>
+
+
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 col-md-7 ">
 						<div id="employeesDataTable">

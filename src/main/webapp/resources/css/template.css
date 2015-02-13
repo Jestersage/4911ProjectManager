@@ -24,6 +24,7 @@ body > .container-fluid {
 #wrapper {
 	height: 100%;
 	width: 100%;
+	
 }
 
 #header {
@@ -36,6 +37,8 @@ body > .container-fluid {
 	border: dotted grey 1px;
 	height: 100%;
 	width: 100%;
+	   margin: 0 1em 0 1em;
+	
 	
 }
 /* where most of the information is displayed */
@@ -104,4 +107,8 @@ body > .container-fluid {
 
 .marginOneEm {
 	margin: 1em;
+}
+
+.heightHUN {
+	height: 100%;
 }
