@@ -21,27 +21,39 @@
 			<h:outputStylesheet library="css" name="employee.css" />
 		</ui:define>
 
-		<div class="container-fluid" id="wrapper">
-			<ui:define name="breadcrumb">
-				<div id="breadcrumb">
-					<ol class="breadcrumb">
-						<li><a href="#">My Page</a></li>
-					</ol>
-				</div>
-			</ui:define>
+		<ui:define name="content">
+			<div class="col-xs-12 col-sm-12 col-md-12 heightHUN">
 
-			<ui:define name="content">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
 
+						<div id="breadcrumb">
+							<ol class="breadcrumb">
+								<li><a href="#">My Page</a></li>
+								<li><a href="#">New Employee</a></li>
+							</ol>
+						</div>
 
-				<div class="container-fluid" id="search">
-					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-6 bg-primary"
-							id="searchFilters">left</div>
-						<div class="bg-info" id="searchResults">right</div>
+						<div id="pageTitle">
 
+							<h1>#{msgs.newEmployee}</h1>
+
+						</div>
+						<ui:insert name="notificationArea">
+							<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
+						</ui:insert>
 					</div>
 				</div>
-				<div id="dashboard">
+
+
+				<div class="row" id="search">
+					<div class="col-xs-12 col-sm-12 col-md-6 bg-primary"
+						id="searchFilters">left</div>
+					<div class="bg-info" id="searchResults">right</div>
+
+				</div>
+
+				<div class="row heightHUN" id="dashboard">
 					<div class="container-fluid" id="row1">
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
@@ -75,9 +87,9 @@
 						</div>
 					</div>
 				</div>
+			</div>
 
-			</ui:define>
-		</div>
+		</ui:define>
 		<!-- end of wrapper -->
 	</ui:composition>
 </h:body>

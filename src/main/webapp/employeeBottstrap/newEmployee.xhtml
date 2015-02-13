@@ -21,21 +21,42 @@
 			<h:outputStylesheet library="css" name="employee.css" />
 		</ui:define>
 
-		<div class="container-fluid" id="wrapper">
-			<ui:define name="breadcrumb">
-				<div id="breadcrumb">
-					<ol class="breadcrumb">
-						<li><a href="#">My Page</a></li>
-						<li><a href="#">New Employee</a></li>
-					</ol>
-				</div>
-			</ui:define>
+		<!-- leftMenu -->
+		<ui:define name="leftMenu">
+			<div class="col-xs-2 col-sm-2 col-md-2 " id="leftMenu">
+				<ui:include src="/templatesBootstrap/defaultLeftMenu.xhtml" />
+			</div>
+		</ui:define>
+		<!-- end of leftMenu -->
 
-			<ui:define name="content">
+		<ui:define name="content">
+			<div class="col-md-10">
+				<div class="container-fluid" id="wrapper">
 
-				<div class="container-fluid">
 					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-7" id="data">
+						<div class="col-xs-12 col-sm-12 col-md-12">
+
+							<div id="breadcrumb">
+								<ol class="breadcrumb">
+									<li><a href="#">My Page</a></li>
+									<li><a href="#">New Employee</a></li>
+								</ol>
+							</div>
+
+							<div id="pageTitle">
+								
+									<h1>#{msgs.myPage}</h1> 
+								
+							</div>
+							<ui:insert name="notificationArea">
+								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
+							</ui:insert>
+						</div>
+					</div>
+
+					<div class="row">
+
+						<div class="col-xs-12 col-sm-12 col-md-5" id="data">
 							<h:form class="form-horizontal">
 								<div class="form-group">
 									<h:outputLabel for="itUserId" value="#{msgs.id}"
@@ -184,8 +205,8 @@
 						<!-- end of notificationEmployee div -->
 					</div>
 				</div>
-			</ui:define>
-		</div>
+			</div>
+		</ui:define>
 		<!-- end of wrapper -->
 	</ui:composition>
 </h:body>
