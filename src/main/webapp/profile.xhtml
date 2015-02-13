@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
+
+		<ui:define name="windowTitle">#{msgs.profile}</ui:define>
+
+		<ui:define name="additionalStyleSheets">
+		</ui:define>
+
+
+
+		<ui:define name="content">
+			<!-- change the value if using left menu -->
+			<div class="col-md-12">
+
+				<div class="container-fluid" id="wrapper">
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12">
+
+							<div id="breadcrumb">
+								<ol class="breadcrumb">
+									<li><a href="#">My Page</a></li>
+									<li class="active">#{msgs.profile}</li>
+								</ol>
+							</div>
+
+							<div id="pageTitle">
+
+								<h1>#{msgs.profile}</h1>
+
+							</div>
+							<ui:insert name="notificationArea">
+								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
+							</ui:insert>
+						</div>
+					</div>
+
+					<div class="row">
+
+						<div class="col-xs-12 col-sm-12 col-md-12">
+						
+							<form class="form-horizontal">
+								<div class="form-group">
+									<h:outputLabel for="txtID" class="col-sm-2 control-label"
+										value="#{msgs.id}" />
+									<div class="col-sm-4">
+										<h:outputText id="txtID" value="" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="txtFirstName" value="#{msgs.firstName}"
+										class="col-sm-2 control-label" />
+									<div class="col-sm-4">
+										<h:outputText id="txtFirstName" value="" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="txtLastName" value="#{msgs.lastName}"
+										class="col-sm-2 control-label" />
+									<div class="col-sm-4">
+										<h:outputText id="txtLastName" value="" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="txtUserName" value="#{msgs.userName}"
+										class="col-sm-2 control-label" />
+									<div class="col-sm-4">
+										<h:outputText id="txtUserName" value="" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="txtRole" value="#{msgs.role}"
+										class="col-sm-2 control-label" />
+									<div class="col-sm-4">
+										<h:outputText id="txtRole" value="" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="txtPayLevel" value="#{msgs.payLevel}"
+										class="col-sm-2 control-label" />
+									<div class="col-sm-4">
+										<h:outputText id="txtPayLevel" value="" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="txtSupervisor" value="#{msgs.supervisor}"
+										class="col-sm-2 control-label" />
+
+									<div class="col-sm-4">
+										<h:outputText id="txtSupervisor" value="" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="txtProject" value="#{msgs.project}"
+										class="col-sm-2 control-label" />
+									<div class="col-sm-4">
+										<h:outputText id="txtProject" value="" />
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+		<!-- end of wrapper -->
+	</ui:composition>
+</h:body>
+<!-- end of body -->
+</html>
