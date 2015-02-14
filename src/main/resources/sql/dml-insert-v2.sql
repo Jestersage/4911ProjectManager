@@ -2,7 +2,7 @@
 -- Order MUST BE: Credentials, Then employee, then roleAssign
 --
 --
-INSERT INTO Credential
+INSERT INTO Credentials
   (username, password) 
 VALUES 
   ("root", "password");
@@ -12,7 +12,7 @@ VALUES
   (000001, "root", "gleung4@gmail.com", "CEO", "Admin", 01, 000001, 1, 1 );
 --
 --
-INSERT INTO Credential
+INSERT INTO Credentials
   (username, password) 
 VALUES 
   ("gabeh", "password");
@@ -22,7 +22,7 @@ VALUES
   (123456, "gabeh", "gabeh3264@gmail.com", "Gabe", "Hung", 02, 000001, 1, 1);
 --
 --
-INSERT INTO Credential
+INSERT INTO Credentials
   (username, password) 
 VALUES 
   ("georgel", "password");
