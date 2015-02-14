@@ -8,10 +8,10 @@ SELECT employeeID, username, email, firstName, lastName, paygradeID, supervisorI
   FROM employee;
 --
 -- UPDATE / U
-UPDATE Credential SET password='P@$$w0rd' 
+UPDATE Credentials SET password='P@$$w0rd' 
     WHERE username = 'georgel';
 --
-UPDATE roleAssign SET roleID = 1
+UPDATE employee SET role = 1
 WHERE
   employeeID = 124816;
 --
@@ -21,21 +21,19 @@ UPDATE employee SET
   firstName = 'George gh', 
   lastName = 'Leung', 
   supervisorID = 000001, 
-  payGrade = 1,
+  paygradeID = 1,
   active = 0 
 WHERE
   employeeID = 124816;
 --
 --
 -- DELETE -- Variables only
--- Order: deelete roleAssign, SELECT username
-DELETE from roleAssign
-  WHERE employeeID = 124816;
+-- Order:  SELECT username
 SELECT username
   FROM employee 
   WHERE employeeID = 124816;
--- store username
+-- store username with beans
 DELETE from employee
   WHERE employeeID = 124816;
-DELETE from Credential
+DELETE from Credentials
   WHERE username = 'georgel';
