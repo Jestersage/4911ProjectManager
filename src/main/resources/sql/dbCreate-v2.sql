@@ -78,7 +78,8 @@ CREATE TABLE Project (
   PRIMARY KEY (projectID));
 CREATE TABLE Credentials (
   username varchar(255) NOT NULL, 
-  password varchar(512) NOT NULL, 
+  password varchar(512) NOT NULL,
+  salt     varchar(512) NOT NULL,
   PRIMARY KEY (username));
 CREATE TABLE Paygrade (
   paygradeID int(10) NOT NULL AUTO_INCREMENT, 
