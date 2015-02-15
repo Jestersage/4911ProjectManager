@@ -5,7 +5,8 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	>
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:p="http://primefaces.org/ui" >
 	
 	
 
@@ -33,17 +34,22 @@
 	<div class="container">
     
 		<h:form class="form-signin">
-			<h2 class="form-signin-heading">Please sign in</h2>
+			<h2 class="form-signin-heading">#{msgs.auth_form_name}</h2>
             <h:messages class="bg-danger" />
-			<h:outputLabel value="#{msgs.email}" for="inputEmail" class="sr-only" />
-			<h:inputText value="" type="email" id="inputEmail"
-				class="form-control" placeholder="Email address" required="true"
-				autofocus="true" />
+
+			<h:outputLabel value="#{msgs.auth_username}" for="inputUsername" class="sr-only" />
+			<h:inputText value="" id="inputUsername"
+				class="form-control" required="true" label="#{msgs.auth_username}"
+                pt:placeholder="#{msgs.auth_username}" pt:autofocus="true" />
+
 			<h:outputLabel value="#{msgs.password}" for="inputPassword"
 				class="sr-only" />
-			<h:inputText value="" type="password" id="inputPassword" class="form-control"
-				placeholder="Password" required="true" />
-			<h:commandButton class="btn btn-lg btn-primary btn-block" type="submit" value="#{msgs.signin}"/>
+			<p:password value="" id="inputPassword" class="form-control"
+                        required="true" label="#{msgs.auth_password}"
+                        pt:placeholder="#{msgs.password}" />
+
+			<h:commandButton class="btn btn-lg btn-primary btn-block" value="#{msgs.auth_submit}"
+                    action="#{userController.login}"/>
 		</h:form>
 
 	</div>
