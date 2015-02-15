@@ -21,6 +21,7 @@ DROP TABLE IF EXISTS Permission;
 DROP TABLE IF EXISTS Role;
 DROP TABLE IF EXISTS employee;
 --
+-- salt need to be as long as hashed password
 CREATE TABLE Credentials (
   username varchar(255) NOT NULL, 
   password varchar(512) NOT NULL, 

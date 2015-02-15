@@ -76,6 +76,7 @@ CREATE TABLE Project (
   status       varchar(255) NOT NULL, 
   pmEmployeeID varchar(10) NOT NULL, 
   PRIMARY KEY (projectID));
+-- salt need to be as long as hashed password
 CREATE TABLE Credentials (
   username varchar(255) NOT NULL, 
   password varchar(512) NOT NULL,
