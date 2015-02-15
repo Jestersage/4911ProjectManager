@@ -9,18 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
-import javax.persistence.Version;
 
 import java.lang.Override;
 
 @Entity
 @Table(name = "Credentials")
-public class Credentials implements Serializable {
+public class Credential implements Serializable {
 
-	public Credentials() {
+	public Credential() {
 	}
 	
-	public Credentials(String username, String password) {
+	public Credential(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -64,7 +63,7 @@ public class Credentials implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Credentials other = (Credentials) obj;
+		Credential other = (Credential) obj;
 		if (password == null) {
 			if (other.password != null)
 				return false;

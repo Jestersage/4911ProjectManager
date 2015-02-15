@@ -38,14 +38,14 @@
             <h:messages class="bg-danger" />
 
 			<h:outputLabel value="#{msgs.auth_username}" for="inputUsername" class="sr-only" />
-			<h:inputText value="" id="inputUsername"
+			<h:inputText value="#{userController.credential.username}" id="inputUsername"
 				class="form-control" required="true" label="#{msgs.auth_username}"
                 pt:placeholder="#{msgs.auth_username}" pt:autofocus="true" />
 
 			<h:outputLabel value="#{msgs.password}" for="inputPassword"
 				class="sr-only" />
-			<p:password value="" id="inputPassword" class="form-control"
-                        required="true" label="#{msgs.auth_password}"
+			<p:password value="#{userController.credential.password}" id="inputPassword"
+                        class="form-control" required="true" label="#{msgs.auth_password}"
                         pt:placeholder="#{msgs.password}" />
 
 			<h:commandButton class="btn btn-lg btn-primary btn-block" value="#{msgs.auth_submit}"

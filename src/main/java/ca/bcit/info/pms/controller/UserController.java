@@ -6,10 +6,10 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import ca.bcit.info.pms.model.Credential;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import ca.bcit.info.pms.model.Credentials;
 import ca.bcit.info.pms.service.EmployeeService;
 
 @Named("userController")
@@ -20,15 +20,15 @@ public class UserController implements Serializable {
 	private EmployeeService empService;
 	
 	@Inject
-	private Credentials credential;
+	private Credential credential;
 	
 	private static final Logger logger = LogManager.getLogger(UserController.class);
 
-	public Credentials getCredential() {
+	public Credential getCredential() {
 		return credential;
 	}
 
-	public void setCredential(Credentials credential) {
+	public void setCredential(Credential credential) {
 		this.credential = credential;
 	}
 
@@ -36,21 +36,20 @@ public class UserController implements Serializable {
 		boolean isCorrect = empService.checkCredentials(credential);
 	
 		if(isCorrect){
-			logger.info("Success");
+			logger.info("Login Success");
 			return "success";
 		}
-		return "failed";
-		
+
+        logger.info("Login Failed");
+		return null;
 	}
 
 	public String logout(){
-		return null;
-		
+		throw new UnsupportedOperationException();
 	}
 	
 	public String  changePassword(){
-		return null;
-		
+        throw new UnsupportedOperationException();
 	}
 
 }
