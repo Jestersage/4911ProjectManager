@@ -25,26 +25,29 @@ public class Credential implements Serializable {
 		this.password = password;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", updatable = false, nullable = false)
-	private Long id;
-
-	@Column(name = "username", nullable = false)
+    @Id
 	private String username;
 
-	@Column(name = "password", nullable = false)
 	private String password;
 
-	public Long getId() {
-		return this.id;
-	}
 
-	public void setId(final Long id) {
-		this.id = id;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	@Override
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -77,27 +80,9 @@ public class Credential implements Serializable {
 		return true;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	@Override
 	public String toString() {
 		String result = getClass().getSimpleName() + " ";
-		if (id != null)
-			result += "id: " + id;
 		if (username != null && !username.trim().isEmpty())
 			result += ", username: " + username;
 		if (password != null && !password.trim().isEmpty())

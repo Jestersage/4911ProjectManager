@@ -10,14 +10,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import ca.bcit.info.pms.model.Credentials;
+import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
 
 @Stateless
@@ -33,9 +32,9 @@ public class EmployeeManager  implements Serializable {
 
 	
 	@SuppressWarnings("unchecked")
-	public List<Credentials> getCredentials() {
+	public List<Credential> getCredentials() {
 
-		return this.entityManager.createQuery("select c from Credentials c",Credentials.class ).getResultList();
+		return this.entityManager.createQuery("select c from Credential c",Credential.class ).getResultList();
 	}
 	/*
 	 * Support updating and deleting Employee entities
@@ -161,16 +160,16 @@ public class EmployeeManager  implements Serializable {
 	}
 
 	/*
-	 * Support listing and POSTing back Credentials entities (e.g. from inside an
+	 * Support listing and POSTing back Credential entities (e.g. from inside an
 	 * HtmlSelectOneMenu)
 	 */
 
-	public List<Credentials> getAllCredentials() {
+	public List<Credential> getAllCredentials() {
 
-		CriteriaQuery<Credentials> criteria = this.entityManager
-				.getCriteriaBuilder().createQuery(Credentials.class);
+		CriteriaQuery<Credential> criteria = this.entityManager
+				.getCriteriaBuilder().createQuery(Credential.class);
 		return this.entityManager.createQuery(
-				criteria.select(criteria.from(Credentials.class))).getResultList();
+				criteria.select(criteria.from(Credential.class))).getResultList();
 	}
 	
 	/*
@@ -203,11 +202,11 @@ public class EmployeeManager  implements Serializable {
 			entityManager.persist(employee);	
     }
     
-    public void persistCredential(Credentials credential) {
+    public void persistCredential(Credential credential) {
     	boolean exist = false;
-		List<Credentials> allCredentials = null;
+		List<Credential> allCredentials = null;
 		allCredentials = this.getAllCredentials();
-		for(Credentials oldRecord : allCredentials){
+		for(Credential oldRecord : allCredentials){
 			if(oldRecord.getUsername().equals(credential.getUsername())) {
 				exist = true;
 				System.out.println("Record(Credential) already exist!");

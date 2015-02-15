@@ -1,9 +1,7 @@
 package ca.bcit.info.pms.service;
 
-import java.io.Serializable;
-
-import ca.bcit.info.pms.model.Credentials;
+import ca.bcit.info.pms.model.Credential;
 
 public interface EmployeeService {
-	boolean checkCredentials(Credentials credentials);
+	boolean checkCredentials(Credential credential);
 }

@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.bcit.info.pms.access.EmployeeManager;
-import ca.bcit.info.pms.model.Credentials;
+import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.service.EmployeeService;
 
 
@@ -18,13 +18,13 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable {
 	private EmployeeManager empManager;
 	
 
-	private List<Credentials> credentialList;
+	private List<Credential> credentialList;
 	
 	@Override
-	public boolean checkCredentials(Credentials credentials) {
+	public boolean checkCredentials(Credential credential) {
 		credentialList = empManager.getCredentials();
 		if(credentialList!=null)
-		return credentialList.contains(credentials);
+		return credentialList.contains(credential);
 		else 
 		return false;
 	}

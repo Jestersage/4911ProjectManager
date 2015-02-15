@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.bcit.info.pms.access.EmployeeManager;
-import ca.bcit.info.pms.model.Credentials;
+import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
 
 @Named("empController")
@@ -24,7 +24,7 @@ public class EmployeeController implements Serializable {
 	 * Hold the new Credential information
 	 */
 	@Inject
-	private Credentials creden;
+	private Credential creden;
 	
 	/**
 	 * Add new Employee to database.
@@ -39,9 +39,9 @@ public class EmployeeController implements Serializable {
 	 * Add new Credential to database.
 	 */
 	public void addCredential() {
-		creden = new Credentials("fredxie", "aaaaaa");
+		creden = new Credential("fredxie", "aaaaaa");
 		empManager.persistCredential(creden);
-		creden = new Credentials();
+		creden = new Credential();
 	}
 	
 	/**
