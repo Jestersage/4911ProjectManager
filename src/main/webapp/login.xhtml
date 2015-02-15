@@ -7,15 +7,15 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
     xmlns:p="http://primefaces.org/ui" >
-	
-	
+
+
 
 <h:head>
 	<title>#{msgs.companyName}</title>
 
 	<h:outputStylesheet library="css" name="reset.css" />
-	
-	<h:outputStylesheet library="css" name="login.css" />	
+
+	<h:outputStylesheet library="css" name="login.css" />
 
 	<!-- Bootstrap styles -->`
     <h:outputStylesheet
@@ -24,7 +24,7 @@
 	<h:outputStylesheet
 		library="bootstrap-3.3.2-dist/bootstrap-3.3.2-dist/css"
 		name="bootstrap-theme.css" />
-	
+
 
 	<!-- needed for bootstrap -->
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -32,10 +32,10 @@
 </h:head>
 <h:body>
 	<div class="container">
-    
-		<h:form class="form-signin">
+
+		<h:form id="authForm" class="form-signin">
 			<h2 class="form-signin-heading">#{msgs.auth_form_name}</h2>
-            <h:messages class="bg-danger" />
+            <h:messages class="bg-danger text-danger" />
 
 			<h:outputLabel value="#{msgs.auth_username}" for="inputUsername" class="sr-only" />
 			<h:inputText value="#{userController.credential.username}" id="inputUsername"

@@ -3,6 +3,8 @@ package ca.bcit.info.pms.controller;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -37,11 +39,15 @@ public class UserController implements Serializable {
 	
 		if(isCorrect){
 			logger.info("Login Success");
-			return "success";
+			return "loginSuccess";
 		}
 
+        FacesContext.getCurrentInstance().addMessage(
+                "passwordForm",
+                new FacesMessage("Your username and password didn't match. Try again."));
+
         logger.info("Login Failed");
-		return null;
+		return "loginFail";
 	}
 
 	public String logout(){

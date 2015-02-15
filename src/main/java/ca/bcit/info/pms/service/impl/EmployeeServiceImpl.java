@@ -16,17 +16,16 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable {
 
 	@Inject
 	private EmployeeManager empManager;
-	
 
 	private List<Credential> credentialList;
-	
+
 	@Override
 	public boolean checkCredentials(Credential credential) {
 		credentialList = empManager.getCredentials();
-		if(credentialList!=null)
-		return credentialList.contains(credential);
-		else 
-		return false;
+		if(credentialList != null)
+		    return credentialList.contains(credential);
+		else
+		    return false;
 	}
 
 }
