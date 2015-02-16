@@ -29,6 +29,7 @@
 </h:head>
 
 <h:body>
+    <f:event type="preRenderView" listener="#{userController.checkPermissions}"/>
 
 	<!-- header -->
 	<ui:insert name="header">

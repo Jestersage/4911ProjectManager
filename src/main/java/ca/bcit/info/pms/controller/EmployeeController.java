@@ -72,7 +72,7 @@ public class EmployeeController implements Serializable {
 	 * Add new Credential to database.
 	 */
 	public void addCredential() {
-		creden = new Credential("fredxie", "aaaaaa");
+		creden = new Credential("root", "password");
 		empManager.persistCredential(creden);
 		creden = new Credential();
 	}

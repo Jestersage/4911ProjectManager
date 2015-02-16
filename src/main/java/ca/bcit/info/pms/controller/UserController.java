@@ -3,12 +3,15 @@ package ca.bcit.info.pms.controller;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.bcit.info.pms.model.Credential;
+import ca.bcit.info.pms.model.Employee;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -42,6 +45,7 @@ public class UserController implements Serializable {
 			return "loginSuccess";
 		}
 
+        credential = new Credential();
         FacesContext.getCurrentInstance().addMessage(
                 "passwordForm",
                 new FacesMessage("Your username and password didn't match. Try again."));
@@ -49,6 +53,27 @@ public class UserController implements Serializable {
         logger.info("Login Failed");
 		return "loginFail";
 	}
+
+    public void checkPermissions(ComponentSystemEvent event) {
+        boolean isAuthorized = false;
+
+        if (credential != null && credential.getUsername() != null) {
+            logger.info("username: " + credential.getUsername() + ", password: " + credential.getPassword());
+            isAuthorized = true;
+        }
+
+        if (!isAuthorized) {
+            FacesContext.getCurrentInstance().addMessage(
+                    "passwordForm",
+                    new FacesMessage("Please login to access the page."));
+
+            final FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getApplication().getNavigationHandler().handleNavigation(fc, null, "unauthorized");
+
+            logger.info("unauthorized access");
+            return;
+        }
+    }
 
 	public String logout(){
 		throw new UnsupportedOperationException();
