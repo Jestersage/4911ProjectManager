@@ -36,10 +36,10 @@ public class EmployeeManager  implements Serializable {
 
 		return this.entityManager.createQuery("select c from Credential c",Credential.class ).getResultList();
 	}
-	/*
+
+	/**
 	 * Support updating and deleting Employee entities
 	 */
-
 	public String updateEmployee(Employee employee) {
 		try {
 			if (employee.getId() == null) {
