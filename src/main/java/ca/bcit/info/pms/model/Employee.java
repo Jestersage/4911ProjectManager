@@ -33,14 +33,14 @@ public class Employee implements Serializable {
 	 * The argument-containing constructor. Used to create the initial employees
 	 */
 	public Employee(String id, String email, String firstName, String lastName,
-			double payGrade, String supervisorID, String username,
+			String payLevel, String supervisorID, String username,
 			int activeStatus) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.payGrade = payGrade;
+		this.payLevel = payLevel;
 		this.supervisorID = supervisorID;
 		this.username = username;
 		this.activeStatus = activeStatus;
@@ -74,11 +74,9 @@ public class Employee implements Serializable {
 	@Size(max = 30, message = "Last name cannot be longer than 30")
 	private String lastName;
 
-	@Column(name = "payGrade")
+	@Column(name = "payLevel")
 	@NotNull(message = "Pay grade cannot be null")
-	@Min(value = 0, message = "Pay grade cannot be negative")
-	@Max(value = 100000, message = "Pay grade cannot be greater than 100000")
-	private double payGrade;
+	private String payLevel;
 
 	@Column(name = "supervisorID")
 	@NotNull(message = "Supervisor ID cannot be null")
@@ -120,12 +118,12 @@ public class Employee implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public double getPayGrade() {
-		return payGrade;
+	public String getPayLevel() {
+		return payLevel;
 	}
 
-	public void setPayGrade(double payGrade) {
-		this.payGrade = payGrade;
+	public void setPayLevel(String payLevel) {
+		this.payLevel = payLevel;
 	}
 
 	public String getSupervisorID() {

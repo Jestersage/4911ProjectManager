@@ -1,6 +1,7 @@
 package ca.bcit.info.pms.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -13,6 +14,14 @@ import ca.bcit.info.pms.model.Employee;
 @Named("empController")
 @SessionScoped	
 public class EmployeeController implements Serializable {
+	public Employee getNewEmp() {
+		return newEmp;
+	}
+
+	public Credential getCreden() {
+		return creden;
+	}
+
 	@Inject
 	private EmployeeManager empManager;
 	/**
@@ -27,10 +36,30 @@ public class EmployeeController implements Serializable {
 	private Credential creden;
 	
 	/**
+	 * Select list for pay level on newEmployee.xhtml page
+	 */
+	private ArrayList<String> payLevelItems = new ArrayList<String>() {{
+	    add("P1");
+	    add("P2");
+	    add("P3");
+	    add("P4");
+	    add("P5");
+	    add("P6");
+	}};
+	
+	public ArrayList<String> getPayLevelItems() {
+		return payLevelItems;
+	}
+
+	public void setPayLevelItems(ArrayList<String> payLevelItems) {
+		this.payLevelItems = payLevelItems;
+	}
+
+	/**
 	 * Add new Employee to database.
 	 */
 	public void addEmployee() {
-		newEmp = new Employee("A00123456", "aa@bb.cc", "fred", "xie", 11.11, "a12345678", "fredxie", 1);
+		newEmp = new Employee("A00123456", "aa@bb.cc", "fred", "xie", "P1", "a12345678", "fredxie", 1);
 		empManager.persistEmployee(newEmp);
 		newEmp = new Employee();
 	}
@@ -48,7 +77,7 @@ public class EmployeeController implements Serializable {
 	 * Add new Employee to database.
 	 */
 	public void updateEmployee() {
-		newEmp = new Employee("A00123456", "aa@bb.cc", "huanan", "wang", 11.11, "a12345678", "fredxie", 1);
+		newEmp = new Employee("A00123456", "aa@bb.cc", "huanan", "wang", "P1", "a12345678", "fredxie", 1);
 		empManager.updateEmployee(newEmp);
 		newEmp = new Employee();
 	}
