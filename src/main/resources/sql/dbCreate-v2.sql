@@ -82,25 +82,19 @@ CREATE TABLE Credentials (
   password varchar(512) NOT NULL,
   salt     varchar(512) NOT NULL,
   PRIMARY KEY (username));
-CREATE TABLE Paygrade (
-  paygradeID int(10) NOT NULL AUTO_INCREMENT, 
-  name       varchar(10) NOT NULL, 
-  CONSTRAINT paygradeID 
-    PRIMARY KEY (paygradeID));
-CREATE TABLE employee (
+CREATE TABLE Employee (
   employeeID   varchar(10) NOT NULL, 
   username     varchar(255) NOT NULL, 
   email        varchar(255) NOT NULL, 
   firstName    varchar(255) NOT NULL, 
   lastName     varchar(255) NOT NULL, 
-  paygradeID   int(10) NOT NULL, 
+  paygradeID   varchar(10) NOT NULL, 
   supervisorID varchar(10) NOT NULL, 
   active       int(1) NOT NULL, 
   role         int(2) NOT NULL, 
   CONSTRAINT employeeID 
     PRIMARY KEY (employeeID));
 ALTER TABLE SubWorkPackage ADD CONSTRAINT FKSubWorkPackage FOREIGN KEY (workPackageID) REFERENCES WorkPackage (packageID);
-ALTER TABLE employee ADD CONSTRAINT FKemployeePG FOREIGN KEY (paygradeID) REFERENCES Paygrade (paygradeID);
 ALTER TABLE employee ADD CONSTRAINT FKemployeeCred FOREIGN KEY (username) REFERENCES Credentials (username);
 ALTER TABLE Timesheet ADD CONSTRAINT FKTimesheetEmp FOREIGN KEY (employeeID) REFERENCES employee (employeeID);
 ALTER TABLE TimesheetRow  ADD CONSTRAINT FKTimesheetRow FOREIGN KEY (timesheetID) REFERENCES Timesheet (timesheetID);
