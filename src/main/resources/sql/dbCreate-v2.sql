@@ -21,8 +21,8 @@ DROP TABLE IF EXISTS Timesheet;
 DROP TABLE IF EXISTS WorkPackage;
 DROP TABLE IF EXISTS Project;
 DROP TABLE IF EXISTS Credentials;
-DROP TABLE IF EXISTS Paygrade;
 DROP TABLE IF EXISTS employee;
+DROP TABLE IF EXISTS Signatures;
 --
 CREATE TABLE SubWorkPackage (
   workPackageID int(10) NOT NULL);
@@ -94,9 +94,11 @@ CREATE TABLE Employee (
   role         int(2) NOT NULL, 
   CONSTRAINT employeeID 
     PRIMARY KEY (employeeID));
-CREATE TABLE Signature (
-  signature varchar(512) NOT NULL UNIQUE, 
-  publicKey varchar(512) NOT NULL UNIQUE);
+CREATE TABLE Signatures(
+	SignId INT NOT NULL PRIMARY KEY ,
+	Signature TINYBLOB NOT NULL, 
+	PublicKey BLOB NOT NULL
+);
 ALTER TABLE SubWorkPackage ADD CONSTRAINT FKSubWorkPackage FOREIGN KEY (workPackageID) REFERENCES WorkPackage (packageID);
 ALTER TABLE employee ADD CONSTRAINT FKemployeeCred FOREIGN KEY (username) REFERENCES Credentials (username);
 ALTER TABLE Timesheet ADD CONSTRAINT FKTimesheetEmp FOREIGN KEY (employeeID) REFERENCES employee (employeeID);
