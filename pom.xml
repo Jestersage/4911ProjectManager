@@ -154,9 +154,6 @@
 
 		<profile>
 			<id>wildfy81-embedded</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<!-- the dependencies for Wildfly8.1 -->
 			<dependencies>
 				<dependency>
