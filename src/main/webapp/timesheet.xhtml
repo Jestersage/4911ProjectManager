@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
+
+		<ui:define name="windowTitle">#{msgs.timesheet}</ui:define>
+
+		<ui:define name="additionalStyleSheets">
+            <h:outputStylesheet library="css" name="timesheet.css"/>
+		</ui:define>
+
+
+
+		<ui:define name="content">
+			<!-- change the value if using left menu -->
+			<div class="col-md-12">
+
+				<div class="container-fluid" id="wrapper">
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12">
+
+							<div id="breadcrumb">
+								<ol class="breadcrumb">
+									<li><a href="#">#{msgs.myPage}</a></li>
+									<li class="active">#{msgs.timesheet}</li>
+								</ol>
+							</div>
+
+							<div id="pageTitle">
+
+								<h1>#{msgs.timesheet}</h1>
+
+							</div>
+							<ui:insert name="notificationArea">
+								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
+							</ui:insert>
+						</div>
+					</div>
+
+					<div class="row">
+
+						<div class="col-xs-12 col-sm-12 col-md-12">
+
+							<div class="container-flid">
+								<div class="row">
+									<div class="col-md-5">
+										<div class="panel panel-default">
+											<div class="panel-body">
+												<div class="row">
+													<ul>
+														<li class="inline col-md-6"><h:outputLabel
+																value="#{msgs.weekNo}" /></li>
+														<li class="inline"><h:outputText value="" /></li>
+														<li class="inline"><h:outputLabel
+																value="#{msgs.weekEnding}" /></li>
+														<li class="inline"><h:outputText value="" /></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- /col -->
+								</div>
+								<!-- /row -->
+								<!-- timesheet area -->
+								<div class="row">
+									<div class="col-md-12">
+
+										<h:form id="timesheetForm">
+											<p:messages />
+
+											<p:dataTable var="" value="" cellpadding="0" cellspacing="0">
+												<div class="row table table-bordered">
+
+													<p:column headerText="#{msgs.project}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.workPackage}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.total}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText  class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.sun}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.mon}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.tue}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.wed}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.thu}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.fri}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.sat}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.notes}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+												</div>
+
+											</p:dataTable>
+										</h:form>
+										<!-- /timesheetForm -->
+
+
+
+									</div>
+									<!-- /col timesheet -->
+								</div>
+								<!-- /row timesheet -->
+							</div>
+							<!-- /container -->
+
+
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</ui:define>
+		<!-- end of wrapper -->
+	</ui:composition>
+</h:body>
+<!-- end of body -->
+</html>
