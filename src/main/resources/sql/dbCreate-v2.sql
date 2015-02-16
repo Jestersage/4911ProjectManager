@@ -94,6 +94,9 @@ CREATE TABLE Employee (
   role         int(2) NOT NULL, 
   CONSTRAINT employeeID 
     PRIMARY KEY (employeeID));
+CREATE TABLE Signature (
+  signature varchar(512) NOT NULL UNIQUE, 
+  publicKey varchar(512) NOT NULL UNIQUE);
 ALTER TABLE SubWorkPackage ADD CONSTRAINT FKSubWorkPackage FOREIGN KEY (workPackageID) REFERENCES WorkPackage (packageID);
 ALTER TABLE employee ADD CONSTRAINT FKemployeeCred FOREIGN KEY (username) REFERENCES Credentials (username);
 ALTER TABLE Timesheet ADD CONSTRAINT FKTimesheetEmp FOREIGN KEY (employeeID) REFERENCES employee (employeeID);
