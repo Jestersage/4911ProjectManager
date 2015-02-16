@@ -171,7 +171,7 @@ public class EmployeeManager  implements Serializable {
 		return this.entityManager.createQuery(
 				criteria.select(criteria.from(Credential.class))).getResultList();
 	}
-	
+
 	/*
 	 * Support adding children to bidirectional, one-to-many tables
 	 */

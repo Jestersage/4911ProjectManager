@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title></title>
@@ -42,23 +43,35 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 col-md-7 ">
 						<div id="employeesDataTable">
-							<h:dataTable styleClass="table" var="" value="">
-								<h:column>
-									<f:facet name="header">#{msgs.id}</f:facet>
-								</h:column>
+							<p:dataTable styleClass="table" var="employee" value="#{empController.employees}"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="10,20,30">
+								<p:column headerText="#{msgs.id}">
+                                    <h:outputText value="#{employee.id}" />
+								</p:column>
 
-								<h:column>
-									<f:facet name="header">#{msgs.firstName}</f:facet>
-								</h:column>
+                                <p:column headerText="#{msgs.userName}">
+                                    <h:outputText value="#{employee.username}" />
+                                </p:column>
 
-								<h:column>
-									<f:facet name="header">#{msgs.lastName}</f:facet>
-								</h:column>
+								<p:column headerText="#{msgs.firstName}">
+                                    <h:outputText value="#{employee.firstName}" />
+                                </p:column>
 
-								<h:column>
-									<f:facet name="header">#{msgs.supervisor}</f:facet>
-								</h:column>
-							</h:dataTable>
+                                <p:column headerText="#{msgs.lastName}">
+                                    <h:outputText value="#{employee.lastName}" />
+                                </p:column>
+
+                                <p:column headerText="#{msgs.supervisor}">
+                                    <h:outputText value="#{employee.supervisorID}" />
+                                </p:column>
+
+                                <p:column headerText="#{msgs.payLevel}">
+                                    <h:outputText value="#{employee.payLevel}" />
+                                </p:column>
+
+							</p:dataTable>
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-5">right</div>

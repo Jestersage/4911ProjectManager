@@ -2,7 +2,7 @@ package ca.bcit.info.pms.controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -10,6 +10,8 @@ import javax.inject.Named;
 import ca.bcit.info.pms.access.EmployeeManager;
 import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 @Named("empController")
 @SessionScoped	
@@ -34,7 +36,7 @@ public class EmployeeController implements Serializable {
 	 */
 	@Inject
 	private Credential creden;
-	
+
 	/**
 	 * Select list for pay level on newEmployee.xhtml page
 	 */
@@ -54,6 +56,8 @@ public class EmployeeController implements Serializable {
 	public void setPayLevelItems(ArrayList<String> payLevelItems) {
 		this.payLevelItems = payLevelItems;
 	}
+
+    private static final Logger logger = LogManager.getLogger(EmployeeController.class);
 
 	/**
 	 * Add new Employee to database.
@@ -81,4 +85,8 @@ public class EmployeeController implements Serializable {
 		empManager.updateEmployee(newEmp);
 		newEmp = new Employee();
 	}
+
+    public List<Employee> getEmployees() {
+        return empManager.getAllEmployee();
+    }
 }
