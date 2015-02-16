@@ -3,9 +3,9 @@
 --
 --
 INSERT INTO Credentials
-  (username, password) 
+  (username, password, salt) 
 VALUES 
-  ("root", "password");
+  ("root", "password", "");
 INSERT INTO employee
   (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active, role) 
 VALUES 
@@ -13,9 +13,9 @@ VALUES
 --
 --
 INSERT INTO Credentials
-  (username, password) 
+  (username, password, salt) 
 VALUES 
-  ("gabeh", "password");
+  ("gabeh", "password", "");
 INSERT INTO employee
   (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active, role) 
 VALUES
@@ -23,9 +23,9 @@ VALUES
 --
 --
 INSERT INTO Credentials
-  (username, password) 
+  (username, password, salt) 
 VALUES 
-  ("georgel", "password");
+  ("georgel", "password", "");
 INSERT INTO employee
   (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active, role) 
 VALUES
