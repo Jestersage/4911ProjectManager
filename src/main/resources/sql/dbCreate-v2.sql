@@ -27,9 +27,10 @@ DROP TABLE IF EXISTS Signatures;
 CREATE TABLE SubWorkPackage (
   workPackageID int(10) NOT NULL);
 CREATE TABLE Report (
-  projectID varchar(20) NOT NULL, 
-  CONSTRAINT projectID 
-    PRIMARY KEY (projectID));
+  reportID varchar(20) NOT NULL,
+  packageID int(10) NOT NULL,
+  CONSTRAINT reportID 
+    PRIMARY KEY (reportID));
 CREATE TABLE TimesheetRow (
   timesheetID    int(10), 
   timesheetrowID int(10) NOT NULL AUTO_INCREMENT, 
@@ -105,4 +106,4 @@ ALTER TABLE Timesheet ADD CONSTRAINT FKTimesheetEmp FOREIGN KEY (employeeID) REF
 ALTER TABLE TimesheetRow  ADD CONSTRAINT FKTimesheetRow FOREIGN KEY (timesheetID) REFERENCES Timesheet (timesheetID);
 ALTER TABLE WorkPackage ADD CONSTRAINT FKWPProject FOREIGN KEY (projectID) REFERENCES Project (projectID);
 ALTER TABLE TimesheetRow ADD CONSTRAINT FKTimesheetRowWP FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
-ALTER TABLE Report ADD CONSTRAINT FKReportProject FOREIGN KEY (projectID) REFERENCES Project (projectID);
+ALTER TABLE Report ADD CONSTRAINT FKReportWP FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
