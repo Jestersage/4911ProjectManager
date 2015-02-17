@@ -118,7 +118,7 @@
 									<h:outputLabel for="mnRole" value="#{msgs.role}"
 										class="col-sm-2 control-label" />
 									<div class="col-sm-10">
-										<h:selectOneMenu class="form-control" id="mnRole" value=""
+										<h:selectOneMenu class="form-control" id="mnRole" value="1"
 											style="width:200px">
 											<f:selectItem itemValue="1" itemLabel="option1" />
 											<f:selectItem itemValue="2" itemLabel="option2" />
@@ -144,7 +144,7 @@
 										class="col-sm-2 control-label" />
 									<div class="col-sm-10">
 										<h:selectOneMenu class="form-control" id="mnSupervisor"
-											value="" style="width:200px">
+											value="#{empController.newEmp.supervisorID}" style="width:200px">
 											<f:selectItem itemValue="1" itemLabel="option1" />
 											<f:selectItem itemValue="2" itemLabel="option2" />
 										</h:selectOneMenu>
@@ -157,7 +157,7 @@
 									<h:outputLabel for="mnProject" value="Initial #{msgs.project}"
 										class="col-sm-2 control-label" />
 									<div class="col-sm-10">
-										<h:selectOneMenu class="form-control" id="mnProject" value=""
+										<h:selectOneMenu class="form-control" id="mnProject" value="1"
 											style="width:200px">
 											<f:selectItem itemValue="1" itemLabel="option1" />
 											<f:selectItem itemValue="2" itemLabel="option2" />
@@ -170,8 +170,8 @@
 
 								<div class="form-group">
 									<div id="newEmployeeButtons" class="col-md-offset-2">
-										<h:button value="#{msgs.save}" class="btn bg-info " />
-										<h:button value="#{msgs.clear}" class="btn bg-info" />
+										<h:commandButton  value="#{msgs.save}" class="btn bg-info " action="#{empController.addEmployee}"/>
+										<h:commandButton type="reset" value="#{msgs.clear}" class="btn bg-info"/>
 									</div>
 								</div>
 								<!-- end of new employee data -->
@@ -186,28 +186,31 @@
 							<h:panelGrid columns="2" cellpadding="10">
 
 								<h:outputLabel for="txtID" value="#{msgs.id}" />
-								<h:outputText id="txtID" value="" />
+								<h:outputText id="txtID" value="#{empController.newEmp.id}" />
 
 								<h:outputLabel for="txtFirstName" value="#{msgs.firstName}" />
-								<h:outputText id="txtFirstName" value="" />
+								<h:outputText id="txtFirstName" value="#{empController.newEmp.firstName}" />
 
 								<h:outputLabel for="txtLastName" value="#{msgs.lastName}" />
-								<h:outputText id="txtLastName" value="" />
+								<h:outputText id="txtLastName" value="#{empController.newEmp.lastName}" />
 
 								<h:outputLabel for="txtUserName" value="#{msgs.userName}" />
-								<h:outputText id="txtUserName" value="" />
+								<h:outputText id="txtUserName" value="#{empController.newEmp.username}" />
+								
+								<h:outputLabel for="txtEmail" value="#{msgs.email}" />
+								<h:outputText id="txtEmail" value="#{empController.newEmp.email}" />
 
 								<h:outputLabel for="txtRole" value="#{msgs.role}" />
-								<h:outputText id="txtRole" value="" />
+								<h:outputText id="txtRole" value="1" />
 
 								<h:outputLabel for="txtPayLevel" value="#{msgs.payLevel}" />
-								<h:outputText id="txtPayLevel" value="" />
+								<h:outputText id="txtPayLevel" value="#{empController.newEmp.payLevel}" />
 
 								<h:outputLabel for="txtSupervisor" value="#{msgs.supervisor}" />
-								<h:outputText id="txtSupervisor" value="" />
+								<h:outputText id="txtSupervisor" value="#{empController.newEmp.supervisorID}" />
 
 								<h:outputLabel for="txtProject" value="#{msgs.project}" />
-								<h:outputText id="txtProject" value="" />
+								<h:outputText id="txtProject" value="1" />
 
 							</h:panelGrid>
 						</div>

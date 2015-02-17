@@ -59,7 +59,8 @@ public class EmployeeController implements Serializable {
 	 * Add new Employee to database.
 	 */
 	public void addEmployee() {
-		newEmp = new Employee("A00123456", "aa@bb.cc", "fred", "xie", "P1", "a12345678", "fredxie", 1);
+	//	newEmp = new Employee("A00123456", "aa@bb.cc", "fred", "xie", "P1", "a12345678", "fredxie", 1);
+		System.out.println(newEmp.toString());
 		empService.persistEmployee(newEmp);
 		newEmp = new Employee();
 	}
@@ -69,7 +70,8 @@ public class EmployeeController implements Serializable {
 	 * Add new Employee to database.
 	 */
 	public void updateEmployee() {
-		newEmp = new Employee("A00123456", "aa@bb.cc", "huanan", "wang", "P1", "a12345678", "fredxie", 1);
+	//	newEmp = new Employee("A00123456", "aa@bb.cc", "huanan", "wang", "P1", "a12345678", "fredxie", 1);
+		
 		empService.updateEmployee(newEmp);
 		newEmp = new Employee();
 	}
