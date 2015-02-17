@@ -6,14 +6,13 @@ GRANT ALL PRIVILEGES ON pms.* TO atdefault@"%" IDENTIFIED BY 'atdefault';
 --
 use pms;
 --
-ALTER TABLE SubWorkPackage DROP FOREIGN KEY FKSubWorkPackage;
 ALTER TABLE employee DROP FOREIGN KEY FKemployeePG;
 ALTER TABLE employee DROP FOREIGN KEY FKemployeeCred;
 ALTER TABLE Timesheet DROP FOREIGN KEY FKTimesheetEmp;
 ALTER TABLE TimesheetRow DROP FOREIGN KEY FKTimesheetRow;
-ALTER TABLE WorkPackage DROP FOREIGN KEY FKWPProject;
 ALTER TABLE TimesheetRow DROP FOREIGN KEY FKTimesheetRowWP;
-ALTER TABLE Report DROP FOREIGN KEY FKReportProject;
+ALTER TABLE WorkPackage DROP FOREIGN KEY FKWPProject;
+ALTER TABLE Report DROP FOREIGN KEY FKReportWP;
 DROP TABLE IF EXISTS Report;
 DROP TABLE IF EXISTS TimesheetRow;
 DROP TABLE IF EXISTS Timesheet;
@@ -22,6 +21,7 @@ DROP TABLE IF EXISTS Project;
 DROP TABLE IF EXISTS Credentials;
 DROP TABLE IF EXISTS Employee;
 DROP TABLE IF EXISTS Signatures;
+DROP TABLE IF EXISTS HR;
 --
 CREATE TABLE Report (
   reportID varchar(20) NOT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE Timesheet (
   CONSTRAINT timesheetID 
     PRIMARY KEY (timesheetID));
 --
-CREATE TABLE Signatures(
+CREATE TABLE Signature(
 	signId    int(10) NOT NULL PRIMARY KEY ,
 	signature TINYBLOB NOT NULL, 
 	publicKey BLOB NOT NULL
