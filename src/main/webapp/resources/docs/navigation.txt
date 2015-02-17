@@ -1,0 +1,19 @@
+navigation
+
+all users
+
+	start: login
+
+		then redirect to appropriate index page. Each kind of user will have, potentially, it's own index.
+		So far, we have for HR staff.
+
+	index	> timesheet
+			> reports
+			> settings
+			> logout
+
+HR:
+	after login:
+	> index > viewAllEmployees > profile
+			> newEmployee
+			> editEmployee
