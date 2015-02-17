@@ -58,11 +58,13 @@ public class EmployeeController implements Serializable {
 	/**
 	 * Add new Employee to database.
 	 */
-	public void addEmployee() {
+	public String addEmployee() {
 	//	newEmp = new Employee("A00123456", "aa@bb.cc", "fred", "xie", "P1", "a12345678", "fredxie", 1);
 		System.out.println(newEmp.toString());
 		empService.persistEmployee(newEmp);
 		newEmp = new Employee();
+		logger.info("succussfully create new employee ");
+		return "newEmployee";
 	}
 	
 	
