@@ -49,8 +49,7 @@ public class EmployeeManager  implements Serializable {
 	public String updateEmployee(Employee employee) {
 		try {
 			if (employee.getId() == null) {
-				this.entityManager.persist(employee);				 
-				entityManager.persist(new Credential(employee.getUsername(),"123456"));
+				persistEmployee(employee);				 
 				return "search?faces-redirect=true";
 			} else {
 				this.entityManager.merge(employee);
@@ -122,6 +121,7 @@ public class EmployeeManager  implements Serializable {
         }
         else {
             entityManager.persist(employee);
+            persistCredential(new Credential(employee.getUsername(),"123456")); //default password 123456
             logger.info("Employee added: " + employee.getUsername());
         }
     }
