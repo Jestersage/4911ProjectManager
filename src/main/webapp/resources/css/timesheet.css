@@ -7,6 +7,16 @@
 
 #timesheetForm .col-md-1 .input
 {
-	border: 0;
-	margin: 2px auto;
+	border: transparent;
+	margin: 1px;
+	width: 100%;
+	font-size: 1.5em;
+
+}
+
+.input{}
+
+#summary {
+	position: relative;
+	bottom: 0;
 }
