@@ -8,6 +8,8 @@ import ca.bcit.info.pms.model.Employee;
 public interface EmployeeService {
 	boolean checkCredentials(Credential credential);
 
+	void updateCreden(Credential credential); 
+	
 	void persistEmployee(Employee newEmp);
 
 	void updateEmployee(Employee newEmp);

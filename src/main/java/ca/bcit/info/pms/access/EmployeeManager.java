@@ -137,4 +137,21 @@ public class EmployeeManager  implements Serializable {
             logger.info("Employee added: " + credential.getUsername());
         }
     }
+    
+    public String updateCredential(Credential credential) {
+		try {
+			if (credential.getUsername() == null) {
+				//persistEmployee(employee);				 
+				return "search?faces-redirect=true";
+			} else {
+				this.entityManager.merge(credential);
+				return "view?faces-redirect=true&id=" + credential.getUsername();
+			}
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(e.getMessage()));
+			return null;
+		}
+    }
+    
 }

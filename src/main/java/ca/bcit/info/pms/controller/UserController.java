@@ -25,6 +25,36 @@ public class UserController implements Serializable {
 	@Inject
 	private Credential credential;
 	
+	private String newCredential;
+	
+	private String currentPassword;
+
+	public String getCurrentPassword() {
+		return currentPassword;
+	}
+
+	public void setCurrentPassword(String currentPassword) {
+		this.currentPassword = currentPassword;
+	}
+
+	public String getNewCredential() {
+		return newCredential;
+	}
+
+	public void setNewCredential(String newCredential) {
+		this.newCredential = newCredential;
+	}
+
+	public String getConfirmCredential() {
+		return confirmCredential;
+	}
+
+	public void setConfirmCredential(String confirmCredential) {
+		this.confirmCredential = confirmCredential;
+	}
+
+	private String confirmCredential;
+
 	private static final Logger logger = LogManager.getLogger(UserController.class);
 
 	public Credential getCredential() {
@@ -76,8 +106,17 @@ public class UserController implements Serializable {
         return "logout";
 	}
 	
-	public String  changePassword(){
-        throw new UnsupportedOperationException();
+	public String changePassword(){
+		if(currentPassword.equals(credential.getPassword())) {
+			if(newCredential.equals(confirmCredential)) {
+				credential.setPassword(newCredential);
+				empService.updateCreden(credential);
+				credential = new Credential();
+			}
+		}
+
+		return "settings.xhtml";	
+        //throw new UnsupportedOperationException();
 	}
 
 }

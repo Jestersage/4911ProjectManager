@@ -47,4 +47,8 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable {
 		return empManager.getAllEmployee();
 	}
 
+	public void updateCreden(Credential credential) {
+		empManager.updateCredential(credential);
+	}
+	
 }

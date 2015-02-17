@@ -58,7 +58,7 @@
 									value="#{msgs.current} #{msgs.password}" />
 								<div class="col-sm-4">
 									<h:inputText type="text" class="form-control"
-										id="currentPassword" placeholder="current password" value=""></h:inputText>
+										id="currentPassword" placeholder="current password" value="#{userController.currentPassword}"></h:inputText>
 								</div>
 								<h:message for="currentPassword" styleClass="bg-warning" />
 							</div>
@@ -67,7 +67,7 @@
 								<h:outputLabel for="newPassword" class="col-sm-2 control-label"
 									value="#{msgs.password}" />
 								<div class="col-sm-4">
-									<h:inputText type="password" class="form-control"
+									<h:inputText type="password" class="form-control" value="#{userController.newCredential}"
 										id="newPassword" placeholder="new password"></h:inputText>
 								</div>
 								<h:message for="newPassword" styleClass="bg-warning" />
@@ -79,7 +79,7 @@
 									class="col-sm-2 control-label"
 									value="#{msgs.confirm} #{msgs.password}" />
 								<div class="col-sm-4">
-									<h:inputText type="password" class="form-control"
+									<h:inputText type="password" class="form-control" value="#{userController.confirmCredential}"
 										id="confirmNewPassword" placeholder="confirm password"></h:inputText>
 								</div>
 								<h:message for="confirmNewPassword" styleClass="bg-warning" />
@@ -88,7 +88,7 @@
 
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-4">
-									<button type="submit" class="btn btn-default">#{msgs.save}</button>
+									<h:commandButton type="submit" class="btn btn-default" action="#{userController.changePassword}">#{msgs.save}</h:commandButton>
 								</div>
 							</div>
 						</h:form>
