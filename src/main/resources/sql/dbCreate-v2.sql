@@ -14,7 +14,6 @@ ALTER TABLE TimesheetRow DROP FOREIGN KEY FKTimesheetRow;
 ALTER TABLE WorkPackage DROP FOREIGN KEY FKWPProject;
 ALTER TABLE TimesheetRow DROP FOREIGN KEY FKTimesheetRowWP;
 ALTER TABLE Report DROP FOREIGN KEY FKReportProject;
-DROP TABLE IF EXISTS SubWorkPackage;
 DROP TABLE IF EXISTS Report;
 DROP TABLE IF EXISTS TimesheetRow;
 DROP TABLE IF EXISTS Timesheet;
@@ -24,33 +23,54 @@ DROP TABLE IF EXISTS Credentials;
 DROP TABLE IF EXISTS Employee;
 DROP TABLE IF EXISTS Signatures;
 --
-CREATE TABLE SubWorkPackage (
-  subWorkPackageID  int(10) NOT NULL,
-  workPackageID     int(10) NOT NULL,
-  CONSTRAINT subWorkPackageID 
-    PRIMARY KEY (subWorkPackageID));
 CREATE TABLE Report (
   reportID varchar(20) NOT NULL,
   packageID int(10) NOT NULL,
   CONSTRAINT reportID 
     PRIMARY KEY (reportID));
+--
+CREATE TABLE WorkPackage (
+  packageID    int(10) NOT NULL, 
+  projectID    varchar(20) NOT NULL, 
+  wpEmployeeID varchar(10) NOT NULL, 
+  estimateCost numeric(20, 4), 
+  actualCost   numeric(20, 4), 
+  parentwpID   int(10),
+  CONSTRAINT packageID
+    PRIMARY KEY (packageID));
+--
+CREATE TABLE Project (
+  projectID    varchar(20) NOT NULL, 
+  projectName  varchar(255) NOT NULL, 
+  description  varchar(255) NOT NULL, 
+  startDate    date NOT NULL, 
+  endDate      date NOT NULL, 
+  budget       numeric(20, 4) NOT NULL, 
+  status       varchar(255) NOT NULL, 
+  pmEmployeeID varchar(10) NOT NULL,
+  CONSTRAINT projectID  
+    PRIMARY KEY (projectID)
+);
+--
+--
 CREATE TABLE TimesheetRow (
   timesheetID    int(10), 
-  timesheetrowID int(10) NOT NULL AUTO_INCREMENT, 
+  timesheetrowID int(10) NOT NULL, 
   projectID      varchar(20) NOT NULL, 
   packageID      int(10) NOT NULL, 
   weekending     date NOT NULL, 
   total          numeric(20, 4) NOT NULL, 
   notes          varchar(255) NOT NULL, 
   sunday         numeric(2, 2) DEFAULT 0, 
-  monday         numeric(2, 2), 
-  tuesday        numeric(2, 2), 
-  wednesday      numeric(2, 2), 
-  thursday       numeric(2, 2), 
-  friday         numeric(2, 2), 
-  saturday       numeric(2, 2), 
-  CONSTRAINT rowID 
+  monday         numeric(2, 2) DEFAULT 0, 
+  tuesday        numeric(2, 2) DEFAULT 0, 
+  wednesday      numeric(2, 2) DEFAULT 0, 
+  thursday       numeric(2, 2) DEFAULT 0, 
+  friday         numeric(2, 2) DEFAULT 0, 
+  saturday       numeric(2, 2) DEFAULT 0, 
+  CONSTRAINT timesheetrowID 
     PRIMARY KEY (timesheetrowID));
+--
 CREATE TABLE Timesheet (
   timesheetID int(10) NOT NULL AUTO_INCREMENT, 
   employeeID  varchar(10) NOT NULL, 
@@ -60,32 +80,23 @@ CREATE TABLE Timesheet (
   overtime    numeric(2, 2), 
   flexTime    numeric(2, 2), 
   signed      varchar(255), 
-  approved    varchar(255), 
+  approved    varchar(255),
+  signID      int(10),
   CONSTRAINT timesheetID 
     PRIMARY KEY (timesheetID));
-CREATE TABLE WorkPackage (
-  packageID    int(10) NOT NULL AUTO_INCREMENT, 
-  projectID    varchar(20) NOT NULL, 
-  wpEmployeeID varchar(10) NOT NULL, 
-  estimateCost numeric(20, 4), 
-  actualCost   numeric(20, 4), 
-  PRIMARY KEY (packageID));
-CREATE TABLE Project (
-  projectID    varchar(20) NOT NULL, 
-  projectName  varchar(255) NOT NULL, 
-  description  varchar(255) NOT NULL, 
-  startDate    date NOT NULL, 
-  endDate      date NOT NULL, 
-  budget       numeric(20, 4) NOT NULL, 
-  status       varchar(255) NOT NULL, 
-  pmEmployeeID varchar(10) NOT NULL, 
-  PRIMARY KEY (projectID));
+--
+CREATE TABLE Signatures(
+	signId    int(10) NOT NULL PRIMARY KEY ,
+	signature TINYBLOB NOT NULL, 
+	publicKey BLOB NOT NULL
+);
 -- salt need to be as long as hashed password
 CREATE TABLE Credentials (
   username varchar(255) NOT NULL, 
   password varchar(512) NOT NULL,
-  salt     varchar(512) NOT NULL,
-  PRIMARY KEY (username));
+  CONSTRAINT username
+    PRIMARY KEY (username));
+--
 CREATE TABLE Employee (
   employeeID   varchar(10) NOT NULL, 
   username     varchar(255) NOT NULL, 
@@ -95,18 +106,24 @@ CREATE TABLE Employee (
   paygradeID   varchar(10) NOT NULL, 
   supervisorID varchar(10) NOT NULL, 
   active       int(1) NOT NULL, 
-  role         int(2) NOT NULL, 
-  CONSTRAINT employeeID 
+  CONSTRAINT employeeID  
     PRIMARY KEY (employeeID));
-CREATE TABLE Signatures(
-	SignId INT NOT NULL PRIMARY KEY ,
-	Signature TINYBLOB NOT NULL, 
-	PublicKey BLOB NOT NULL
+--
+CREATE TABLE HR(
+    employeeID varchar(10) NOT NULL,
+    PRIMARY KEY (employeeID)
 );
-ALTER TABLE SubWorkPackage ADD CONSTRAINT FKSubWorkPackage FOREIGN KEY (workPackageID) REFERENCES WorkPackage (packageID);
-ALTER TABLE employee ADD CONSTRAINT FKemployeeCred FOREIGN KEY (username) REFERENCES Credentials (username);
-ALTER TABLE Timesheet ADD CONSTRAINT FKTimesheetEmp FOREIGN KEY (employeeID) REFERENCES employee (employeeID);
-ALTER TABLE TimesheetRow  ADD CONSTRAINT FKTimesheetRow FOREIGN KEY (timesheetID) REFERENCES Timesheet (timesheetID);
-ALTER TABLE WorkPackage ADD CONSTRAINT FKWPProject FOREIGN KEY (projectID) REFERENCES Project (projectID);
-ALTER TABLE TimesheetRow ADD CONSTRAINT FKTimesheetRowWP FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
+--
 ALTER TABLE Report ADD CONSTRAINT FKReportWP FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
+--
+ALTER TABLE WorkPackage ADD CONSTRAINT FKSubWorkPackage FOREIGN KEY (parentwpID) REFERENCES WorkPackage (packageID);
+ALTER TABLE WorkPackage ADD CONSTRAINT FKWPProject FOREIGN KEY (projectID) REFERENCES Project (projectID);
+--
+ALTER TABLE TimesheetRow  ADD CONSTRAINT FKTimesheetRow FOREIGN KEY (timesheetID) REFERENCES Timesheet (timesheetID);
+ALTER TABLE TimesheetRow ADD CONSTRAINT FKTimesheetRowWP FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
+ALTER TABLE Timesheet ADD CONSTRAINT FKTimesheetEmp FOREIGN KEY (employeeID) REFERENCES employee (employeeID);
+ALTER TABLE Timesheet ADD CONSTRAINT FKsignature FOREIGN KEY (signID) REFERENCES Signature (signID);
+--
+ALTER TABLE Employee ADD CONSTRAINT FKSupervisor FOREIGN KEY (supervisorID) REFERENCES Employee (employeeID);
+ALTER TABLE Employee ADD CONSTRAINT FKemployeeCred FOREIGN KEY (username) REFERENCES Credentials (username);
+ALTER TABLE HR ADD CONSTRAINT FKHR FOREIGN KEY (employeeID) REFERENCES Employee (employeeID);
