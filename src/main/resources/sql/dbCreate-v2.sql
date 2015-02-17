@@ -25,7 +25,10 @@ DROP TABLE IF EXISTS Employee;
 DROP TABLE IF EXISTS Signatures;
 --
 CREATE TABLE SubWorkPackage (
-  workPackageID int(10) NOT NULL);
+  subWorkPackageID  int(10) NOT NULL,
+  workPackageID     int(10) NOT NULL,
+  CONSTRAINT subWorkPackageID 
+    PRIMARY KEY (subWorkPackageID));
 CREATE TABLE Report (
   reportID varchar(20) NOT NULL,
   packageID int(10) NOT NULL,
