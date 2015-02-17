@@ -75,6 +75,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!--  JUnit HIbernate?? -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+		</dependency>
 
 		<!-- Import the JSF API -->
 		<dependency>
