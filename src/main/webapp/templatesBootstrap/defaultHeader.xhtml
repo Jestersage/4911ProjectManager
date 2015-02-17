@@ -31,8 +31,20 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">#{msgs.myPage}<span
 							class="sr-only">(current)</span></a></li>
-					<li><a href="#">#{msgs.project}</a></li>
-					<li><a href="#">#{msgs.workPackage}</a></li>
+
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false">#{msgs.project}
+							<span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">#{msgs.newProject}</a></li>
+							<li><a href="#">#{msgs.editProject}</a></li>
+							<li class="divider"></li>
+							<li><a href="#">#{msgs.workPackage}</a></li>
+							<li><a href="#">#{msgs.editWorkPackage}</a></li>
+						</ul></li>
+
 					<li><a href="#">#{msgs.employees}</a></li>
 					<li><a href="#">#{msgs.assignments}</a></li>
 					<li><a href="#">#{msgs.reports}</a></li>
@@ -40,64 +52,71 @@
 
 
 				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<h:form id="search" class="navbar-form" role="search">
+					<li><h:form id="search" class="navbar-form" role="search">
 							<div class="form-group">
 								<div class="input-group">
+
+
+									<input type="text" class="form-control" aria-label="..." />
+									<!-- Button and dropdown menu -->
+
+
+
 									<div class="input-group-btn">
+										<button type="button" class="btn btn-default">#{msgs.search}</button>
 										<button type="button" class="btn btn-default dropdown-toggle"
 											data-toggle="dropdown" aria-expanded="false">
-											#{msgs.options} <span class="caret"></span>
+											<span class="caret"></span> <span class="sr-only">Toggle
+												Dropdown</span>
 										</button>
-										<ul class="dropdown-menu" role="menu">
+										<ul class="dropdown-menu dropdown-menu-right" role="menu">
 											<li><a href="#">#{msgs.project}</a></li>
 											<li><a href="#">#{msgs.workPackage}</a></li>
 											<li><a href="#">#{msgs.employees}</a></li>
 										</ul>
 									</div>
-									<!-- /btn-group -->
-									<input type="text" size="15" class="form-control"
-										aria-label="..." />
+
 								</div>
-								<!-- /input-group -->
-							</div>
-							<button type="submit" class="btn btn-default">Go</button>
-						</h:form>
-
-
-					</li>
-
-
-
-					<li>
-						<h:form class="navbar-form">
-							<div class="form-group">
-								<div class="">
-									<div class="">
-										<button type="button" class="btn btn-default dropdown-toggle"
-											data-toggle="dropdown" aria-expanded="false">
-											User <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu" role="menu">
-											<li><a href="#">#{msgs.firstName} #{msgs.lastName}</a></li>
-											<li class="divider"></li>
-											<li><h:commandLink value="#{msgs.logout}" action="#{userController.logout}" /></li>
-											<li><a href="#">#{msgs.settings}</a></li>
-										</ul>
-									</div>
+							</div> 
 									<!-- /btn-group -->
-								</div>
-								<!-- /input-group -->
-							</div>
-							<button type="submit" class="btn btn-default">Go</button>
-						</h:form>
-					</li>
+			
+			<!-- /input-group -->
+	
+		</h:form>
+		</li>
 
-					
-				</ul>
 
-			</div>
-			<!-- /.navbar-collapse -->
+
+		<li><h:form class="navbar-form">
+				<div class="form-group">
+					<div class="">
+						<div class="">
+							<button type="button" class="btn btn-default dropdown-toggle"
+								data-toggle="dropdown" aria-expanded="false">
+								#{msgs.firstName} #{msgs.lastName} <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li><h:commandLink value="#{msgs.logout}"
+										action="#{userController.logout}" /></li>
+								<li><a href="#">#{msgs.settings}</a></li>
+							</ul>
+						</div>
+						<!-- /btn-group -->
+					</div>
+					<!-- /input-group -->
+				</div>
+				<h:commandLink value="">
+					<span class="glyphicon glyphicon glyphicon-question-sign"
+						aria-hidden="true"></span>
+				</h:commandLink>
+				<!-- /help link -->
+			</h:form></li>
+
+
+		</ul>
+
+		</div>
+		<!-- /.navbar-collapse -->
 		</div>
 		</nav>
 	</ui:composition>
