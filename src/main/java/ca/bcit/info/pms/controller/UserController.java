@@ -3,7 +3,6 @@ package ca.bcit.info.pms.controller;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
@@ -11,7 +10,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.bcit.info.pms.model.Credential;
-import ca.bcit.info.pms.model.Employee;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -57,7 +55,6 @@ public class UserController implements Serializable {
         boolean isAuthorized = false;
 
         if (credential != null && credential.getUsername() != null) {
-            logger.info("username: " + credential.getUsername() + ", password: " + credential.getPassword());
             isAuthorized = true;
         }
 
