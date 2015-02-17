@@ -8,6 +8,7 @@ import javax.inject.Named;
 
 import ca.bcit.info.pms.access.EmployeeManager;
 import ca.bcit.info.pms.model.Credential;
+import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.service.EmployeeService;
 
 
@@ -26,6 +27,24 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable {
 		    return credentialList.contains(credential);
 		else
 		    return false;
+	}
+
+	@Override
+	public void persistEmployee(Employee newEmp) {
+		empManager.persistEmployee(newEmp);
+		
+	}
+
+	@Override
+	public void updateEmployee(Employee newEmp) {
+		empManager.updateEmployee(newEmp);
+		
+	}
+
+	@Override
+	public List<Employee> getAllEmployee() {
+		
+		return empManager.getAllEmployee();
 	}
 
 }
