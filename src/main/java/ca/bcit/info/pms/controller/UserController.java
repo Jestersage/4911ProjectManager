@@ -45,11 +45,10 @@ public class UserController implements Serializable {
 			return "loginSuccess";
 		}
 
-        credential = new Credential();
-        FacesContext.getCurrentInstance().addMessage(
-                "passwordForm",
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage("passwordForm",
                 new FacesMessage("Your username and password didn't match. Try again."));
-
+        context.getExternalContext().invalidateSession();
         logger.info("Login Failed");
 		return "loginFail";
 	}
@@ -63,12 +62,12 @@ public class UserController implements Serializable {
         }
 
         if (!isAuthorized) {
-            FacesContext.getCurrentInstance().addMessage(
-                    "passwordForm",
+            final FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage("passwordForm",
                     new FacesMessage("Please login to access the page."));
 
-            final FacesContext fc = FacesContext.getCurrentInstance();
-            fc.getApplication().getNavigationHandler().handleNavigation(fc, null, "unauthorized");
+            context.getApplication().getNavigationHandler().
+                    handleNavigation(context, null, "unauthorized");
 
             logger.info("unauthorized access");
             return;
@@ -76,7 +75,8 @@ public class UserController implements Serializable {
     }
 
 	public String logout(){
-		throw new UnsupportedOperationException();
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "logout";
 	}
 	
 	public String  changePassword(){
