@@ -30,3 +30,4 @@ INSERT INTO employee
   (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active, role) 
 VALUES
   (124816, "georgel", "gleung4@gmail.com", "George", "Leung", 03, 123456, 1, 2);
+  
