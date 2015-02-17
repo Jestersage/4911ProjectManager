@@ -39,6 +39,9 @@ public class EmployeeManager  implements Serializable {
 
 	/**
 	 * Support updating and deleting Employee entities
+	 * 
+	 * @param employee     The employee to be updated
+	 * @return             redirection string
 	 */
 	public String updateEmployee(Employee employee) {
 		try {
@@ -56,6 +59,11 @@ public class EmployeeManager  implements Serializable {
 		}
 	}
 
+	/**
+	 * 
+	 * @param  id      Primary Key of Employee to delete
+	 * @return         redirection string
+	 */
 	public String delete(final String id) {
 
 		try {
@@ -106,6 +114,7 @@ public class EmployeeManager  implements Serializable {
 		return null;
 	}
 
+	// TODO: JavaDoc
 	public void paginate() {
 
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
@@ -129,7 +138,8 @@ public class EmployeeManager  implements Serializable {
 				getPageSize());
 		this.pageItems = query.getResultList();
 	}
-
+	
+	// TODO: JavaDoc
 	private Predicate[] getSearchPredicates(Root<Employee> root) {
 
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
@@ -146,24 +156,25 @@ public class EmployeeManager  implements Serializable {
 		return this.count;
 	}
 
-	/*
+	/**
 	 * Support listing and POSTing back Employee entities (e.g. from inside an
 	 * HtmlSelectOneMenu)
+	 * 
+	 * @return List of all Employee objects
 	 */
-
 	public List<Employee> getAllEmployee() {
-
 		CriteriaQuery<Employee> criteria = this.entityManager
 				.getCriteriaBuilder().createQuery(Employee.class);
 		return this.entityManager.createQuery(
 				criteria.select(criteria.from(Employee.class))).getResultList();
 	}
 
-	/*
+	/**
 	 * Support listing and POSTing back Credential entities (e.g. from inside an
 	 * HtmlSelectOneMenu)
+	 * 
+	 * @return         List of all Credential objects
 	 */
-
 	public List<Credential> getAllCredentials() {
 
 		CriteriaQuery<Credential> criteria = this.entityManager
@@ -175,7 +186,6 @@ public class EmployeeManager  implements Serializable {
 	/*
 	 * Support adding children to bidirectional, one-to-many tables
 	 */
-
 //	private Employee add = new Employee();
 //
 //	public Employee getAdd() {
@@ -188,6 +198,7 @@ public class EmployeeManager  implements Serializable {
 //		return added;
 //	}
 	
+	// TODO: JavaDoc
     public void persistEmployee(Employee employee) {
     	boolean exist = false;
 		List<Employee> allEmployees = null;
@@ -202,6 +213,7 @@ public class EmployeeManager  implements Serializable {
 			entityManager.persist(employee);	
     }
     
+ // TODO: JavaDoc
     public void persistCredential(Credential credential) {
     	boolean exist = false;
 		List<Credential> allCredentials = null;
