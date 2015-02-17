@@ -62,7 +62,7 @@
 									<h:outputLabel for="itUserId" value="#{msgs.id}"
 										class="col-sm-2 control-label" />
 									<div class="col-sm-10">
-										<h:inputText id="itUserId" value="" required="true"
+										<h:inputText id="itUserId" value="#{empController.newEmp.id}" required="true"
 											placeholder="Email" class="form-control" />
 										<h:message for="itUserId" />
 										<h:outputText value="" />
@@ -74,7 +74,7 @@
 										class="col-sm-2 control-label" />
 
 									<div class="col-sm-10">
-										<h:inputText id="itFirstName" value="" required="true"
+										<h:inputText id="itFirstName" value="#{empController.newEmp.firstName}" required="true"
 											class="form-control" />
 										<h:message for="itFirstName" />
 										<h:outputText value="" />
@@ -84,11 +84,21 @@
 								<div class="form-group">
 									<h:outputLabel for="itLastName" value="#{msgs.lastName}"
 										class="col-sm-2 control-label" />
-
 									<div class="col-sm-10">
-										<h:inputText id="itLastName" value="" required="true"
+										<h:inputText id="itLastName" value="#{empController.newEmp.lastName}" required="true"
 											class="form-control" />
 										<h:message for="itLastName" />
+										<h:outputText value="" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="itEmail" value="#{msgs.email}"
+										class="col-sm-2 control-label" />
+									<div class="col-sm-10">
+										<h:inputText id="itEmail" value="#{empController.newEmp.email}" required="true"
+											class="form-control" />
+										<h:message for="itEmail" />
 										<h:outputText value="" />
 									</div>
 								</div>
@@ -97,7 +107,7 @@
 									<h:outputLabel for="itUserName" value="#{msgs.userName}"
 										class="col-sm-2 control-label" />
 									<div class="col-sm-10">
-										<h:inputText id="itUserName" value="" required="true"
+										<h:inputText id="itUserName" value="#{empController.newEmp.username}" required="true"
 											class="form-control" />
 										<h:message for="itUserName" />
 										<h:outputText value="" />
@@ -120,10 +130,9 @@
 									<h:outputLabel for="mnPayLevel" value="#{msgs.payLevel}"
 										class="col-sm-2 control-label" />
 									<div class="col-sm-10">
-										<h:selectOneMenu class="form-control" id="mnPayLevel" value=""
-											style="width:200px">
-											<f:selectItem itemValue="1" itemLabel="option1" />
-											<f:selectItem itemValue="2" itemLabel="option2" />
+										<h:selectOneMenu class="form-control" id="mnPayLevel" 
+											value="#{empController.newEmp.payLevel}" style="width:200px">
+											<f:selectItems value="#{empController.payLevelItems}" />
 										</h:selectOneMenu>
 										<h:message for="mnPayLevel" />
 										<h:outputText value="" />

@@ -49,7 +49,8 @@ public class EmployeeManager  implements Serializable {
 	public String updateEmployee(Employee employee) {
 		try {
 			if (employee.getId() == null) {
-				this.entityManager.persist(employee);
+				this.entityManager.persist(employee);				 
+				entityManager.persist(new Credential(employee.getUsername(),"123456"));
 				return "search?faces-redirect=true";
 			} else {
 				this.entityManager.merge(employee);
