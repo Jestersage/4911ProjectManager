@@ -28,7 +28,6 @@ public class EmployeeManagerTest {
     @Inject
     private EmployeeManager empMgr;
     
-    @Test
     public void should_get_all_credentials() {
         List<Credential> credsA = new ArrayList<Credential>();
         List<Credential> credsB = new ArrayList<Credential>();
