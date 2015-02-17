@@ -166,13 +166,6 @@ public class Employee implements Serializable {
 	// this.version = version;
 	// }
 
-	@Override
-	public String toString() {
-		String result = getClass().getSimpleName() + " ";
-		if (id != null)
-			result += "id: " + id;
-		return result;
-	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -189,6 +182,16 @@ public class Employee implements Serializable {
 			}
 		}
 		return true;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", email=" + email + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", payLevel="
+				+ payLevel + ", supervisorID=" + supervisorID + ", username="
+				+ username + ", activeStatus=" + activeStatus + "]";
 	}
 
 	@Override
