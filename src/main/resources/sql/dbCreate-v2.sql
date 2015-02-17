@@ -106,6 +106,8 @@ CREATE TABLE Employee (
   paygradeID   varchar(10) NOT NULL, 
   supervisorID varchar(10) NOT NULL, 
   active       int(1) NOT NULL, 
+  vacationRemain    numeric(2,2),
+  sickdays          int(2),
   CONSTRAINT employeeID  
     PRIMARY KEY (employeeID));
 --
