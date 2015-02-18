@@ -195,7 +195,7 @@
 							<artifactId>maven-surefire-plugin</artifactId>
 							<configuration>
 								<environmentVariables>
-									<JBOSS_HOME>${project.build.directory}\wildfly-${version.wildfly}</JBOSS_HOME>
+									<JBOSS_HOME>${project.build.directory}/wildfly-${version.wildfly}</JBOSS_HOME>
 								</environmentVariables>
 							</configuration>
 						</plugin>
