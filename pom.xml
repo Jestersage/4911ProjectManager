@@ -165,7 +165,6 @@
 				</dependency>
 			</dependencies>
 			<build>
-				<pluginManagement>
 					<plugins>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -196,13 +195,38 @@
 							<artifactId>maven-surefire-plugin</artifactId>
 							<configuration>
 								<environmentVariables>
-									<JBOSS_HOME>${project.build.directory}/wildfly-${version.wildfly}</JBOSS_HOME>
+									<JBOSS_HOME>${project.build.directory}\wildfly-${version.wildfly}</JBOSS_HOME>
 								</environmentVariables>
 							</configuration>
 						</plugin>
 					</plugins>
-				</pluginManagement>
 			</build>
 		</profile>
 	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
