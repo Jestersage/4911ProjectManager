@@ -18,6 +18,9 @@
 		<version.primefaces>5.1</version.primefaces>
 		<version.log4j>1.2.16</version.log4j>
 		<version.maven-war>2.3</version.maven-war>
+		<version.maven-surefire>2.18.1</version.maven-surefire>
+		<version.maven-jar>2.5</version.maven-jar>
+		<version.maven-source>2.4</version.maven-source>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -198,6 +201,7 @@
 									<JBOSS_HOME>${project.build.directory}/wildfly-${version.wildfly}</JBOSS_HOME>
 								</environmentVariables>
 							</configuration>
+							<version>${version.maven-surefire}</version>
 						</plugin>
 					</plugins>
 			</build>
@@ -215,6 +219,7 @@
 						</goals>
 					</execution>
 				</executions>
+				<version>${version.maven-jar}</version>
 			</plugin>
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
@@ -225,6 +230,7 @@
 						</goals>
 					</execution>
 				</executions>
+				<version>${version.maven-source}</version>
 			</plugin>
 		</plugins>
 	</build>
