@@ -1,9 +1,6 @@
 package ca.bcit.info.pms.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 
@@ -48,10 +45,11 @@ public class Employee implements Serializable {
 	@NotNull(message = "Pay grade cannot be null")
 	private String payLevel;
 
-	@NotNull(message = "Supervisor ID cannot be null")
-	@Size(max = 10, message = "Supervisor ID cannot be longer than 10")
+//	@Size(max = 10, message = "Supervisor ID cannot be longer than 10")
     // TODO custom valid empID supervisor
-	private String supervisorID;
+    @ManyToOne
+    @JoinColumn(name = "SupervisorID")
+	private Employee supervisor;
 
 	@NotNull(message = "User name cannot be null")
 	@Pattern(regexp = "^[a-zA-Z0-9_-]{3,30}$",
@@ -121,12 +119,12 @@ public class Employee implements Serializable {
 		this.payLevel = payLevel;
 	}
 
-	public String getSupervisorID() {
-		return supervisorID;
+	public Employee getSupervisor() {
+		return supervisor;
 	}
 
-	public void setSupervisorID(String supervisorID) {
-		this.supervisorID = supervisorID;
+	public void setSupervisor(Employee supervisor) {
+		this.supervisor = supervisor;
 	}
 
 	public String getUsername() {
@@ -182,7 +180,7 @@ public class Employee implements Serializable {
 	public String toString() {
 		return "Employee [id=" + id + ", email=" + email + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", payLevel="
-				+ payLevel + ", supervisorID=" + supervisorID + ", username="
+				+ payLevel + ", supervisorID=" + supervisor.getUsername() + ", username="
 				+ username + ", activeStatus=" + activeStatus + "]";
 	}
 

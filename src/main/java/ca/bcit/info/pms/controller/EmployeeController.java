@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -33,9 +35,12 @@ public class EmployeeController implements Serializable {
 	@Inject
 	private Credential credential;
 
+    private String supervisorUsername;
+
     /**
      * Select list for pay level on newEmployee.xhtml page
      */
+    // TODO get paygrads from db
     private ArrayList<String> payLevelItems = new ArrayList<String>() {{
         add("P1");
         add("P2");
@@ -59,9 +64,17 @@ public class EmployeeController implements Serializable {
      * Add new Employee to database.
      */
     public String addEmployee() {
-        logger.debug(employee.toString());
+        final Employee supervisor = empService.findEmployeeByUsername(supervisorUsername);
+        if (supervisor == null) {
+            FacesContext.getCurrentInstance().addMessage("newEmployeeForm:mnSupervisor",
+                    new FacesMessage("No employee found with username: " + supervisorUsername));
+            return null;
+        } else {
+            employee.setSupervisor(supervisor);
+        }
+
         empService.persistEmployee(employee, credential);
-        logger.info("successfully create new employee ");
+        logger.info("successfully create new employee: " + employee.toString());
         return "newEmployee";
     }
 
@@ -87,5 +100,13 @@ public class EmployeeController implements Serializable {
 
     public Credential getCredential() {
         return credential;
+    }
+
+    public String getSupervisorUsername() {
+        return supervisorUsername;
+    }
+
+    public void setSupervisorUsername(String supervisorUsername) {
+        this.supervisorUsername = supervisorUsername;
     }
 }

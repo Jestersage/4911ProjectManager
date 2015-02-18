@@ -9,6 +9,7 @@ import javax.ejb.LocalBean;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -34,7 +35,30 @@ public class EmployeeManager  implements Serializable {
 		return this.entityManager.find(Employee.class, id);
 	}
 
-	@SuppressWarnings("unchecked")
+    /**
+     * Find employee by username
+     * @param username
+     * @return
+     */
+    public Employee findByUsername(final String username)
+    {
+        TypedQuery<Employee> query = entityManager.createQuery(
+                "SELECT e FROM Employee e WHERE e.username = :username ",
+                Employee.class
+        );
+        query.setParameter("username", username);
+
+        try {
+            Employee match = query.getSingleResult();
+            logger.info("match found: " + match.getUsername());
+            return match;
+        } catch (NoResultException nre) {
+            logger.warn("match not found for username " + username );
+            return null;
+        }
+    }
+
+    @SuppressWarnings("unchecked")
 	public List<Credential> getCredentials() {
 
 		return this.entityManager.createQuery("select c from Credential c",Credential.class ).getResultList();

@@ -20,4 +20,11 @@ public interface EmployeeService {
 	void updateEmployee(Employee newEmp);
 
 	List<Employee> getAllEmployee();
+
+    /**
+     * Find employee by username.
+     * @param username employee username
+     * @return employee or null
+     */
+    Employee findEmployeeByUsername(final String username);
 }
