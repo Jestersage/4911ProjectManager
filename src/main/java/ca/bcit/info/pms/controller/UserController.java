@@ -16,70 +16,69 @@ import org.apache.log4j.Logger;
 import ca.bcit.info.pms.service.EmployeeService;
 
 @Named("userController")
-@SessionScoped	
+@SessionScoped
 public class UserController implements Serializable {
-	
-	@Inject
-	private EmployeeService empService;
-	
-	@Inject
-	private Credential credential;
-	
-	private String newCredential;
-	
-	private String currentPassword;
 
-	public String getCurrentPassword() {
-		return currentPassword;
-	}
+    @Inject
+    private EmployeeService empService;
 
-	public void setCurrentPassword(String currentPassword) {
-		this.currentPassword = currentPassword;
-	}
+    @Inject
+    private Credential credential;
 
-	public String getNewCredential() {
-		return newCredential;
-	}
+    private String newCredential;
+    private String currentPassword;
+    private String confirmCredential;
 
-	public void setNewCredential(String newCredential) {
-		this.newCredential = newCredential;
-	}
+    private static final Logger logger = LogManager.getLogger(UserController.class);
 
-	public String getConfirmCredential() {
-		return confirmCredential;
-	}
+    public String getCurrentPassword() {
+        return currentPassword;
+    }
 
-	public void setConfirmCredential(String confirmCredential) {
-		this.confirmCredential = confirmCredential;
-	}
+    public void setCurrentPassword(String currentPassword) {
+        this.currentPassword = currentPassword;
+    }
 
-	private String confirmCredential;
+    public String getNewCredential() {
+        return newCredential;
+    }
 
-	private static final Logger logger = LogManager.getLogger(UserController.class);
+    public void setNewCredential(String newCredential) {
+        this.newCredential = newCredential;
+    }
 
-	public Credential getCredential() {
-		return credential;
-	}
+    public String getConfirmCredential() {
+        return confirmCredential;
+    }
 
-	public void setCredential(Credential credential) {
-		this.credential = credential;
-	}
+    public void setConfirmCredential(String confirmCredential) {
+        this.confirmCredential = confirmCredential;
+    }
 
-	public String login(){
-		boolean isCorrect = empService.checkCredentials(credential);
-	
-		if(isCorrect){
-			logger.info("Login Success");
-			return "loginSuccess";
-		}
+
+    public Credential getCredential() {
+        return credential;
+    }
+
+    public void setCredential(Credential credential) {
+        this.credential = credential;
+    }
+
+    public String login() {
+        boolean isCorrect = empService.checkCredentials(credential);
+
+        if (isCorrect) {
+            logger.info("Login Success");
+            return "loginSuccess";
+        }
 
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage("passwordForm",
                 new FacesMessage("Your username and password didn't match. Try again."));
         context.getExternalContext().invalidateSession();
         logger.info("Login Failed");
-		return "loginFail";
-	}
+        return "loginFail";
+    }
 
     public void checkPermissions(ComponentSystemEvent event) {
         boolean isAuthorized = false;
@@ -101,23 +100,22 @@ public class UserController implements Serializable {
         }
     }
 
-	public String logout(){
+    public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "logout";
-	}
-	
-	public String changePassword(){
-		if(currentPassword.equals(credential.getPassword())) {
-			if(newCredential.equals(confirmCredential)) {
-				credential.setPassword(newCredential);
-				empService.updateCreden(credential);
-				credential = new Credential();
-			}
-		}
+    }
 
-		return "settings.xhtml";	
-        //throw new UnsupportedOperationException();
-	}
+    public String changePassword() {
+        if (currentPassword.equals(credential.getPassword())) {
+            if (newCredential.equals(confirmCredential)) {
+                credential.setPassword(newCredential);
+                empService.updateCreden(credential);
+                credential = new Credential();
+            }
+        }
+
+        return null;
+    }
 
 }
 
