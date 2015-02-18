@@ -14,34 +14,24 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<version.arquillian_core>1.1.7.Final</version.arquillian_core>
-		<version.jboss_spec>3.0.1.Final</version.jboss_spec>
-		<version.arquillian_core>1.1.1.Final</version.arquillian_core>
-		<version.arquillian_persistence>1.0.0.Alpha6</version.arquillian_persistence>
-		<version.arquillian_drone>1.2.1.Final</version.arquillian_drone>
-		<version.arquillian_graphene>2.0.0.Final</version.arquillian_graphene>
-		<version.arquillian_warp>1.0.0.Beta1-SNAPSHOT</version.arquillian_warp>
-		<version.arquillian_warp_rest>1.0.0.Final-SNAPSHOT</version.arquillian_warp_rest>
-		<version.arquillian_qunit>1.0.0.Alpha1</version.arquillian_qunit>
-		<version.restassured>2.3.0</version.restassured>
-		<version.wildfly>8.0.0.Final</version.wildfly>
-		<version.jboss_as>7.1.1.Final</version.jboss_as>
-		<version.jboss_eap>7.2.0.Final</version.jboss_eap>
-		<version.jboss_eap_managed>eap-6.1.0</version.jboss_eap_managed>
-		<version.hibernate_validator>4.3.0.Final</version.hibernate_validator>
+		<version.wildfly>8.2.0.Final</version.wildfly>
+		<version.primefaces>5.1</version.primefaces>
+		<version.log4j>1.2.16</version.log4j>
+		<version.maven-war>2.3</version.maven-war>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.wildfly.bom</groupId>
 				<artifactId>jboss-javaee-7.0-with-hibernate</artifactId>
-				<version>8.2.0.Final</version>
+				<version>${version.wildfly}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.wildfly.bom</groupId>
 				<artifactId>jboss-javaee-7.0-with-tools</artifactId>
-				<version>8.2.0.Final</version>
+				<version>${version.wildfly}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -112,14 +102,14 @@
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>5.1</version>
+			<version>${version.primefaces}</version>
 		</dependency>
 
 		<!-- Used for Arquillian test logging -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
+			<version>${version.log4j}</version>
 		</dependency>
 
 		<dependency>
@@ -143,7 +133,7 @@
 				<plugins>
 					<plugin>
 						<artifactId>maven-war-plugin</artifactId>
-						<version>2.3</version>
+						<version>${version.maven-war}</version>
 						<configuration>
 							<failOnMissingWebXml>false</failOnMissingWebXml>
 							<outputDirectory>deployments</outputDirectory>
