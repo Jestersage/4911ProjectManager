@@ -141,7 +141,6 @@ public class EmployeeManager  implements Serializable {
     public String updateCredential(Credential credential) {
 		try {
 			if (credential.getUsername() == null) {
-				//persistEmployee(employee);				 
 				return "search?faces-redirect=true";
 			} else {
 				this.entityManager.merge(credential);

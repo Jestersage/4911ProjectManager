@@ -9,7 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Version;
 import java.lang.Override;
 
-@Entity
+//@Entity
 public class TimesheetRow implements Serializable
 {
 

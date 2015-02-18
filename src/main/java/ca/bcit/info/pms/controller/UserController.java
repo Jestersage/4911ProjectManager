@@ -109,7 +109,7 @@ public class UserController implements Serializable {
         if (currentPassword.equals(credential.getPassword())) {
             if (newCredential.equals(confirmCredential)) {
                 credential.setPassword(newCredential);
-                empService.updateCreden(credential);
+                empService.updateCredential(credential);
                 credential = new Credential();
             }
         }

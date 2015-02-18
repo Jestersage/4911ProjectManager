@@ -30,9 +30,10 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable {
 	}
 
 	@Override
-	public void persistEmployee(Employee newEmp) {
+	public void persistEmployee(Employee newEmp, Credential newCredential) {
+        newCredential.setUsername(newEmp.getUsername());
+        empManager.persistCredential(newCredential);
 		empManager.persistEmployee(newEmp);
-		
 	}
 
 	@Override
@@ -47,7 +48,7 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable {
 		return empManager.getAllEmployee();
 	}
 
-	public void updateCreden(Credential credential) {
+	public void updateCredential(Credential credential) {
 		empManager.updateCredential(credential);
 	}
 	

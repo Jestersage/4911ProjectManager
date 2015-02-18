@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import java.lang.Override;
 
@@ -26,8 +28,14 @@ public class Credential implements Serializable {
 	}
 
     @Id
+    @NotNull
+    @Pattern(regexp = "^[a-zA-Z0-9_-]{3,30}$",
+            message = "Username can only contain alphabet characters, "
+                    + "underscore (_) and hyphen (-). "
+                    + "Minimum length 3 and maximum length 30.")
 	private String username;
 
+    @NotNull
 	private String password;
 
 

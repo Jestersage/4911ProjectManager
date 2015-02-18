@@ -1,62 +1,34 @@
 package ca.bcit.info.pms.model;
 
-import javax.persistence.Entity;
-
-import java.io.Serializable;
-
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Column;
-import javax.persistence.Version;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
-import java.lang.Override;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Employee")
 public class Employee implements Serializable {
 
-	/**
-	 * The no-argument constructor. Used to create new employees from within the
-	 * application.
-	 */
-	public Employee() {
-	}
+    /**
+     * Maximum hours of flex time that can be spent in advance.
+     * Max 2 weeks * 40 hrs/wk = 80 hrs.
+     */
+    public static final int MAX_OWNED_FLEX_HOURS = -80;
 
-	/**
-	 * The argument-containing constructor. Used to create the initial employees
-	 */
-	public Employee(String id, String email, String firstName, String lastName,
-			String payLevel, String supervisorID, String username,
-			int activeStatus) {
-		super();
-		this.id = id;
-		this.email = email;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.payLevel = payLevel;
-		this.supervisorID = supervisorID;
-		this.username = username;
-		this.activeStatus = activeStatus;
-	}
+    /**
+     * Maximum hours of vacation hours an employee can earn working a full year.
+     * Max 3 weeks + 40 hrs/wk = 120 hrs.
+     */
+    public static final int MAX_VACATION_HOURS = 120;
 
-	@Id
-	@Column(name = "id", updatable = false)
-	@NotNull(message = "ID cannot be null")
-	@Size(max = 10, message = "Employee ID cannot be longer than 10")
+    @Id
+	@Column(name = "employeeID", updatable = false)
+	@NotNull(message = "Employee number cannot be null")
+	@Size(max = 10, message = "Employee number cannot be longer than 10")
 	private String id;
 
-	// @Version
-	// @Column(name = "version")
-	// private int version;
-
-	@Column(name = "email")
 	@NotNull(message = "Email cannot be null")
 	@Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
 			+ "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9]"
@@ -64,37 +36,60 @@ public class Employee implements Serializable {
 			+ "(?:[a-z0-9-]*[a-z0-9])?", message = "Invalid email")
 	private String email;
 
-	@Column(name = "firstName")
 	@NotNull(message = "First name cannot be null")
 	@Size(max = 30, message = "First name cannot be longer than 30")
 	private String firstName;
 
-	@Column(name = "lastName")
 	@NotNull(message = "Last name cannot be null")
 	@Size(max = 30, message = "Last name cannot be longer than 30")
 	private String lastName;
 
-	@Column(name = "payLevel")
+	@Column(name = "paygradeID")
 	@NotNull(message = "Pay grade cannot be null")
 	private String payLevel;
 
-	@Column(name = "supervisorID")
 	@NotNull(message = "Supervisor ID cannot be null")
 	@Size(max = 10, message = "Supervisor ID cannot be longer than 10")
+    // TODO custom valid empID supervisor
 	private String supervisorID;
 
-	@Column(name = "username")
 	@NotNull(message = "User name cannot be null")
-	@Pattern(regexp = "^[a-zA-Z0-9_-]{5,30}$", 
-			 message = "User name can only contain alphabet characters, "
+	@Pattern(regexp = "^[a-zA-Z0-9_-]{3,30}$",
+			 message = "Username can only contain alphabet characters, "
 			 		 + "underscore (_) and hyphen (-). "
-			 		 + "Minimun length 5 and maximum length 30.")
+			 		 + "Minimum length 3 and maximum length 30.")
+    // TODO custom unique validator
 	private String username;
 
-	@Column(name = "activeStatus")
-	private int activeStatus;
+	@Column(name = "active")
+	private boolean activeStatus;
 
-	public String getEmail() {
+    @Column(name = "flexTime")
+    @Min(MAX_OWNED_FLEX_HOURS)
+    private double flexTimeBanked;
+
+    @Column(name = "vacationTime")
+    @Max(MAX_VACATION_HOURS)
+    private double vacationBanked;
+
+
+    /**
+     * The no-argument constructor. Used to create new employees from within the
+     * application.
+     */
+    public Employee() {
+    }
+
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(final String id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
 		return email;
 	}
 
@@ -142,30 +137,29 @@ public class Employee implements Serializable {
 		this.username = username;
 	}
 
-	public int getActiveStatus() {
+	public boolean getActiveStatus() {
 		return activeStatus;
 	}
 
-	public void setActiveStatus(int activeStatus) {
+	public void setActiveStatus(boolean activeStatus) {
 		this.activeStatus = activeStatus;
 	}
 
-	public String getId() {
-		return this.id;
-	}
+    public double getFlexTimeBanked() {
+        return flexTimeBanked;
+    }
 
-	public void setId(final String id) {
-		this.id = id;
-	}
+    public void setFlexTimeBanked(double flexTimeBanked) {
+        this.flexTimeBanked = flexTimeBanked;
+    }
 
-	// public int getVersion() {
-	// return this.version;
-	// }
-	//
-	// public void setVersion(final int version) {
-	// this.version = version;
-	// }
+    public double getVacationBanked() {
+        return vacationBanked;
+    }
 
+    public void setVacationBanked(double vacationBanked) {
+        this.vacationBanked = vacationBanked;
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -183,8 +177,6 @@ public class Employee implements Serializable {
 		}
 		return true;
 	}
-
-
 
 	@Override
 	public String toString() {

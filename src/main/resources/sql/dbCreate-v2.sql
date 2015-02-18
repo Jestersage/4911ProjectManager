@@ -104,11 +104,11 @@ CREATE TABLE Employee (
   firstName    varchar(255) NOT NULL, 
   lastName     varchar(255) NOT NULL, 
   paygradeID   varchar(10) NOT NULL, 
-  supervisorID varchar(10), 
-  active       int(1) NOT NULL, 
-  vacationRemain    numeric(2,2),
-  sickdays          int(2),
-  CONSTRAINT employeeID  
+  supervisorID varchar(10),
+  active       bool NOT NULL,
+  vacationTime    numeric(2,2),
+  flexTime        numeric(2, 2),
+  CONSTRAINT employeeID
     PRIMARY KEY (employeeID));
 --
 CREATE TABLE HR(
