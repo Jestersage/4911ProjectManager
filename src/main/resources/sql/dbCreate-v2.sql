@@ -116,6 +116,12 @@ CREATE TABLE HR(
     PRIMARY KEY (employeeID)
 );
 --
+CREATE TABLE PayGrade(
+    paygradeID varchar(2)   NOT NULL
+    cost       numeric(4,2) NOTNULL
+    PRIMARY KEY (paygradeID)
+);
+--
 ALTER TABLE Report ADD CONSTRAINT FKReportWP FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
 --
 ALTER TABLE WorkPackage ADD CONSTRAINT FKSubWorkPackage FOREIGN KEY (parentwpID) REFERENCES WorkPackage (packageID);
