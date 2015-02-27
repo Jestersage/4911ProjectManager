@@ -17,7 +17,7 @@ import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.service.EmployeeService;
 import ca.bcit.info.pms.service.impl.EmployeeServiceImpl;
 
-@RunWith(Arquillian.class)
+//@RunWith(Arquillian.class)
 public class UserControllerTest {
     @Deployment
     public static Archive<?> createDeployment() {
@@ -33,7 +33,7 @@ public class UserControllerTest {
     @Inject
     UserController userController;
     
-    @Test
+  //  @Test
     public void should_pass() {
         int x = 3;
         
