@@ -19,6 +19,7 @@ import ca.bcit.info.pms.service.impl.EmployeeServiceImpl;
 
 //@RunWith(Arquillian.class)
 public class UserControllerTest {
+    /*
     @Deployment
     public static Archive<?> createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
@@ -28,7 +29,7 @@ public class UserControllerTest {
             .addPackage(EmployeeServiceImpl.class.getPackage())
             .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
-    }
+    }*/
     
     @Inject
     UserController userController;
