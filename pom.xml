@@ -21,7 +21,8 @@
 		<version.maven-surefire>2.18.1</version.maven-surefire>
 		<version.maven-jar>2.5</version.maven-jar>
 		<version.maven-source>2.4</version.maven-source>
-		<version.arquillian_persistence>1.0.0.Alpha5</version.arquillian_persistence>
+		<version.arquillian_persistence>1.0.0.Alpha7</version.arquillian_persistence>
+		<version.java-jdk>1.8</version.java-jdk>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -159,7 +160,6 @@
 				<dependency>
 					<groupId>org.wildfly</groupId>
 					<artifactId>wildfly-arquillian-container-managed</artifactId>
-					<version>${version.wildfly}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>
@@ -180,7 +180,7 @@
 				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.extension</groupId>
-					<artifactId>arquillian-persistence-impl</artifactId>
+					<artifactId>arquillian-persistence-dbunit</artifactId>
 					<version>${version.arquillian_persistence}</version>
 					<scope>test</scope>
 				</dependency>
@@ -252,5 +252,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
