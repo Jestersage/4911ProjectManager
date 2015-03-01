@@ -48,7 +48,7 @@ CREATE TABLE Project (
   budget       numeric(20, 4), 
   status       varchar(255), 
   pmEmployeeID varchar(10),
-  inhouse      tinyint(1) NOT NULL,
+  genReport       tinyint(1) NOT NULL,
   CONSTRAINT projectID  
     PRIMARY KEY (projectID)
 );
