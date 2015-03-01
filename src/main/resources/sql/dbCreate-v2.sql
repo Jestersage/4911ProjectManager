@@ -44,10 +44,11 @@ CREATE TABLE Project (
   projectName  varchar(255) NOT NULL, 
   description  varchar(255) NOT NULL, 
   startDate    date NOT NULL, 
-  endDate      date NOT NULL, 
+  endDate      date, 
   budget       numeric(20, 4) NOT NULL, 
-  status       varchar(255) NOT NULL, 
-  pmEmployeeID varchar(10) NOT NULL,
+  status       varchar(255), 
+  pmEmployeeID varchar(10),
+  inhouse      tinyint(1) NOT NULL,
   CONSTRAINT projectID  
     PRIMARY KEY (projectID)
 );
@@ -118,7 +119,7 @@ CREATE TABLE HR(
 --
 CREATE TABLE PayGrade(
     paygradeID varchar(2)   NOT NULL
-    cost       numeric(4,2) NOTNULL
+    cost       numeric(4,2) NOT NULL
     PRIMARY KEY (paygradeID)
 );
 --
