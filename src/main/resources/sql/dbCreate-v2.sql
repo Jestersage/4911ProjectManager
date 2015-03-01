@@ -45,7 +45,7 @@ CREATE TABLE Project (
   description  varchar(255) NOT NULL, 
   startDate    date NOT NULL, 
   endDate      date, 
-  budget       numeric(20, 4) NOT NULL, 
+  budget       numeric(20, 4), 
   status       varchar(255), 
   pmEmployeeID varchar(10),
   inhouse      tinyint(1) NOT NULL,
