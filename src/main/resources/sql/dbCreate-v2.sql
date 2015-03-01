@@ -119,8 +119,8 @@ CREATE TABLE HR(
 );
 --
 CREATE TABLE PayGrade(
-    paygradeID varchar(2)   NOT NULL
-    cost       numeric(4,2) NOT NULL
+    paygradeID varchar(2)   NOT NULL,
+    cost       numeric(4,2) NOT NULL,
     PRIMARY KEY (paygradeID)
 );
 --
