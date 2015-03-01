@@ -28,9 +28,8 @@ INSERT INTO HR
   (employeeID)
 VALUES
   (123456);
-------------------------
--- Employee sample data
-------------------------
+--
+--
 INSERT INTO Credentials
   (username, password) 
 VALUES 
@@ -39,6 +38,8 @@ INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active) 
 VALUES
   (124816, "georgel", "gleung4@gmail.com", "George", "Leung", 03, 123456, 1);
+--
+-- Sample Employeed data
 --
 INSERT INTO Credentials
     (username, password)
@@ -84,6 +85,7 @@ INSERT INTO Employee
     (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
 VALUES
     (000006, "magSimpson", "magS@email.com", "Maggie", "Simpson", 02, 000004, 0);
+    
     
 INSERT INTO Credentials
     (username, password)
