@@ -47,15 +47,9 @@ CREATE TABLE Project (
   description  varchar(255) NOT NULL, 
   startDate    date NOT NULL, 
   endDate      date, 
-<<<<<<< HEAD
   budget       numeric(20, 4), 
   status       tinyint(1), 
   pmEmployeeID    varchar(10),
-=======
-  budget       numeric(20, 4),
-  status       tinyint(1),
-  pmEmployeeID varchar(10),
->>>>>>> 100a950d632b66ed06902b9f38b0dc55ddc3bb87
   genReport       tinyint(1) NOT NULL,
   CONSTRAINT projectID  
     PRIMARY KEY (projectID)
