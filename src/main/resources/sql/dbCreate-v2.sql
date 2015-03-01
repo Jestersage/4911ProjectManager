@@ -144,3 +144,6 @@ ALTER TABLE Timesheet ADD CONSTRAINT FKsignature FOREIGN KEY (signID) REFERENCES
 ALTER TABLE Employee ADD CONSTRAINT FKSupervisor FOREIGN KEY (supervisorID) REFERENCES Employee (employeeID);
 ALTER TABLE Employee ADD CONSTRAINT FKemployeeCred FOREIGN KEY (username) REFERENCES Credentials (username);
 ALTER TABLE HR ADD CONSTRAINT FKHR FOREIGN KEY (employeeID) REFERENCES Employee (employeeID);
+--
+ALTER TABLE ProjectAssignment ADD CONSTRAINT FKAPro FOREIGN KEY (projectID) REFERENCES Project (projectID);
+ALTER TABLE ProjectAssignment ADD CONSTRAINT FKAEmp FOREIGN KEY (employeeID) REFERENCES Employee (employeeID);
