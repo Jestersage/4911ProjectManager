@@ -111,7 +111,8 @@ CREATE TABLE Employee (
   vacationTime    numeric(2,2),
   flexTime        numeric(2, 2),
   CONSTRAINT employeeID
-    PRIMARY KEY (employeeID));
+    PRIMARY KEY (employeeID)
+);
 --
 CREATE TABLE HR(
     employeeID varchar(10) NOT NULL,
@@ -122,6 +123,12 @@ CREATE TABLE PayGrade(
     paygradeID varchar(2)   NOT NULL,
     cost       numeric(4,2) NOT NULL,
     PRIMARY KEY (paygradeID)
+);
+--
+CREATE TABLE ProjectAssignment(
+    projectID    varchar(20) NOT NULL, 
+    employeeID   varchar(10) NOT NULL, 
+    PRIMARY KEY (projectID, employeeID)
 );
 --
 ALTER TABLE Report ADD CONSTRAINT FKReportWP FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
