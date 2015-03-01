@@ -30,9 +30,10 @@ CREATE TABLE Report (
     PRIMARY KEY (reportID));
 --
 CREATE TABLE WorkPackage (
-  packageID    int(10) NOT NULL, 
-  projectID    varchar(20) NOT NULL, 
-  wpEmployeeID varchar(10) NOT NULL, 
+  packageID    int(10) NOT NULL AUTO_INCREMENT,
+  projectID    varchar(20) NOT NULL,
+  packageNum   varchar(20) NOT NULL,
+  wpEmployeeID varchar(10) NOT NULL,
   estimateCost numeric(20, 4), 
   actualCost   numeric(20, 4), 
   parentwpID   int(10),
