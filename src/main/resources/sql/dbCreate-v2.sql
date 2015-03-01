@@ -131,6 +131,12 @@ CREATE TABLE ProjectAssignment(
     PRIMARY KEY (projectID, employeeID)
 );
 --
+CREATE TABLE WorkAssignment(
+    packageID    int(10)     NOT NULL, 
+    employeeID   varchar(10) NOT NULL, 
+    PRIMARY KEY (packageID, employeeID)
+);
+--
 ALTER TABLE Report ADD CONSTRAINT FKReportWP FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
 --
 ALTER TABLE WorkPackage ADD CONSTRAINT FKSubWorkPackage FOREIGN KEY (parentwpID) REFERENCES WorkPackage (packageID);
@@ -145,5 +151,8 @@ ALTER TABLE Employee ADD CONSTRAINT FKSupervisor FOREIGN KEY (supervisorID) REFE
 ALTER TABLE Employee ADD CONSTRAINT FKemployeeCred FOREIGN KEY (username) REFERENCES Credentials (username);
 ALTER TABLE HR ADD CONSTRAINT FKHR FOREIGN KEY (employeeID) REFERENCES Employee (employeeID);
 --
-ALTER TABLE ProjectAssignment ADD CONSTRAINT FKAPro FOREIGN KEY (projectID) REFERENCES Project (projectID);
-ALTER TABLE ProjectAssignment ADD CONSTRAINT FKAEmp FOREIGN KEY (employeeID) REFERENCES Employee (employeeID);
+ALTER TABLE ProjectAssignment ADD CONSTRAINT FKPAPro FOREIGN KEY (projectID) REFERENCES Project (projectID);
+ALTER TABLE ProjectAssignment ADD CONSTRAINT FKPAEmp FOREIGN KEY (employeeID) REFERENCES Employee (employeeID);
+--
+ALTER TABLE WorkAssignment ADD CONSTRAINT FKWAWork FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
+ALTER TABLE WorkAssignment ADD CONSTRAINT FKWAEmp FOREIGN KEY (employeeID) REFERENCES Employee (employeeID);
