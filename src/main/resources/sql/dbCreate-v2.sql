@@ -37,7 +37,7 @@ CREATE TABLE WorkPackage (
   estimateCost numeric(20, 4), 
   actualCost   numeric(20, 4), 
   parentwpID   int(10),
-  status       int(2),
+  status       tinyint(1),
   CONSTRAINT packageID
     PRIMARY KEY (packageID));
 --
@@ -47,8 +47,8 @@ CREATE TABLE Project (
   description  varchar(255) NOT NULL, 
   startDate    date NOT NULL, 
   endDate      date, 
-  budget       numeric(20, 4), 
-  status       int(2), 
+  budget       numeric(20, 4),
+  status       tinyint(1),
   pmEmployeeID varchar(10),
   genReport       tinyint(1) NOT NULL,
   CONSTRAINT projectID  
