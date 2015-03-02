@@ -38,9 +38,10 @@ INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active) 
 VALUES
   (124816, "georgel", "gleung4@gmail.com", "George", "Leung", 03, 123456, 1);
---
+
+------------------------
 -- Sample Employeed data
---
+------------------------
 INSERT INTO Credentials
     (username, password)
 VALUES
@@ -152,7 +153,11 @@ INSERT INTO WorkPackage
 (packageID, projectID, packageNum, wpEmployeeID)
 VALUES
   (4, 010, "FLEX", 000001);
---
+------------------------------
+-- END Sample Employee Data --
+------------------------------
+
+  
 INSERT INTO Project
 (projectID, projectName, description, startDate, endDate, budget, status, pmEmployeeID, genReport)
 VALUES
