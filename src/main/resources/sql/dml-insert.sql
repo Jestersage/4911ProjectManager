@@ -38,10 +38,9 @@ INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active) 
 VALUES
   (124816, "georgel", "gleung4@gmail.com", "George", "Leung", 03, 123456, 1);
-
-------------------------
+--
 -- Sample Employeed data
-------------------------
+--
 INSERT INTO Credentials
     (username, password)
 VALUES
@@ -50,7 +49,7 @@ INSERT INTO Employee
     (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
 VALUES
     (000002, "bobDole", "bdole@email.com", "Bob", "Dole", 01, 000001, 1);
-    
+--
 INSERT INTO Credentials
     (username, password)
 VALUES
@@ -59,7 +58,7 @@ INSERT INTO Employee
     (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
 VALUES
     (000003, "fredBarns", "fredb@email.com", "Frederic", "Barns", 03, 000001, 1);
-
+--
 INSERT INTO Credentials
     (username, password)
 VALUES
@@ -68,7 +67,7 @@ INSERT INTO Employee
     (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
 VALUES
     (000004, "rBurns", "bdole@email.com", "Robet", "Dolenson", 01, 000001, 1);
-    
+--
 INSERT INTO Credentials
     (username, password)
 VALUES
@@ -77,7 +76,7 @@ INSERT INTO Employee
     (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
 VALUES
     (000005, "hSimpson", "homerS@email.com", "Homer", "Simpson", 03, 000004, 1);
-    
+--
 INSERT INTO Credentials
     (username, password)
 VALUES
@@ -86,8 +85,7 @@ INSERT INTO Employee
     (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
 VALUES
     (000006, "magSimpson", "magS@email.com", "Maggie", "Simpson", 02, 000004, 0);
-    
-    
+--  
 INSERT INTO Credentials
     (username, password)
 VALUES
@@ -96,7 +94,7 @@ INSERT INTO Employee
     (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
 VALUES
     (000007, "margSimpson", "margS@email.com", "Marge", "Simpson", 01, 000004, 0);
-    
+--  
 INSERT INTO Credentials
     (username, password)
 VALUES
@@ -105,7 +103,7 @@ INSERT INTO Employee
     (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
 VALUES
     (000008, "bSimpson", "bartS@email.com", "Bart", "Simpson", 03, 000005, 1);
-    
+--
 INSERT INTO Credentials
     (username, password)
 VALUES
@@ -114,7 +112,7 @@ INSERT INTO Employee
     (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
 VALUES
     (000009, "fArbuckle", "fredA@email.com", "Fred", "Arbuckle", 02, 000004, 1);    
-
+--
 INSERT INTO Credentials
     (username, password)
 VALUES
@@ -123,7 +121,7 @@ INSERT INTO Employee
     (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
 VALUES
     (000010, "garfield", "garf@email.com", "Garfield", "Arbuckle", 03, 000009, 1);
-    
+--
 INSERT INTO Credentials
     (username, password)
 VALUES
@@ -154,11 +152,7 @@ INSERT INTO WorkPackage
   (packageID, projectID, packageNum, employeeID)
 VALUES
   (4, 010, "FLEX", 000001);
-------------------------------
--- END Sample Employee Data --
-------------------------------
-
-  
+--
 INSERT INTO Project
 (projectID, projectName, description, startDate, endDate, budget, status, employeeID, genReport)
 VALUES
@@ -175,62 +169,3 @@ INSERT INTO WorkPackage
 (packageID, projectID, packageNum, employeeID, estimateCost, actualCost, parentwpID, status)
 VALUES
   (7, 1202, "AB-2", 123456, 5000, 4500, 5, 1);
-  
---  data for RateSheet and Budget Entities in Database 
-
-
--- 	assuming that the same employee can work in different work packages
--- 	RateSheet - Project 
-
-INSERT INTO RateSheet
-	( projectID, year, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
-VALUES 
-	( 010, '2015-01-01', 2, 3, 2, 4, 5, 3, 1, 0, 4, 1);
-
-INSERT INTO RateSheet
-	( projectID, year, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
-VALUES 
-	( 1202, '2015-01-01', 1, 4, 3, 6, 1, 4, 4, 3, 1, 2);
-
-
--- Budget - Workpackage
-
--- PROJECT 010
-
-INSERT INTO Budget
-	( packageID, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
-VALUES 
-	( 1, 1, 2, 0, 1, 2, 2, 0, 0, 1, 0 );
-
-INSERT INTO Budget
-	( packageID, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
-VALUES 
-	( 2, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1 );
-
-INSERT INTO Budget
-	( packageID, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
-VALUES 
-	( 3, 0, 1, 1, 1, 1, 1, 0, 0, 2, 0 );
-
-INSERT INTO Budget
-	( packageID, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
-VALUES 
-	( 4, 0, 0, 1, 1, 2, 1, 1, 0, 1, 0 );
-
-
--- PROJECT 1202
-
-INSERT INTO Budget
-	( packageID, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
-VALUES 
-	( 5, 1, 1, 1, 2, 0, 0, 2, 2, 0, 0 );
-
-INSERT INTO Budget
-	( packageID, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
-VALUES 
-	( 6, 1, 2, 1, 1, 1, 2, 0, 0, 1, 1 );
-
-INSERT INTO Budget
-	( packageID, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
-VALUES 
-	( 7, 1, 1, 2, 3, 0, 2, 2, 1, 0, 1 );
