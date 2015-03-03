@@ -59,6 +59,46 @@ CREATE TABLE Project (
     PRIMARY KEY (projectID)
 );
 --
+CREATE TABLE ProjectSummary(
+    reportID     int(10) NOT NULL, 
+    projectID    varchar(20) NOT NULL, 
+    PRIMARY KEY (reportID)
+);
+--
+-- Budget is for WorkPackage
+CREATE TABLE Budget(
+    packageID   int(10) NOT NULL,
+    JS int(10),
+    SS int(10),
+    DS int(10),
+    P1 int(10),
+    P2 int(10),
+    P3 int(10),
+    P4 int(10),
+    P5 int(10),
+    P6 int(10),
+    other int(10),
+    PRIMARY KEY (packageID)
+);
+--
+-- RateSheet is for Project
+CREATE TABLE RateSheet(
+    ratesheetID int(10) NOT NULL,
+    projectID   varchar(20) NOT NULL,
+    year        date,
+    JS int(10),
+    SS int(10),
+    DS int(10),
+    P1 int(10),
+    P2 int(10),
+    P3 int(10),
+    P4 int(10),
+    P5 int(10),
+    P6 int(10),
+    other int(10),
+    PRIMARY KEY (ratesheetID)
+);
+--
 --
 CREATE TABLE TimesheetRow (
   timesheetID    int(10), 
@@ -140,46 +180,6 @@ CREATE TABLE WorkAssignment(
     packageID    int(10)     NOT NULL, 
     employeeID   varchar(10) NOT NULL, 
     PRIMARY KEY (packageID, employeeID)
-);
---
-CREATE TABLE ProjectSummary(
-    reportID     int(10) NOT NULL, 
-    projectID    varchar(20) NOT NULL, 
-    PRIMARY KEY (reportID)
-);
---
--- Budget is for WorkPackage
-CREATE TABLE Budget(
-    packageID   int(10) NOT NULL,
-    JS int(10),
-    SS int(10),
-    DS int(10),
-    P1 int(10),
-    P2 int(10),
-    P3 int(10),
-    P4 int(10),
-    P5 int(10),
-    P6 int(10),
-    other int(10),
-    PRIMARY KEY (packageID)
-);
---
--- Budget is for WorkPackage
-CREATE TABLE RateSheet(
-    ratesheetID int(10) NOT NULL,
-    projectID   varchar(20) NOT NULL,
-    year        date,
-    JS int(10),
-    SS int(10),
-    DS int(10),
-    P1 int(10),
-    P2 int(10),
-    P3 int(10),
-    P4 int(10),
-    P5 int(10),
-    P6 int(10),
-    other int(10),
-    PRIMARY KEY (ratesheetID)
 );
 --
 ALTER TABLE StatusReport ADD CONSTRAINT FKReportWP FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
