@@ -176,9 +176,8 @@ INSERT INTO WorkPackage
 VALUES
   (7, 1202, "AB-2", 123456, 5000, 4500, 5, 1);
   
+  
 --  data for RateSheet and Budget Entities in Database 
-
-
 -- 	assuming that the same employee can work in different work packages
 -- 	RateSheet - Project 
 
@@ -234,3 +233,4 @@ INSERT INTO Budget
 	( packageID, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
 VALUES 
 	( 7, 1, 1, 2, 3, 0, 2, 2, 1, 0, 1 );
+
