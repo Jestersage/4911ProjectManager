@@ -37,6 +37,7 @@ CREATE TABLE WorkPackage (
   employeeID   varchar(10) NOT NULL,
   estimateCost numeric(20, 4), 
   actualCost   numeric(20, 4), 
+  manDates      numeric(20,4),
   parentwpID   int(10),
   packageName  varchar(20),
   packageDesc  varchar(20),
