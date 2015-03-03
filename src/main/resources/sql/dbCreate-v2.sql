@@ -23,9 +23,10 @@ DROP TABLE IF EXISTS Employee;
 DROP TABLE IF EXISTS Signatures;
 DROP TABLE IF EXISTS HR;
 --
-CREATE TABLE Report (
-  reportID varchar(20) NOT NULL,
+CREATE TABLE StatusReport (
+  reportID  int(20) NOT NULL,
   packageID int(10) NOT NULL,
+  comments  varchar(512),
   CONSTRAINT reportID 
     PRIMARY KEY (reportID));
 --
@@ -33,10 +34,12 @@ CREATE TABLE WorkPackage (
   packageID    int(10) NOT NULL AUTO_INCREMENT,
   projectID    varchar(20) NOT NULL,
   packageNum   varchar(20) NOT NULL,
-  wpEmployeeID varchar(10) NOT NULL,
+  employeeID   varchar(10) NOT NULL,
   estimateCost numeric(20, 4), 
   actualCost   numeric(20, 4), 
   parentwpID   int(10),
+  packageName  varchar(20),
+  packageDesc  varchar(20),
   status       tinyint(1),
   CONSTRAINT packageID
     PRIMARY KEY (packageID));
@@ -49,7 +52,8 @@ CREATE TABLE Project (
   endDate      date, 
   budget       numeric(20, 4), 
   status       tinyint(1), 
-  pmEmployeeID    varchar(10),
+  employeeID    varchar(10),
+  markupValue   double,
   genReport       tinyint(1) NOT NULL,
   CONSTRAINT projectID  
     PRIMARY KEY (projectID)
@@ -89,9 +93,9 @@ CREATE TABLE Timesheet (
     PRIMARY KEY (timesheetID));
 --
 CREATE TABLE Signature(
-    signId    int(10) NOT NULL PRIMARY KEY ,
-    signature TINYBLOB NOT NULL, 
-    publicKey BLOB NOT NULL
+	signId    int(10) NOT NULL PRIMARY KEY ,
+	signature TINYBLOB NOT NULL, 
+	publicKey BLOB NOT NULL
 );
 -- salt need to be as long as hashed password
 CREATE TABLE Credentials (
@@ -138,7 +142,47 @@ CREATE TABLE WorkAssignment(
     PRIMARY KEY (packageID, employeeID)
 );
 --
-ALTER TABLE Report ADD CONSTRAINT FKReportWP FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
+CREATE TABLE ProjectSummary(
+    reportID     int(10) NOT NULL, 
+    projectID    varchar(20) NOT NULL, 
+    PRIMARY KEY (reportID)
+);
+--
+-- Budget is for WorkPackage
+CREATE TABLE Budget(
+    packageID   int(10) NOT NULL,
+    JS int(10),
+    SS int(10),
+    DS int(10),
+    P1 int(10),
+    P2 int(10),
+    P3 int(10),
+    P4 int(10),
+    P5 int(10),
+    P6 int(10),
+    other int(10),
+    PRIMARY KEY (packageID)
+);
+--
+-- Budget is for WorkPackage
+CREATE TABLE RateSheet(
+    ratesheetID int(10) NOT NULL,
+    projectID   varchar(20) NOT NULL,
+    year        date,
+    JS int(10),
+    SS int(10),
+    DS int(10),
+    P1 int(10),
+    P2 int(10),
+    P3 int(10),
+    P4 int(10),
+    P5 int(10),
+    P6 int(10),
+    other int(10),
+    PRIMARY KEY (ratesheetID)
+);
+--
+ALTER TABLE StatusReport ADD CONSTRAINT FKReportWP FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
 --
 ALTER TABLE WorkPackage ADD CONSTRAINT FKSubWorkPackage FOREIGN KEY (parentwpID) REFERENCES WorkPackage (packageID);
 ALTER TABLE WorkPackage ADD CONSTRAINT FKWPProject FOREIGN KEY (projectID) REFERENCES Project (projectID);
@@ -157,3 +201,9 @@ ALTER TABLE ProjectAssignment ADD CONSTRAINT FKPAEmp FOREIGN KEY (employeeID) RE
 --
 ALTER TABLE WorkAssignment ADD CONSTRAINT FKWAWork FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
 ALTER TABLE WorkAssignment ADD CONSTRAINT FKWAEmp FOREIGN KEY (employeeID) REFERENCES Employee (employeeID);
+--
+ALTER TABLE ProjectSummary ADD CONSTRAINT FKPSproj FOREIGN KEY (projectID) REFERENCES Project (projectID);
+--
+ALTER TABLE Budget ADD CONSTRAINT FKBWork FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
+--
+ALTER TABLE RateSheet ADD CONSTRAINT FKRSProj FOREIGN KEY (projectID) REFERENCES Project (projectID);
