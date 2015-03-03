@@ -169,3 +169,65 @@ INSERT INTO WorkPackage
 (packageID, projectID, packageNum, employeeID, estimateCost, actualCost, parentwpID, status)
 VALUES
   (7, 1202, "AB-2", 123456, 5000, 4500, 5, 1);
+<<<<<<< HEAD
+=======
+  
+  
+--  data for RateSheet and Budget Entities in Database 
+-- 	assuming that the same employee can work in different work packages
+-- 	RateSheet - Project 
+
+INSERT INTO RateSheet
+	( projectID, year, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
+VALUES 
+	( 010, '2015-01-01', 2, 3, 2, 4, 5, 3, 1, 0, 4, 1);
+
+INSERT INTO RateSheet
+	( projectID, year, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
+VALUES 
+	( 1202, '2015-01-01', 1, 4, 3, 6, 1, 4, 4, 3, 1, 2);
+
+
+-- Budget - Workpackage
+
+-- PROJECT 010
+
+INSERT INTO Budget
+	( packageID, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
+VALUES 
+	( 1, 1, 2, 0, 1, 2, 2, 0, 0, 1, 0 );
+
+INSERT INTO Budget
+	( packageID, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
+VALUES 
+	( 2, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1 );
+
+INSERT INTO Budget
+	( packageID, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
+VALUES 
+	( 3, 0, 1, 1, 1, 1, 1, 0, 0, 2, 0 );
+
+INSERT INTO Budget
+	( packageID, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
+VALUES 
+	( 4, 0, 0, 1, 1, 2, 1, 1, 0, 1, 0 );
+
+
+-- PROJECT 1202
+
+INSERT INTO Budget
+	( packageID, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
+VALUES 
+	( 5, 1, 1, 1, 2, 0, 0, 2, 2, 0, 0 );
+
+INSERT INTO Budget
+	( packageID, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
+VALUES 
+	( 6, 1, 2, 1, 1, 1, 2, 0, 0, 1, 1 );
+
+INSERT INTO Budget
+	( packageID, JS, SS, DS, P1, P2, P3, P4, P5, P6, other )
+VALUES 
+	( 7, 1, 1, 2, 3, 0, 2, 2, 1, 0, 1 );
+
+>>>>>>> 1728eea3816a64fb29d4177dd46984809708503a
