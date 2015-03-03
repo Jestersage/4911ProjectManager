@@ -84,7 +84,7 @@ CREATE TABLE Budget(
 --
 -- RateSheet is for Project
 CREATE TABLE RateSheet(
-    ratesheetID int(10) NOT NULL,
+    ratesheetID int(10) NOT NULL AUTO_INCREMENT,
     projectID   varchar(20) NOT NULL,
     year        date,
     JS int(10),
@@ -103,7 +103,7 @@ CREATE TABLE RateSheet(
 --
 CREATE TABLE TimesheetRow (
   timesheetID    int(10), 
-  timesheetrowID int(10) NOT NULL, 
+  timesheetrowID int(10) NOT NULL AUTO_INCREMENT, 
   projectID      varchar(20) NOT NULL, 
   packageID      int(10) NOT NULL, 
   weekending     date NOT NULL, 
