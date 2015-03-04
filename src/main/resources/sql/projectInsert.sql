@@ -168,4 +168,8 @@ INSERT INTO WorkPackage
 (packageID, projectID, packageNum, employeeID, parentwpID, status)
 VALUES
   (14, 111, "9C", 4, 11, 1);
+<<<<<<< HEAD
 --
+=======
+--
+>>>>>>> Added sample timesheet data for an employee
