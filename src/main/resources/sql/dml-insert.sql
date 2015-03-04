@@ -1,3 +1,136 @@
+-- INSERT DATA
+-- Order MUST BE: Credentials, Then employee, then roleAssign
+--
+--
+INSERT INTO Credentials
+  (username, password) 
+VALUES 
+  ("root", "password");
+INSERT INTO Employee
+  (employeeID, username, email, firstName, lastName, paygradeID, active) 
+VALUES 
+  (000001, "root", "gleung4@gmail.com", "CEO", "Admin", 01, 1 );
+INSERT INTO HR
+  (employeeID)
+VALUES
+  (000001);
+--
+--
+INSERT INTO Credentials
+  (username, password) 
+VALUES 
+  ("gabeh", "password");
+INSERT INTO Employee
+  (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active) 
+VALUES
+  (123456, "gabeh", "gabeh3264@gmail.com", "Gabe", "Hung", 02, 000001, 1);
+INSERT INTO HR
+  (employeeID)
+VALUES
+  (123456);
+--
+--
+INSERT INTO Credentials
+  (username, password) 
+VALUES 
+  ("georgel", "password");
+INSERT INTO Employee
+  (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active) 
+VALUES
+  (124816, "georgel", "gleung4@gmail.com", "George", "Leung", 03, 123456, 1);
+--
+-- Sample Employeed data
+--
+INSERT INTO Credentials
+    (username, password)
+VALUES
+    ("bobDole", "password");
+INSERT INTO Employee
+    (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
+VALUES
+    (000002, "bobDole", "bdole@email.com", "Bob", "Dole", 01, 000001, 1);
+--
+INSERT INTO Credentials
+    (username, password)
+VALUES
+    ("fredBarns", "password");
+INSERT INTO Employee
+    (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
+VALUES
+    (000003, "fredBarns", "fredb@email.com", "Frederic", "Barns", 03, 000001, 1);
+--
+INSERT INTO Credentials
+    (username, password)
+VALUES
+    ("rBurns", "password");
+INSERT INTO Employee
+    (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
+VALUES
+    (000004, "rBurns", "bdole@email.com", "Robet", "Dolenson", 01, 000001, 1);
+--
+INSERT INTO Credentials
+    (username, password)
+VALUES
+    ("hSimpson", "password");
+INSERT INTO Employee
+    (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
+VALUES
+    (000005, "hSimpson", "homerS@email.com", "Homer", "Simpson", 03, 000004, 1);
+--
+INSERT INTO Credentials
+    (username, password)
+VALUES
+    ("magSimpson", "password");
+INSERT INTO Employee
+    (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
+VALUES
+    (000006, "magSimpson", "magS@email.com", "Maggie", "Simpson", 02, 000004, 0);
+--  
+INSERT INTO Credentials
+    (username, password)
+VALUES
+    ("margSimpson", "password");
+INSERT INTO Employee
+    (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
+VALUES
+    (000007, "margSimpson", "margS@email.com", "Marge", "Simpson", 01, 000004, 0);
+--  
+INSERT INTO Credentials
+    (username, password)
+VALUES
+    ("bSimpson", "password");
+INSERT INTO Employee
+    (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
+VALUES
+    (000008, "bSimpson", "bartS@email.com", "Bart", "Simpson", 03, 000005, 1);
+--
+INSERT INTO Credentials
+    (username, password)
+VALUES
+    ("fArbuckle", "password");
+INSERT INTO Employee
+    (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
+VALUES
+    (000009, "fArbuckle", "fredA@email.com", "Fred", "Arbuckle", 02, 000004, 1);    
+--
+INSERT INTO Credentials
+    (username, password)
+VALUES
+    ("garfield", "password");
+INSERT INTO Employee
+    (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
+VALUES
+    (000010, "garfield", "garf@email.com", "Garfield", "Arbuckle", 03, 000009, 1);
+--
+INSERT INTO Credentials
+    (username, password)
+VALUES
+    ("odie", "password");
+INSERT INTO Employee
+    (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active)
+VALUES
+    (000011, "odie", "odie@email.com", "Odie", "Arbuckle", 02, 000009, 1);
+--
 --
 INSERT INTO Project
   (projectID, projectName, description, startDate, status, employeeID, genReport)
@@ -29,13 +162,13 @@ INSERT INTO WorkPackage
 VALUES
   (5, 1202, "AB", 123456);
 INSERT INTO WorkPackage
-  (packageID, projectID, packageNum, employeeID, estimateCost, actualCost, parentwpID, status)
+  (packageID, projectID, packageNum, employeeID, parentwpID, status)
 VALUES
-  (6, 1202, "AB-1", 123456, 5000, 5000, 5, 2);
+  (6, 1202, "AB-1", 123456, 5, 2);
 INSERT INTO WorkPackage
-(packageID, projectID, packageNum, employeeID, estimateCost, actualCost, parentwpID, status)
+(packageID, projectID, packageNum, employeeID, parentwpID, status)
 VALUES
-  (7, 1202, "AB-2", 123456, 5000, 4500, 5, 1);
+  (7, 1202, "AB-2", 123456, 5, 1);
 --
 --
 -- 
@@ -114,24 +247,24 @@ VALUES
   (92, 999, "9A", 999);
 --  
 INSERT INTO WorkPackage
-  (packageID, projectID, packageNum, employeeID, estimateCost, actualCost, parentwpID, status)
+  (packageID, projectID, packageNum, employeeID, parentwpID, status)
 VALUES
-  (93, 999, "9B", 999, 999, 9001, 91, 2);
+  (93, 999, "9B", 999, 91, 2);
 --  
 INSERT INTO WorkPackage
-(packageID, projectID, packageNum, employeeID, estimateCost, actualCost, parentwpID, status)
+(packageID, projectID, packageNum, employeeID, parentwpID, status)
 VALUES
-  (94, 999, "9C", 333, 999, 9002, 91, 1);
+  (94, 999, "9C", 333, 91, 1);
 --  
 INSERT INTO WorkPackage
-(packageID, projectID, packageNum, employeeID, estimateCost, actualCost, parentwpID, status)
+(packageID, projectID, packageNum, employeeID, parentwpID, status)
 VALUES
-  (95, 999, "9C", 999, 999, 9002, 91, 1);
+  (95, 999, "9C", 999, 91, 1);
 --  
 INSERT INTO WorkPackage
-(packageID, projectID, packageNum, employeeID, estimateCost, actualCost, parentwpID, status)
+(packageID, projectID, packageNum, employeeID, parentwpID, status)
 VALUES
-  (96, 999, "9D", 555, 999, 9002, 91, 1);
+  (96, 999, "9D", 555, 91, 1);
 --  
 -- Project 888 & Work Packages
 --  
@@ -146,19 +279,19 @@ VALUES
   (81, 888, "8A", 888);
 --  
 INSERT INTO WorkPackage
-  (packageID, projectID, packageNum, employeeID, estimateCost, actualCost, parentwpID, status)
+  (packageID, projectID, packageNum, employeeID, parentwpID, status)
 VALUES
-  (82, 888, "8B", 888, 888, 8001, 81, 2);
+  (82, 888, "8B", 888, 81, 2);
 --  
 INSERT INTO WorkPackage
-(packageID, projectID, packageNum, employeeID, estimateCost, actualCost, parentwpID, status)
+(packageID, projectID, packageNum, employeeID, parentwpID, status)
 VALUES
-  (83, 888, "8C", 888, 888, 8002, 81, 1);
+  (83, 888, "8C", 888, 81, 1);
 --  
 INSERT INTO WorkPackage
-(packageID, projectID, packageNum, employeeID, estimateCost, actualCost, parentwpID, status)
+(packageID, projectID, packageNum, employeeID, parentwpID, status)
 VALUES
-  (84, 888, "8X", 333, 888, 8002, 81, 1);
+  (84, 888, "8X", 333, 81, 1);
 --  
 -- Employee 555 and 777 // Project 777 & Work Packages
 --
@@ -178,18 +311,18 @@ VALUES
   (72, 777, "7A", 777);
 --  
 INSERT INTO WorkPackage
-  (packageID, projectID, packageNum, employeeID, estimateCost, actualCost, parentwpID, status)
+  (packageID, projectID, packageNum, employeeID, parentwpID, status)
 VALUES
-  (73, 777, "7B", 555, 777, 7001, 71, 2);
+  (73, 777, "7B", 555, 71, 2);
 --
 INSERT INTO WorkPackage
-  (packageID, projectID, packageNum, employeeID, estimateCost, actualCost, parentwpID, status)
+  (packageID, projectID, packageNum, employeeID, parentwpID, status)
 VALUES
-  (74, 777, "7B", 777, 777, 7001, 71, 2);
+  (74, 777, "7B", 777, 71, 2);
 --  
 INSERT INTO WorkPackage
-(packageID, projectID, packageNum, employeeID, estimateCost, actualCost, parentwpID, status)
+(packageID, projectID, packageNum, employeeID, parentwpID, status)
 VALUES
-  (75, 777, "7C", 777, 777, 7002, 71, 1);
+  (75, 777, "7C", 777, 71, 1);
 --  
 --
