@@ -29,7 +29,7 @@ public class WorkPackage implements Serializable {
 	private int id;
 
 	@ManyToOne
-	@Column(name = "projectID", updatable = false)
+	@JoinColumn(name = "projectID", updatable = false)
 	@NotNull(message = "Project ID can not be null")
 	@Size(max = 20, message = "Project ID cannot be longer than 20")
 	private Project project;
