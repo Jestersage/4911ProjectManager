@@ -70,8 +70,32 @@ public class Employee implements Serializable {
     @Max(MAX_VACATION_HOURS)
     private double vacationBanked;
 
+    @ManyToOne
+    private WorkPackage workPackage;
+    
+    @ManyToOne
+    private Project project;
+    
+    public Project getProject() {
+		return project;
+	}
 
-    /**
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+
+	public WorkPackage getWorkPackage() {
+		return workPackage;
+	}
+
+
+	public void setWorkPackage(WorkPackage workPackage) {
+		this.workPackage = workPackage;
+	}
+
+
+	/**
      * The no-argument constructor. Used to create new employees from within the
      * application.
      */
