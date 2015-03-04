@@ -121,7 +121,7 @@ CREATE TABLE Timesheet (
   employeeID  varchar(10) NOT NULL, 
   weeknumber  int(2) NOT NULL, 
   weekending  date NOT NULL, 
-  grandTotal  numeric(2, 2) NOT NULL, 
+  grandTotal  numeric(4, 2) NOT NULL, 
   overtime    numeric(2, 2), 
   flexTime    numeric(2, 2), 
   signed      varchar(255), 
