@@ -15,6 +15,7 @@ VALUES
 --
 -- SAMPLE Timesheets, and TimesheetRows
 --
+<<<<<<< HEAD
 -- - - - - - - -- - 
 -- PROJECT ID: 111
 -- Week 1, Employee 4
@@ -50,11 +51,35 @@ VALUES
      8, 8, 8, 0);
 --
 -- Week 3, Employee 4
+=======
+INSERT INTO Timesheet
+  (timesheetID, employeeID, weeknumber, weekending,
+    grandTotal, overtime, flexTime, signed, approved,
+    signID) 
+VALUES
+  (1, 4, 1, '2015-01-09', 16, 0, 0, 
+    "Signed", "approved", 01);
+INSERT INTO TimesheetRow
+    (timesheetID, timesheetrowID, projectID, packageID,
+     weekending, total, notes, sunday, monday, tuesday,
+     wednesday, thursday, friday, saturday)
+--    
+--
+INSERT INTO Timesheet
+  (timesheetID, employeeID, weeknumber, weekending,
+    grandTotal, overtime, flexTime, signed, approved,
+    signID) 
+VALUES
+  (2, 4, 2, '2015-01-09', 40, 0, 0, 
+    "Signed", "approved", 01)
+--
+>>>>>>> Adding timesheet sample data
 INSERT INTO Timesheet
   (timesheetID, employeeID, weeknumber, weekending,
     grandTotal, overtime, flexTime, signed, approved,
     signID)
 VALUES
+<<<<<<< HEAD
     (3, 4, 3,'2015-01-16', 40, 3, 2,
     "Signed", "approved", 01);
 INSERT INTO TimesheetRow
@@ -67,12 +92,18 @@ VALUES
      8, 8, 8, 3);
 --  
 -- Week 4, Employee 4
+=======
+(3, 4, 3,'2015-01-16', 40, 3, 2,
+    "Signed", "approved", 01)
+--  
+>>>>>>> Adding timesheet sample data
 INSERT INTO Timesheet
   (timesheetID, employeeID, weeknumber, weekending,
     grandTotal, overtime, flexTime, signed, approved,
     signID)
 VALUES
   (4, 4, 4,'2015-01-23', 40, 8, 0,
+<<<<<<< HEAD
     "Signed", "approved", 01);
 INSERT INTO TimesheetRow
     (timesheetID, timesheetrowID, projectID, packageID,
@@ -84,11 +115,16 @@ VALUES
      9, 9, 9, 3);
 --
 -- Week 5, Employee 4
+=======
+    "Signed", "approved", 01)
+--
+>>>>>>> Adding timesheet sample data
 INSERT INTO Timesheet
   (timesheetID, employeeID, weeknumber, weekending,
     grandTotal, overtime, flexTime, signed, approved,
     signID)
 VALUES
+<<<<<<< HEAD
     (5, 4, 5,'2015-01-23', 40, 8, 0,
     "Signed", "approved", 01);
 INSERT INTO TimesheetRow
@@ -100,3 +136,7 @@ VALUES
      48, "notes", 0, 9, 9,
      8, 8, 8, 0);
 --
+=======
+    (4, 4, 5,'2015-01-23', 40, 8, 0,
+    "Signed", "approved", 01)
+>>>>>>> Adding timesheet sample data
