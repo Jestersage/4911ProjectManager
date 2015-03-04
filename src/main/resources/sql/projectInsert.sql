@@ -141,4 +141,31 @@ INSERT INTO WorkPackage
 VALUES
   (75, 777, "7C", 777, 71, 1);
 --  
+-- SAMPLE PROJECT for adding TIMESHEETS to
+-- (Dates reflect accurate dates)
+-- 
+INSERT INTO Project
+(projectID, projectName, description, startDate, endDate, budget, status, employeeID, genReport)
+VALUES
+  (111, "111 project name", "111 description.", "2015-01-01", "2015-02-06", 9000, 1, 999, TRUE);
+--  
+INSERT INTO WorkPackage
+  (packageID, projectID, packageNum, employeeID)
+VALUES
+  (11, 111, "1A", 4);
+--  
+INSERT INTO WorkPackage
+  (packageID, projectID, packageNum, employeeID)
+VALUES
+  (12, 111, "1A", 4);
+--  
+INSERT INTO WorkPackage
+  (packageID, projectID, packageNum, employeeID, parentwpID, status)
+VALUES
+  (13, 111, "9B", 4, 11, 2);
+--  
+INSERT INTO WorkPackage
+(packageID, projectID, packageNum, employeeID, parentwpID, status)
+VALUES
+  (14, 111, "9C", 4, 11, 1);
 --
