@@ -40,7 +40,10 @@ INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active) 
 VALUES
   (124816, "georgel", "gleung4@gmail.com", "George", "Leung", 03, 123456, 1);
-  --
+--
+--
+-- Sample Employees (-Finlay)
+--
 INSERT INTO Credentials
     (username, password)
 VALUES
@@ -132,3 +135,57 @@ VALUES
     (000011, "odie", "odie@email.com", "Odie", "Arbuckle", 02, 000009, 1);
 --
 --
+--
+-- New Employees for Testing
+-- Work Packages, etc
+-- 
+-- Employee 333
+INSERT INTO Credentials
+  (username, password) 
+VALUES 
+  ("333", "password");
+INSERT INTO Employee
+  (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active) 
+VALUES
+  (333, "333", "3@3.com", "3", "33", 03, 123456, 1);
+--  
+-- Employee 555
+INSERT INTO Credentials
+  (username, password) 
+VALUES 
+  ("555", "password");
+INSERT INTO Employee
+  (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active) 
+VALUES
+  (555, "555", "5@5.com", "5", "55", 03, 123456, 1);
+--  
+-- Employee 999
+INSERT INTO Credentials
+  (username, password) 
+VALUES 
+  ("999", "password");
+INSERT INTO Employee
+  (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active) 
+VALUES
+  (999, "999", "9@9.com", "9", "99", 03, 123456, 1);
+--  
+-- Employee 888
+INSERT INTO Credentials
+  (username, password) 
+VALUES 
+  ("888", "password");
+INSERT INTO Employee
+  (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active) 
+VALUES
+  (888, "888", "8@8.com", "8", "88", 03, 123456, 1);
+--  
+-- Employee 777
+INSERT INTO Credentials
+  (username, password) 
+VALUES 
+  ("777", "password");
+INSERT INTO Employee
+  (employeeID, username, email, firstName, lastName, paygradeID, supervisorID, active) 
+VALUES
+  (777, "777", "7@7.com", "7", "77", 03, 123456, 1);
+--  

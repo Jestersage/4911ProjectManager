@@ -22,6 +22,14 @@ INSERT INTO Timesheet
 VALUES
   (1, 4, 1, '2015-01-09', 16, 0, 0, 
     "Signed", "approved", 01);
+INSERT INTO Project
+(projectID, projectName, description, startDate, endDate, budget, status, employeeID, genReport)
+VALUES
+  (777, "777 project name", "777 description.", "2015-07-07", "2016-07-07", 7000, 1, 123456, TRUE);
+INSERT INTO WorkPackage
+  (packageID, projectID, packageNum, employeeID)
+VALUES
+  (71, 777, "7A", 555);
 INSERT INTO TimesheetRow
     (timesheetID, timesheetrowID, projectID, packageID,
      weekending, total, notes, sunday, monday, tuesday,
