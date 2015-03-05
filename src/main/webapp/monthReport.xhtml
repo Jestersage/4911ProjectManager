@@ -30,11 +30,11 @@
 							<div id="breadcrumb">
 								<ol class="breadcrumb">
 									<li><a href="#">#{msgs.myPage}</a></li>
-									<li class="active">#{msgs.timesheet}</li>
+									<li class="active">#{msgs.monthReport}</li>
 								</ol>
 							</div>
 							<div id="pageTitle">
-								<h1>#{msgs.}</h1>
+								<h1>#{msgs.monthReport}</h1>
 							</div>
 							<ui:insert name="notificationArea">
 								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
@@ -44,8 +44,30 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-12">
 							<div class="container-flid">
-							<!-- content goes here -->
-							
+								<!-- content goes here -->
+								<p:dataTable value="#{carService.carsList}" var="car">
+									<p:columnGroup type="header">
+										<p:row>
+											<p:column rowspan="2" headerText="#{msgs.wpNum}"></p:column>
+											<p:column colspan="2" headerText="#{msgs.bcws}"></p:column>
+											<p:column colspan="2" headerText="#{msgs.acwp}"></p:column>
+											<p:column colspan="2" headerText="#{msgs.eac}"></p:column>
+											<p:column colspan="2" headerText="#{msgs.variance}"></p:column>
+											<p:column rowspan="2" headerText="#{msgs.status}"></p:column>
+										</p:row>
+										<p:row>
+
+											<p:column headerText="#{msgs.manDays}"></p:column>
+											<p:column headerText="#{msgs.labour}"></p:column>
+											<p:column headerText="#{msgs.manDays}"></p:column>
+											<p:column headerText="#{msgs.labour}"></p:column>
+											<p:column headerText="#{msgs.manDays}"></p:column>
+											<p:column headerText="#{msgs.labour}"></p:column>
+											<p:column headerText="#{msgs.manDays}"></p:column>
+											<p:column headerText="#{msgs.labour}"></p:column>
+										</p:row>
+									</p:columnGroup>
+								</p:dataTable>
 							</div>
 							<!-- /container -->
 						</div>
