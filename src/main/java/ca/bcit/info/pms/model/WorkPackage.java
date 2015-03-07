@@ -192,7 +192,8 @@ public class WorkPackage implements Serializable
 	{
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ( ( id >= 0 ) ? 0 : ( id + "" ).hashCode() );
+
+		result = prime * result + ((id < 0) ? 0 : (id + "").hashCode());
 		return result;
 	}
 }
