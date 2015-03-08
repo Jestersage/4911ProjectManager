@@ -162,7 +162,9 @@ CREATE TABLE HR(
 );
 --
 CREATE TABLE PayGrade(
-    paygradeID varchar(2)   NOT NULL,
+    paygradeID int(10) NOT NULL AUTO_INCREMENT,
+    name       varchar(2)   NOT NULL,
+    year       int(4)       NOT NULL,
     cost       numeric(4,2) NOT NULL,
     PRIMARY KEY (paygradeID)
 );
