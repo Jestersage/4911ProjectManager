@@ -44,6 +44,7 @@ CREATE TABLE WorkPackage (
 --
 CREATE TABLE Project (
   projectID    varchar(20) NOT NULL, 
+  ratesheetID  int(10),
   projectName  varchar(255) NOT NULL, 
   description  varchar(255) NOT NULL, 
   startDate    date NOT NULL, 
@@ -82,7 +83,6 @@ CREATE TABLE Budget(
 -- RateSheet is for Project
 CREATE TABLE RateSheet(
     ratesheetID int(10) NOT NULL AUTO_INCREMENT,
-    projectID   varchar(20) NOT NULL,
     year        date,
     JS int(10),
     SS int(10),
@@ -205,4 +205,5 @@ ALTER TABLE ProjectSummary ADD CONSTRAINT FKPSproj FOREIGN KEY (projectID) REFER
 --
 ALTER TABLE Budget ADD CONSTRAINT FKBWork FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
 --
-ALTER TABLE RateSheet ADD CONSTRAINT FKRSProj FOREIGN KEY (projectID) REFERENCES Project (projectID);
+-- ALTER TABLE RateSheet ADD CONSTRAINT FKRSProj FOREIGN KEY (projectID) REFERENCES Project (projectID);
+ALTER TABLE Project ADD CONSTRAINT FKRSProj FOREIGN KEY (ratesheetID) REFERENCES Ratesheet (ratesheetID);
