@@ -103,7 +103,6 @@ CREATE TABLE TimesheetRow (
   timesheetrowID int(10) NOT NULL AUTO_INCREMENT, 
   projectID      varchar(20) NOT NULL, 
   packageID      int(10) NOT NULL, 
-  total          numeric(20, 4) NOT NULL, 
   notes          varchar(255) NOT NULL, 
   sunday         numeric(4, 2) DEFAULT 0, 
   monday         numeric(4, 2) DEFAULT 0, 
@@ -120,7 +119,6 @@ CREATE TABLE Timesheet (
   employeeID  varchar(10) NOT NULL, 
   weeknumber  int(2) NOT NULL, 
   weekending  date NOT NULL, 
-  grandTotal  numeric(4, 2) NOT NULL, 
   overtime    numeric(4, 2), 
   flexTime    numeric(4, 2), 
   signed      varchar(255), 
@@ -146,8 +144,8 @@ CREATE TABLE Employee (
   username     varchar(255) NOT NULL, 
   email        varchar(255) NOT NULL, 
   firstName    varchar(255) NOT NULL, 
-  lastName     varchar(255) NOT NULL, 
-  paygradeID   varchar(10) NOT NULL, 
+  lastName     varchar(255) NOT NULL,
+  paygradeID   int(10),  
   supervisorID varchar(10),
   approverId   varchar(10),
   active       bool NOT NULL,
@@ -195,10 +193,12 @@ ALTER TABLE Timesheet ADD CONSTRAINT FKsignature FOREIGN KEY (signID) REFERENCES
 ALTER TABLE Employee ADD CONSTRAINT FKSupervisor FOREIGN KEY (supervisorID) REFERENCES Employee (employeeID);
 ALTER TABLE Employee ADD CONSTRAINT FKApprover FOREIGN KEY (approverID) REFERENCES Employee (employeeID);
 ALTER TABLE Employee ADD CONSTRAINT FKemployeeCred FOREIGN KEY (username) REFERENCES Credentials (username);
+ALTER TABLE Employee ADD CONSTRAINT FKemployeePay FOREIGN KEY (paygradeID) REFERENCES Paygrade (paygradeID);
 ALTER TABLE HR ADD CONSTRAINT FKHR FOREIGN KEY (employeeID) REFERENCES Employee (employeeID);
 --
 ALTER TABLE ProjectAssignment ADD CONSTRAINT FKPAPro FOREIGN KEY (projectID) REFERENCES Project (projectID);
 ALTER TABLE ProjectAssignment ADD CONSTRAINT FKPAEmp FOREIGN KEY (employeeID) REFERENCES Employee (employeeID);
+--
 --
 ALTER TABLE WorkAssignment ADD CONSTRAINT FKWAWork FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
 ALTER TABLE WorkAssignment ADD CONSTRAINT FKWAEmp FOREIGN KEY (employeeID) REFERENCES Employee (employeeID);
