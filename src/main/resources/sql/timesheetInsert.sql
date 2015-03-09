@@ -97,6 +97,6 @@ INSERT INTO TimesheetRow
      wednesday, thursday, friday, saturday)
 VALUES
     (5, 5, 111, 11,
-    "notes", 0, 9, 9,
+     "notes", 0, 9, 9,
      8, 8, 8, 0);
 --
