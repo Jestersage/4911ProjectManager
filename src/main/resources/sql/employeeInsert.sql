@@ -191,4 +191,4 @@ INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, supervisorID, active) 
 VALUES
   (777, "777", "7@7.com", "7", "77", 123456, 1);
---  
+--
