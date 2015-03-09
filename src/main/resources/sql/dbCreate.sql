@@ -149,6 +149,7 @@ CREATE TABLE Employee (
   lastName     varchar(255) NOT NULL, 
   paygradeID   varchar(10) NOT NULL, 
   supervisorID varchar(10),
+  approverId   varchar(10),
   active       bool NOT NULL,
   vacationTime    numeric(2,2),
   flexTime        numeric(2, 2),
@@ -192,6 +193,7 @@ ALTER TABLE Timesheet ADD CONSTRAINT FKTimesheetEmp FOREIGN KEY (employeeID) REF
 ALTER TABLE Timesheet ADD CONSTRAINT FKsignature FOREIGN KEY (signID) REFERENCES Signature (signID);
 --
 ALTER TABLE Employee ADD CONSTRAINT FKSupervisor FOREIGN KEY (supervisorID) REFERENCES Employee (employeeID);
+ALTER TABLE Employee ADD CONSTRAINT FKApprover FOREIGN KEY (approverID) REFERENCES Employee (employeeID);
 ALTER TABLE Employee ADD CONSTRAINT FKemployeeCred FOREIGN KEY (username) REFERENCES Credentials (username);
 ALTER TABLE HR ADD CONSTRAINT FKHR FOREIGN KEY (employeeID) REFERENCES Employee (employeeID);
 --
