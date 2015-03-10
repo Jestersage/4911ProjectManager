@@ -158,15 +158,6 @@ public class WorkPackage implements Serializable
     }
 
 	@Override
-	public String toString()
-	{
-		String result = getClass().getSimpleName() + " ";
-		if ( id >= 0 )
-			result += "id: " + id;
-		return result;
-	}
-
-	@Override
 	public boolean equals( Object obj )
 	{
 		if ( this == obj )
@@ -197,4 +188,34 @@ public class WorkPackage implements Serializable
 		result = prime * result + ((id < 0) ? 0 : (id + "").hashCode());
 		return result;
 	}
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("WorkPackage{");
+        sb.append("id=").append(id);
+        sb.append(", project=").append(project.getId());
+        sb.append(", packageNum='").append(packageNum).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", description='").append(description).append('\'');
+        sb.append(", status=").append(status.toString());
+        sb.append(", budget=").append(budget);
+
+        sb.append(", employees={");
+        for(Employee e : employees) {
+            sb.append(e.getUsername()).append(",");
+        }
+        sb.append('}');
+
+        if (parentWP != null) {
+            sb.append(", parentWP=").append(parentWP.getPackageNum());
+        }
+
+        sb.append(", childWP={");
+        for (WorkPackage wp : childWP) {
+            sb.append(wp.getPackageNum()).append(",");
+        }
+        sb.append('}');
+        sb.append('}');
+        return sb.toString();
+    }
 }

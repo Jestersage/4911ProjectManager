@@ -205,8 +205,12 @@ public class Employee implements Serializable {
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", lastName='").append(lastName).append('\'');
         sb.append(", payLevel=").append(payLevel);
-        sb.append(", supervisor=").append(supervisor);
-        sb.append(", timesheetApprover=").append(timesheetApprover);
+        if (supervisor != null) {
+            sb.append(", supervisor=").append(supervisor.getUsername());
+        }
+        if (timesheetApprover != null) {
+            sb.append(", timesheetApprover=").append(timesheetApprover.getUsername());
+        }
         sb.append(", activeStatus=").append(activeStatus);
         sb.append(", flexTimeBanked=").append(flexTimeBanked);
         sb.append(", vacationBanked=").append(vacationBanked);

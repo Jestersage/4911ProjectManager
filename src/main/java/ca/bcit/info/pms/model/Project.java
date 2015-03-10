@@ -18,7 +18,7 @@ import java.util.Set;
 @Entity
 public class Project implements Serializable {
 	@Id
-	@Column(name = "projectID", updatable = false, nullable = false)
+	@Column(name = "projectID", nullable = false)
 	private String id;
 
 	@NotNull(message = "Project name can not be null")
