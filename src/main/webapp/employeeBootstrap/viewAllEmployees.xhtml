@@ -80,14 +80,11 @@
                                     <!--<h:outputText value="#{employee.supervisor.username}" />-->
                                 <!--</p:column>-->
 
-                                <p:column headerText="#{msgs.edit_emp}">
-                                    <h:commandLink value="#{msgs.edit_emp}" />
-                                </p:column>
-
-                                <p:column headerText="#{msgs.deactivate}">
+                                <p:column>
+                                    <h:commandLink value="#{msgs.emp_details}" /> |
+                                    <h:commandLink value="#{msgs.edit_emp}" /> |
                                     <h:commandLink value="#{msgs.deactivate_emp}" />
                                 </p:column>
-
                             </p:dataTable>
                             </h:form>
 						</div>
