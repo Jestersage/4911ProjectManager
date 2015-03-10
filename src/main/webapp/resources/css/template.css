@@ -121,3 +121,14 @@ body > .container-fluid {
     margin: 0;
     padding: 0;
  }
+ 
+ /********************************/
+ 
+ /********** My page *************/
+ 
+ #dashboard a {
+ 	display: list-item;
+ 	list-style: none;
+ 	margin: 0 0 .5em 0;
+ 	font-size: 1.5em;
+ }
