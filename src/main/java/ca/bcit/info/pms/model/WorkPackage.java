@@ -2,16 +2,9 @@ package ca.bcit.info.pms.model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -34,20 +27,13 @@ public class WorkPackage implements Serializable
 	@Size( max = 20, message = "Package Number cannot be longer than 20" )
 	private String packageNum;
 
-    // TODO correct manyTOMany mapping
-	@OneToMany( mappedBy = "workPackage" )
+    @ManyToMany
+    @JoinTable(name = "WorkAssignment",
+            joinColumns = {@JoinColumn(name = "packageID")},
+            inverseJoinColumns = {@JoinColumn(name = "employeeID")})
 	@NotNull( message = "Employee ID can not be null" )
 	@Size( max = 10, message = "Employee ID cannot be longer than 10" )
-	private Collection< Employee > employees;
-
-	// @Column(name = "estimateCost")
-	// private double estimateCost;
-	//
-	// @Column(name = "actualCost")
-	// private double actualCost;
-	//
-	// @Column(name = "manDates")
-	// private double manDates;
+	private Set< Employee > employees;
 
 	@ManyToOne
     @JoinColumn(name = "parentwpID")
@@ -58,19 +44,22 @@ public class WorkPackage implements Serializable
 
 	@Column( name = "packageName" )
 	@Size( max = 20, message = "Package name cannot be longer than 20" )
-	private String packageName;
+	private String name;
 
 	@Column( name = "packageDesc" )
 	@Size( max = 20, message = "Package description cannot be longer than 20" )
-	private String packageDesc;
+	private String description;
 
-    // TODO map enum
-	@Column( name = "status" )
-	private int status;
+    @Enumerated(EnumType.ORDINAL)
+    @NotNull( message = "Work package status cannot be null.")
+	private Status status;
 
-    // TODO map budget
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "budgetID")
+    private Budget budget;
 
-	public int getId()
+
+    public int getId()
 	{
 		return this.id;
 	}
@@ -100,12 +89,12 @@ public class WorkPackage implements Serializable
 		this.packageNum = packageNum;
 	}
 
-	public Collection< Employee > getEmployees()
+	public Set< Employee > getEmployees()
 	{
 		return employees;
 	}
 
-	public void setEmployees( Collection< Employee > employees )
+	public void setEmployees( Set< Employee > employees )
 	{
 		this.employees = employees;
 	}
@@ -130,35 +119,43 @@ public class WorkPackage implements Serializable
 		this.childWP = childWP;
 	}
 
-	public String getPackageName()
+	public String getName()
 	{
-		return packageName;
+		return name;
 	}
 
-	public void setPackageName( String packageName )
+	public void setName(String packageName)
 	{
-		this.packageName = packageName;
+		this.name = packageName;
 	}
 
-	public String getPackageDesc()
+	public String getDescription()
 	{
-		return packageDesc;
+		return description;
 	}
 
-	public void setPackageDesc( String packageDesc )
+	public void setDescription(String packageDesc)
 	{
-		this.packageDesc = packageDesc;
+		this.description = packageDesc;
 	}
 
-	public int getStatus()
+	public Status getStatus()
 	{
 		return status;
 	}
 
-	public void setStatus( int status )
+	public void setStatus( Status status )
 	{
 		this.status = status;
 	}
+
+    public Budget getBudget() {
+        return budget;
+    }
+
+    public void setBudget(Budget budget) {
+        this.budget = budget;
+    }
 
 	@Override
 	public String toString()

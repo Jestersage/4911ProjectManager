@@ -72,29 +72,11 @@ public class Employee implements Serializable {
     @Max(MAX_VACATION_HOURS)
     private double vacationBanked;
 
-    @ManyToOne
-    private WorkPackage workPackage;
+    @ManyToMany(mappedBy = "employees")
+    private Collection<WorkPackage> workPackage;
 
     @ManyToMany(mappedBy = "employees")
     private Collection<Project> projects;
-
-    public Collection<Project> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(Collection<Project> projects) {
-        this.projects = projects;
-    }
-
-    public WorkPackage getWorkPackage() {
-		return workPackage;
-	}
-
-
-	public void setWorkPackage(WorkPackage workPackage) {
-		this.workPackage = workPackage;
-	}
-
 
 	/**
      * The no-argument constructor. Used to create new employees from within the
@@ -160,7 +142,24 @@ public class Employee implements Serializable {
 		this.username = username;
 	}
 
-	public boolean getActiveStatus() {
+    public Collection<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Collection<Project> projects) {
+        this.projects = projects;
+    }
+
+    public Collection<WorkPackage> getWorkPackage() {
+        return workPackage;
+    }
+
+
+    public void setWorkPackage(Collection<WorkPackage> workPackage) {
+        this.workPackage = workPackage;
+    }
+
+    public boolean getActiveStatus() {
 		return activeStatus;
 	}
 
