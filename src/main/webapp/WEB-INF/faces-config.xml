@@ -49,4 +49,13 @@
             <to-view-id>/employeeBootstrap/viewAllEmployees.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <!-- new Month Report -->
+    <navigation-rule>
+        <from-view-id>/employeeBootstrap/monthReport.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>monthReport</from-outcome>
+            <to-view-id>/employeeBootstrap/monthReport.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>
