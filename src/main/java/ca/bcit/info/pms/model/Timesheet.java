@@ -14,8 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -51,9 +49,8 @@ public class Timesheet implements Serializable
 	@NotNull(message = "Week number can not be null")
 	private int weekNumber;
 
-    @Temporal(TemporalType.DATE)
-	@Column(name = "weekending")
 	@NotNull(message = "Ending week can not be null")
+    @Column(name = "weekending")
 	private Date weekEnding;
 
     @OneToMany(orphanRemoval = true)

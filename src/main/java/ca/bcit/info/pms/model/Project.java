@@ -27,11 +27,9 @@ public class Project implements Serializable {
 	@NotNull(message = "Project description can not be null")
 	private String description;
 
-    @Temporal(TemporalType.DATE)
 	@NotNull(message = "Start date can not 	be null")
 	private Date startDate;
 
-    @Temporal(TemporalType.DATE)
 	private Date endDate;
 
     @Enumerated(EnumType.ORDINAL)
