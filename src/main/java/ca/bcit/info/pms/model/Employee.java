@@ -3,7 +3,6 @@ package ca.bcit.info.pms.model;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.Collection;
 
 @Entity
 @Table(name = "Employee")
@@ -75,12 +74,6 @@ public class Employee implements Serializable {
     @Column(name = "vacationTime")
     @Max(MAX_VACATION_HOURS)
     private double vacationBanked;
-
-    @ManyToMany(mappedBy = "employees")
-    private Collection<WorkPackage> workPackage;
-
-    @ManyToMany(mappedBy = "employees")
-    private Collection<Project> projects;
 
 	/**
      * The no-argument constructor. Used to create new employees from within the
@@ -154,23 +147,6 @@ public class Employee implements Serializable {
 		this.username = username;
 	}
 
-    public Collection<Project> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(Collection<Project> projects) {
-        this.projects = projects;
-    }
-
-    public Collection<WorkPackage> getWorkPackage() {
-        return workPackage;
-    }
-
-
-    public void setWorkPackage(Collection<WorkPackage> workPackage) {
-        this.workPackage = workPackage;
-    }
-
     public boolean getActiveStatus() {
 		return activeStatus;
 	}
@@ -213,18 +189,28 @@ public class Employee implements Serializable {
 	}
 
 	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", email=" + email + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", payLevel="
-				+ payLevel + ", supervisorID=" + supervisor.getUsername() + ", username="
-				+ username + ", activeStatus=" + activeStatus + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Employee{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", username='").append(username).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append(", payLevel=").append(payLevel);
+        sb.append(", supervisor=").append(supervisor);
+        sb.append(", timesheetApprover=").append(timesheetApprover);
+        sb.append(", activeStatus=").append(activeStatus);
+        sb.append(", flexTimeBanked=").append(flexTimeBanked);
+        sb.append(", vacationBanked=").append(vacationBanked);
+        sb.append('}');
+        return sb.toString();
+    }
 }
