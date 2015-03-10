@@ -26,7 +26,15 @@ public class Employee implements Serializable {
 	@Size(max = 10, message = "Employee number cannot be longer than 10")
 	private String id;
 
-	@NotNull(message = "Email cannot be null")
+    // TODO map credential & change manager saving logic
+    @NotNull(message = "User name cannot be null")
+    @Pattern(regexp = "^[a-zA-Z0-9_-]{3,30}$",
+            message = "Username can only contain alphabet characters, "
+                    + "underscore (_) and hyphen (-). "
+                    + "Minimum length 3 and maximum length 30.")
+    private String username;
+
+    @NotNull(message = "Email cannot be null")
 	@Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
 			+ "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9]"
 			+ "(?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9]"
@@ -41,25 +49,22 @@ public class Employee implements Serializable {
 	@Size(max = 30, message = "Last name cannot be longer than 30")
 	private String lastName;
 
-	@Column(name = "paygradeID")
+	@Column(name = "payGrade")
+    @Enumerated(EnumType.STRING)
 	@NotNull(message = "Pay grade cannot be null")
-	private String payLevel;
+	private PayLevel payLevel;
 
 //	@Size(max = 10, message = "Supervisor ID cannot be longer than 10")
-    // TODO custom valid empID supervisor
     @ManyToOne
     @JoinColumn(name = "SupervisorID")
 	private Employee supervisor;
 
-	@NotNull(message = "User name cannot be null")
-	@Pattern(regexp = "^[a-zA-Z0-9_-]{3,30}$",
-			 message = "Username can only contain alphabet characters, "
-			 		 + "underscore (_) and hyphen (-). "
-			 		 + "Minimum length 3 and maximum length 30.")
-    // TODO custom unique validator
-	private String username;
+    @ManyToOne
+    @JoinColumn(name = "approverID")
+    private Employee timesheetApprover;
 
 	@Column(name = "active")
+    @NotNull (message = "employee status cannot be null.")
 	private boolean activeStatus;
 
     @Column(name = "flexTime")
@@ -69,31 +74,6 @@ public class Employee implements Serializable {
     @Column(name = "vacationTime")
     @Max(MAX_VACATION_HOURS)
     private double vacationBanked;
-
-    @ManyToOne
-    private WorkPackage workPackage;
-    
-    @ManyToOne
-    private Project project;
-    
-    public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
-
-
-	public WorkPackage getWorkPackage() {
-		return workPackage;
-	}
-
-
-	public void setWorkPackage(WorkPackage workPackage) {
-		this.workPackage = workPackage;
-	}
-
 
 	/**
      * The no-argument constructor. Used to create new employees from within the
@@ -135,11 +115,11 @@ public class Employee implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public String getPayLevel() {
+	public PayLevel getPayLevel() {
 		return payLevel;
 	}
 
-	public void setPayLevel(String payLevel) {
+	public void setPayLevel(PayLevel payLevel) {
 		this.payLevel = payLevel;
 	}
 
@@ -151,7 +131,15 @@ public class Employee implements Serializable {
 		this.supervisor = supervisor;
 	}
 
-	public String getUsername() {
+    public Employee getTimesheetApprover() {
+        return timesheetApprover;
+    }
+
+    public void setTimesheetApprover(Employee timesheetApprover) {
+        this.timesheetApprover = timesheetApprover;
+    }
+
+    public String getUsername() {
 		return username;
 	}
 
@@ -159,7 +147,7 @@ public class Employee implements Serializable {
 		this.username = username;
 	}
 
-	public boolean getActiveStatus() {
+    public boolean getActiveStatus() {
 		return activeStatus;
 	}
 
@@ -201,18 +189,32 @@ public class Employee implements Serializable {
 	}
 
 	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", email=" + email + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", payLevel="
-				+ payLevel + ", supervisorID=" + supervisor.getUsername() + ", username="
-				+ username + ", activeStatus=" + activeStatus + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Employee{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", username='").append(username).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append(", payLevel=").append(payLevel);
+        if (supervisor != null) {
+            sb.append(", supervisor=").append(supervisor.getUsername());
+        }
+        if (timesheetApprover != null) {
+            sb.append(", timesheetApprover=").append(timesheetApprover.getUsername());
+        }
+        sb.append(", activeStatus=").append(activeStatus);
+        sb.append(", flexTimeBanked=").append(flexTimeBanked);
+        sb.append(", vacationBanked=").append(vacationBanked);
+        sb.append('}');
+        return sb.toString();
+    }
 }

@@ -2,16 +2,9 @@ package ca.bcit.info.pms.model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -19,9 +12,9 @@ import javax.validation.constraints.Size;
 @Table( name = "WorkPackage" )
 public class WorkPackage implements Serializable
 {
-	@Id
+    @Id
 	@GeneratedValue( strategy = GenerationType.AUTO )
-	@Column( name = "id", updatable = false, nullable = false )
+	@Column( name = "packageID", updatable = false, nullable = false )
 	private int id;
 
 	@ManyToOne
@@ -30,26 +23,20 @@ public class WorkPackage implements Serializable
 	@Size( max = 20, message = "Project ID cannot be longer than 20" )
 	private Project project;
 
-	@Column( name = "packageNum", updatable = false )
-	@NotNull( message = "Package ID can not be null" )
-	@Size( max = 20, message = "Project ID cannot be longer than 20" )
+	@NotNull( message = "Package Number can not be null" )
+	@Size( max = 20, message = "Package Number cannot be longer than 20" )
 	private String packageNum;
 
-	@OneToMany( mappedBy = "workPackage" )
+    @ManyToMany
+    @JoinTable(name = "WorkAssignment",
+            joinColumns = {@JoinColumn(name = "packageID")},
+            inverseJoinColumns = {@JoinColumn(name = "employeeID")})
 	@NotNull( message = "Employee ID can not be null" )
 	@Size( max = 10, message = "Employee ID cannot be longer than 10" )
-	private Collection< Employee > employees;
-
-	// @Column(name = "estimateCost")
-	// private double estimateCost;
-	//
-	// @Column(name = "actualCost")
-	// private double actualCost;
-	//
-	// @Column(name = "manDates")
-	// private double manDates;
+	private Set< Employee > employees;
 
 	@ManyToOne
+    @JoinColumn(name = "parentwpID")
 	private WorkPackage parentWP;
 
 	@OneToMany( mappedBy = "parentWP" )
@@ -57,16 +44,22 @@ public class WorkPackage implements Serializable
 
 	@Column( name = "packageName" )
 	@Size( max = 20, message = "Package name cannot be longer than 20" )
-	private String packageName;
+	private String name;
 
 	@Column( name = "packageDesc" )
 	@Size( max = 20, message = "Package description cannot be longer than 20" )
-	private String packageDesc;
+	private String description;
 
-	@Column( name = "status" )
-	private int status;
+    @Enumerated(EnumType.ORDINAL)
+    @NotNull( message = "Work package status cannot be null.")
+	private ProjectStatus status;
 
-	public int getId()
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "budgetID")
+    private Budget budget;
+
+
+    public int getId()
 	{
 		return this.id;
 	}
@@ -96,12 +89,12 @@ public class WorkPackage implements Serializable
 		this.packageNum = packageNum;
 	}
 
-	public Collection< Employee > getEmployees()
+	public Set< Employee > getEmployees()
 	{
 		return employees;
 	}
 
-	public void setEmployees( Collection< Employee > employees )
+	public void setEmployees( Set< Employee > employees )
 	{
 		this.employees = employees;
 	}
@@ -126,44 +119,43 @@ public class WorkPackage implements Serializable
 		this.childWP = childWP;
 	}
 
-	public String getPackageName()
+	public String getName()
 	{
-		return packageName;
+		return name;
 	}
 
-	public void setPackageName( String packageName )
+	public void setName(String packageName)
 	{
-		this.packageName = packageName;
+		this.name = packageName;
 	}
 
-	public String getPackageDesc()
+	public String getDescription()
 	{
-		return packageDesc;
+		return description;
 	}
 
-	public void setPackageDesc( String packageDesc )
+	public void setDescription(String packageDesc)
 	{
-		this.packageDesc = packageDesc;
+		this.description = packageDesc;
 	}
 
-	public int getStatus()
+	public ProjectStatus getStatus()
 	{
 		return status;
 	}
 
-	public void setStatus( int status )
+	public void setStatus( ProjectStatus status )
 	{
 		this.status = status;
 	}
 
-	@Override
-	public String toString()
-	{
-		String result = getClass().getSimpleName() + " ";
-		if ( id >= 0 )
-			result += "id: " + id;
-		return result;
-	}
+    public Budget getBudget() {
+        return budget;
+    }
+
+    public void setBudget(Budget budget) {
+        this.budget = budget;
+    }
 
 	@Override
 	public boolean equals( Object obj )
@@ -196,4 +188,34 @@ public class WorkPackage implements Serializable
 		result = prime * result + ((id < 0) ? 0 : (id + "").hashCode());
 		return result;
 	}
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("WorkPackage{");
+        sb.append("id=").append(id);
+        sb.append(", project=").append(project.getId());
+        sb.append(", packageNum='").append(packageNum).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", description='").append(description).append('\'');
+        sb.append(", status=").append(status.toString());
+        sb.append(", budget=").append(budget);
+
+        sb.append(", employees={");
+        for(Employee e : employees) {
+            sb.append(e.getUsername()).append(",");
+        }
+        sb.append('}');
+
+        if (parentWP != null) {
+            sb.append(", parentWP=").append(parentWP.getPackageNum());
+        }
+
+        sb.append(", childWP={");
+        for (WorkPackage wp : childWP) {
+            sb.append(wp.getPackageNum()).append(",");
+        }
+        sb.append('}');
+        sb.append('}');
+        return sb.toString();
+    }
 }

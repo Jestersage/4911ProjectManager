@@ -1,15 +1,7 @@
 package ca.bcit.info.pms.access;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import ca.bcit.info.pms.model.Credential;
+import ca.bcit.info.pms.model.Employee;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -19,11 +11,11 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import ca.bcit.info.pms.access.EmployeeManager;
-import ca.bcit.info.pms.model.Credential;
-import ca.bcit.info.pms.model.Employee;
-import ca.bcit.info.pms.service.EmployeeService;
-import ca.bcit.info.pms.service.impl.EmployeeServiceImpl;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
 public class EmployeeManagerTest {

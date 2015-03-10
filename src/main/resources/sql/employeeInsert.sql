@@ -70,9 +70,9 @@ INSERT INTO Credentials
 VALUES
     ("rBurns", "password");
 INSERT INTO Employee
-    (employeeID, username, email, firstName, lastName, supervisorID, active)
+    (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade)
 VALUES
-    (000004, "rBurns", "bdole@email.com", "Robet", "Dolenson", 000001, 1);
+    (000004, "rBurns", "bdole@email.com", "Robet", "Dolenson", 000001, 1, "P1");
 --
 INSERT INTO Credentials
     (username, password)
