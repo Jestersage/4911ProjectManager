@@ -119,8 +119,8 @@ CREATE TABLE Timesheet (
   employeeID  varchar(10) NOT NULL, 
   weeknumber  int(2) NOT NULL, 
   weekending  date NOT NULL, 
-  overtime    numeric(4, 2), 
-  flexTime    numeric(4, 2), 
+  overtime    numeric(4, 2) NOT NULL DEFAULT 0, 
+  flexTime    numeric(4, 2) NOT NULL DEFAULT 0, 
   signed      varchar(255), 
   approved    varchar(255),
   signID      int(10),
@@ -149,8 +149,8 @@ CREATE TABLE Employee (
   approverId   varchar(10),
   payGrade     VARCHAR(2),
   active       bool NOT NULL,
-  vacationTime    numeric(2,2),
-  flexTime        numeric(2, 2),
+  vacationTime    numeric(4, 2) NOT NULL DEFAULT 0,
+  flexTime        numeric(4, 2) NOT NULL DEFAULT 0,
   CONSTRAINT employeeID
     PRIMARY KEY (employeeID)
 );
