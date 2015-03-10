@@ -24,7 +24,7 @@ public class MonthlyReportController implements Serializable {
 	}
 	
 	public String getProjectName() {
-		return project.getProjectName();
+		return project.getName();
 	}
 	
 	public List<WorkPackage> getWorkPackages() {
