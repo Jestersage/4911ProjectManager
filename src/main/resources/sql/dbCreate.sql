@@ -147,6 +147,7 @@ CREATE TABLE Employee (
   lastName     varchar(255) NOT NULL,
   supervisorID varchar(10),
   approverId   varchar(10),
+  payGrade     VARCHAR(2),
   active       bool NOT NULL,
   vacationTime    numeric(2,2),
   flexTime        numeric(2, 2),

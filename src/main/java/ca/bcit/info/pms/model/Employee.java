@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name = "Employee")
@@ -28,7 +27,15 @@ public class Employee implements Serializable {
 	@Size(max = 10, message = "Employee number cannot be longer than 10")
 	private String id;
 
-	@NotNull(message = "Email cannot be null")
+    // TODO map credential & change manager saving logic
+    @NotNull(message = "User name cannot be null")
+    @Pattern(regexp = "^[a-zA-Z0-9_-]{3,30}$",
+            message = "Username can only contain alphabet characters, "
+                    + "underscore (_) and hyphen (-). "
+                    + "Minimum length 3 and maximum length 30.")
+    private String username;
+
+    @NotNull(message = "Email cannot be null")
 	@Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
 			+ "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9]"
 			+ "(?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9]"
@@ -43,25 +50,22 @@ public class Employee implements Serializable {
 	@Size(max = 30, message = "Last name cannot be longer than 30")
 	private String lastName;
 
-	@Column(name = "paygradeID")
+	@Column(name = "payGrade")
+    @Enumerated(EnumType.STRING)
 	@NotNull(message = "Pay grade cannot be null")
-	private String payLevel;
+	private PayLevel payLevel;
 
 //	@Size(max = 10, message = "Supervisor ID cannot be longer than 10")
-    // TODO custom valid empID supervisor
     @ManyToOne
     @JoinColumn(name = "SupervisorID")
 	private Employee supervisor;
 
-	@NotNull(message = "User name cannot be null")
-	@Pattern(regexp = "^[a-zA-Z0-9_-]{3,30}$",
-			 message = "Username can only contain alphabet characters, "
-			 		 + "underscore (_) and hyphen (-). "
-			 		 + "Minimum length 3 and maximum length 30.")
-    // TODO custom unique validator
-	private String username;
+    @ManyToOne
+    @JoinColumn(name = "approverID")
+    private Employee timesheetApprover;
 
 	@Column(name = "active")
+    @NotNull (message = "employee status cannot be null.")
 	private boolean activeStatus;
 
     @Column(name = "flexTime")
@@ -118,11 +122,11 @@ public class Employee implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public String getPayLevel() {
+	public PayLevel getPayLevel() {
 		return payLevel;
 	}
 
-	public void setPayLevel(String payLevel) {
+	public void setPayLevel(PayLevel payLevel) {
 		this.payLevel = payLevel;
 	}
 
@@ -134,7 +138,15 @@ public class Employee implements Serializable {
 		this.supervisor = supervisor;
 	}
 
-	public String getUsername() {
+    public Employee getTimesheetApprover() {
+        return timesheetApprover;
+    }
+
+    public void setTimesheetApprover(Employee timesheetApprover) {
+        this.timesheetApprover = timesheetApprover;
+    }
+
+    public String getUsername() {
 		return username;
 	}
 
