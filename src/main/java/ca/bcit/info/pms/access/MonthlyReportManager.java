@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import ca.bcit.info.pms.model.Project;
+import ca.bcit.info.pms.model.WorkPackage;
 
 @Dependent
 @Stateless
@@ -22,7 +23,7 @@ public class MonthlyReportManager implements Serializable {
 	
 	public void remove(final Project project) {
 		Project proj = find(project.getId());
-		em.remove(project);
+		em.remove(proj);
 	}
 	
 	public void merge(final Project project) {
@@ -38,5 +39,13 @@ public class MonthlyReportManager implements Serializable {
 				+ "from Project p", Project.class);
 		List<Project> projects = query.getResultList();
 		return projects;
+	}
+	
+	public List<WorkPackage> getWorkPackages(String projectId) {
+		TypedQuery<WorkPackage> query = em.createQuery("select w "
+				+ "from WorkPackage w where w.project.id == :projectId",
+				 WorkPackage.class);
+		List<WorkPackage> workPackages = query.getResultList();
+		return workPackages;
 	}
 }
