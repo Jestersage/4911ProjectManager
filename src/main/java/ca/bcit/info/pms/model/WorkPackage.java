@@ -52,7 +52,7 @@ public class WorkPackage implements Serializable
 
     @Enumerated(EnumType.ORDINAL)
     @NotNull( message = "Work package status cannot be null.")
-	private Status status;
+	private ProjectStatus status;
 
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "budgetID")
@@ -139,12 +139,12 @@ public class WorkPackage implements Serializable
 		this.description = packageDesc;
 	}
 
-	public Status getStatus()
+	public ProjectStatus getStatus()
 	{
 		return status;
 	}
 
-	public void setStatus( Status status )
+	public void setStatus( ProjectStatus status )
 	{
 		this.status = status;
 	}

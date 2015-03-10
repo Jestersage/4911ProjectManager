@@ -3,7 +3,7 @@ package ca.bcit.info.pms.model;
 /**
  * Status of a project or work package.
  */
-public enum Status {
+public enum ProjectStatus {
     /** Created. Waiting for estimated and planned costs information. */
     CREATED,
 

@@ -35,7 +35,7 @@ public class Project implements Serializable {
 	private Date endDate;
 
     @Enumerated(EnumType.ORDINAL)
-	private Status status;
+	private ProjectStatus status;
 
 	@ManyToMany
     @JoinTable(name = "ProjectAssignment",
@@ -99,11 +99,11 @@ public class Project implements Serializable {
 		this.endDate = endDate;
 	}
 
-	public Status getStatus() {
+	public ProjectStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(ProjectStatus status) {
 		this.status = status;
 	}
 
