@@ -3,6 +3,8 @@ package ca.bcit.info.pms.model;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "Employee")
@@ -72,20 +74,19 @@ public class Employee implements Serializable {
 
     @ManyToOne
     private WorkPackage workPackage;
-    
-    @ManyToOne
-    private Project project;
-    
-    public Project getProject() {
-		return project;
-	}
 
-	public void setProject(Project project) {
-		this.project = project;
-	}
+    @ManyToMany(mappedBy = "employees")
+    private Collection<Project> projects;
 
+    public Collection<Project> getProjects() {
+        return projects;
+    }
 
-	public WorkPackage getWorkPackage() {
+    public void setProjects(Collection<Project> projects) {
+        this.projects = projects;
+    }
+
+    public WorkPackage getWorkPackage() {
 		return workPackage;
 	}
 

@@ -19,9 +19,9 @@ import javax.validation.constraints.Size;
 @Table( name = "WorkPackage" )
 public class WorkPackage implements Serializable
 {
-	@Id
+    @Id
 	@GeneratedValue( strategy = GenerationType.AUTO )
-	@Column( name = "id", updatable = false, nullable = false )
+	@Column( name = "packageID", updatable = false, nullable = false )
 	private int id;
 
 	@ManyToOne
@@ -30,11 +30,11 @@ public class WorkPackage implements Serializable
 	@Size( max = 20, message = "Project ID cannot be longer than 20" )
 	private Project project;
 
-	@Column( name = "packageNum", updatable = false )
-	@NotNull( message = "Package ID can not be null" )
-	@Size( max = 20, message = "Project ID cannot be longer than 20" )
+	@NotNull( message = "Package Number can not be null" )
+	@Size( max = 20, message = "Package Number cannot be longer than 20" )
 	private String packageNum;
 
+    // TODO correct manyTOMany mapping
 	@OneToMany( mappedBy = "workPackage" )
 	@NotNull( message = "Employee ID can not be null" )
 	@Size( max = 10, message = "Employee ID cannot be longer than 10" )
@@ -50,6 +50,7 @@ public class WorkPackage implements Serializable
 	// private double manDates;
 
 	@ManyToOne
+    @JoinColumn(name = "parentwpID")
 	private WorkPackage parentWP;
 
 	@OneToMany( mappedBy = "parentWP" )
@@ -63,8 +64,11 @@ public class WorkPackage implements Serializable
 	@Size( max = 20, message = "Package description cannot be longer than 20" )
 	private String packageDesc;
 
+    // TODO map enum
 	@Column( name = "status" )
 	private int status;
+
+    // TODO map budget
 
 	public int getId()
 	{

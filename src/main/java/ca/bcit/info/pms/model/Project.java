@@ -1,64 +1,57 @@
 package ca.bcit.info.pms.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 import java.io.Serializable;
 
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import java.lang.Override;
 import java.sql.Date;
-import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
+/**
+ * Project information.
+ */
 @Entity
-@Table(name = "Project")
 public class Project implements Serializable {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", updatable = false, nullable = false)
+	@Column(name = "projectID", updatable = false, nullable = false)
 	private String id;
 
-	public String getId() {
-		return this.id;
-	}
-
-	public void setId(final String id) {
-		this.id = id;
-	}
-
-	@Column(name = "projectName")
 	@NotNull(message = "Project name can not be null")
-	private String projectName;
+	private String name;
 
-	@Column(name = "projectDescription")
 	@NotNull(message = "Project description can not be null")
-	private String projectDescription;
+	private String description;
 
-	@Column(name = "startDate")
+    @Temporal(TemporalType.DATE)
 	@NotNull(message = "Start date can not 	be null")
 	private Date startDate;
 
-	@Column(name = "endDate")
+    @Temporal(TemporalType.DATE)
 	private Date endDate;
 
-	@Column(name = "budget")
-	private double budget;
+    @Enumerated(EnumType.ORDINAL)
+	private Status status;
 
-	@Column(name = "status")
-	private int status;
-
-	@OneToMany(mappedBy = "project")
+	@ManyToMany
+    @JoinTable(name = "ProjectAssignment",
+        joinColumns = {@JoinColumn(name = "projectID")},
+        inverseJoinColumns = {@JoinColumn(name = "employeeID")})
 	@NotNull(message = "Employee ID can not be null")
 	@Size(max = 10, message = "Employee ID cannot be longer than 10")
-	private Collection<Employee> employees;
+	private Set<Employee> employees;
+
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "ratesheetID")
+    private RateSheet rateSheet;
+
+    // TODO warning with workpackage mappedby name
+    @OneToMany(mappedBy = "id", orphanRemoval = true)
+    private List<WorkPackage> workPackages;
 
 	@Column(name = "markupValue")
 	private double markupValue;
@@ -66,20 +59,28 @@ public class Project implements Serializable {
 	@Column(name = "genReport")
 	private int genReport;
 
-	public String getProjectName() {
-		return projectName;
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(final String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+		return name;
 	}
 
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
+	public void setName(String projectName) {
+		this.name = projectName;
 	}
 
-	public String getProjectDescription() {
-		return projectDescription;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setProjectDescription(String projectDescription) {
-		this.projectDescription = projectDescription;
+	public void setDescription(String projectDescription) {
+		this.description = projectDescription;
 	}
 
 	public Date getStartDate() {
@@ -98,29 +99,29 @@ public class Project implements Serializable {
 		this.endDate = endDate;
 	}
 
-	public double getBudget() {
-		return budget;
-	}
-
-	public void setBudget(double budget) {
-		this.budget = budget;
-	}
-
-	public int getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 
-	public Collection<Employee> getEmployees() {
+	public Set<Employee> getEmployees() {
 		return employees;
 	}
 
-	public void setEmployees(Collection<Employee> employees) {
+	public void setEmployees(Set<Employee> employees) {
 		this.employees = employees;
 	}
+
+    public List<WorkPackage> getWorkPackages() {
+        return workPackages;
+    }
+
+    public void setWorkPackages(List<WorkPackage> workPackages) {
+        this.workPackages = workPackages;
+    }
 
 	public double getMarkupValue() {
 		return markupValue;
@@ -137,7 +138,15 @@ public class Project implements Serializable {
 	public void setGenReport(int genReport) {
 		this.genReport = genReport;
 	}
-	
+
+    public RateSheet getRateSheet() {
+        return rateSheet;
+    }
+
+    public void setRateSheet(RateSheet rateSheet) {
+        this.rateSheet = rateSheet;
+    }
+
 	@Override
 	public String toString() {
 		String result = getClass().getSimpleName() + " ";
