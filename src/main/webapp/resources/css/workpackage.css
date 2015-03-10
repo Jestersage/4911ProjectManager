@@ -1,0 +1,47 @@
+#data {
+	margin: 1em;
+	height: 100%;
+}
+
+#notificationNewWorkPackage {
+	margin: 1em;
+	background-color: white;
+	height: 70%%;
+}
+#notificationNewWorkPackage outputLabel, outputText{
+    margin-bottom: 2em;
+}
+
+#newWorkPackageButtons input {
+	margin: 1em;
+}
+
+#searchFilters {
+	margin-right: 1em;
+}
+
+#searchResults {
+	margin-right: 1em;
+}
+
+#dashboard {
+	height: 80%;
+}
+
+#search {
+	height: 20%;
+}
+
+#row1 {
+	height: 50%;
+}
+
+#row2 {
+	height: 50%;
+}
+
+/* overrides style from master template */
+/* makes the div of the content expands to accommodate all elements */
+#mainArea {
+	height: 100%;
+}
