@@ -22,6 +22,7 @@
 		</ui:define>
 
 		<ui:define name="content">
+		<h:form>
 			<div class="col-xs-12 col-sm-12 col-md-12 heightHUN">
 
 				<div class="row">
@@ -71,7 +72,8 @@
 							<div class="col-xs-12 col-sm-12 col-md-4" id="rightSection">
 								<h2>#{msgs.timesheet}</h2>
 								<a href="#">#{msgs.currentTimesheet}</a>
-								<a href="#">#{msgs.previousTimesheet}</a>
+								
+								<h:commandLink action="previousTimesheet" value="#{msgs.previousTimesheet}" />
 								<!-- timesheets not approved -->
 								<a href="#">#{msgs.pendingTimesheet}</a>								
 							</div>							
@@ -97,6 +99,7 @@
 					</div>
 				</div>
 			</div>
+			</h:form>
 
 		</ui:define>
 		<!-- end of wrapper -->
