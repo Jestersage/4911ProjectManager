@@ -3,16 +3,16 @@
 	height: 100%;
 }
 
-#notificationNewEmployee {
+#notificationNewProject {
 	margin: 1em;
 	background-color: white;
 	height: 70%%;
 }
-#notificationNewEmployee outputLabel, outputText{
+#notificationNewProject outputLabel, outputText{
     margin-bottom: 2em;
 }
 
-#newEmployeeButtons input {
+#newProjectButtons input {
 	margin: 1em;
 }
 

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<title></title>
+	<h:outputStylesheet library="css" name="reset.css" />
+	<h:outputStylesheet library="css" name="template.css" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
+
+		<ui:define name="windowTitle">#{msgs.newProject}</ui:define>
+
+		<ui:define name="additionalStyleSheets">
+			<h:outputStylesheet library="css" name="project.css" />
+		</ui:define>
+
+		<!-- leftMenu -->
+		<ui:define name="leftMenu">
+			<div class="col-xs-2 col-sm-2 col-md-2 " id="leftMenu">
+				<ui:include src="/templatesBootstrap/defaultLeftMenu.xhtml" />
+			</div>
+		</ui:define>
+		<!-- end of leftMenu -->
+
+		<ui:define name="content">
+			<div class="col-md-10">
+				<div class="container-fluid" id="wrapper">
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12">
+
+							<div id="breadcrumb">
+								<ol class="breadcrumb">
+									<li><a href="#">#{msgs.myPage}</a></li>
+									<li class="active">#{msgs.newProject}</li>
+								</ol>
+							</div>
+
+							<div id="pageTitle">
+
+								<h1>#{msgs.newProject}</h1>
+
+							</div>
+							<ui:insert name="notificationArea">
+								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
+							</ui:insert>
+						</div>
+					</div>
+
+					<div class="row">
+
+						<div class="col-xs-12 col-sm-12 col-md-6" id="data">
+							<h:form id="newProjectForm" class="form-horizontal">
+
+								<div class="form-group">
+									<h:outputLabel for="itProjectNumber"
+										value="#{msgs.projectNumber}" class="col-sm-3 control-label" />
+									<div class="col-sm-9">
+										<h:inputText id="itProjectNumber" value="" required="true"
+											label="#{msgs.projectNumber}" class="form-control" />
+										<h:message errorClass="text-danger" for="itProjectNumber" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="itProjectName" value="#{msgs.projectName}"
+										class="col-sm-3 control-label" />
+									<div class="col-sm-9">
+										<h:inputText id="itProjectName" value="" required="true"
+											label="#{msgs.projectName}" class="form-control" />
+										<h:message errorClass="text-danger" for="itProjectName" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="mnSupervisor" value="#{msgs.supervisor}"
+										class="col-sm-3 control-label" />
+									<div class="col-sm-9">
+										<h:inputText id="mnSupervisor"
+											value="#{empController.supervisorUsername}" required="true"
+											pt:placeholder="Supervisor Username"
+											label="#{msgs.supervisor}" class="form-control" />
+										<h:message errorClass="text-danger" for="mnSupervisor" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="itaProjectDescription" value="#{msgs.projectDescription}"
+										class="col-sm-3 control-label" />
+									<div class="col-sm-9">
+										<h:inputTextarea id="itaProjectDescription" value="" required="true"
+											label="#{msgs.projectDescription}" cols="80" rows="10" class="form-control" />
+										<h:message errorClass="text-danger" for="itaProjectDescription" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="itStartDate" value="#{msgs.startDate}"
+										class="col-sm-3 control-label" />
+									<div class="col-sm-9">
+										<h:inputText id="itStartDate" value="" required="true"
+											label="#{msgs.startDate}" class="form-control" />
+										<h:message errorClass="text-danger" for="itStartDate" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="itEndDate" value="#{msgs.endDate}"
+										class="col-sm-3 control-label" />
+									<div class="col-sm-9">
+										<h:inputText id="itEndDate" value="" required="true"
+											label="#{msgs.endDate}" class="form-control" />
+										<h:message errorClass="text-danger" for="itEndDate" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="itContractor" value="#{msgs.contractor}"
+										class="col-sm-3 control-label" />
+									<div class="col-sm-9">
+										<h:inputText id="itContractor" value="" required="true"
+											label="#{msgs.contractor}" class="form-control" />
+										<h:message errorClass="text-danger" for="itContractor" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div id="newProjectButtons" class="col-md-offset-2">
+										<h:commandButton value="#{msgs.save}" class="btn btn-primary " />
+										<h:commandButton value="#{msgs.clear}" class="btn btn-default" />
+									</div>
+								</div>
+								<!-- end of new employee data -->
+
+							</h:form>
+							<!-- end of employee form -->
+						</div>
+						<!-- end of data div. Employee information -->
+
+						<!-- 	<div class="col-md-4" id="notificationNewEmployee">
+
+							<h:panelGrid columns="2" cellpadding="10">
+
+								<h:outputLabel for="txtID" value="#{msgs.id}" />
+								<h:outputText id="txtID" value="#{empController.employee.id}" />
+
+								<h:outputLabel for="txtFirstName" value="#{msgs.firstName}" />
+								<h:outputText id="txtFirstName" value="#{empController.employee.firstName}" />
+
+								<h:outputLabel for="txtLastName" value="#{msgs.lastName}" />
+								<h:outputText id="txtLastName" value="#{empController.employee.lastName}" />
+
+								<h:outputLabel for="txtUserName" value="#{msgs.userName}" />
+								<h:outputText id="txtUserName" value="#{empController.employee.username}" />
+								
+								<h:outputLabel for="txtEmail" value="#{msgs.email}" />
+								<h:outputText id="txtEmail" value="#{empController.employee.email}" />
+
+								<h:outputLabel for="txtRole" value="#{msgs.role}" />
+								<h:outputText id="txtRole" value="1" />
+
+								<h:outputLabel for="txtPayLevel" value="#{msgs.payLevel}" />
+								<h:outputText id="txtPayLevel" value="#{empController.employee.payLevel}" />
+
+								<h:outputLabel for="txtSupervisor" value="#{msgs.supervisor}" />
+								<h:outputText id="txtSupervisor" value="#{empController.employee.supervisor}" />
+
+								<h:outputLabel for="txtProject" value="#{msgs.project}" />
+								<h:outputText id="txtProject" value="1" />
+
+							</h:panelGrid>
+						</div>
+						 -->
+						<!-- end of notificationEmployee div -->
+					</div>
+				</div>
+			</div>
+		</ui:define>
+		<!-- end of wrapper -->
+	</ui:composition>
+</h:body>
+<!-- end of body -->
+</html>
