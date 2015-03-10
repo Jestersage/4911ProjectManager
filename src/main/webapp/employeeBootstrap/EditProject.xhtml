@@ -16,7 +16,7 @@
 <h:body>
 	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
 
-		<ui:define name="windowTitle">#{msgs.newProject}</ui:define>
+		<ui:define name="windowTitle">#{msgs.editProject}</ui:define>
 
 		<ui:define name="additionalStyleSheets">
 			<h:outputStylesheet library="css" name="project.css" />
@@ -40,13 +40,13 @@
 							<div id="breadcrumb">
 								<ol class="breadcrumb">
 									<li><a href="#">#{msgs.myPage}</a></li>
-									<li class="active">#{msgs.newProject}</li>
+									<li class="active">#{msgs.editProject}</li>
 								</ol>
 							</div>
 
 							<div id="pageTitle">
 
-								<h1>#{msgs.newProject}</h1>
+								<h1>#{msgs.editProject}</h1>
 
 							</div>
 							<ui:insert name="notificationArea">
