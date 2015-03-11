@@ -22,56 +22,72 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Company Name</a>
+				<h:form>
+					<h:commandLink action="mypage" value="#{msgs.companyName}"
+						styleClass="navbar-brand" />
+				</h:form>
 			</div>
 
-<!-- Collect the nav links, forms, and other content for toggling -->
+			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
-                <h:form>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">#{msgs.myPage}<span
-							class="sr-only">(current)</span></a></li>
+				<h:form>
+					<ul class="nav navbar-nav">
+						<li class="active"><h:commandLink action="mypage"
+								value="#{msgs.myPage}">
+								<span class="sr-only">(current)</span>
+							</h:commandLink></li>
 
 
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">#{msgs.project}
-							<span class="caret"></span>
-					</a>
-						<ul class="dropdown-menu" role="menu">
-							<li><h:commandLink value="#{msgs.newProject}" action="newProject" /></li>
-							<li><h:outputLink value="editProject.jsf" >#{msgs.editProject}</h:outputLink></li>
-							<li class="divider"></li>
-							<li><h:commandLink value="#{msgs.newWorkPackage}" action="newWorkPackage" /></li>
-							<li><a href="#">#{msgs.editWorkPackage}</a></li>
-						</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-expanded="false">#{msgs.project}
+								<span class="caret"></span>
+						</a>
+							<ul class="dropdown-menu" role="menu">
+								<li><h:commandLink value="#{msgs.newProject}"
+										action="newProject" /></li>
+								<li><h:commandLink action="editProject"
+										value="#{msgs.editProject}" /></li>
+								<li class="divider"></li>
+								<li><h:commandLink value="#{msgs.newWorkPackage}"
+										action="newWorkPackage" /></li>
+								<li><h:commandLink action="editWorkPackage"
+										value="#{msgs.editWorkPackage}" /></li>
+							</ul></li>
 
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false" >#{msgs.employees}<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><h:commandLink value="#{msgs.newEmployee}" action="newEmployee" /></li>
-							<li><h:commandLink value="#{msgs.viewEmployees}" action="viewAllEmployees" /></li>
-							<li><a href="#">#{msgs.assignEmployee}</a></li>
-						</ul>
-						</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">#{msgs.reports}<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><h:commandLink value="#{msgs.newMonthReport}" action="monthReport" /></li>
-							<li><a href="#">#{msgs.newWeekReport}</a></li>
-						</ul>
-					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Template demo<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><h:commandLink action="/profile" value="profile" /></li>
-							<li><h:commandLink action="/timesheet" value="timesheet" /></li>
-							<li><h:commandLink action="/employeeBootstrap/settings" value="settings" /></li>
-							<li><h:commandLink action="/rates/payLevel" value="pay level" /></li>
-						</ul>
-					</li>
-				</ul>
-                </h:form>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-expanded="false">#{msgs.employees}<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><h:commandLink value="#{msgs.newEmployee}"
+										action="newEmployee" /></li>
+								<li><h:commandLink value="#{msgs.viewEmployees}"
+										action="viewAllEmployees" /></li>
+								<li><a href="#">#{msgs.assignEmployee}</a></li>
+							</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-expanded="false">#{msgs.reports}<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><h:commandLink value="#{msgs.newMonthReport}"
+										action="monthReport" /></li>
+								<li><a href="#">#{msgs.newWeekReport}</a></li>
+							</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-expanded="false">Template
+								demo<span class="caret"></span>
+						</a>
+							<ul class="dropdown-menu" role="menu">
+								<li><h:commandLink action="profile" value="#{msgs.profile}" /></li>
+								<li><h:commandLink action="/timesheet"
+										value="#{msgs.timesheet}" /></li>
+								<li><h:commandLink action="settings"
+										value="#{msgs.settings}" /></li>
+								<li><h:commandLink action="editPayLevels"
+										value="#{msgs.payLevel}" /></li>
+							</ul></li>
+					</ul>
+				</h:form>
 
 				<ul class="nav navbar-nav navbar-right">
 					<li><h:form id="search" class="navbar-form" role="search">
@@ -96,40 +112,42 @@
 									</div>
 
 								</div>
-							</div> 
+							</div>
+							<!-- /btn-group -->
+
+							<!-- /input-group -->
+
+						</h:form></li>
+
+
+
+					<li><h:form class="navbar-form">
+							<div class="form-group">
+								<div class="">
+									<div class="">
+										<button type="button" class="btn btn-default dropdown-toggle"
+											data-toggle="dropdown" aria-expanded="false">
+											#{msgs.firstName} #{msgs.lastName} <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li><h:commandLink value="#{msgs.logout}"
+													action="#{userController.logout}" /></li>
+											<li><h:commandLink action="profile"
+													value="#{msgs.profile}" /></li>
+											<li><h:commandLink value="#{msgs.settings}"
+													action="settings"></h:commandLink></li>
+										</ul>
+									</div>
 									<!-- /btn-group -->
-			
-			<!-- /input-group -->
-	
-		</h:form>
-		</li>
-
-
-
-		<li><h:form class="navbar-form">
-				<div class="form-group">
-					<div class="">
-						<div class="">
-							<button type="button" class="btn btn-default dropdown-toggle"
-								data-toggle="dropdown" aria-expanded="false">
-								#{msgs.firstName} #{msgs.lastName} <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" role="menu">
-								<li><h:commandLink value="#{msgs.logout}"
-										action="#{userController.logout}" /></li>
-								<li><h:commandLink value="#{msgs.settings}" action="settings"></h:commandLink></li>
-							</ul>
-						</div>
-						<!-- /btn-group -->
-					</div>
-					<!-- /input-group -->
-				</div>
-				<h:commandLink value="">
-					<span class="glyphicon glyphicon glyphicon-question-sign"
-						aria-hidden="true"></span>
-				</h:commandLink>
-				<!-- /help link -->
-			</h:form></li>				
+								</div>
+								<!-- /input-group -->
+							</div>
+							<h:commandLink value="">
+								<span class="glyphicon glyphicon glyphicon-question-sign"
+									aria-hidden="true"></span>
+							</h:commandLink>
+							<!-- /help link -->
+						</h:form></li>
 				</ul>
 
 			</div>
