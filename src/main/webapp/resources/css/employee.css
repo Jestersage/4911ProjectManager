@@ -40,8 +40,3 @@
 	height: 50%;
 }
 
-/* overrides style from master template */
-/* makes the div of the content expands to accommodate all elements */
-#mainArea {
-	height: 100%;
-}
