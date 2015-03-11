@@ -111,9 +111,9 @@
  <!-- work package rules 
  new Work Package -->
  <navigation-rule>
-  <from-view-id>/employeeBootstrap/newWorkPackage.xhtml</from-view-id>
+  <from-view-id>*</from-view-id>
   <navigation-case>
-   <from-outcome>newProject</from-outcome>
+   <from-outcome>newWorkPackage</from-outcome>
    <to-view-id>/employeeBootstrap/newWorkPackage.xhtml</to-view-id>
    <redirect/>
   </navigation-case>

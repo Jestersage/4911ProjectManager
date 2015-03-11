@@ -1,3 +1,15 @@
+/******* COLOR SCHEMA *******/
+/*
+	dark blue: 		#010a26;
+	medium blue: 	#011640;
+	light blue:		#b6d6f2;
+	white: 			#ffffff;
+	red: 			#e83338;
+	
+	source: https://color.adobe.com/Navy-Blue-Light-Red-color-theme-3330074/edit/?copy=true
+*/
+
+
 /******* GLOBAL STYLES *******/
 html {
 	height: 100%;
@@ -14,7 +26,6 @@ body {
 p {
 	font-size: 12px;
 }
-
 
 
 /******************************/
