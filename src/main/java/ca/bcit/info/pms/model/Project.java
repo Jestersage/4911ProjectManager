@@ -47,9 +47,9 @@ public class Project implements Serializable {
     @JoinColumn(name = "ratesheetID")
     private RateSheet rateSheet;
 
-    // TODO warning with workpackage mappedby name
-    @OneToMany(mappedBy = "id", orphanRemoval = true)
-    private List<WorkPackage> workPackages;
+//    // TODO warning with workpackage mappedby name
+//    @OneToMany(mappedBy = "id", orphanRemoval = true)
+//    private List<WorkPackage> workPackages;
 
 	@Column(name = "markupValue")
 	private double markupValue;
@@ -113,13 +113,13 @@ public class Project implements Serializable {
 		this.employees = employees;
 	}
 
-    public List<WorkPackage> getWorkPackages() {
-        return workPackages;
-    }
-
-    public void setWorkPackages(List<WorkPackage> workPackages) {
-        this.workPackages = workPackages;
-    }
+//    public List<WorkPackage> getWorkPackages() {
+//        return workPackages;
+//    }
+//
+//    public void setWorkPackages(List<WorkPackage> workPackages) {
+//        this.workPackages = workPackages;
+//    }
 
 	public double getMarkupValue() {
 		return markupValue;
