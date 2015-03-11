@@ -103,14 +103,14 @@ CREATE TABLE TimesheetRow (
   timesheetrowID int(10) NOT NULL, 
   projectID      varchar(20) NOT NULL, 
   packageID      int(10) NOT NULL, 
-  notes          varchar(255) NOT NULL, 
-  sunday         numeric(4, 2) DEFAULT 0, 
-  monday         numeric(4, 2) DEFAULT 0, 
-  tuesday        numeric(4, 2) DEFAULT 0, 
-  wednesday      numeric(4, 2) DEFAULT 0, 
-  thursday       numeric(4, 2) DEFAULT 0, 
-  friday         numeric(4, 2) DEFAULT 0, 
-  saturday       numeric(4, 2) DEFAULT 0, 
+  notes          varchar(255), 
+  sunday         numeric(4, 2) NOT NULL DEFAULT 0, 
+  monday         numeric(4, 2) NOT NULL DEFAULT 0, 
+  tuesday        numeric(4, 2) NOT NULL DEFAULT 0, 
+  wednesday      numeric(4, 2) NOT NULL DEFAULT 0, 
+  thursday       numeric(4, 2) NOT NULL DEFAULT 0, 
+  friday         numeric(4, 2) NOT NULL DEFAULT 0, 
+  saturday       numeric(4, 2) NOT NULL DEFAULT 0, 
   CONSTRAINT timesheetrowID 
     PRIMARY KEY (timesheetrowID));
 --
