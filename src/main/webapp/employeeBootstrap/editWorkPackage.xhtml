@@ -16,19 +16,13 @@
 <h:body>
 	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
 
-		<ui:define name="windowTitle">#{msgs.newWorkPackage}</ui:define>
+		<ui:define name="windowTitle">#{msgs.editWorkPackage}</ui:define>
 
 		<ui:define name="additionalStyleSheets">
 			<h:outputStylesheet library="css" name="workpackage.css" />
 		</ui:define>
 
-		<!-- leftMenu -->
-		<ui:define name="leftMenu">
-			<div class="col-xs-2 col-sm-2 col-md-2 " id="leftMenu">
-				<ui:include src="/templatesBootstrap/defaultLeftMenu.xhtml" />
-			</div>
-		</ui:define>
-		<!-- end of leftMenu -->
+		
 
 		<ui:define name="content">
 			<div class="col-md-10">
@@ -39,15 +33,13 @@
 
 							<div id="breadcrumb">
 								<ol class="breadcrumb">
-									<li><a href="#">#{msgs.myPage}</a></li>
-									<li class="active">#{msgs.newWorkPackage}</li>
+									<li><a href="index.jsf">#{msgs.myPage}</a></li>
+									<li class="active">#{msgs.editWorkPackage}</li>
 								</ol>
 							</div>
 
 							<div id="pageTitle">
-
-								<h1>#{msgs.newWorkPackage}</h1>
-
+								<h1>#{msgs.editWorkPackage}</h1>
 							</div>
 							<ui:insert name="notificationArea">
 								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />

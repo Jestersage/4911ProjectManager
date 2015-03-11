@@ -1,235 +1,199 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-	<navigation-rule>
-		<from-view-id>/login.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>loginFail</from-outcome>
-			<to-view-id>/login.xhtml</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>loginSuccess</from-outcome>
-			<to-view-id>/employeeBootstrap/index.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>unauthorized</from-outcome>
-			<to-view-id>/login.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>logout</from-outcome>
-			<to-view-id>/login.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-
-	<!-- employee rules -->
-	
-	<!-- new Employee -->
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>newEmployee</from-outcome>
-			<to-view-id>/employeeBootstrap/newEmployee.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-	
-	<!-- edit employee -->
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>editEmployee</from-outcome>
-			<to-view-id>/employeeBootstrap/editEmployee.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-	
-	<!-- view all employees -->
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>viewAllEmployees</from-outcome>
-			<to-view-id>/employeeBootstrap/viewAllEmployees.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-	
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>settings</from-outcome>
-			<to-view-id>/employeeBootstrap/settings.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-	
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>profile</from-outcome>
-			<to-view-id>/profile.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-		
-	</navigation-rule>
-	
-	<!-- general rules -->
-	<navigation-rule>
-	    <from-view-id>*</from-view-id>
-	    <navigation-case>
-	        <from-outcome>mypage</from-outcome>
-	        <to-view-id>/employeeBootstrap/index.xhtml</to-view-id>
-	        <redirect/>
-	    </navigation-case>
-	</navigation-rule>
-	
-	
-	<!-- project rules -->
-
-	<!-- new Project -->
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>newProject</from-outcome>
-			<to-view-id>/employeeBootstrap/newProject.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-
-	<!-- edit Project -->
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>editProject</from-outcome>
-			<to-view-id>/employeeBootstrap/editProject.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-
-	<!-- find Project -->
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>findProject</from-outcome>
-			<to-view-id>/employeeBootstrap/findProject.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-
-	
-	<!-- work package rules -->
-	
-	<!-- new Work Package -->
-	<navigation-rule>
-		<from-view-id>/employeeBootstrap/newWorkPackage.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>newProject</from-outcome>
-			<to-view-id>/employeeBootstrap/newWorkPackage.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-
-	<!-- edit Work Package -->
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>editWorkPackage</from-outcome>
-			<to-view-id>/employeeBootstrap/editWorkPackage.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-
-	<!-- find Work Package -->
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>findWorkPackage</from-outcome>
-			<to-view-id>/employeeBootstrap/findWorkPackage.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-
-	
-	<!-- timesheet rules -->
-	
-	<!-- new timesheet -->
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>newTimesheet</from-outcome>
-			<to-view-id>/timesheet.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-	
-	<!-- current timesheet -->
-	
-	<!-- 	the only difference between new and current timesheet is that one is populated with 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+ <navigation-rule>
+  <from-view-id>/login.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>loginFail</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>loginSuccess</from-outcome>
+   <to-view-id>/employeeBootstrap/index.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>unauthorized</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>logout</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <!-- employee rules 
+ new Employee -->
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>newEmployee</from-outcome>
+   <to-view-id>/employeeBootstrap/newEmployee.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- edit employee -->
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>editEmployee</from-outcome>
+   <to-view-id>/employeeBootstrap/editEmployee.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- view all employees -->
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>viewAllEmployees</from-outcome>
+   <to-view-id>/employeeBootstrap/viewAllEmployees.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>settings</from-outcome>
+   <to-view-id>/employeeBootstrap/settings.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>profile</from-outcome>
+   <to-view-id>/profile.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- general rules -->
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>mypage</from-outcome>
+   <to-view-id>/employeeBootstrap/index.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- project rules 
+ new Project -->
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>newProject</from-outcome>
+   <to-view-id>/employeeBootstrap/newProject.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- edit Project -->
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>editProject</from-outcome>
+   <to-view-id>/employeeBootstrap/editProject.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- find Project -->
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>findProject</from-outcome>
+   <to-view-id>/employeeBootstrap/findProject.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- work package rules 
+ new Work Package -->
+ <navigation-rule>
+  <from-view-id>/employeeBootstrap/newWorkPackage.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>newProject</from-outcome>
+   <to-view-id>/employeeBootstrap/newWorkPackage.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- edit Work Package -->
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>editWorkPackage</from-outcome>
+   <to-view-id>/employeeBootstrap/editWorkPackage.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- find Work Package -->
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>findWorkPackage</from-outcome>
+   <to-view-id>/employeeBootstrap/findWorkPackage.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- timesheet rules 
+ new timesheet -->
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>newTimesheet</from-outcome>
+   <to-view-id>/timesheet.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- current timesheet 
+ 	the only difference between new and current timesheet is that one is populated with 
 			data and the other isn't. Need to solve it. Or clear the data or make a different pages  -->
-	<navigation-rule>
-	    <from-view-id>*</from-view-id>
-	    <navigation-case>
-	        <from-outcome>currentTimesheet</from-outcome>
-	        <to-view-id>/timesheet.xhtml</to-view-id>
-	        <redirect/>
-	    </navigation-case>
-	</navigation-rule>
-
-	<!-- previous timesheet -->
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>previousTimesheet</from-outcome>
-			<to-view-id>/previousTimesheet.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-
-	
-	<!--  reports rules -->
-	
-	<!-- new Month Report -->
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>monthReport</from-outcome>
-			<to-view-id>/employeeBootstrap/monthReport.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-
-	<!-- pay levels rules -->
-	
-	<!-- edit pay levels -->
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>editPayLevels</from-outcome>
-			<to-view-id>/rates/payLevel.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-	
-	<!-- other rules -->
-	
-	
-	
-	
-	
-	<application>
-		<locale-config>
-			<default-locale>en</default-locale>
-		</locale-config>
-		<resource-bundle>
-			<base-name>messages</base-name>
-			<var>msgs</var>
-		</resource-bundle>
-	</application>
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>currentTimesheet</from-outcome>
+   <to-view-id>/timesheet.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- previous timesheet -->
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>previousTimesheet</from-outcome>
+   <to-view-id>/previousTimesheet.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!--  reports rules 
+ new Month Report -->
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>monthReport</from-outcome>
+   <to-view-id>/employeeBootstrap/monthReport.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- pay levels rules 
+ edit pay levels -->
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>editPayLevels</from-outcome>
+   <to-view-id>/rates/payLevel.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <!-- other rules -->
+ <application>
+  <locale-config>
+   <default-locale>en</default-locale>
+  </locale-config>
+  <resource-bundle>
+   <base-name>messages</base-name>
+   <var>msgs</var>
+  </resource-bundle>
+ </application>
 </faces-config>
