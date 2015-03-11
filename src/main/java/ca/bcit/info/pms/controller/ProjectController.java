@@ -6,6 +6,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.service.ProjectService;
 
@@ -16,8 +19,13 @@ public class ProjectController implements Serializable{
     @Inject
     private ProjectService projService;
     
+    /*
+     * holds the project information
+     */
     @Inject
     private Project project;
+    
+    private static final Logger logger = LogManager.getLogger(ProjectController.class);
 
     /**
      * @return the project
@@ -33,8 +41,11 @@ public class ProjectController implements Serializable{
         this.project = project;
     }
     
-    public void saveProject(){
-        
+    
+    public String addProject(){
+        projService.persistProject(project);
+        logger.info("successfully create new project: " + project.toString());
+        return "newProject";
     }
     
     public void clearFields(){
