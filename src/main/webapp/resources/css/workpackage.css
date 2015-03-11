@@ -3,16 +3,16 @@
 	height: 100%;
 }
 
-#notificationNewEmployee {
+#notificationNewWorkPackage {
 	margin: 1em;
 	background-color: white;
 	height: 70%%;
 }
-#notificationNewEmployee outputLabel, outputText{
+#notificationNewWorkPackage outputLabel, outputText{
     margin-bottom: 2em;
 }
 
-#newEmployeeButtons input {
+#newWorkPackageButtons input {
 	margin: 1em;
 }
 
@@ -40,3 +40,8 @@
 	height: 50%;
 }
 
+/* overrides style from master template */
+/* makes the div of the content expands to accommodate all elements */
+#mainArea {
+	height: 100%;
+}

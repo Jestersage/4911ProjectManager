@@ -1,3 +1,15 @@
+/******* COLOR SCHEMA *******/
+/*
+	dark blue: 		#010a26;
+	medium blue: 	#011640;
+	light blue:		#b6d6f2;
+	white: 			#ffffff;
+	red: 			#e83338;
+	
+	source: https://color.adobe.com/Navy-Blue-Light-Red-color-theme-3330074/edit/?copy=true
+*/
+
+
 /******* GLOBAL STYLES *******/
 html {
 	height: 100%;
@@ -15,9 +27,6 @@ p {
 	font-size: 12px;
 }
 
-body > .container-fluid {
-  padding: 60px 15px 0;
-}
 
 /******************************/
 /* wraps the whole page */
@@ -35,9 +44,9 @@ body > .container-fluid {
 /* contains everything that is not the header */
 #mainArea {
 	border: dotted grey 1px;
-	height: 100%;
+	height: 90%;
 	width: 100%;
-	   margin: 0 1em 0 1em;
+	padding: 3em  1em 0 2em;
 	
 	
 }
@@ -53,12 +62,8 @@ body > .container-fluid {
 }
 
 
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 60px;
+.footer {       
+    height: 10%;
     background-color: #f5f5f5;
 }
 

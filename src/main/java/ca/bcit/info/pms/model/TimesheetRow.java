@@ -17,48 +17,31 @@ import javax.validation.constraints.Size;
 import java.lang.Override;
 import java.sql.Date;
 
-//@Entity
+@Entity
 public class TimesheetRow implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", updatable = false, nullable = false)
-	private int id;
+	@Column(name = "timesheetrowID", updatable = false, nullable = false)
+	private long id;
 
-	public int getId() {
-		return this.id;
-	}
-
-	public void setId(final int id) {
-		this.id = id;
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "timesheetID")
-	private Timesheet timesheet;
-	
 	@ManyToOne
 	@JoinColumn(name = "projectID", nullable = false)
+    @NotNull(message = "timesheetRow must have a project ID")
 	private Project project;
 	
 	@ManyToOne
 	@JoinColumn(name = "packageID", nullable = false)
-	private WorkPackage workPackage;
-	
-	@Column(name = "weekending")
-	@NotNull(message = "Ending week can not be null")
-	private Date weekEnding;
+    @NotNull(message = "timesheetRow must have a package number")
+    private WorkPackage workPackage;
 
-//	@Column(name = "total")
-//	@NotNull(message = "Total hours can not be null")
-//	private double total;
-	
-	@Column(name = "notes")
-	@NotNull(message = "Notes can not be null")
 	private String notes;
-	
-	@Column(name = "sunday")
+
+    @Column(name = "saturday")
+    private double saturdayHour;
+
+    @Column(name = "sunday")
 	private double sundayHour;
-	
+
 	@Column(name = "monday")
 	private double mondayHour;
 	
@@ -73,17 +56,14 @@ public class TimesheetRow implements Serializable {
 	
 	@Column(name = "friday")
 	private double fridayHour;
-	
-	@Column(name = "saturday")
-	private double saturdayHour;
-	
-	public Timesheet getTimesheet() {
-		return timesheet;
-	}
 
-	public void setTimesheet(Timesheet timesheet) {
-		this.timesheet = timesheet;
-	}
+    public long getId() {
+        return this.id;
+    }
+
+    public void setId(final long id) {
+        this.id = id;
+    }
 
 	public Project getProject() {
 		return project;
@@ -99,14 +79,6 @@ public class TimesheetRow implements Serializable {
 
 	public void setWorkPackage(WorkPackage workPackage) {
 		this.workPackage = workPackage;
-	}
-
-	public Date getWeekEnding() {
-		return weekEnding;
-	}
-
-	public void setWeekEnding(Date weekEnding) {
-		this.weekEnding = weekEnding;
 	}
 
 	public String getNotes() {
@@ -172,14 +144,6 @@ public class TimesheetRow implements Serializable {
 	public void setSaturdayHour(double saturdayHour) {
 		this.saturdayHour = saturdayHour;
 	}
-	
-	@Override
-	public String toString() {
-		String result = getClass().getSimpleName() + " ";
-		if (id >= 0)
-			result += "id: " + id;
-		return result;
-	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -205,4 +169,22 @@ public class TimesheetRow implements Serializable {
 		result = prime * result + ((id < 0) ? 0 : (id + "").hashCode());
 		return result;
 	}
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("TimesheetRow{");
+        sb.append(", id=").append(id);
+        sb.append(", project=").append(project.getId());
+        sb.append(", workPackage=").append(workPackage.getPackageNum());
+        sb.append(", saturdayHour=").append(saturdayHour);
+        sb.append(", sundayHour=").append(sundayHour);
+        sb.append(", mondayHour=").append(mondayHour);
+        sb.append(", tuesdayHour=").append(tuesdayHour);
+        sb.append(", wednesdayHour=").append(wednesdayHour);
+        sb.append(", thursdayHour=").append(thursdayHour);
+        sb.append(", fridayHour=").append(fridayHour);
+        sb.append("notes='").append(notes).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

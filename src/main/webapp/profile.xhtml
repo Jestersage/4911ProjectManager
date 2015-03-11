@@ -49,7 +49,7 @@
 
 					<div class="row">
 
-						<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="col-xs-12 col-sm-12 col-md-6">
 						
 							<form class="form-horizontal">
 								<div class="form-group">
@@ -107,20 +107,46 @@
 									<div class="col-sm-4">
 										<h:outputText id="txtSupervisor" value="" />
 									</div>
-								</div>
-
+								</div>								
+								
+								
 								<div class="form-group">
-									<h:outputLabel for="txtProject" value="#{msgs.project}"
+									<h:outputLabel for="txtFlextime" value="#{msgs.flextime}"
 										class="col-sm-2 control-label" />
 									<div class="col-sm-4">
-										<h:outputText id="txtProject" value="" />
+										<h:outputText id="txtFlextime" value="" />
 									</div>
 								</div>
-							</form>
+								
+								<div class="form-group">
+									<h:outputLabel for="txtVacation" value="#{msgs.vacation}"
+										class="col-sm-2 control-label" />
+									<div class="col-sm-4">
+										<h:outputText id="txtVacation" value="" />
+									</div>
+								</div>	
+							</form>		
+						</div><!-- /col -->
+						
+						<!--  display information about the project and work packages the users is working on -->
+						<!-- the user can click on the projects and work packages and see more information about them -->
+						<!-- change outputText to outputLink when there we have data -->
+						<div class="col-xs-12 col-sm-12 col-md-6">
+							<p:dataTable var="" value="">
+								<p:column headerText="#{msgs.project}">
+									<h:outputText value=""/>
+								</p:column>
+								<p:column headerText="#{msgs.workPackage}">
+									<h:outputText value=""/>
+								</p:column>
+							</p:dataTable>						
 						</div>
-					</div>
-				</div>
-			</div>
+					</div><!-- /row -->
+					
+					
+					
+				</div><!-- /container -->
+			</div><!-- /col -->
 		</ui:define>
 		<!-- end of wrapper -->
 	</ui:composition>

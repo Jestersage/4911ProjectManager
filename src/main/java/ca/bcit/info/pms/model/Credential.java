@@ -18,26 +18,23 @@ import java.lang.Override;
 @Table(name = "Credentials")
 public class Credential implements Serializable {
 
-	public Credential() {
-	}
-	
-	public Credential(String username, String password) {
-		super();
-		this.username = username;
-		this.password = password;
-	}
-
     @Id
     @NotNull
     @Pattern(regexp = "^[a-zA-Z0-9_-]{3,30}$",
             message = "Username can only contain alphabet characters, "
                     + "underscore (_) and hyphen (-). "
                     + "Minimum length 3 and maximum length 30.")
-	private String username;
+    private String username;
 
     @NotNull
-	private String password;
+    private String password;
 
+    public Credential() {}
+
+    public Credential(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public String getUsername() {
         return username;

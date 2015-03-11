@@ -133,10 +133,9 @@ public class EmployeeManager  implements Serializable {
 				criteria.select(criteria.from(Credential.class))).getResultList();
 	}
 
-	/*
-	 * Support adding children to bidirectional, one-to-many tables
+	/**
+	 * Create employee entry into database.
 	 */
-	// TODO: JavaDoc
     public void persistEmployee(Employee employee) {
         Employee match = entityManager.find(Employee.class, employee.getId());
 
@@ -145,12 +144,13 @@ public class EmployeeManager  implements Serializable {
         }
         else {
             entityManager.persist(employee);
-            persistCredential(new Credential(employee.getUsername(),"123456")); //default password 123456
             logger.info("Employee added: " + employee.getUsername());
         }
     }
-    
-    // TODO: JavaDoc
+
+    /**
+     * Create credential entry into database.
+     */
     public void persistCredential(Credential credential) {
         Credential match = entityManager.find(Credential.class, credential.getUsername());
 
@@ -161,7 +161,7 @@ public class EmployeeManager  implements Serializable {
             logger.info("Employee added: " + credential.getUsername());
         }
     }
-    
+
     public String updateCredential(Credential credential) {
 		try {
 			if (credential.getUsername() == null) {
