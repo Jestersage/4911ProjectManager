@@ -22,8 +22,7 @@ public class ProjectServiceImpl implements Serializable, ProjectService{
 
     @Override
     public void updateProject(Project newProject) {
-        // TODO Auto-generated method stub
-        
+        projManager.updateProject(newProject);
     }
 
     @Override

@@ -64,7 +64,8 @@
 									<h:outputLabel for="itProjectNumber"
 										value="#{msgs.projectNumber}" class="col-sm-3 control-label" />
 									<div class="col-sm-9">
-										<h:inputText id="itProjectNumber" value="" required="true"
+										<h:inputText id="itProjectNumber" 
+											value="#{projController.project.id}" required="true"
 											label="#{msgs.projectNumber}" class="form-control" />
 										<h:message errorClass="text-danger" for="itProjectNumber" />
 									</div>
@@ -74,7 +75,8 @@
 									<h:outputLabel for="itProjectName" value="#{msgs.projectName}"
 										class="col-sm-3 control-label" />
 									<div class="col-sm-9">
-										<h:inputText id="itProjectName" value="" required="true"
+										<h:inputText id="itProjectName" 
+											value="#{projController.project.name}" required="true"
 											label="#{msgs.projectName}" class="form-control" />
 										<h:message errorClass="text-danger" for="itProjectName" />
 									</div>
@@ -96,7 +98,8 @@
 									<h:outputLabel for="itaProjectDescription" value="#{msgs.projectDescription}"
 										class="col-sm-3 control-label" />
 									<div class="col-sm-9">
-										<h:inputTextarea id="itaProjectDescription" value="" required="true"
+										<h:inputTextarea id="itaProjectDescription" 
+											value="#{projController.project.description}" required="true"
 											label="#{msgs.projectDescription}" cols="80" rows="10" class="form-control" />
 										<h:message errorClass="text-danger" for="itaProjectDescription" />
 									</div>
@@ -106,7 +109,8 @@
 									<h:outputLabel for="itStartDate" value="#{msgs.startDate}"
 										class="col-sm-3 control-label" />
 									<div class="col-sm-9">
-										<h:inputText id="itStartDate" value="" required="true"
+										<h:inputText id="itStartDate" 
+											value="#{projController.project.startDate}" required="true"
 											label="#{msgs.startDate}" class="form-control" />
 										<h:message errorClass="text-danger" for="itStartDate" />
 									</div>
@@ -116,7 +120,8 @@
 									<h:outputLabel for="itEndDate" value="#{msgs.endDate}"
 										class="col-sm-3 control-label" />
 									<div class="col-sm-9">
-										<h:inputText id="itEndDate" value="" required="true"
+										<h:inputText id="itEndDate" 
+											value="#{projController.project.endDate}" required="true"
 											label="#{msgs.endDate}" class="form-control" />
 										<h:message errorClass="text-danger" for="itEndDate" />
 									</div>
@@ -126,7 +131,8 @@
 									<h:outputLabel for="itContractor" value="#{msgs.contractor}"
 										class="col-sm-3 control-label" />
 									<div class="col-sm-9">
-										<h:inputText id="itContractor" value="" required="true"
+										<h:inputText id="itContractor" 
+											value="" required="true"
 											label="#{msgs.contractor}" class="form-control" />
 										<h:message errorClass="text-danger" for="itContractor" />
 									</div>
