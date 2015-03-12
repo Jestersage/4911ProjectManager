@@ -10,6 +10,7 @@ import javax.inject.Named;
 import ca.bcit.info.pms.access.BudgetManager;
 import ca.bcit.info.pms.access.MonthlyReportManager;
 import ca.bcit.info.pms.access.PayGradeManager;
+import ca.bcit.info.pms.access.TimesheetRowManager;
 import ca.bcit.info.pms.access.WorkPackageManager;
 import ca.bcit.info.pms.model.Budget;
 import ca.bcit.info.pms.model.Project;
@@ -22,6 +23,7 @@ public class MonthlyReportController implements Serializable {
 	@Inject private WorkPackageManager workPackageManager;
 	@Inject private BudgetManager budgetManager;
 	@Inject private PayGradeManager payGradeManager;
+	@Inject private TimesheetRowManager timesheetRowManager;
 	List<WorkPackage> workPackages;
 	Project project;
 	Budget budget;
@@ -53,6 +55,7 @@ public class MonthlyReportController implements Serializable {
 			totalCost += budget.getP6() * payGradeManager.getCost("P6");
 			workPackages.get(i).setTotalBudget(budgetManager.getTotalBudget(workPackages.get(i).getId()));
 			workPackages.get(i).setTotalCost(totalCost);
+			workPackages.get(i).setActualManDays(timesheetRowManager.getTotalManDays(workPackages.get(i).getId()));
 		}
 		return workPackages;
 	}

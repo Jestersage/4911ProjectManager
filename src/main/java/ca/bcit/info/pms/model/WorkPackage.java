@@ -63,9 +63,20 @@ public class WorkPackage implements Serializable
     
     @Transient
     private double totalCost;
+    
+    @Transient
+    private double actualManDays;
 
 
-    public double getTotalCost() {
+    public double getActualManDays() {
+		return actualManDays;
+	}
+
+	public void setActualManDays(double actualManDays) {
+		this.actualManDays = actualManDays;
+	}
+
+	public double getTotalCost() {
 		return totalCost;
 	}
 
