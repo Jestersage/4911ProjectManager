@@ -79,6 +79,7 @@ CREATE TABLE Budget(
     other int(10),
     PRIMARY KEY (budgetId)
 );
+-- unallocated budget??
 --
 -- RateSheet is for Project
 CREATE TABLE RateSheet(
