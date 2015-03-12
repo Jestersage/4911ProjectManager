@@ -12,6 +12,7 @@ import javax.inject.Named;
 
 import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
+import ca.bcit.info.pms.model.PayLevel;
 import ca.bcit.info.pms.service.EmployeeService;
 
 import org.apache.log4j.LogManager;
@@ -33,25 +34,8 @@ public class EmployeeController implements Serializable {
 
     private static final Logger logger = LogManager.getLogger(EmployeeController.class);
 
-    /**
-     * Select list for pay level on newEmployee.xhtml page
-     */
-    // TODO get paygrads from db
-    private ArrayList<String> payLevelItems = new ArrayList<String>() {{
-        add("P1");
-        add("P2");
-        add("P3");
-        add("P4");
-        add("P5");
-        add("P6");
-    }};
-
-    public ArrayList<String> getPayLevelItems() {
-        return payLevelItems;
-    }
-
-    public void setPayLevelItems(ArrayList<String> payLevelItems) {
-        this.payLevelItems = payLevelItems;
+    public PayLevel[] getPayLevelItems() {
+        return PayLevel.values();
     }
 
     public List<Employee> getEmployees() {

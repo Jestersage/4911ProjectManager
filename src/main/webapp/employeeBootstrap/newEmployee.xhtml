@@ -127,7 +127,8 @@
 										<h:selectOneMenu class="form-control" id="mnPayLevel" required="true"
 											value="#{empController.employee.payLevel}" label="#{msgs.payLevel}"
                                             style="width:200px">
-											<f:selectItems value="#{empController.payLevelItems}" />
+											<f:selectItems value="#{empController.payLevelItems}" var="p"
+                                                    itemValue="#{p}" itemLabel="#{p.label}"/>
 										</h:selectOneMenu>
 										<h:message errorClass="text-danger" for="mnPayLevel" />
 									</div>
