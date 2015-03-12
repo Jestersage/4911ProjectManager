@@ -34,9 +34,9 @@ public class EmployeeController implements Serializable {
 
     private static final Logger logger = LogManager.getLogger(EmployeeController.class);
 
-    public PayLevel[] getPayLevelItems() {
+    /*public PayLevel[] getPayLevelItems() {
         return PayLevel.values();
-    }
+    }*/
 
     public List<Employee> getEmployees() {
         return empService.getAllEmployee();

@@ -28,10 +28,10 @@ public class TimesheetManager implements Serializable {
     }
 
     //Find Timesheet by owner
-    public Timesheet findByOwner(final Employee employee) {
+    /*public Timesheet findByOwner(final Employee employee) {
 
         return this.entityManager.find(Timesheet.class, owner);
-    }
+    }*/
 
 
 }
