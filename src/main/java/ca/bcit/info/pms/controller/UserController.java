@@ -2,6 +2,7 @@ package ca.bcit.info.pms.controller;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -10,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.bcit.info.pms.model.Credential;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 

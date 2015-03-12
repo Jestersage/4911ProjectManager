@@ -57,9 +57,31 @@ public class WorkPackage implements Serializable
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "budgetID")
     private Budget budget;
+    
+    @Transient
+    private int totalBudget;
+    
+    @Transient
+    private double totalCost;
 
 
-    public int getId()
+    public double getTotalCost() {
+		return totalCost;
+	}
+
+	public void setTotalCost(double totalCost) {
+		this.totalCost = totalCost;
+	}
+
+	public int getTotalBudget() {
+		return totalBudget;
+	}
+
+	public void setTotalBudget(int totalBudget) {
+		this.totalBudget = totalBudget;
+	}
+
+	public int getId()
 	{
 		return this.id;
 	}

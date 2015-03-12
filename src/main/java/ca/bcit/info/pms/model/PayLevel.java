@@ -1,26 +1,45 @@
 package ca.bcit.info.pms.model;
 
-/**
- * PayLevel names.
- */
-public enum PayLevel {
-    P1("P1"),
-    P2("P2"),
-    P3("P3"),
-    P4("P4"),
-    P5("P5"),
-    P6("P6"),
-    JS("JS"),
-    SS("SS"),
-    DS("DS");
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-    private String label;
+@Entity
+@Table(name="paygrade")
+public class PayLevel {
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "paygradeID")
+    private int id;
+	
+	private String year;
+	
+	public int getId() {
+		return id;
+	}
 
-    private PayLevel(final String name) {
-        label = name;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public String getLabel() {
-        return label;
-    }
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public double getCost() {
+		return cost;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+
+	private double cost;
 }

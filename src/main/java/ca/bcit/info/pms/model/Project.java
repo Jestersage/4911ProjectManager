@@ -21,6 +21,7 @@ public class Project implements Serializable {
 	@Column(name = "projectID", nullable = false)
 	private String id;
 
+	@Column(name = "projectName", nullable = false)
 	@NotNull(message = "Project name can not be null")
 	private String name;
 
@@ -51,7 +52,7 @@ public class Project implements Serializable {
 //    private List<WorkPackage> workPackages;
 
 	@Column(name = "markupValue")
-	private double markupValue;
+	private Double markupValue;
 
 	@Column(name = "genReport")
 	private int genReport;

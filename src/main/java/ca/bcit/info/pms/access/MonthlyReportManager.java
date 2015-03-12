@@ -41,11 +41,4 @@ public class MonthlyReportManager implements Serializable {
 		return projects;
 	}
 	
-	public List<WorkPackage> getWorkPackages(String projectId) {
-		TypedQuery<WorkPackage> query = em.createQuery("select w "
-				+ "from WorkPackage w where w.project.id == :projectId",
-				 WorkPackage.class);
-		List<WorkPackage> workPackages = query.getResultList();
-		return workPackages;
-	}
 }

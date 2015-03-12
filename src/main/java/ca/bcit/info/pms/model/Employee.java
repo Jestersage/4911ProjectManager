@@ -2,6 +2,7 @@ package ca.bcit.info.pms.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+
 import java.io.Serializable;
 
 @Entity
@@ -47,8 +48,8 @@ public class Employee implements Serializable {
 	@Size(max = 30, message = "Last name cannot be longer than 30")
 	private String lastName;
 
-	@Column(name = "payGrade")
-    @Enumerated(EnumType.STRING)
+	@ManyToOne
+    @JoinColumn(name = "name")
 	@NotNull(message = "Pay grade cannot be null")
 	private PayLevel payLevel;
 

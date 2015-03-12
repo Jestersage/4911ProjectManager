@@ -44,8 +44,10 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-12">
 							<div class="container-flid">
+							<h:form>
 								<!-- content goes here -->
-								<p:dataTable value="#{carService.carsList}" var="car">
+								<h:outputText value="#{monthlyReport.projectName}" />
+								<p:dataTable value="#{monthlyReport.workPackages}" var="workPackage">
 									<p:columnGroup type="header">
 									
 										<p:row>										
@@ -67,7 +69,11 @@
 											<p:column headerText="#{msgs.labour}"></p:column>
 										</p:row>
 									</p:columnGroup>
+									<p:column><h:outputText value="#{workPackage.packageNum}" /></p:column>
+									<p:column><h:outputText value="#{workPackage.totalBudget}" /></p:column>
+									<p:column><h:outputText value="#{workPackage.totalCost}" /></p:column>
 								</p:dataTable>
+								</h:form>
 							</div>
 							<!-- /container -->
 						</div>
