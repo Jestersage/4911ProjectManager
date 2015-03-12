@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.NoResultException;
 
 import ca.bcit.info.pms.access.EmployeeManager;
 import ca.bcit.info.pms.model.Credential;
@@ -51,6 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable {
         return empManager.findByUsername(username);
     }
 
+    @Override
     public void updateCredential(Credential credential) {
 		empManager.updateCredential(credential);
 	}

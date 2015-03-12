@@ -24,6 +24,7 @@ public class Credential implements Serializable {
             message = "Username can only contain alphabet characters, "
                     + "underscore (_) and hyphen (-). "
                     + "Minimum length 3 and maximum length 30.")
+    // TODO check uniqueness
     private String username;
 
     @NotNull (message = "Password must not be null")

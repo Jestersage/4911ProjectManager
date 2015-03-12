@@ -24,6 +24,7 @@ public class Employee implements Serializable {
 	@Column(name = "employeeID", updatable = false)
 	@NotNull(message = "Employee number cannot be null")
 	@Size(max = 10, message = "Employee number cannot be longer than 10")
+    // TODO check uniqueness
 	private String id;
 
     @OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)

@@ -86,6 +86,7 @@ public class EmployeeManager  implements Serializable {
         Employee match = entityManager.find(Employee.class, employee.getId());
 
         if (match != null) {
+            // TODO throw exception
             logger.warn("Record(Employee) already exist! Username: " + employee.getCredential().getUsername());
         }
         else {

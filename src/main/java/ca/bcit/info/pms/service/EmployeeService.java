@@ -6,9 +6,17 @@ import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
 
 public interface EmployeeService {
-	boolean checkCredentials(Credential credential);
+    /**
+     * @param credential username & password pair
+     * @return if login credential is valid, and if user should login
+     */
+    boolean checkCredentials(Credential credential);
 
-	void updateCredential(Credential credential);
+    /**
+     * Update current user login credential.
+     * @param credential username & password pair
+     */
+    void updateCredential(Credential credential);
 
     /**
      * Add a new employee.
