@@ -17,6 +17,28 @@ public class PayLevel {
 	
 	private String year;
 	
+	public enum PayGrade {
+		P1("P1"),
+		P2("P2"),
+		P3("P3"),
+		P4("P4"),
+		P5("P5"),
+		P6("P6"),
+		JS("JS"),
+		SS("SS"),
+		DS("DS");
+		
+		private String label;
+		
+		private PayGrade(final String name) {
+			label = name;
+		}
+		
+		public String getLabel() {
+			return label;
+		}
+	}
+	
 	public int getId() {
 		return id;
 	}
