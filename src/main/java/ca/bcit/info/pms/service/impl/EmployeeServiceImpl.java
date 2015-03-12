@@ -31,16 +31,13 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable {
 	}
 
 	@Override
-	public void persistEmployee(Employee newEmp, Credential newCredential) {
-        newCredential.setUsername(newEmp.getUsername());
-        empManager.persistCredential(newCredential);
+	public void persistEmployee(Employee newEmp) {
 		empManager.persistEmployee(newEmp);
 	}
 
 	@Override
 	public void updateEmployee(Employee newEmp) {
 		empManager.updateEmployee(newEmp);
-		
 	}
 
 	@Override

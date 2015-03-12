@@ -26,13 +26,10 @@ public class Employee implements Serializable {
 	@Size(max = 10, message = "Employee number cannot be longer than 10")
 	private String id;
 
-    // TODO map credential & change manager saving logic
-    @NotNull(message = "User name cannot be null")
-    @Pattern(regexp = "^[a-zA-Z0-9_-]{3,30}$",
-            message = "Username can only contain alphabet characters, "
-                    + "underscore (_) and hyphen (-). "
-                    + "Minimum length 3 and maximum length 30.")
-    private String username;
+    @OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+    @JoinColumn(name = "username")
+    @NotNull(message = "User credential cannot be null")
+    private Credential credential;
 
     @NotNull(message = "Email cannot be null")
 	@Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
@@ -139,17 +136,17 @@ public class Employee implements Serializable {
         this.timesheetApprover = timesheetApprover;
     }
 
-    public String getUsername() {
-		return username;
-	}
+    public Credential getCredential() {
+        return credential;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setCredential(Credential credential) {
+        this.credential = credential;
+    }
 
-    public boolean getActiveStatus() {
-		return activeStatus;
-	}
+    public boolean isActiveStatus() {
+        return activeStatus;
+    }
 
 	public void setActiveStatus(boolean activeStatus) {
 		this.activeStatus = activeStatus;
@@ -200,16 +197,16 @@ public class Employee implements Serializable {
     public String toString() {
         final StringBuffer sb = new StringBuffer("Employee{");
         sb.append("id='").append(id).append('\'');
-        sb.append(", username='").append(username).append('\'');
+        sb.append(", username='").append(credential.getUsername()).append('\'');
         sb.append(", email='").append(email).append('\'');
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", lastName='").append(lastName).append('\'');
         sb.append(", payLevel=").append(payLevel);
         if (supervisor != null) {
-            sb.append(", supervisor=").append(supervisor.getUsername());
+            sb.append(", supervisor=").append(supervisor.credential.getUsername());
         }
         if (timesheetApprover != null) {
-            sb.append(", timesheetApprover=").append(timesheetApprover.getUsername());
+            sb.append(", timesheetApprover=").append(timesheetApprover.credential.getUsername());
         }
         sb.append(", activeStatus=").append(activeStatus);
         sb.append(", flexTimeBanked=").append(flexTimeBanked);

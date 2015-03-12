@@ -197,7 +197,7 @@ public class Timesheet implements Serializable
     public String toString() {
         final StringBuffer sb = new StringBuffer("Timesheet{");
         sb.append("id=").append(id);
-        sb.append(", employee=").append(owner.getUsername());
+        sb.append(", employee=").append(owner.getCredential().getUsername());
         sb.append(", weekNumber=").append(weekNumber);
         sb.append(", weekEnding=").append(weekEnding.toLocalDate());
         sb.append(", timesheetRows=").append(timesheetRows);

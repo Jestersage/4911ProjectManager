@@ -55,7 +55,6 @@ public class UserController implements Serializable {
         this.confirmCredential = confirmCredential;
     }
 
-
     public Credential getCredential() {
         return credential;
     }
@@ -73,8 +72,9 @@ public class UserController implements Serializable {
         }
 
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage("passwordForm",
-                new FacesMessage("Your username and password didn't match. Try again."));
+        context.addMessage("authForm",
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Login",
+                        "Your username and password didn't match. Try again."));
         context.getExternalContext().invalidateSession();
         logger.info("Login Failed");
         return "loginFail";
@@ -82,21 +82,21 @@ public class UserController implements Serializable {
 
     public void checkPermissions(ComponentSystemEvent event) {
         boolean isAuthorized = false;
+        FacesContext context = FacesContext.getCurrentInstance();
 
         if (credential != null && credential.getUsername() != null) {
             isAuthorized = true;
         }
 
         if (!isAuthorized) {
-            final FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage("passwordForm",
-                    new FacesMessage("Please login to access the page."));
+            context.addMessage("authForm",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Unauthorized! ",
+                            "Please login to access the page."));
 
             context.getApplication().getNavigationHandler().
                     handleNavigation(context, null, "unauthorized");
 
             logger.info("unauthorized access");
-            return;
         }
     }
 
@@ -106,12 +106,26 @@ public class UserController implements Serializable {
     }
 
     public String changePassword() {
+        FacesContext context = FacesContext.getCurrentInstance();
         if (currentPassword.equals(credential.getPassword())) {
             if (newCredential.equals(confirmCredential)) {
                 credential.setPassword(newCredential);
                 empService.updateCredential(credential);
                 credential = new Credential();
+
+                context.addMessage("authForm",
+                        new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
+                                "Password changed. Please login again."));
+            } else {
+                context.addMessage("changePassForm:confirmNewPassword",
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+                                "Make sure confirm password match your new password."));
             }
+        } else {
+            context.addMessage("changePassForm:currentPassword",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+                            "You must enter your current password to change your password. This one doesn't match"));
+
         }
 
         return null;

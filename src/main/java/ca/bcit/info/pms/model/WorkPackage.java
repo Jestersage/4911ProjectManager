@@ -202,7 +202,7 @@ public class WorkPackage implements Serializable
 
         sb.append(", employees={");
         for(Employee e : employees) {
-            sb.append(e.getUsername()).append(",");
+            sb.append(e.getCredential().getUsername()).append(",");
         }
         sb.append('}');
 

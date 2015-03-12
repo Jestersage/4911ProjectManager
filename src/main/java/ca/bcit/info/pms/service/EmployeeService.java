@@ -13,9 +13,8 @@ public interface EmployeeService {
     /**
      * Add a new employee.
      * @param newEmp    employee information
-     * @param newCredential corresponding credential information.
      */
-	void persistEmployee(Employee newEmp, Credential newCredential);
+	void persistEmployee(Employee newEmp);
 
 	void updateEmployee(Employee newEmp);
 

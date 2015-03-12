@@ -21,21 +21,17 @@ import org.apache.log4j.Logger;
 @RequestScoped
 public class EmployeeController implements Serializable {
 
-    @Inject
-    private EmployeeService empService;
-    /**
-     * Hold the new employee information
-     */
+    /** Hold the new employee information. */
     @Inject
     private Employee employee;
 
-	/**
-	 * Hold the new Credential information
-	 */
-	@Inject
-	private Credential credential;
-
+    /** Hold info about new employee's supervisor username from and to form. */
     private String supervisorUsername;
+
+    @Inject
+    private EmployeeService empService;
+
+    private static final Logger logger = LogManager.getLogger(EmployeeController.class);
 
     /**
      * Select list for pay level on newEmployee.xhtml page
@@ -58,48 +54,19 @@ public class EmployeeController implements Serializable {
         this.payLevelItems = payLevelItems;
     }
 
-    private static final Logger logger = LogManager.getLogger(EmployeeController.class);
-
-    /**
-     * Add new Employee to database.
-     */
-    public String addEmployee() {
-        final Employee supervisor = empService.findEmployeeByUsername(supervisorUsername);
-        if (supervisor == null) {
-            FacesContext.getCurrentInstance().addMessage("newEmployeeForm:mnSupervisor",
-                    new FacesMessage("No employee found with username: " + supervisorUsername));
-            return null;
-        } else {
-            employee.setSupervisor(supervisor);
-        }
-
-        empService.persistEmployee(employee, credential);
-        logger.info("successfully create new employee: " + employee.toString());
-        return "newEmployee";
-    }
-
-    /**
-     * Add new Employee to database.
-     */
-/*
-    public void updateEmployee() {
-        //	employee = new Employee("A00123456", "aa@bb.cc", "huanan", "wang", "P1", "a12345678", "fredxie", 1);
-
-        empService.updateEmployee(employee);
-        employee = new Employee();
-    }
-*/
-
     public List<Employee> getEmployees() {
         return empService.getAllEmployee();
     }
 
     public Employee getEmployee() {
+        if (employee.getCredential() == null) {
+            employee.setCredential(new Credential());
+        }
         return employee;
     }
 
-    public Credential getCredential() {
-        return credential;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public String getSupervisorUsername() {
@@ -109,4 +76,35 @@ public class EmployeeController implements Serializable {
     public void setSupervisorUsername(String supervisorUsername) {
         this.supervisorUsername = supervisorUsername;
     }
+
+    /**
+     * Add new Employee to database.
+     */
+    public String addEmployee() {
+        // find and set supervisor
+        final Employee supervisor = empService.findEmployeeByUsername(supervisorUsername);
+        if (supervisor == null) {
+            FacesContext.getCurrentInstance().addMessage("newEmployeeForm:mnSupervisor",
+                    new FacesMessage("No employee found with username: " + supervisorUsername));
+            return null;
+        } else {
+            employee.setSupervisor(supervisor);
+        }
+
+        initializeNewEmployee();
+
+        empService.persistEmployee(employee);
+        logger.info("successfully create new employee: " + employee.toString());
+        return "viewAllEmployees";
+    }
+
+    private Employee initializeNewEmployee() {
+        employee.setTimesheetApprover(employee.getSupervisor());
+        employee.setActiveStatus(true);
+        employee.setFlexTimeBanked(0);
+        employee.setVacationBanked(0);
+
+        return employee;
+    }
+
 }

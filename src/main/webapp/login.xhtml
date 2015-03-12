@@ -35,7 +35,7 @@
 
 		<h:form id="authForm" class="form-signin">
 			<h2 class="form-signin-heading">#{msgs.auth_form_name}</h2>
-            <h:messages class="bg-danger text-danger" />
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" styleClass="bg-danger text-danger"/>
 
 			<h:outputLabel value="#{msgs.auth_username}" for="inputUsername" class="sr-only" />
 			<h:inputText value="#{userController.credential.username}" id="inputUsername"

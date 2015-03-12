@@ -30,6 +30,11 @@ public class EmployeeManager  implements Serializable {
 
     private static final Logger logger = LogManager.getLogger(EmployeeManager.class);
 
+    /**
+     * Find employee by Id.
+     * @param id employee id.
+     * @return Employee
+     */
 	public Employee findById(final String id) {
 
 		return this.entityManager.find(Employee.class, id);
@@ -37,20 +42,20 @@ public class EmployeeManager  implements Serializable {
 
     /**
      * Find employee by username
-     * @param username
-     * @return
+     * @param username employee username
+     * @return Employee
      */
     public Employee findByUsername(final String username)
     {
         TypedQuery<Employee> query = entityManager.createQuery(
-                "SELECT e FROM Employee e WHERE e.username = :username ",
+                "SELECT e FROM Employee e WHERE e.credential.username = :username ",
                 Employee.class
         );
         query.setParameter("username", username);
 
         try {
             Employee match = query.getSingleResult();
-            logger.info("match found: " + match.getUsername());
+            logger.info("match found: " + match.getCredential().getUsername());
             return match;
         } catch (NoResultException nre) {
             logger.warn("match not found for username " + username );
@@ -58,51 +63,58 @@ public class EmployeeManager  implements Serializable {
         }
     }
 
-    @SuppressWarnings("unchecked")
-	public List<Credential> getCredentials() {
-
-		return this.entityManager.createQuery("select c from Credential c",Credential.class ).getResultList();
-	}
-
 	/**
-	 * Support updating and deleting Employee entities
+	 * Support updating Employee entities
 	 * 
 	 * @param employee     The employee to be updated
-	 * @return             redirection string
+	 * @return             updated employee.
 	 */
-	public String updateEmployee(Employee employee) {
+	public Employee updateEmployee(Employee employee) {
 		try {
-			if (employee.getId() == null) {
-				persistEmployee(employee);				 
-				return "search?faces-redirect=true";
-			} else {
-				this.entityManager.merge(employee);
-				return "view?faces-redirect=true&id=" + employee.getId();
-			}
+            this.entityManager.merge(employee);
+            return employee;
 		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(e.getMessage()));
+            logger.warn("Update employee failed.");
 			return null;
 		}
 	}
 
-	/**
-	 * 
-	 * @param  id      Primary Key of Employee to delete
-	 * @return         redirection string
+    /**
+     * Create employee entry into database.
+     */
+    public void persistEmployee(Employee employee) {
+        Employee match = entityManager.find(Employee.class, employee.getId());
+
+        if (match != null) {
+            logger.warn("Record(Employee) already exist! Username: " + employee.getCredential().getUsername());
+        }
+        else {
+            try {
+                entityManager.persist(employee);
+                logger.info("Employee added: " + employee.getCredential().getUsername());
+
+            } catch (Exception e) {
+                logger.warn("Save employee failed.");
+            }
+        }
+    }
+
+    /**
+	 * @param  id      Primary Key of Employee to deleteEmployee
+	 * @return         boolean delete success.
 	 */
-	public String delete(final String id) {
+	public boolean deleteEmployee(final String id) {
 
 		try {
 			Employee deletableEntity = findById(id);
 
 			this.entityManager.remove(deletableEntity);
 			this.entityManager.flush();
-			return "search?faces-redirect=true";
+			return true;
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(e.getMessage()));
-			return null;
+			return false;
 		}
 	}
 
@@ -119,7 +131,14 @@ public class EmployeeManager  implements Serializable {
 				criteria.select(criteria.from(Employee.class))).getResultList();
 	}
 
-	/**
+
+    @SuppressWarnings("unchecked")
+    public List<Credential> getCredentials() {
+
+        return this.entityManager.createQuery("select c from Credential c",Credential.class ).getResultList();
+    }
+
+    /**
 	 * Support listing and POSTing back Credential entities (e.g. from inside an
 	 * HtmlSelectOneMenu)
 	 * 
@@ -133,42 +152,33 @@ public class EmployeeManager  implements Serializable {
 				criteria.select(criteria.from(Credential.class))).getResultList();
 	}
 
-	/**
-	 * Create employee entry into database.
-	 */
-    public void persistEmployee(Employee employee) {
-        Employee match = entityManager.find(Employee.class, employee.getId());
-
-        if (match != null) {
-            logger.warn("Record(Employee) already exist! Username: " + employee.getUsername());
-        }
-        else {
-            entityManager.persist(employee);
-            logger.info("Employee added: " + employee.getUsername());
-        }
-    }
-
     /**
      * Create credential entry into database.
      */
-    public void persistCredential(Credential credential) {
+    public boolean persistCredential(Credential credential) {
         Credential match = entityManager.find(Credential.class, credential.getUsername());
 
         if (match != null) {
             logger.warn("Record(Credential) already exist! Username: " + credential.getUsername());
+            return false;
         } else {
             entityManager.persist(credential);
             logger.info("Employee added: " + credential.getUsername());
+            return true;
         }
     }
 
-    public String updateCredential(Credential credential) {
+    /**
+     * Update credential.
+     * @param credential entity to save.
+     * @return updated credential.
+     */
+    public Credential updateCredential(Credential credential) {
 		try {
-			if (credential.getUsername() == null) {
-				return "search?faces-redirect=true";
+			if (credential == null) {
+				return null;
 			} else {
-				this.entityManager.merge(credential);
-				return "view?faces-redirect=true&id=" + credential.getUsername();
+				return this.entityManager.merge(credential);
 			}
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null,

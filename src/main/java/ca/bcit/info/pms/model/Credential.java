@@ -19,14 +19,14 @@ import java.lang.Override;
 public class Credential implements Serializable {
 
     @Id
-    @NotNull
+    @NotNull(message = "Username must not be null")
     @Pattern(regexp = "^[a-zA-Z0-9_-]{3,30}$",
             message = "Username can only contain alphabet characters, "
                     + "underscore (_) and hyphen (-). "
                     + "Minimum length 3 and maximum length 30.")
     private String username;
 
-    @NotNull
+    @NotNull (message = "Password must not be null")
     private String password;
 
     public Credential() {}

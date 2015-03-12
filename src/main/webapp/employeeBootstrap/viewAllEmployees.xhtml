@@ -53,7 +53,7 @@
 								</p:column>
 
                                 <p:column headerText="#{msgs.userName}">
-                                    <h:outputText value="#{employee.username}" />
+                                    <h:outputText value="#{employee.credential.username}" />
                                 </p:column>
 
 								<p:column headerText="#{msgs.firstName}">
@@ -73,12 +73,12 @@
                                 </p:column>
 
                                 <p:column headerText="#{msgs.supervisor}">
-                                    <h:outputText value="#{employee.supervisor.username}" />
+                                    <h:outputText value="#{employee.supervisor.credential.username}" />
                                 </p:column>
 
-                                <!--<p:column headerText="#{msgs.timesheetApprover}">-->
-                                    <!--<h:outputText value="#{employee.supervisor.username}" />-->
-                                <!--</p:column>-->
+                                <p:column headerText="#{msgs.timesheetApprover}">
+                                    <h:outputText value="#{employee.timesheetApprover.credential.username}" />
+                                </p:column>
 
                                 <p:column>
                                     <h:commandLink value="#{msgs.emp_details}" /> |

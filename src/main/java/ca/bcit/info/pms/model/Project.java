@@ -47,7 +47,6 @@ public class Project implements Serializable {
     @JoinColumn(name = "ratesheetID")
     private RateSheet rateSheet;
 
-//    // TODO warning with workpackage mappedby name
 //    @OneToMany(mappedBy = "id", orphanRemoval = true)
 //    private List<WorkPackage> workPackages;
 
