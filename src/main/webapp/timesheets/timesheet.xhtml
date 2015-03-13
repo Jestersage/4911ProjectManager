@@ -55,142 +55,91 @@
 							<div class="container-flid">
 								<h:form id="timesheetForm">
 									<div class="row">
-										<div class="col-md-6">
-											<div class="panel panel-default">
-												<div class="panel-body">
-													<div class="row">
-														<div class="col-md-2">
-															<h:outputLabel value="#{msgs.weekNo}" />
-														</div>
-														<div class="col-md-2">
-															<h:outputText value="" />
-														</div>
-														<div class="col-md-2">
-															<h:outputLabel value="#{msgs.weekEnding}" />
-														</div>
-														<div class="col-md-2">
-															<h:outputText value="" />
-														</div>
-														<div class="col-md-1">
-															<h:commandButton class="btn btn-success"
-																value="#{msgs.signTimesheet}" id="signTimesheet" />
-														</div>
-
-
-														<!-- <ul>
-															<li class="inline col-md-6"><h:outputLabel
-																	value="#{msgs.weekNo}" /></li>
-															<li class="inline"><h:outputText value="" /></li>
-															<li class="inline"><h:outputLabel
-																	value="#{msgs.weekEnding}" /></li>
-															<li class="inline"><h:outputText value="" /></li>
-															<li class="inline">
-																	value="#{mgs.signTimesheet}" /> <h:commandButton
-																	class="btn btn-success" value="" id="signTimesheet" />
-															</li>
-
-														</ul> -->
-													</div>
-												</div>
-											</div>
+										<div class="panel panel-default col-md-7">
+											
+											<!-- Table -->
+											<table class="table container">
+												<tr class="row">
+													<td class="col-md-2"><h:outputLabel value="#{msgs.weekNo}" /></td>
+													<td class="col-md-2"><h:outputLabel value="#{msgs.weekEnding}" /></td>
+													<td class="col-md-2"><h:outputLabel value="#{msgs.total}" /></td>
+													<td class="col-md-2"><h:outputLabel value="#{msgs.overtime}" /></td>
+													<td class="col-md-2"><h:outputLabel value="#{msgs.flextime}" /></td>
+												</tr>
+												<tr class="row">
+													<td class="col-md-2"><h:outputText value="" /></td>
+													<td class="col-md-2"><h:outputText value="" /></td>
+													<td class="col-md-2"><h:outputText value="" /></td>
+													<td class="col-md-2"><h:outputText value="" /></td>
+													<td class="col-md-2"><h:outputText value="" /></td>
+												</tr>
+												<tr class="row">
+													<td class="col-md-2"><h:commandButton class="btn btn-success"
+																value="#{msgs.signTimesheet}" id="signTimesheet" /></td>
+													<td class="col-md-2"><h:commandButton class="btn btn-success"
+																value="#{msgs.save}" id="saveTimesheet" /></td>
+												</tr>
+											</table>
 										</div>
-										<!-- /col -->
-									
-									<div class="col-md-6">
-										<div class="row" id="summary">
-											<div class="col-md-10">
-												<div class="panel panel-default">
-													<div class="panel-body">
-														<div class="row">
+									</div><!-- /row of timesheet summary -->
 
-															<div class="col-md-3 text-right">
-																<h:outputLabel value="#{msgs.total}" />
-															</div>
-															<div class="col-md-3">
-																<h:outputText value="" />
-															</div>
-														</div>
-														<div class="row">
-															<div class="col-md-3 text-right">
-																<h:outputLabel value="#{msgs.overtime}" />
-															</div>
-															<div class="col-md-3">
-																<h:outputText value="" />
-															</div>
-														</div>
-														<div class="row">
-															<div class="col-md-3 text-right">
-																<h:outputLabel value="#{msgs.flextime}" />
-															</div>
-															<div class="col-md-3">
-																<h:outputText value="" />
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									</div>
-									<!-- /row -->
-									<!-- timesheet area -->
+
 
 									<div class="row">
 										<div class="col-md-12">
 
-											
 
-												<p:dataTable var="" value="" cellpadding="0" cellspacing="0">
-													<div class="row table table-bordered">
 
-														<p:column headerText="#{msgs.project}" class="col-md-1">
-															<h:outputText value="" />
-															<p:inputText class="input cell" value="" size="10" />
-														</p:column>
-														<p:column headerText="#{msgs.workPackage}"
-															class="col-md-1">
-															<h:outputText value="" />
-															<p:inputText class="input" value="" size="10" />
-														</p:column>
-														<p:column headerText="#{msgs.total}" class="col-md-1">
-															<h:outputText value="" />
-															<p:inputText class="input" value="" size="10" />
-														</p:column>
-														<p:column headerText="#{msgs.sun}" class="col-md-1">
-															<h:outputText value="" />
-															<p:inputText class="input" value="" size="10" />
-														</p:column>
-														<p:column headerText="#{msgs.mon}" class="col-md-1">
-															<h:outputText value="" />
-															<p:inputText class="input" value="" size="10" />
-														</p:column>
-														<p:column headerText="#{msgs.tue}" class="col-md-1">
-															<h:outputText value="" />
-															<p:inputText class="input" value="" size="10" />
-														</p:column>
-														<p:column headerText="#{msgs.wed}" class="col-md-1">
-															<h:outputText value="" />
-															<p:inputText class="input" value="" size="10" />
-														</p:column>
-														<p:column headerText="#{msgs.thu}" class="col-md-1">
-															<h:outputText value="" />
-															<p:inputText class="input" value="" size="10" />
-														</p:column>
-														<p:column headerText="#{msgs.fri}" class="col-md-1">
-															<h:outputText value="" />
-															<p:inputText class="input" value="" size="10" />
-														</p:column>
-														<p:column headerText="#{msgs.sat}" class="col-md-1">
-															<h:outputText value="" />
-															<p:inputText class="input" value="" size="10" />
-														</p:column>
-														<p:column headerText="#{msgs.notes}" class="col-md-1">
-															<h:outputText value="" />
-															<p:inputText class="input" value="" size="10" />
-														</p:column>
-													</div>
+											<p:dataTable var="" value="" cellpadding="0" cellspacing="0">
+												<div class="row table table-bordered">
 
-												</p:dataTable>
+													<p:column headerText="#{msgs.project}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input cell" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.workPackage}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.total}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.sun}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.mon}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.tue}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.wed}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.thu}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.fri}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.sat}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+													<p:column headerText="#{msgs.notes}" class="col-md-1">
+														<h:outputText value="" />
+														<p:inputText class="input" value="" size="10" />
+													</p:column>
+												</div>
+
+											</p:dataTable>
 											<!-- /timesheetForm -->
 
 
