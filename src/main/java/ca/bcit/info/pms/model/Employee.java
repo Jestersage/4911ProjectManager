@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "Employee")
@@ -48,10 +49,11 @@ public class Employee implements Serializable {
 	@Size(max = 30, message = "Last name cannot be longer than 30")
 	private String lastName;
 
-	@ManyToOne
-    @JoinColumn(name = "name")
+//	@ManyToOne
+//	@JoinColumn(name = "name")	
+	@Enumerated(EnumType.STRING)
 	@NotNull(message = "Pay grade cannot be null")
-	private PayLevel payLevel;
+	private PayLevel.PayGrade payGrade;
 
 //	@Size(max = 10, message = "Supervisor ID cannot be longer than 10")
     @ManyToOne
@@ -68,11 +70,11 @@ public class Employee implements Serializable {
 
     @Column(name = "flexTime")
     @Min(MAX_OWNED_FLEX_HOURS)
-    private double flexTimeBanked;
+    private BigDecimal flexTimeBanked;
 
     @Column(name = "vacationTime")
     @Max(MAX_VACATION_HOURS)
-    private double vacationBanked;
+    private BigDecimal vacationBanked;
 
 	/**
      * The no-argument constructor. Used to create new employees from within the
@@ -114,17 +116,27 @@ public class Employee implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public PayLevel getPayLevel() {
-		return payLevel;
-	}
-
-	public void setPayLevel(PayLevel payLevel) {
-		this.payLevel = payLevel;
-	}
+//	public PayLevel getPayLevel() {
+//		return payGrade;
+//	}
+//
+//	public void setPayLevel(PayLevel payLevel) {
+//		this.payGrade = payLevel;
+//	}
 
 	public Employee getSupervisor() {
 		return supervisor;
 	}
+
+	public PayLevel.PayGrade getPayGrade() {
+		return payGrade;
+	}
+
+
+	public void setPayGrade(PayLevel.PayGrade payGrade) {
+		this.payGrade = payGrade;
+	}
+
 
 	public void setSupervisor(Employee supervisor) {
 		this.supervisor = supervisor;
@@ -154,21 +166,31 @@ public class Employee implements Serializable {
 		this.activeStatus = activeStatus;
 	}
 
-    public double getFlexTimeBanked() {
-        return flexTimeBanked;
-    }
+//    public double getFlexTimeBanked() {
+//        return flexTimeBanked;
+//    }
+//
+//    public void setFlexTimeBanked(double flexTimeBanked) {
+//        this.flexTimeBanked = flexTimeBanked;
+//    }
 
-    public void setFlexTimeBanked(double flexTimeBanked) {
-        this.flexTimeBanked = flexTimeBanked;
-    }
+//    public double getVacationBanked() {
+//        return vacationBanked;
+//    }
 
-    public double getVacationBanked() {
-        return vacationBanked;
-    }
+    public BigDecimal getFlexTimeBanked() {
+		return flexTimeBanked;
+	}
 
-    public void setVacationBanked(double vacationBanked) {
-        this.vacationBanked = vacationBanked;
-    }
+
+	public void setFlexTimeBanked(BigDecimal flexTimeBanked) {
+		this.flexTimeBanked = flexTimeBanked;
+	}
+
+
+//	public void setVacationBanked(double vacationBanked) {
+//        this.vacationBanked = vacationBanked;
+//    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -187,6 +209,16 @@ public class Employee implements Serializable {
 		return true;
 	}
 
+	public BigDecimal getVacationBanked() {
+		return vacationBanked;
+	}
+
+
+	public void setVacationBanked(BigDecimal vacationBanked) {
+		this.vacationBanked = vacationBanked;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -203,7 +235,7 @@ public class Employee implements Serializable {
         sb.append(", email='").append(email).append('\'');
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", lastName='").append(lastName).append('\'');
-        sb.append(", payLevel=").append(payLevel);
+        sb.append(", payLevel=").append(payGrade);
         if (supervisor != null) {
             sb.append(", supervisor=").append(supervisor.credential.getUsername());
         }

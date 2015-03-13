@@ -3,6 +3,8 @@ package ca.bcit.info.pms.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Budgeting information in man-days for project.
@@ -13,7 +15,7 @@ public class RateSheet {
     @Id
     @Column(name = "ratesheetID")
     private int id;
-
+    
     private int year;
 
     private int JS;

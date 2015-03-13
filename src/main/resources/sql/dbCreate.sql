@@ -39,7 +39,7 @@ CREATE TABLE WorkPackage (
   parentwpID   int(10),
   packageName  varchar(20),
   packageDesc  varchar(20),
-  status       tinyint(1),
+  status       int(1),
   CONSTRAINT packageID
     PRIMARY KEY (packageID));
 --
@@ -50,7 +50,7 @@ CREATE TABLE Project (
   description  varchar(255) NOT NULL, 
   startDate    date NOT NULL, 
   endDate      date, 
-  status       tinyint(1), 
+  status       int(1), 
   employeeID    varchar(10),
   markupValue   double,
   genReport       tinyint(1) NOT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE Budget(
 -- RateSheet is for Project
 CREATE TABLE RateSheet(
     ratesheetID int(10) NOT NULL AUTO_INCREMENT,
-    year        date,
+    year  int(4),
     JS int(10),
     SS int(10),
     DS int(10),
@@ -130,8 +130,8 @@ CREATE TABLE Timesheet (
 --
 CREATE TABLE Signature(
 	signId    int(10) NOT NULL PRIMARY KEY ,
-	signature TINYBLOB NOT NULL, 
-	publicKey BLOB NOT NULL
+	signature LONGBLOB NOT NULL, 
+	publicKey LONGBLOB NOT NULL
 );
 -- salt need to be as long as hashed password
 CREATE TABLE Credentials (
@@ -148,7 +148,7 @@ CREATE TABLE Employee (
   lastName     varchar(255) NOT NULL,
   supervisorID varchar(10),
   approverId   varchar(10),
-  payGrade     VARCHAR(2),
+  payGrade     varchar(2),
   active       bool NOT NULL,
   vacationTime    numeric(4, 2) NOT NULL DEFAULT 0,
   flexTime        numeric(4, 2) NOT NULL DEFAULT 0,
@@ -180,6 +180,17 @@ CREATE TABLE WorkAssignment(
     employeeID   varchar(10) NOT NULL, 
     PRIMARY KEY (packageID, employeeID)
 );
+
+CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `hibernate_sequence`
+--
+
+INSERT INTO `hibernate_sequence` (`next_val`) VALUES
+(1);
 --
 ALTER TABLE StatusReport ADD CONSTRAINT FKReportWP FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
 --

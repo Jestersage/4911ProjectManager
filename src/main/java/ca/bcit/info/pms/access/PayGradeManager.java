@@ -1,6 +1,7 @@
 package ca.bcit.info.pms.access;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
@@ -39,8 +40,8 @@ public class PayGradeManager implements Serializable {
 				+ "where name = :payName", PayLevel.class)
 				.setParameter("payName", payLevelName);
 	    PayLevel payLevel = (PayLevel) query.getSingleResult();
-	    double cost = payLevel.getCost();
-		return cost;
+	    BigDecimal cost = payLevel.getCost();
+		return cost.doubleValue();
 	}
 	
 }

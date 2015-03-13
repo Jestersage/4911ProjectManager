@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import java.lang.Override;
+import java.math.BigDecimal;
 import java.sql.Date;
 
 @Entity
@@ -22,7 +23,7 @@ public class TimesheetRow implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "timesheetrowID", updatable = false, nullable = false)
-	private long id;
+	private int id;
 
 	@ManyToOne
 	@JoinColumn(name = "projectID", nullable = false)
@@ -37,31 +38,31 @@ public class TimesheetRow implements Serializable {
 	private String notes;
 
     @Column(name = "saturday")
-    private double saturdayHour;
+    private BigDecimal saturdayHour;
 
     @Column(name = "sunday")
-	private double sundayHour;
+	private BigDecimal sundayHour;
 
 	@Column(name = "monday")
-	private double mondayHour;
+	private BigDecimal mondayHour;
 	
 	@Column(name = "tuesday")
-	private double tuesdayHour;
+	private BigDecimal tuesdayHour;
 	
 	@Column(name = "wednesday")
-	private double wednesdayHour;
+	private BigDecimal wednesdayHour;
 	
 	@Column(name = "thursday")
-	private double thursdayHour;
+	private BigDecimal thursdayHour;
 	
 	@Column(name = "friday")
-	private double fridayHour;
+	private BigDecimal fridayHour;
 
-    public long getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(final long id) {
+    public void setId(final int id) {
         this.id = id;
     }
 
@@ -89,60 +90,62 @@ public class TimesheetRow implements Serializable {
 		this.notes = notes;
 	}
 
-	public double getSundayHour() {
-		return sundayHour;
+	
+
+	public double getSaturdayHour() {
+		return saturdayHour.doubleValue();
 	}
 
-	public void setSundayHour(double sundayHour) {
+	public void setSaturdayHour(BigDecimal saturdayHour) {
+		this.saturdayHour = saturdayHour;
+	}
+
+	public double getSundayHour() {
+		return sundayHour.doubleValue();
+	}
+
+	public void setSundayHour(BigDecimal sundayHour) {
 		this.sundayHour = sundayHour;
 	}
 
 	public double getMondayHour() {
-		return mondayHour;
+		return mondayHour.doubleValue();
 	}
 
-	public void setMondayHour(double mondayHour) {
+	public void setMondayHour(BigDecimal mondayHour) {
 		this.mondayHour = mondayHour;
 	}
 
 	public double getTuesdayHour() {
-		return tuesdayHour;
+		return tuesdayHour.doubleValue();
 	}
 
-	public void setTuesdayHour(double tuesdayHour) {
+	public void setTuesdayHour(BigDecimal tuesdayHour) {
 		this.tuesdayHour = tuesdayHour;
 	}
 
 	public double getWednesdayHour() {
-		return wednesdayHour;
+		return wednesdayHour.doubleValue();
 	}
 
-	public void setWednesdayHour(double wednesdayHour) {
+	public void setWednesdayHour(BigDecimal wednesdayHour) {
 		this.wednesdayHour = wednesdayHour;
 	}
 
 	public double getThursdayHour() {
-		return thursdayHour;
+		return thursdayHour.doubleValue();
 	}
 
-	public void setThursdayHour(double thursdayHour) {
+	public void setThursdayHour(BigDecimal thursdayHour) {
 		this.thursdayHour = thursdayHour;
 	}
 
 	public double getFridayHour() {
-		return fridayHour;
+		return fridayHour.doubleValue();
 	}
 
-	public void setFridayHour(double fridayHour) {
+	public void setFridayHour(BigDecimal fridayHour) {
 		this.fridayHour = fridayHour;
-	}
-
-	public double getSaturdayHour() {
-		return saturdayHour;
-	}
-
-	public void setSaturdayHour(double saturdayHour) {
-		this.saturdayHour = saturdayHour;
 	}
 
 	@Override

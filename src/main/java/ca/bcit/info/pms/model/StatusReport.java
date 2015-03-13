@@ -14,19 +14,19 @@ public class StatusReport
 {
     @Id
     @Column(name = "reportID", updatable = false, nullable = false)
-    private long id;
+    private Integer id;
 
     @OneToOne
     @JoinColumn(name = "packageID")
     private WorkPackage workPackage;
 
-    private String comment;
+    private String comments;
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -39,11 +39,11 @@ public class StatusReport
     }
 
     public String getComment() {
-        return comment;
+        return comments;
     }
 
     public void setComment(String comment) {
-        this.comment = comment;
+        this.comments = comment;
     }
 
     @Override

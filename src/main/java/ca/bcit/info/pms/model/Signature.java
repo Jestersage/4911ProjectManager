@@ -1,8 +1,11 @@
 package ca.bcit.info.pms.model;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 /**
  * Timesheet electronic signature.
@@ -13,9 +16,10 @@ public class Signature {
     @Id
     @Column(name = "signId", updatable = false, nullable = false)
     private int id;
-
+    @Lob @Basic(fetch=FetchType.EAGER)
     private byte[] signature;
 
+    @Lob @Basic(fetch=FetchType.EAGER)
     private byte[] publicKey;
 
     public int getId() {
