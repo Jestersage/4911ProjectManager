@@ -26,6 +26,15 @@ DROP TABLE IF EXISTS HR;
 CREATE TABLE StatusReport (
   reportID  int(20) NOT NULL,
   packageID int(10) NOT NULL,
+  JS int(10),
+  SS int(10),
+  DS int(10),
+  P1 int(10),
+  P2 int(10),
+  P3 int(10),
+  P4 int(10),
+  P5 int(10),
+  P6 int(10),
   comments  varchar(512),
   CONSTRAINT reportID 
     PRIMARY KEY (reportID));
@@ -79,7 +88,6 @@ CREATE TABLE Budget(
     other int(10),
     PRIMARY KEY (budgetId)
 );
--- unallocated budget??
 --
 -- RateSheet is for Project
 CREATE TABLE RateSheet(
