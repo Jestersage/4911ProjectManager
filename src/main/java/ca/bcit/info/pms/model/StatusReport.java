@@ -19,11 +19,93 @@ public class StatusReport
     @OneToOne
     @JoinColumn(name = "packageID")
     private WorkPackage workPackage;
+    
+    private int JS;
+    private int DS;
+    private int SS;
+    private int P1;
+    private int P2;
+    private int P3;
+    private int P4;
+    private int P5;
+    private int P6;
 
     private String comments;
 
-    public Integer getId() {
-        return id;
+    public int getJS() {
+		return JS;
+	}
+
+	public void setJS(int jS) {
+		JS = jS;
+	}
+
+	public int getDS() {
+		return DS;
+	}
+
+	public void setDS(int dS) {
+		DS = dS;
+	}
+
+	public int getSS() {
+		return SS;
+	}
+
+	public void setSS(int sS) {
+		SS = sS;
+	}
+
+	public int getP1() {
+		return P1;
+	}
+
+	public void setP1(int p1) {
+		P1 = p1;
+	}
+
+	public int getP2() {
+		return P2;
+	}
+
+	public void setP2(int p2) {
+		P2 = p2;
+	}
+
+	public int getP3() {
+		return P3;
+	}
+
+	public void setP3(int p3) {
+		P3 = p3;
+	}
+
+	public int getP4() {
+		return P4;
+	}
+
+	public void setP4(int p4) {
+		P4 = p4;
+	}
+
+	public int getP5() {
+		return P5;
+	}
+
+	public void setP5(int p5) {
+		P5 = p5;
+	}
+
+	public int getP6() {
+		return P6;
+	}
+
+	public void setP6(int p6) {
+		P6 = p6;
+	}
+	
+	public Integer getId() {
+    	return id;
     }
 
     public void setId(Integer id) {
@@ -38,12 +120,12 @@ public class StatusReport
         this.workPackage = workPackage;
     }
 
-    public String getComment() {
+    public String getComments() {
         return comments;
     }
 
-    public void setComment(String comment) {
-        this.comments = comment;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
     @Override

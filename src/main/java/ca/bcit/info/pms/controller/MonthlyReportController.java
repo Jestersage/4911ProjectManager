@@ -11,10 +11,12 @@ import javax.inject.Named;
 import ca.bcit.info.pms.access.BudgetManager;
 import ca.bcit.info.pms.access.MonthlyReportManager;
 import ca.bcit.info.pms.access.PayGradeManager;
+import ca.bcit.info.pms.access.StatusReportManager;
 import ca.bcit.info.pms.access.TimesheetRowManager;
 import ca.bcit.info.pms.access.WorkPackageManager;
 import ca.bcit.info.pms.model.Budget;
 import ca.bcit.info.pms.model.Project;
+import ca.bcit.info.pms.model.StatusReport;
 import ca.bcit.info.pms.model.WorkPackage;
 
 @Named("monthlyReport")
@@ -25,9 +27,11 @@ public class MonthlyReportController implements Serializable {
 	@Inject private BudgetManager budgetManager;
 	@Inject private PayGradeManager payGradeManager;
 	@Inject private TimesheetRowManager timesheetRowManager;
+	@Inject private StatusReportManager statusReportManager;
 	List<WorkPackage> workPackages;
 	Project project;
 	Budget budget;
+	StatusReport statusReport;
 	Map<String, Double> payLevelMap;
 	
 	public String getProject(final String id) {
@@ -44,10 +48,12 @@ public class MonthlyReportController implements Serializable {
 	public List<WorkPackage> getWorkPackages() {
 		double totalCost = 0;
 		double totalActualCost = 0;
+		double totalEstimateCost = 0;
 		workPackages = workPackageManager.getWorkPackages(project.getId());
 		for(int i = 0; i < workPackages.size(); i++) {
 			totalCost = 0;
 			totalActualCost = 0;
+			totalEstimateCost = 0;
 			budget = budgetManager.getBudget(workPackages.get(i).getId());
 			totalCost += budget.getDS() * payGradeManager.getCost("DS");
 			totalCost += budget.getJS() * payGradeManager.getCost("JS");
@@ -72,6 +78,19 @@ public class MonthlyReportController implements Serializable {
 			totalActualCost += payLevelMap.get("P5") * payGradeManager.getCost("P5");
 			totalActualCost += payLevelMap.get("P6") * payGradeManager.getCost("P6");
 			workPackages.get(i).setTotalActualCost(totalActualCost);
+			
+			statusReport = statusReportManager.getStatusReport(workPackages.get(i).getId());
+			totalEstimateCost += statusReport.getDS() * payGradeManager.getCost("DS");
+			totalEstimateCost += statusReport.getJS() * payGradeManager.getCost("JS");
+			totalEstimateCost += statusReport.getSS() * payGradeManager.getCost("SS");
+			totalEstimateCost += statusReport.getP1() * payGradeManager.getCost("P1");
+			totalEstimateCost += statusReport.getP2() * payGradeManager.getCost("P2");
+			totalEstimateCost += statusReport.getP3() * payGradeManager.getCost("P3");
+			totalEstimateCost += statusReport.getP4() * payGradeManager.getCost("P4");
+			totalEstimateCost += statusReport.getP5() * payGradeManager.getCost("P5");
+			totalEstimateCost += statusReport.getP6() * payGradeManager.getCost("P6");
+			workPackages.get(i).setEstimateManDays(statusReportManager.getTotalCompletionEstimate(workPackages.get(i).getId()));
+			workPackages.get(i).setTotalEstimateCost(totalEstimateCost);
 		}
 		return workPackages;
 	}
