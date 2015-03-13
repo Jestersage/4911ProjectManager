@@ -77,9 +77,30 @@ public class WorkPackage implements Serializable
     
     @Transient
     private double totalEstimateCost;
+    
+    @Transient
+    private String varianceManDays;
+    
+    @Transient
+    private String totalVarianceCost;
 
+	public String getVarianceManDays() {
+		return varianceManDays;
+	}
 
-    public double getEstimateManDays() {
+	public void setVarianceManDays(String varianceManDays) {
+		this.varianceManDays = varianceManDays;
+	}
+
+	public String getTotalVarianceCost() {
+		return totalVarianceCost;
+	}
+
+	public void setTotalVarianceCost(String totalVarianceCost) {
+		this.totalVarianceCost = totalVarianceCost;
+	}
+
+	public double getEstimateManDays() {
 		return estimateManDays;
 	}
 

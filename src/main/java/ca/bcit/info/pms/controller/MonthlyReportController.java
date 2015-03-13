@@ -1,6 +1,7 @@
 package ca.bcit.info.pms.controller;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -49,6 +50,8 @@ public class MonthlyReportController implements Serializable {
 		double totalCost = 0;
 		double totalActualCost = 0;
 		double totalEstimateCost = 0;
+		DecimalFormat df = new DecimalFormat("#.##");
+		
 		workPackages = workPackageManager.getWorkPackages(project.getId());
 		for(int i = 0; i < workPackages.size(); i++) {
 			totalCost = 0;
@@ -91,6 +94,10 @@ public class MonthlyReportController implements Serializable {
 			totalEstimateCost += statusReport.getP6() * payGradeManager.getCost("P6");
 			workPackages.get(i).setEstimateManDays(statusReportManager.getTotalCompletionEstimate(workPackages.get(i).getId()));
 			workPackages.get(i).setTotalEstimateCost(totalEstimateCost);
+			
+			workPackages.get(i).setVarianceManDays(df.format((1 - ((double)statusReportManager.getTotalCompletionEstimate(workPackages.get(i).getId())
+					/ (double)budgetManager.getTotalBudget(workPackages.get(i).getId()))) * -100));
+			workPackages.get(i).setTotalVarianceCost(df.format(-100 * (1 - (totalEstimateCost / totalCost ))));
 		}
 		return workPackages;
 	}
