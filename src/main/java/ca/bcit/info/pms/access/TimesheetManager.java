@@ -33,5 +33,21 @@ public class TimesheetManager implements Serializable {
         return this.entityManager.find(Timesheet.class, owner);
     }*/
 
+    //delete a timesheet
+    public void remove(final Timesheet timesheet) {
+        Timesheet ts = findById(timesheet.getId());
+        entityManager.remove(ts);
+    }
+
+    //do we need this??
+    public void merge(final Timesheet timesheet) {
+        entityManager.merge(timesheet);
+    }
+
+    public void persist(final Timesheet timesheet) {
+        entityManager.persist(timesheet);
+    }
+
+
 
 }
