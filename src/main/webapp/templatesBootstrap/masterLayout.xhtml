@@ -16,8 +16,8 @@
 	<h:outputStylesheet
 		library="bootstrap-3.3.2-dist/bootstrap-3.3.2-dist/css"
 		name="bootstrap.min.css" />
-	
 
+	
 	<!-- custom style sheets -->
 	<ui:insert name="additionalStyleSheets" />
 
@@ -27,7 +27,8 @@
 </h:head>
 
 <h:body>
-    <f:event type="preRenderView" listener="#{userController.checkPermissions}"/>
+	<f:event type="preRenderView"
+		listener="#{userController.checkPermissions}" />
 
 	<!-- header -->
 	<ui:insert name="header">
@@ -60,24 +61,29 @@
 		</div>
 		<!-- end of mainArea -->
 
-		
+
 	</div>
 	<!-- end of wrapper -->
 	<!-- footer -->
-		<div class="row footer">
-			<div class="col-xs-12 col-sm-12 col-md-12">
-				<ui:insert name="footer">
-					<ui:include src="/templatesBootstrap/defaultFooter.xhtml" />
-				</ui:insert>
-			</div>
+	<div class="row footer">
+		<div class="col-xs-12 col-sm-12 col-md-12">
+			<ui:insert name="footer">
+				<ui:include src="/templatesBootstrap/defaultFooter.xhtml" />
+			</ui:insert>
 		</div>
-		<!-- end of footer -->
+	</div>
+	<!-- end of footer -->
 	<!--  REMEMBER TO DELETE THIS -->
 	<ui:debug />
-
 	<!-- Bootstrap scripts -->
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript library="bootstrap-3.3.2-dist/bootstrap-3.3.2-dist/js"
+		name="bootstrap.js" />
+
+
+
+
+
 </h:body>
 <!-- end of body -->
 </html>
