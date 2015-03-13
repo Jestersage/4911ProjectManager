@@ -12,9 +12,9 @@ INSERT INTO Credentials
 VALUES 
   ("root", "password");
 INSERT INTO Employee
-  (employeeID, username, email, firstName, lastName, active) 
+  (employeeID, username, email, firstName, lastName, active, payGrade) 
 VALUES 
-  (000001, "root", "gleung4@gmail.com", "CEO", "Admin", 1 );
+  (000001, "root", "gleung4@gmail.com", "CEO", "Admin", 1, "P1" );
 INSERT INTO HR
   (employeeID)
 VALUES
@@ -26,9 +26,9 @@ INSERT INTO Credentials
 VALUES 
   ("gabeh", "password");
 INSERT INTO Employee
-  (employeeID, username, email, firstName, lastName, supervisorID, active) 
+  (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
-  (123456, "gabeh", "gabeh3264@gmail.com", "Gabe", "Hung", 000001, 1);
+  (123456, "gabeh", "gabeh3264@gmail.com", "Gabe", "Hung", 000001, 1, "P2");
 INSERT INTO HR
   (employeeID)
 VALUES
@@ -40,9 +40,9 @@ INSERT INTO Credentials
 VALUES 
   ("georgel", "password");
 INSERT INTO Employee
-  (employeeID, username, email, firstName, lastName, supervisorID, active) 
+  (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
-  (124816, "georgel", "gleung4@gmail.com", "George", "Leung", 123456, 1);
+  (124816, "georgel", "gleung4@gmail.com", "George", "Leung", 123456, 1, "P3");
 --
 --
 -- Sample Employees (-Finlay)
@@ -52,18 +52,18 @@ INSERT INTO Credentials
 VALUES
     ("bobDole", "password");
 INSERT INTO Employee
-    (employeeID, username, email, firstName, lastName, supervisorID, active)
+    (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade)
 VALUES
-    (000002, "bobDole", "bdole@email.com", "Bob", "Dole", 000001, 1);
+    (000002, "bobDole", "bdole@email.com", "Bob", "Dole", 000001, 1, "P4");
 --
 INSERT INTO Credentials
     (username, password)
 VALUES
     ("fredBarns", "password");
 INSERT INTO Employee
-    (employeeID, username, email, firstName, lastName, supervisorID, active)
+    (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade)
 VALUES
-    (000003, "fredBarns", "fredb@email.com", "Frederic", "Barns", 000001, 1);
+    (000003, "fredBarns", "fredb@email.com", "Frederic", "Barns", 000001, 1, "P5");
 --
 INSERT INTO Credentials
     (username, password)

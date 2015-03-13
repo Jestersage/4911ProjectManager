@@ -2,6 +2,7 @@ package ca.bcit.info.pms.controller;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -27,6 +28,7 @@ public class MonthlyReportController implements Serializable {
 	List<WorkPackage> workPackages;
 	Project project;
 	Budget budget;
+	Map<String, Double> payLevelMap;
 	
 	public String getProject(final String id) {
 		project = reportManager.find("1202");
@@ -41,8 +43,11 @@ public class MonthlyReportController implements Serializable {
 	
 	public List<WorkPackage> getWorkPackages() {
 		double totalCost = 0;
+		double totalActualCost = 0;
 		workPackages = workPackageManager.getWorkPackages(project.getId());
 		for(int i = 0; i < workPackages.size(); i++) {
+			totalCost = 0;
+			totalActualCost = 0;
 			budget = budgetManager.getBudget(workPackages.get(i).getId());
 			totalCost += budget.getDS() * payGradeManager.getCost("DS");
 			totalCost += budget.getJS() * payGradeManager.getCost("JS");
@@ -56,6 +61,17 @@ public class MonthlyReportController implements Serializable {
 			workPackages.get(i).setTotalBudget(budgetManager.getTotalBudget(workPackages.get(i).getId()));
 			workPackages.get(i).setTotalCost(totalCost);
 			workPackages.get(i).setActualManDays(timesheetRowManager.getTotalManDays(workPackages.get(i).getId()));
+			payLevelMap = timesheetRowManager.getManHoursPerPayLevel(workPackages.get(i).getId());
+			totalActualCost += payLevelMap.get("DS") * payGradeManager.getCost("DS");
+			totalActualCost += payLevelMap.get("JS") * payGradeManager.getCost("JS");
+			totalActualCost += payLevelMap.get("SS") * payGradeManager.getCost("SS");
+			totalActualCost += payLevelMap.get("P1") * payGradeManager.getCost("P1");
+			totalActualCost += payLevelMap.get("P2") * payGradeManager.getCost("P2");
+			totalActualCost += payLevelMap.get("P3") * payGradeManager.getCost("P3");
+			totalActualCost += payLevelMap.get("P4") * payGradeManager.getCost("P4");
+			totalActualCost += payLevelMap.get("P5") * payGradeManager.getCost("P5");
+			totalActualCost += payLevelMap.get("P6") * payGradeManager.getCost("P6");
+			workPackages.get(i).setTotalActualCost(totalActualCost);
 		}
 		return workPackages;
 	}

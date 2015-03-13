@@ -1,7 +1,9 @@
 package ca.bcit.info.pms.access;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
@@ -40,7 +42,7 @@ public class TimesheetRowManager implements Serializable {
 				+ "from timesheetrow "
 				+ "where packageID = :workpackageId", TimesheetRow.class)
 				.setParameter("workpackageId", wpId);
-	    List<TimesheetRow> timesheetRows = query.getResultList();
+		List<TimesheetRow> timesheetRows = query.getResultList();
 	    for(int i = 0; i < timesheetRows.size(); i++) {
 	    	totalManDays += timesheetRows.get(i).getFridayHour();
 	    	totalManDays += timesheetRows.get(i).getMondayHour();
@@ -53,4 +55,51 @@ public class TimesheetRowManager implements Serializable {
 		return totalManDays / 8.0;
 	}
 	
+	public Map<String, Double> getManHoursPerPayLevel(final int wpId) {
+		Map<String, Double> payLevelAmount = new HashMap<String, Double>();
+		String key;
+		double value = 0;
+		double currentValue;
+		
+		payLevelAmount.put("JS", 0.0);
+		payLevelAmount.put("DS", 0.0);
+		payLevelAmount.put("SS", 0.0);
+		payLevelAmount.put("P1", 0.0);
+		payLevelAmount.put("P2", 0.0);
+		payLevelAmount.put("P3", 0.0);
+		payLevelAmount.put("P4", 0.0);
+		payLevelAmount.put("P5", 0.0);
+		payLevelAmount.put("P6", 0.0);
+		
+		Query query = em.createNativeQuery("select * "
+				+ "from timesheetrow "
+				+ "where packageID = :workpackageId", TimesheetRow.class)
+				.setParameter("workpackageId", wpId);
+		List<TimesheetRow> timesheetRows = query.getResultList();
+		
+		for(int i = 0; i < timesheetRows.size(); i++) {
+			value = 0;
+			currentValue = 0;
+			currentValue += timesheetRows.get(i).getFridayHour();
+			currentValue += timesheetRows.get(i).getMondayHour();
+			currentValue += timesheetRows.get(i).getSaturdayHour();
+			currentValue += timesheetRows.get(i).getSundayHour();
+			currentValue += timesheetRows.get(i).getThursdayHour();
+			currentValue += timesheetRows.get(i).getTuesdayHour();
+			currentValue += timesheetRows.get(i).getWednesdayHour();
+			currentValue = currentValue / 8.0;
+			query = em.createNativeQuery("select e.paygrade "
+					+ "from employee e join timesheet t "
+					+ "on e.employeeID=t.employeeID join timesheetrow tr "
+					+ "on t.timesheetID=tr.timesheetID where tr.timesheetrowID = :trID")
+					.setParameter("trID", timesheetRows.get(i).getId());
+			key = (String) query.getSingleResult();
+			value = payLevelAmount.get(key);
+			value += currentValue;
+			payLevelAmount.remove(key);
+			payLevelAmount.put(key, value);
+		}
+		
+		return payLevelAmount;
+	}
 }

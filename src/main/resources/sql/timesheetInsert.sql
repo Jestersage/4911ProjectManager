@@ -23,7 +23,7 @@ INSERT INTO Timesheet
     overtime, flexTime, signed, approved,
     signID)
 VALUES
-  (1, 4, 1, '2015-01-02',
+  (1, 1, 1, '2015-01-02',
   0, 0, "Signed", "approved",
   01);
 INSERT INTO TimesheetRow
@@ -31,7 +31,7 @@ INSERT INTO TimesheetRow
      notes, sunday, monday, tuesday,
      wednesday, thursday, friday, saturday)
 VALUES
-    (1, 1, 111, 11,
+    (1, 1, 111, 5,
     "notes", 0, 0, 0, 
     0, 8, 8, 0);
 --
@@ -40,14 +40,14 @@ INSERT INTO Timesheet
   (timesheetID, employeeID, weeknumber, weekending,
     overtime, flexTime, signed, approved, signID) 
 VALUES
-  (2, 4, 2, '2015-01-09', 
+  (2, 2, 2, '2015-01-09', 
    0, 0, "Signed", "approved", 01);
 INSERT INTO TimesheetRow
     (timesheetID, timesheetrowID, projectID, packageID,
      notes, sunday, monday, tuesday,
      wednesday, thursday, friday, saturday)
 VALUES
-    (2, 2, 111, 11,
+    (2, 2, 111, 6,
      "notes", 0, 8, 8,
      8, 8, 8, 0);
 --
@@ -56,14 +56,14 @@ INSERT INTO Timesheet
   (timesheetID, employeeID, weeknumber, weekending,
     overtime, flexTime, signed, approved, signID)
 VALUES
-    (3, 4, 3,'2015-01-16',
+    (3, 3, 3,'2015-01-16',
     3, 2, "Signed", "approved", 01);
 INSERT INTO TimesheetRow
     (timesheetID, timesheetrowID, projectID, packageID,
      notes, sunday, monday, tuesday,
      wednesday, thursday, friday, saturday)
 VALUES
-    (3, 3, 111, 11,
+    (3, 3, 111, 7,
      "notes", 0, 8, 8,
      8, 8, 8, 3);
 --  
@@ -72,14 +72,14 @@ INSERT INTO Timesheet
   (timesheetID, employeeID, weeknumber, weekending,
     overtime, flexTime, signed, approved, signID)
 VALUES
-  (4, 4, 4,'2015-01-23', 
+  (4, 123456, 4,'2015-01-23', 
   8, 0, "Signed", "approved", 01);
 INSERT INTO TimesheetRow
     (timesheetID, timesheetrowID, projectID, packageID,
     notes, sunday, monday, tuesday,
      wednesday, thursday, friday, saturday)
 VALUES
-    (4, 4, 111, 11,
+    (4, 4, 111, 5,
      "notes", 0, 9, 9,
      9, 9, 9, 3);
 --
@@ -89,14 +89,14 @@ INSERT INTO Timesheet
     overtime, flexTime, signed, approved,
     signID)
 VALUES
-    (5, 4, 5,'2015-01-23',
+    (5, 124816, 5,'2015-01-23',
     8, 0, "Signed", "approved", 01);
 INSERT INTO TimesheetRow
     (timesheetID, timesheetrowID, projectID, packageID,
      notes, sunday, monday, tuesday,
      wednesday, thursday, friday, saturday)
 VALUES
-    (5, 5, 111, 11,
+    (5, 5, 111, 6,
      "notes", 0, 9, 9,
      8, 8, 8, 0);
 --
