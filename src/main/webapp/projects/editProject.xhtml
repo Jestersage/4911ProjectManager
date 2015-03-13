@@ -5,7 +5,8 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title></title>
@@ -38,11 +39,11 @@
 						<div class="col-xs-12 col-sm-12 col-md-12">
 
 							<div id="breadcrumb">
-							<h:form>
-								<ol class="breadcrumb">
-									<li><h:commandLink action="mypage" value="#{msgs.myPage}"/></li>
-									<li class="active">#{msgs.editProject}</li>
-								</ol>
+								<h:form>
+									<ol class="breadcrumb">
+										<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
+										<li class="active">#{msgs.editProject}</li>
+									</ol>
 								</h:form>
 							</div>
 
@@ -93,32 +94,37 @@
 								</div>
 
 								<div class="form-group">
-									<h:outputLabel for="itaProjectDescription" value="#{msgs.projectDescription}"
+									<h:outputLabel for="itaProjectDescription"
+										value="#{msgs.projectDescription}"
 										class="col-sm-3 control-label" />
 									<div class="col-sm-9">
-										<h:inputTextarea id="itaProjectDescription" value="" required="true"
-											label="#{msgs.projectDescription}" cols="80" rows="10" class="form-control" />
-										<h:message errorClass="text-danger" for="itaProjectDescription" />
+										<h:inputTextarea id="itaProjectDescription" value=""
+											required="true" label="#{msgs.projectDescription}" cols="80"
+											rows="10" class="form-control" />
+										<h:message errorClass="text-danger"
+											for="itaProjectDescription" />
 									</div>
 								</div>
 
 								<div class="form-group">
-									<h:outputLabel for="itStartDate" value="#{msgs.startDate}"
+									<h:outputLabel for="popupStartDate" value="#{msgs.startDate}"
 										class="col-sm-3 control-label" />
 									<div class="col-sm-9">
-										<h:inputText id="itStartDate" value="" required="true"
-											label="#{msgs.startDate}" class="form-control" />
-										<h:message errorClass="text-danger" for="itStartDate" />
+										<p:calendar id="popupStartDate"
+											value="#{projController.project.startDate}" required="true"
+											label="#{msgs.startDate}" />
+										<h:message errorClass="text-danger" for="popupStartDate" />
 									</div>
 								</div>
 
 								<div class="form-group">
-									<h:outputLabel for="itEndDate" value="#{msgs.endDate}"
+									<h:outputLabel for="popupEndDate" value="#{msgs.endDate}"
 										class="col-sm-3 control-label" />
 									<div class="col-sm-9">
-										<h:inputText id="itEndDate" value="" required="true"
-											label="#{msgs.endDate}" class="form-control" />
-										<h:message errorClass="text-danger" for="itEndDate" />
+										<p:calendar id="popupEndDate"
+											value="#{projController.project.endDate}" required="true"
+											label="#{msgs.endDate}" />
+										<h:message errorClass="text-danger" for="popupEndDate" />
 									</div>
 								</div>
 
@@ -143,7 +149,7 @@
 							</h:form>
 							<!-- end of employee form -->
 						</div>
-						<!-- end of data div. Employee information -->						
+						<!-- end of data div. Employee information -->
 					</div>
 				</div>
 			</div>
