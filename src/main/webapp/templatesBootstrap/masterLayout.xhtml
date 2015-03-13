@@ -15,10 +15,8 @@
 	<!-- Bootstrap styles -->`
 	<h:outputStylesheet
 		library="bootstrap-3.3.2-dist/bootstrap-3.3.2-dist/css"
-		name="bootstrap.css" />
-	<h:outputStylesheet
-		library="bootstrap-3.3.2-dist/bootstrap-3.3.2-dist/css"
-		name="bootstrap-theme.css" />
+		name="bootstrap.min.css" />
+	
 
 	<!-- custom style sheets -->
 	<ui:insert name="additionalStyleSheets" />
@@ -62,7 +60,10 @@
 		</div>
 		<!-- end of mainArea -->
 
-		<!-- footer -->
+		
+	</div>
+	<!-- end of wrapper -->
+	<!-- footer -->
 		<div class="row footer">
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<ui:insert name="footer">
@@ -71,8 +72,6 @@
 			</div>
 		</div>
 		<!-- end of footer -->
-	</div>
-	<!-- end of wrapper -->
 	<!--  REMEMBER TO DELETE THIS -->
 	<ui:debug />
 
