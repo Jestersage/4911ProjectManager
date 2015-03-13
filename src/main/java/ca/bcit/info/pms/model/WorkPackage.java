@@ -1,6 +1,7 @@
 package ca.bcit.info.pms.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Set;
 
@@ -64,11 +65,12 @@ public class WorkPackage implements Serializable
     @Transient
     private double totalCost;
     
-    @Transient
-    private double actualManDays;
+
     
     @Transient
     private double totalActualCost;
+    @Transient
+    private double actualManDays;
 
 
     public double getTotalActualCost() {
@@ -79,7 +81,8 @@ public class WorkPackage implements Serializable
 		this.totalActualCost = totalActualCost;
 	}
 
-	public double getActualManDays() {
+
+    public double getActualManDays() {
 		return actualManDays;
 	}
 

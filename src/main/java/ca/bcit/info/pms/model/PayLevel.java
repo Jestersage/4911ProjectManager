@@ -1,5 +1,7 @@
 package ca.bcit.info.pms.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +17,7 @@ public class PayLevel {
     @Column(name = "paygradeID")
     private int id;
 	
-	private String year;
+	private int year;
 	
 	public enum PayGrade {
 		P1("P1"),
@@ -47,21 +49,21 @@ public class PayLevel {
 		this.id = id;
 	}
 
-	public String getYear() {
+	public int getYear() {
 		return year;
 	}
 
-	public void setYear(String year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
 
-	public double getCost() {
+	public BigDecimal getCost() {
 		return cost;
 	}
 
-	public void setCost(double cost) {
+	public void setCost(BigDecimal cost) {
 		this.cost = cost;
 	}
 
-	private double cost;
+	private BigDecimal cost;
 }

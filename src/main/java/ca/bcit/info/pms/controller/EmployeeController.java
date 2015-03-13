@@ -1,6 +1,7 @@
 package ca.bcit.info.pms.controller;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,8 +87,8 @@ public class EmployeeController implements Serializable {
     private Employee initializeNewEmployee() {
         employee.setTimesheetApprover(employee.getSupervisor());
         employee.setActiveStatus(true);
-        employee.setFlexTimeBanked(0);
-        employee.setVacationBanked(0);
+        employee.setFlexTimeBanked(new BigDecimal(0));
+        employee.setVacationBanked(new BigDecimal(0));
 
         return employee;
     }

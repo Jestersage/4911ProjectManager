@@ -19,6 +19,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import java.lang.Override;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -38,7 +39,7 @@ public class Timesheet implements Serializable
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "timesheetID", updatable = false, nullable = false)
-	private long id;
+	private int id;
 
 	@ManyToOne
 	@JoinColumn(name = "employeeID", nullable = false)
@@ -59,11 +60,11 @@ public class Timesheet implements Serializable
 
     @Min(value = 0, message = "Overtime cannot be negative")
     @Max(value = MAX_OVERTIME, message = "Overtime cannot exceed" + MAX_OVERTIME +"hr")
-	private double overtime;
+	private BigDecimal overtime;
 
     @Min(value = 0, message = "Flexible hours cannot be negative")
     @Max(value = MAX_OVERTIME, message = "Flexible hours cannot exceed" + MAX_OVERTIME +"hr")
-	private double flextime;
+	private BigDecimal flextime;
 
 	@Column(name = "signed")
 	private String signed;
@@ -75,11 +76,11 @@ public class Timesheet implements Serializable
     @JoinColumn(name = "signId")
 	private Signature signID;
 
-    public long getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(final long id) {
+    public void setId(final int id) {
         this.id = id;
     }
 
@@ -118,19 +119,19 @@ public class Timesheet implements Serializable
         this.timesheetRows = timesheetRows;
     }
 
-    public double getOvertime() {
+    public BigDecimal getOvertime() {
         return overtime;
     }
 
-    public void setOvertime(double overtime) {
+    public void setOvertime(BigDecimal overtime) {
         this.overtime = overtime;
     }
 
-    public double getFlextime() {
+    public BigDecimal getFlextime() {
         return flextime;
     }
 
-    public void setFlextime(double flextime) {
+    public void setFlextime(BigDecimal flextime) {
         this.flextime = flextime;
     }
 

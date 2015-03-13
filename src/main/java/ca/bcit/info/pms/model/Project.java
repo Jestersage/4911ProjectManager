@@ -55,7 +55,7 @@ public class Project implements Serializable {
 	private Double markupValue;
 
 	@Column(name = "genReport")
-	private int genReport;
+	private boolean genReport;
 
     public String getId() {
         return this.id;
@@ -129,11 +129,11 @@ public class Project implements Serializable {
 		this.markupValue = markupValue;
 	}
 
-	public int getGenReport() {
+	public boolean getGenReport() {
 		return genReport;
 	}
 
-	public void setGenReport(int genReport) {
+	public void setGenReport(boolean genReport) {
 		this.genReport = genReport;
 	}
 

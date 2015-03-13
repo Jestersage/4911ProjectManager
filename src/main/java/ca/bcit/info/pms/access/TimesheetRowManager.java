@@ -2,6 +2,7 @@ package ca.bcit.info.pms.access;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
