@@ -7,9 +7,9 @@
    <PROCESS-ITEM-OUTPUT ID="loginFail::#login.xhtml" NAME="output"
     PATH="/login.xhtml" TARGET="rules:#login.xhtml" TITLE="loginFail" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="loginSuccess::#employeeBootstrap#index.xhtml" NAME="output1"
-    PATH="/employeeBootstrap/index.xhtml"
-    TARGET="rules:#employeeBootstrap#index.xhtml" TITLE="loginSuccess" model-entity="JSFProcessItemOutput"/>
+    ID="loginSuccess::#employee#index.xhtml" NAME="output1"
+    PATH="/employee/index.xhtml"
+    TARGET="rules:#employee#index.xhtml" TITLE="loginSuccess" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
@@ -18,67 +18,67 @@
     PATH="/login.xhtml" TARGET="rules:#login.xhtml" TITLE="unauthorized" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#employeeBootstrap#index.xhtml"
-  PATH="/employeeBootstrap/index.xhtml" SHAPE="496,17,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#employee#index.xhtml"
+  PATH="/employee/index.xhtml" SHAPE="496,17,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:*:1" PATH="*" SHAPE="32,161,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:1" NAME="item" PATH="*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="logout::#login.xhtml" NAME="output"
     PATH="/login.xhtml" TARGET="rules:#login.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#employeeBootstrap#newEmployee.xhtml"
-  PATH="/employeeBootstrap/newEmployee.xhtml" SHAPE="32,273,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#employeeBootstrap#newProject.xhtml"
-  PATH="/employeeBootstrap/newProject.xhtml" SHAPE="32,385,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#employeeBootstrap#monthReport.xhtml"
-  PATH="/employeeBootstrap/monthReport.xhtml" SHAPE="240,401,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#employee#newEmployee.xhtml"
+  PATH="/employee/newEmployee.xhtml" SHAPE="32,273,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#employee#newProject.xhtml"
+  PATH="/employee/newProject.xhtml" SHAPE="32,385,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#employee#monthReport.xhtml"
+  PATH="/employee/monthReport.xhtml" SHAPE="240,401,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:*:2" PATH="*" SHAPE="32,385,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:2" NAME="item" PATH="*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="newEmployee::#employeeBootstrap#newEmployee.xhtml" NAME="output"
-    PATH="/employeeBootstrap/newEmployee.xhtml"
-    TARGET="rules:#employeeBootstrap#newEmployee.xhtml"
+    ID="newEmployee::#employee#newEmployee.xhtml" NAME="output"
+    PATH="/employee/newEmployee.xhtml"
+    TARGET="rules:#employee#newEmployee.xhtml"
     TITLE="newEmployee" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#employeeBootstrap#editProject.xhtml"
-  PATH="/employeeBootstrap/editProject.xhtml" SHAPE="240,513,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#employeeBootstrap#newWorkPackage.xhtml"
-  PATH="/employeeBootstrap/newWorkPackage.xhtml" SHAPE="32,609,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#employeeBootstrap#newWorkPackage.xhtml:0"
-   NAME="item" PATH="/employeeBootstrap/newWorkPackage.xhtml" model-entity="JSFProcessItem">
+ <PROCESS-ITEM NAME="rules:#employee#editProject.xhtml"
+  PATH="/employee/editProject.xhtml" SHAPE="240,513,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#employee#newWorkPackage.xhtml"
+  PATH="/employee/newWorkPackage.xhtml" SHAPE="32,609,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#employee#newWorkPackage.xhtml:0"
+   NAME="item" PATH="/employee/newWorkPackage.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="newProject::#employeeBootstrap#newWorkPackage.xhtml"
-    NAME="output" PATH="/employeeBootstrap/newWorkPackage.xhtml"
-    TARGET="rules:#employeeBootstrap#newWorkPackage.xhtml"
+    ID="newProject::#employee#newWorkPackage.xhtml"
+    NAME="output" PATH="/employee/newWorkPackage.xhtml"
+    TARGET="rules:#employee#newWorkPackage.xhtml"
     TITLE="newProject" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:*:3" PATH="*" SHAPE="32,497,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:3" NAME="item" PATH="*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="editEmployee::#employeeBootstrap#editEmployee.xhtml"
-    NAME="output" PATH="/employeeBootstrap/editEmployee.xhtml"
-    TARGET="rules:#employeeBootstrap#editEmployee.xhtml"
+    ID="editEmployee::#employee#editEmployee.xhtml"
+    NAME="output" PATH="/employee/editEmployee.xhtml"
+    TARGET="rules:#employee#editEmployee.xhtml"
     TITLE="editEmployee" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:*:4" PATH="*" SHAPE="32,609,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:4" NAME="item" PATH="*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="viewAllEmployees::#employeeBootstrap#viewAllEmployees.xhtml"
-    NAME="output" PATH="/employeeBootstrap/viewAllEmployees.xhtml"
-    TARGET="rules:#employeeBootstrap#viewAllEmployees.xhtml"
+    ID="viewAllEmployees::#employee#viewAllEmployees.xhtml"
+    NAME="output" PATH="/employee/viewAllEmployees.xhtml"
+    TARGET="rules:#employee#viewAllEmployees.xhtml"
     TITLE="viewAllEmployees" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#employeeBootstrap#findProject.xhtml"
-  PATH="/employeeBootstrap/findProject.xhtml" SHAPE="240,625,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#employee#findProject.xhtml"
+  PATH="/employee/findProject.xhtml" SHAPE="240,625,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:*:5" PATH="*" SHAPE="32,721,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:5" NAME="item" PATH="*" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="settings::#employeeBootstrap#settings.xhtml"
-    NAME="output" PATH="/employeeBootstrap/settings.xhtml"
-    TARGET="rules:#employeeBootstrap#settings.xhtml" TITLE="settings" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="settings::#employee#settings.xhtml"
+    NAME="output" PATH="/employee/settings.xhtml"
+    TARGET="rules:#employee#settings.xhtml" TITLE="settings" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:*:6" PATH="*" SHAPE="32,833,0,0" model-entity="JSFProcessGroup">
@@ -87,23 +87,23 @@
     PATH="/profile.xhtml" TARGET="rules:#profile.xhtml" TITLE="profile" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#employeeBootstrap#editWorkPackage.xhtml"
-  PATH="/employeeBootstrap/editWorkPackage.xhtml" SHAPE="240,737,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#employeeBootstrap#findWorkPackage.xhtml"
-  PATH="/employeeBootstrap/findWorkPackage.xhtml" SHAPE="240,849,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#employee#editWorkPackage.xhtml"
+  PATH="/employee/editWorkPackage.xhtml" SHAPE="240,737,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#employee#findWorkPackage.xhtml"
+  PATH="/employee/findWorkPackage.xhtml" SHAPE="240,849,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:*:7" PATH="*" SHAPE="32,945,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:7" NAME="item" PATH="*" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="mypage::#employeeBootstrap#index.xhtml"
-    NAME="output" PATH="/employeeBootstrap/index.xhtml"
-    TARGET="rules:#employeeBootstrap#index.xhtml" TITLE="mypage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="mypage::#employee#index.xhtml"
+    NAME="output" PATH="/employee/index.xhtml"
+    TARGET="rules:#employee#index.xhtml" TITLE="mypage" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:*:8" PATH="*" SHAPE="32,1057,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:8" NAME="item" PATH="*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="newProject::#employeeBootstrap#newProject.xhtml" NAME="output"
-    PATH="/employeeBootstrap/newProject.xhtml"
-    TARGET="rules:#employeeBootstrap#newProject.xhtml"
+    ID="newProject::#employee#newProject.xhtml" NAME="output"
+    PATH="/employee/newProject.xhtml"
+    TARGET="rules:#employee#newProject.xhtml"
     TITLE="newProject" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
@@ -112,9 +112,9 @@
  <PROCESS-ITEM NAME="rules:*:9" PATH="*" SHAPE="32,1169,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:9" NAME="item" PATH="*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="editProject::#employeeBootstrap#editProject.xhtml" NAME="output"
-    PATH="/employeeBootstrap/editProject.xhtml"
-    TARGET="rules:#employeeBootstrap#editProject.xhtml"
+    ID="editProject::#employee#editProject.xhtml" NAME="output"
+    PATH="/employee/editProject.xhtml"
+    TARGET="rules:#employee#editProject.xhtml"
     TITLE="editProject" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
@@ -123,29 +123,29 @@
  <PROCESS-ITEM NAME="rules:*:10" PATH="*" SHAPE="32,1281,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:10" NAME="item" PATH="*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="findProject::#employeeBootstrap#findProject.xhtml" NAME="output"
-    PATH="/employeeBootstrap/findProject.xhtml"
-    TARGET="rules:#employeeBootstrap#findProject.xhtml"
+    ID="findProject::#employee#findProject.xhtml" NAME="output"
+    PATH="/employee/findProject.xhtml"
+    TARGET="rules:#employee#findProject.xhtml"
     TITLE="findProject" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:*:11" PATH="*" SHAPE="32,1393,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:11" NAME="item" PATH="*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="editWorkPackage::#employeeBootstrap#editWorkPackage.xhtml"
-    NAME="output" PATH="/employeeBootstrap/editWorkPackage.xhtml"
-    TARGET="rules:#employeeBootstrap#editWorkPackage.xhtml"
+    ID="editWorkPackage::#employee#editWorkPackage.xhtml"
+    NAME="output" PATH="/employee/editWorkPackage.xhtml"
+    TARGET="rules:#employee#editWorkPackage.xhtml"
     TITLE="editWorkPackage" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#employeeBootstrap#editEmployee.xhtml"
-  PATH="/employeeBootstrap/editEmployee.xhtml" SHAPE="240,961,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#employee#editEmployee.xhtml"
+  PATH="/employee/editEmployee.xhtml" SHAPE="240,961,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:*:12" PATH="*" SHAPE="32,1505,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:12" NAME="item" PATH="*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="findWorkPackage::#employeeBootstrap#findWorkPackage.xhtml"
-    NAME="output" PATH="/employeeBootstrap/findWorkPackage.xhtml"
-    TARGET="rules:#employeeBootstrap#findWorkPackage.xhtml"
+    ID="findWorkPackage::#employee#findWorkPackage.xhtml"
+    NAME="output" PATH="/employee/findWorkPackage.xhtml"
+    TARGET="rules:#employee#findWorkPackage.xhtml"
     TITLE="findWorkPackage" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
@@ -165,8 +165,8 @@
     TARGET="rules:#timesheet.xhtml" TITLE="currentTimesheet" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#employeeBootstrap#viewAllEmployees.xhtml"
-  PATH="/employeeBootstrap/viewAllEmployees.xhtml" SHAPE="240,1297,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#employee#viewAllEmployees.xhtml"
+  PATH="/employee/viewAllEmployees.xhtml" SHAPE="240,1297,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:*:15" PATH="*" SHAPE="32,1841,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:15" NAME="item" PATH="*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="previousTimesheet::#previousTimesheet.xhtml"
@@ -174,14 +174,14 @@
     TARGET="rules:#previousTimesheet.xhtml" TITLE="previousTimesheet" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#employeeBootstrap#settings.xhtml"
-  PATH="/employeeBootstrap/settings.xhtml" SHAPE="240,1857,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#employee#settings.xhtml"
+  PATH="/employee/settings.xhtml" SHAPE="240,1857,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:*:16" PATH="*" SHAPE="32,1953,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:16" NAME="item" PATH="*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="monthReport::#employeeBootstrap#monthReport.xhtml" NAME="output"
-    PATH="/employeeBootstrap/monthReport.xhtml"
-    TARGET="rules:#employeeBootstrap#monthReport.xhtml"
+    ID="monthReport::#employee#monthReport.xhtml" NAME="output"
+    PATH="/employee/monthReport.xhtml"
+    TARGET="rules:#employee#monthReport.xhtml"
     TITLE="monthReport" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>

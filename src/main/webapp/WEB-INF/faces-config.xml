@@ -10,7 +10,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>loginSuccess</from-outcome>
-			<to-view-id>/employeeBootstrap/index.xhtml</to-view-id>
+			<to-view-id>/employee/index.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -33,7 +33,7 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>newEmployee</from-outcome>
-			<to-view-id>/employeeBootstrap/newEmployee.xhtml</to-view-id>
+			<to-view-id>/employee/newEmployee.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -42,7 +42,7 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>editEmployee</from-outcome>
-			<to-view-id>/employeeBootstrap/editEmployee.xhtml</to-view-id>
+			<to-view-id>/employee/editEmployee.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -51,7 +51,7 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>viewAllEmployees</from-outcome>
-			<to-view-id>/employeeBootstrap/viewAllEmployees.xhtml</to-view-id>
+			<to-view-id>/employee/viewAllEmployees.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -59,7 +59,7 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>settings</from-outcome>
-			<to-view-id>/employeeBootstrap/settings.xhtml</to-view-id>
+			<to-view-id>/employee/settings.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -67,7 +67,7 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>profile</from-outcome>
-			<to-view-id>/employeeBootstrap/profile.xhtml</to-view-id>
+			<to-view-id>/employee/profile.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -76,7 +76,7 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>mypage</from-outcome>
-			<to-view-id>/employeeBootstrap/index.xhtml</to-view-id>
+			<to-view-id>/employee/index.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
