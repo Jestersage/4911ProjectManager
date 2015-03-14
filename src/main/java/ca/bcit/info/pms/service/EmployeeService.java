@@ -5,7 +5,15 @@ import java.util.List;
 import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
 
+/**
+ * Services and business logic of employee services.
+ * 1. Current user permission, authentication.
+ * 2. Current user profile (view & partial edit)
+ * 3. Employee CRUD
+ */
 public interface EmployeeService {
+
+    // ========= current user authorization ========
     /**
      * @param credential username & password pair
      * @return if login credential is valid, and if user should login
@@ -19,6 +27,13 @@ public interface EmployeeService {
     void updateCredential(Credential credential);
 
     /**
+     * @param user currently authenticated user
+     * @return if current user is in HR role.
+     */
+    boolean isRoleHr(final Employee user);
+
+    // ========= Employee CRUD ========
+    /**
      * Add a new employee.
      * @param newEmp    employee information
      */
@@ -28,6 +43,7 @@ public interface EmployeeService {
 
 	List<Employee> getAllEmployee();
 
+    // ========= Helper methods ========
     /**
      * Find employee by username.
      * @param username employee username

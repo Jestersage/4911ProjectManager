@@ -19,6 +19,7 @@ import javax.persistence.criteria.Root;
 
 import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
+import ca.bcit.info.pms.model.Hr;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -187,5 +188,26 @@ public class EmployeeManager  implements Serializable {
 			return null;
 		}
     }
-    
+
+    /**
+     * @param id employee ID
+     * @return if employee has HR role
+     */
+    public boolean hasHrRole(final String id) {
+        boolean userInHrTable = false;
+
+        TypedQuery<Hr> query = entityManager
+                .createQuery("SELECT e FROM Hr e " +
+                        "WHERE e.id = :empId", Hr.class);
+        query.setParameter("empId", id);
+
+        try {
+            final Hr hr = query.getSingleResult();
+            userInHrTable = (hr != null);
+        } catch (NoResultException nre) {
+            // do nothing.
+        }
+
+        return userInHrTable;
+    }
 }

@@ -2,7 +2,6 @@ package ca.bcit.info.pms.controller;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -12,6 +11,7 @@ import javax.inject.Named;
 
 import ca.bcit.info.pms.model.Credential;
 
+import ca.bcit.info.pms.model.Employee;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -26,6 +26,9 @@ public class UserController implements Serializable {
 
     @Inject
     private Credential credential;
+
+    @Inject
+    private Employee user;
 
     private String newCredential;
     private String currentPassword;
@@ -66,39 +69,72 @@ public class UserController implements Serializable {
     }
 
     public String login() {
-        boolean isCorrect = empService.checkCredentials(credential);
+        final boolean isCorrect = empService.checkCredentials(credential);
+        String returnPath;
 
         if (isCorrect) {
+            user = empService.findEmployeeByUsername(credential.getUsername());
+
+            returnPath = "loginSuccess";
             logger.info("Login Success");
-            return "loginSuccess";
+        }
+        else  {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage("authForm",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Login",
+                            "Your username and password didn't match. Try again."));
+            context.getExternalContext().invalidateSession();
+
+            returnPath = "loginFail";
+            logger.info("Login Failed");
         }
 
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage("authForm",
-                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Login",
-                        "Your username and password didn't match. Try again."));
-        context.getExternalContext().invalidateSession();
-        logger.info("Login Failed");
-        return "loginFail";
+        return returnPath;
     }
 
-    public void checkPermissions(ComponentSystemEvent event) {
-        boolean isAuthorized = false;
+    public void checkAuthentication(ComponentSystemEvent event) {
         FacesContext context = FacesContext.getCurrentInstance();
 
-        if (credential != null && credential.getUsername() != null) {
-            isAuthorized = true;
-        }
-
-        if (!isAuthorized) {
+        if (!isAuthenticated()) {
             context.addMessage("authForm",
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Unauthorized! ",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Unauthenticated! ",
                             "Please login to access the page."));
 
             context.getApplication().getNavigationHandler().
-                    handleNavigation(context, null, "unauthorized");
+                    handleNavigation(context, null, "unauthenticated");
 
-            logger.info("unauthorized access");
+            logger.info("unauthenticated access");
+        }
+    }
+
+
+    private boolean isAuthenticated() {
+        boolean isAuthenticated = false;
+
+        if (credential != null && credential.getUsername() != null) {
+            isAuthenticated = true;
+        }
+
+        return isAuthenticated;
+    }
+
+    public void checkHrPermission(ComponentSystemEvent event) {
+        if(!isAuthenticated()) {
+            return; // no need to check HR permission if not authenticated
+        }
+
+        final FacesContext ctx = FacesContext.getCurrentInstance();
+        boolean isHr = empService.isRoleHr(user);
+
+        if (!isHr) {
+            ctx.addMessage("notifications",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Unauthorized! ",
+                            "You don't have authorization to access " + ctx.getViewRoot().getViewId()));
+
+            ctx.getApplication().getNavigationHandler().
+                    handleNavigation(ctx, null, "unauthorized");
+
+            logger.info("unauthorized access to HR functions.");
         }
     }
 

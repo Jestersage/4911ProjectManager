@@ -20,6 +20,7 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable {
 
 	private List<Credential> credentialList;
 
+    // ========= current user authorization ========
 	@Override
 	public boolean checkCredentials(Credential credential) {
 		credentialList = empManager.getCredentials();
@@ -29,7 +30,19 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable {
 		    return false;
 	}
 
-	@Override
+    @Override
+    public void updateCredential(Credential credential) {
+        empManager.updateCredential(credential);
+    }
+
+    @Override
+    public boolean isRoleHr(Employee user) {
+        return empManager.hasHrRole(user.getId());
+    }
+
+
+    // ========= Employee CRUD ========
+    @Override
 	public void persistEmployee(Employee newEmp) {
 		empManager.persistEmployee(newEmp);
 	}
@@ -45,14 +58,9 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable {
 		return empManager.getAllEmployee();
 	}
 
+    // ========= Helper methods ========
     @Override
     public Employee findEmployeeByUsername(String username) {
         return empManager.findByUsername(username);
     }
-
-    @Override
-    public void updateCredential(Credential credential) {
-		empManager.updateCredential(credential);
-	}
-	
 }
