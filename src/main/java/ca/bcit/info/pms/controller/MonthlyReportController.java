@@ -1,14 +1,5 @@
 package ca.bcit.info.pms.controller;
 
-import java.io.Serializable;
-import java.text.DecimalFormat;
-import java.util.List;
-import java.util.Map;
-
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import ca.bcit.info.pms.access.BudgetManager;
 import ca.bcit.info.pms.access.MonthlyReportManager;
 import ca.bcit.info.pms.access.PayGradeManager;
@@ -19,6 +10,14 @@ import ca.bcit.info.pms.model.Budget;
 import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.StatusReport;
 import ca.bcit.info.pms.model.WorkPackage;
+
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.util.List;
+import java.util.Map;
 
 @Named("monthlyReport")
 @RequestScoped

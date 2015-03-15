@@ -22,6 +22,13 @@ public class Employee implements Serializable {
      */
     public static final int MAX_VACATION_HOURS = 120;
 
+    public static final String ROLE_HR = "HR";
+    public static final String ROLE_SUPERVISOR = "Supervisor";
+    public static final String ROLE_TS_APPROVER = "TimesheetApprover";
+    public static final String ROLE_PROJECT_MANAGER = "ProjectManager";
+    public static final String ROLE_ASSISTANT = "Assistant";
+    public static final String ROLE_WP_MANAGER = "WorkPackageManager";
+
     @Id
 	@Column(name = "employeeID", updatable = false)
 	@NotNull(message = "Employee number cannot be null")

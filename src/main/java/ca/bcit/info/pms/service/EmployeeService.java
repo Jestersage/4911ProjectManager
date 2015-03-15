@@ -1,6 +1,7 @@
 package ca.bcit.info.pms.service;
 
 import java.util.List;
+import java.util.Map;
 
 import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
@@ -18,19 +19,19 @@ public interface EmployeeService {
      * @param credential username & password pair
      * @return if login credential is valid, and if user should login
      */
-    boolean checkCredentials(Credential credential);
+    boolean checkCredentials(final Credential credential);
 
     /**
      * Update current user login credential.
      * @param credential username & password pair
      */
-    void updateCredential(Credential credential);
+    void updateCredential(final Credential credential);
 
     /**
-     * @param user currently authenticated user
-     * @return if current user is in HR role.
+     * @param empId currently authenticated user's employee id
+     * @return map of if user has certain roles or not.
      */
-    boolean isRoleHr(final Employee user);
+    Map<String, Boolean> checkAuthorization( final String empId );
 
     // ========= Employee CRUD ========
     /**

@@ -16,7 +16,8 @@
 <h:body>
     <f:metadata>
         <f:event type="preRenderView"
-                 listener="#{userController.checkHrPermission}" />
+                 listener="#{userController.checkAuthorization}" />
+        <f:attribute name="requiredRoles" value="HR" />
     </f:metadata>
 
     <ui:composition template="/templatesBootstrap/masterLayout.xhtml">
@@ -26,14 +27,7 @@
 			<h:outputStylesheet library="css" name="employee.css" />
 		</ui:define>
 
-		<!-- leftMenu -->
-		<ui:define name="leftMenu">
-			<div class="col-xs-2 col-sm-2 col-md-2 " id="leftMenu">
-				<ui:include src="/templatesBootstrap/defaultLeftMenu.xhtml" />
-			</div>
-		</ui:define>
-		<!-- end of leftMenu -->
-
+		
 		<ui:define name="content">
 			<div class="col-md-10">
 				<div class="container-fluid" id="content">

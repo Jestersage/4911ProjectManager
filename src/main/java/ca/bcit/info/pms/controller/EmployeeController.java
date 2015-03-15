@@ -1,24 +1,21 @@
 package ca.bcit.info.pms.controller;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import ca.bcit.info.pms.model.Credential;
+import ca.bcit.info.pms.model.Employee;
+import ca.bcit.info.pms.model.PayLevel;
+import ca.bcit.info.pms.model.PayLevel.PayGrade;
+import ca.bcit.info.pms.service.EmployeeService;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import ca.bcit.info.pms.model.Credential;
-import ca.bcit.info.pms.model.Employee;
-import ca.bcit.info.pms.model.PayLevel;
-import ca.bcit.info.pms.model.PayLevel.PayGrade;
-import ca.bcit.info.pms.service.EmployeeService;
-
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
 
 @Named("empController")
 @RequestScoped

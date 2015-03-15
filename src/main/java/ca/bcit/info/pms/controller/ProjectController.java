@@ -1,16 +1,14 @@
 package ca.bcit.info.pms.controller;
 
-import java.io.Serializable;
+import ca.bcit.info.pms.model.Project;
+import ca.bcit.info.pms.service.ProjectService;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-
-import ca.bcit.info.pms.model.Project;
-import ca.bcit.info.pms.service.ProjectService;
+import java.io.Serializable;
 
 @Named("projectController")
 @RequestScoped
