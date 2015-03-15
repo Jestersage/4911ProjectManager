@@ -51,8 +51,9 @@
 					</div>
 
 					<div class="row heightHUN" id="dashboard">
-						<div class="container-fluid" id="row1">
-							<div class="row">
+					<ui:fragment rendered="#{userController.authorization == 'HR'}">
+					<div class="container-fluid" id="row1">
+							<div class="row" >
 								<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
 									<h2>#{msgs.project}</h2>
 									<h:commandLink action="newProject" value="#{msgs.newProject}" />
@@ -78,7 +79,9 @@
 									<a href="#">#{msgs.pendingTimesheet}</a>
 								</div><!-- /col -->
 							</div><!-- /row -->
-						</div><!-- /up row -->
+						</div><!-- /up row -->				
+					</ui:fragment>
+						
 						<div class="container-fluid" id="row2">
 							<div class="row">
 								<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">

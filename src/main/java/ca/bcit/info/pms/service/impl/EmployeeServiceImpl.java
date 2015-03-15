@@ -11,48 +11,60 @@ import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.service.EmployeeService;
 
-
-@Named("EmployeeService")
-public class EmployeeServiceImpl implements EmployeeService, Serializable {
+@Named( "EmployeeService" )
+public class EmployeeServiceImpl implements EmployeeService, Serializable
+{
 
 	@Inject
 	private EmployeeManager empManager;
 
-	private List<Credential> credentialList;
+	private List< Credential > credentialList;
 
 	@Override
-	public boolean checkCredentials(Credential credential) {
+	public boolean checkCredentials( Credential credential )
+	{
 		credentialList = empManager.getCredentials();
-		if(credentialList != null)
-		    return credentialList.contains(credential);
+		if ( credentialList != null )
+			return credentialList.contains( credential );
 		else
-		    return false;
+			return false;
 	}
 
 	@Override
-	public void persistEmployee(Employee newEmp) {
-		empManager.persistEmployee(newEmp);
+	public void persistEmployee( Employee newEmp )
+	{
+		empManager.persistEmployee( newEmp );
 	}
 
 	@Override
-	public void updateEmployee(Employee newEmp) {
-		empManager.updateEmployee(newEmp);
+	public void updateEmployee( Employee newEmp )
+	{
+		empManager.updateEmployee( newEmp );
 	}
 
 	@Override
-	public List<Employee> getAllEmployee() {
-		
+	public List< Employee > getAllEmployee()
+	{
+
 		return empManager.getAllEmployee();
 	}
 
-    @Override
-    public Employee findEmployeeByUsername(String username) {
-        return empManager.findByUsername(username);
-    }
-
-    @Override
-    public void updateCredential(Credential credential) {
-		empManager.updateCredential(credential);
+	@Override
+	public Employee findEmployeeByUsername( String username )
+	{
+		return empManager.findByUsername( username );
 	}
-	
+
+	@Override
+	public void updateCredential( Credential credential )
+	{
+		empManager.updateCredential( credential );
+	}
+
+	@Override
+	public String checkAuthorization( String userName )
+	{
+		return empManager.getRole( userName );
+	}
+
 }
