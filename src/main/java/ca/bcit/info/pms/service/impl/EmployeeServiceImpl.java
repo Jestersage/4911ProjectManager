@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -78,5 +79,25 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable
     @Override
     public Employee findEmployeeByUsername(String username) {
         return empManager.findByUsername(username);
+    }
+
+    @Override
+    public String getAvailableAuths(Map<String, Boolean> authorizations) {
+        StringBuilder sb = new StringBuilder();
+
+        final Set<Map.Entry<String, Boolean>> authSet = authorizations.entrySet();
+
+        for(Map.Entry<String, Boolean> auth : authSet) {
+            final Boolean authVal = auth.getValue();
+            if (authVal != null & authVal == true) {
+                sb.append(auth.getKey()).append(", ");
+            }
+        }
+
+        if(sb.length() > 0) {
+            sb.delete(sb.length() - 2, sb.length() - 1);
+        }
+
+        return sb.toString();
     }
 }

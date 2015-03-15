@@ -202,23 +202,8 @@ public class UserController implements Serializable {
         this.authorizations = authorizations;
     }
 
-    public String getAuthorizationString() {
-        StringBuilder sb = new StringBuilder();
-
-        Set<Map.Entry<String, Boolean>> authSet = authorizations.entrySet();
-
-        for(Map.Entry<String, Boolean> auth : authSet) {
-            Boolean authVal = auth.getValue();
-            if (authVal != null & authVal == true) {
-                sb.append(auth.getKey()).append(", ");
-            }
-        }
-
-        if(sb.length() > 0) {
-            sb.delete(sb.length() - 2, sb.length() - 1);
-        }
-
-        return sb.toString();
+    public String getAuths() {
+        return empService.getAvailableAuths(authorizations);
     }
 
     public String getCurrentPassword() {

@@ -16,10 +16,14 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 @Named("empController")
 @RequestScoped
 public class EmployeeController implements Serializable {
+
+    @Inject
+    private EmployeeService empService;
 
     /** Hold the new employee information. */
     @Inject
@@ -28,37 +32,7 @@ public class EmployeeController implements Serializable {
     /** Hold info about new employee's supervisor username from and to form. */
     private String supervisorUsername;
 
-    @Inject
-    private EmployeeService empService;
-
     private static final Logger logger = LogManager.getLogger(EmployeeController.class);
-
-    public PayGrade[] getPayLevelItems() {
-        return PayLevel.PayGrade.values();
-    }
-
-    public List<Employee> getEmployees() {
-        return empService.getAllEmployee();
-    }
-
-    public Employee getEmployee() {
-        if (employee.getCredential() == null) {
-            employee.setCredential(new Credential());
-        }
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public String getSupervisorUsername() {
-        return supervisorUsername;
-    }
-
-    public void setSupervisorUsername(String supervisorUsername) {
-        this.supervisorUsername = supervisorUsername;
-    }
 
     /**
      * Add new Employee to database.
@@ -90,4 +64,40 @@ public class EmployeeController implements Serializable {
         return employee;
     }
 
+    public String viewEmployee(final Employee emp) {
+        employee = emp;
+        return "viewEmployee";
+    }
+
+    public PayGrade[] getPayLevelItems() {
+        return PayLevel.PayGrade.values();
+    }
+
+    public List<Employee> getEmployees() {
+        return empService.getAllEmployee();
+    }
+
+    public Employee getEmployee() {
+        if (employee.getCredential() == null) {
+            employee.setCredential(new Credential());
+        }
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public String getSupervisorUsername() {
+        return supervisorUsername;
+    }
+
+    public void setSupervisorUsername(String supervisorUsername) {
+        this.supervisorUsername = supervisorUsername;
+    }
+
+    public String getEmpAuthorizations() {
+        final Map<String, Boolean> authMap = empService.checkAuthorization(employee.getId());
+        return empService.getAvailableAuths(authMap);
+    }
 }

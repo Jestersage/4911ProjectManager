@@ -58,4 +58,12 @@ public interface EmployeeService {
      * @return employee or null
      */
     Employee findEmployeeByUsername(final String username);
+
+    /**
+     * Convert authorization map into string representation, displaying
+     * only available ones.
+     * @param authorizations auth map of an employee
+     * @return string representation of available authorizations.
+     */
+    String getAvailableAuths(final Map<String, Boolean> authorizations);
 }
