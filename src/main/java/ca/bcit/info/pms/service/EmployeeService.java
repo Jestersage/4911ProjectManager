@@ -40,8 +40,15 @@ public interface EmployeeService {
      */
 	void persistEmployee(Employee newEmp);
 
-	void updateEmployee(Employee newEmp);
+    /**
+     * Update existing employee.
+     * @param employee employee to update.
+     */
+	void updateEmployee(Employee employee);
 
+    /**
+     * @return a list of all employees.
+     */
 	List<Employee> getAllEmployee();
 
     // ========= Helper methods ========

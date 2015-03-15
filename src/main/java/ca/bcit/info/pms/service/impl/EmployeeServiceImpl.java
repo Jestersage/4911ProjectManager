@@ -62,9 +62,9 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable
 	}
 
 	@Override
-	public void updateEmployee( Employee newEmp )
+	public void updateEmployee( Employee employee)
 	{
-		empManager.updateEmployee( newEmp );
+		empManager.updateEmployee(employee);
 	}
 
 	@Override

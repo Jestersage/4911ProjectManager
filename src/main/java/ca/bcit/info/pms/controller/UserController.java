@@ -37,38 +37,11 @@ public class UserController implements Serializable {
 
     private static final Logger logger = LogManager.getLogger(UserController.class);
 
-    public String getCurrentPassword() {
-        return currentPassword;
-    }
-
-    public void setCurrentPassword(String currentPassword) {
-        this.currentPassword = currentPassword;
-    }
-
-    public String getNewCredential() {
-        return newCredential;
-    }
-
-    public void setNewCredential(String newCredential) {
-        this.newCredential = newCredential;
-    }
-
-    public String getConfirmCredential() {
-        return confirmCredential;
-    }
-
-    public void setConfirmCredential(String confirmCredential) {
-        this.confirmCredential = confirmCredential;
-    }
-
-    public Credential getCredential() {
-        return credential;
-    }
-
-    public void setCredential(Credential credential) {
-        this.credential = credential;
-    }
-
+    /**
+     * Verify login credential.
+     * If credential valid, initialize user, check user authorizations.
+     * @return navigation view-id
+     */
     public String login() {
         final boolean isCorrect = empService.checkCredentials(credential);
         String returnPath;
@@ -94,6 +67,11 @@ public class UserController implements Serializable {
         return returnPath;
     }
 
+    /**
+     * PreRender event listener, prevent unauthenticated access to pages.
+     * If not authenticated, redirect to login page and show error message.
+     * @param event
+     */
     public void checkAuthentication(ComponentSystemEvent event) {
         FacesContext context = FacesContext.getCurrentInstance();
 
@@ -110,6 +88,9 @@ public class UserController implements Serializable {
     }
 
 
+    /**
+     * @return if current user is authenticated (has login).
+     */
     private boolean isAuthenticated() {
         boolean isAuthenticated = false;
 
@@ -203,4 +184,37 @@ public class UserController implements Serializable {
 
         return null;
     }
+
+    public String getCurrentPassword() {
+        return currentPassword;
+    }
+
+    public void setCurrentPassword(String currentPassword) {
+        this.currentPassword = currentPassword;
+    }
+
+    public String getNewCredential() {
+        return newCredential;
+    }
+
+    public void setNewCredential(String newCredential) {
+        this.newCredential = newCredential;
+    }
+
+    public String getConfirmCredential() {
+        return confirmCredential;
+    }
+
+    public void setConfirmCredential(String confirmCredential) {
+        this.confirmCredential = confirmCredential;
+    }
+
+    public Credential getCredential() {
+        return credential;
+    }
+
+    public void setCredential(Credential credential) {
+        this.credential = credential;
+    }
+
 }

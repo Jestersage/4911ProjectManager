@@ -14,6 +14,9 @@ import javax.validation.constraints.Pattern;
 
 import java.lang.Override;
 
+/**
+ * User login credential - username and password.
+ */
 @Entity
 @Table(name = "Credentials")
 public class Credential implements Serializable {

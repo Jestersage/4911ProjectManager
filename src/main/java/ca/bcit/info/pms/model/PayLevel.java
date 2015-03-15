@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Employee pay grade - an average of pay for each salary level.
+ */
 @Entity
 @Table(name="paygrade")
 public class PayLevel {

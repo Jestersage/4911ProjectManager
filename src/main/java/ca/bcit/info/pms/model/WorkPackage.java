@@ -9,6 +9,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * Work package. Sub-item of project. Can be nested.
+ */
 @Entity
 @Table( name = "WorkPackage" )
 public class WorkPackage implements Serializable

@@ -25,6 +25,9 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+/**
+ * Weekly timesheet.
+ */
 @Entity
 public class Timesheet implements Serializable
 {

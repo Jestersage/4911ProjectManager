@@ -18,6 +18,9 @@ import java.lang.Override;
 import java.math.BigDecimal;
 import java.sql.Date;
 
+/**
+ * Timesheet row for each work package of a timesheet.
+ */
 @Entity
 public class TimesheetRow implements Serializable {
 	@Id

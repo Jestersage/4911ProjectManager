@@ -6,6 +6,9 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+/**
+ * Company employee and user of system.
+ */
 @Entity
 @Table(name = "Employee")
 public class Employee implements Serializable {
