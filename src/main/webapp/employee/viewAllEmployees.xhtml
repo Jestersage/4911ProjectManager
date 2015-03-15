@@ -13,7 +13,8 @@
 <h:body>
     <f:metadata>
         <f:event type="preRenderView"
-                 listener="#{userController.checkAuthorization('HR')}" />
+                 listener="#{userController.checkAuthorization}" />
+        <f:attribute name="requiredRoles" value="HR" />
     </f:metadata>
 
     <ui:composition template="/templatesBootstrap/masterLayout.xhtml">
