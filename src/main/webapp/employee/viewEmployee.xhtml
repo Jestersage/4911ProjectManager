@@ -3,6 +3,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
@@ -49,9 +50,9 @@
                         </div>
                     </div>
 
-
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 ">
+                            <h:form>
                             <dl class="dl-horizontal">
                                 <dt>#{msgs.id}</dt>
                                 <dd>#{empController.employee.id}</dd>
@@ -71,14 +72,47 @@
                                 <dt>#{msgs.authorizations}</dt>
                                 <dd>#{empController.empAuthorizations}</dd>
 
+                                <!-- TODO implement change / assign methods -->
                                 <dt>#{msgs.payLevel}</dt>
-                                <dd>#{empController.employee.payGrade}</dd>
+                                <dd>
+                                    <c:choose>
+                                        <c:when test="#{empController.employee.payGrade != null }">
+                                            #{empController.employee.payGrade}
+                                            <span> [ <h:commandLink value="change"/> ]</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            [ <h:commandLink value="assign" /> ]
+                                        </c:otherwise>
+                                    </c:choose>
+                                </dd>
 
                                 <dt>#{msgs.supervisor}</dt>
-                                <dd>#{empController.employee.supervisor.firstName} #{empController.employee.supervisor.lastName}</dd>
+                                <dd>
+                                    <c:choose>
+                                        <c:when test="#{empController.employee.supervisor != null }">
+                                            #{empController.employee.supervisor.firstName}
+                                            #{empController.employee.supervisor.lastName}
+                                            <span> [ <h:commandLink value="change"/> ]</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            [ <h:commandLink value="assign" /> ]
+                                        </c:otherwise>
+                                    </c:choose>
+                                </dd>
 
                                 <dt>#{msgs.timesheetApprover}</dt>
-                                <dd>#{empController.employee.timesheetApprover.firstName} #{empController.employee.timesheetApprover.lastName}</dd>
+                                <dd>
+                                    <c:choose>
+                                        <c:when test="#{empController.employee.timesheetApprover != null }">
+                                            #{empController.employee.timesheetApprover.firstName}
+                                            #{empController.employee.timesheetApprover.lastName}
+                                            <span> [ <h:commandLink value="change"/> ]</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            [ <h:commandLink value="assign" /> ]
+                                        </c:otherwise>
+                                    </c:choose>
+                                </dd>
 
                                 <dt>#{msgs.flextime}</dt>
                                 <dd>#{empController.employee.flexTimeBanked}</dd>
@@ -89,8 +123,21 @@
                                 <dt>#{msgs.emp_status}</dt>
                                 <dd>#{empController.employee.activeStatus == true ? 'Active' : 'Disabled'}</dd>
                             </dl>
+                            </h:form>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6 ">
+                            <h:form>
+                                <h:commandLink value="#{msgs.edit_emp}"
+                                                 styleClass="btn btn-default" />
+                                <h:commandLink value="#{msgs.emp_disable}"
+                                                 styleClass="btn btn-danger pull-right" />
+                            </h:form>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </ui:define>
