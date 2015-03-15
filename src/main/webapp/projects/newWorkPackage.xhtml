@@ -53,7 +53,7 @@
 					<div class="row">
 
 						<div class="col-xs-12 col-sm-12 col-md-12" id="data">
-							<h:form id="newProjectForm" class="form-horizontal">
+							<h:form id="newWorkPackageForm" class="form-horizontal">
 								<div class="container-fluid">
 									<div class="row">
 										<div class="col-md-7">
@@ -62,7 +62,7 @@
 													value="#{msgs.workPackageNumber}"
 													class="col-sm-3 control-label" />
 												<div class="col-sm-9">
-													<h:inputText id="itWorkPackageNumber" value=""
+													<h:inputText id="itWorkPackageNumber" value="#{WPController.WP.packageNum}"
 														required="true" label="#{msgs.workPackageNumber}"
 														class="form-control" />
 													<h:message errorClass="text-danger"
@@ -75,7 +75,7 @@
 													value="#{msgs.workPackageName}"
 													class="col-sm-3 control-label" />
 												<div class="col-sm-9">
-													<h:inputText id="itWorkPackageName" value=""
+													<h:inputText id="itWorkPackageName" value="#{WPController.WP.name}"
 														required="true" label="#{msgs.workPackageName}"
 														class="form-control" />
 													<h:message errorClass="text-danger" for="itWorkPackageName" />
@@ -87,7 +87,7 @@
 													value="#{msgs.workPackageDescription}"
 													class="col-sm-3 control-label" />
 												<div class="col-sm-9">
-													<h:inputTextarea id="itaWorkPackageDescription" value=""
+													<h:inputTextarea id="itaWorkPackageDescription" value="#{WPController.WP.description}"
 														required="true" label="#{msgs.workPackageDescription}"
 														cols="80" rows="10" class="form-control" />
 													<h:message errorClass="text-danger"

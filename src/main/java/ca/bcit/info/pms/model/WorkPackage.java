@@ -19,7 +19,7 @@ public class WorkPackage implements Serializable
     @Id
 	@GeneratedValue( strategy = GenerationType.AUTO )
 	@Column( name = "packageID", updatable = false, nullable = false )
-	private int id;
+	private Integer id;
 
 	@ManyToOne
 	@JoinColumn( name = "projectID", updatable = false )
@@ -152,12 +152,12 @@ public class WorkPackage implements Serializable
 		this.totalBudget = totalBudget;
 	}
 
-	public int getId()
+	public Integer getId()
 	{
 		return this.id;
 	}
 
-	public void setId( final int id )
+	public void setId( final Integer id )
 	{
 		this.id = id;
 	}

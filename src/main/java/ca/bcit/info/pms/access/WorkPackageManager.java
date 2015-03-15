@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -43,5 +45,24 @@ public class WorkPackageManager implements Serializable {
 		List<WorkPackage> workPackages = query.getResultList();
 		return workPackages;
 	}
+	
+	 /*
+     * updates a WorkPackage in the database
+     */
+    public String updateWorkPackage(WorkPackage workPackage) {
+        try {
+            if (workPackage.getId() == null) {
+                persist(workPackage);               
+                return "search?faces-redirect=true";
+            } else {
+                this.em.merge(workPackage);
+                return "view?faces-redirect=true&id=" + workPackage.getId();
+            }
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(e.getMessage()));
+            return null;
+        }
+    }
 	
 }
