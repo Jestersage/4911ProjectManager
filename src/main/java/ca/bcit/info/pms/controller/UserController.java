@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Map;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 @Named( "userController" )
@@ -191,6 +192,33 @@ public class UserController implements Serializable {
 
     public void setUser(Employee user) {
         this.user = user;
+    }
+
+    public Map<String, Boolean> getAuthorizations() {
+        return authorizations;
+    }
+
+    public void setAuthorizations(Map<String, Boolean> authorizations) {
+        this.authorizations = authorizations;
+    }
+
+    public String getAuthorizationString() {
+        StringBuilder sb = new StringBuilder();
+
+        Set<Map.Entry<String, Boolean>> authSet = authorizations.entrySet();
+
+        for(Map.Entry<String, Boolean> auth : authSet) {
+            Boolean authVal = auth.getValue();
+            if (authVal != null & authVal == true) {
+                sb.append(auth.getKey()).append(", ");
+            }
+        }
+
+        if(sb.length() > 0) {
+            sb.delete(sb.length() - 2, sb.length() - 1);
+        }
+
+        return sb.toString();
     }
 
     public String getCurrentPassword() {
