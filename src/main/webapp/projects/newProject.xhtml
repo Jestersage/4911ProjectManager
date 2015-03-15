@@ -58,7 +58,7 @@
 										value="#{msgs.projectNumber}" class="col-sm-3 control-label" />
 									<div class="col-sm-9">
 										<h:inputText id="itProjectNumber"
-											value="#{projController.project.id}" required="true"
+											value="#{projectController.project.id}" required="true"
 											label="#{msgs.projectNumber}" class="form-control" />
 										<h:message errorClass="text-danger" for="itProjectNumber" />
 									</div>
@@ -69,7 +69,7 @@
 										class="col-sm-3 control-label" />
 									<div class="col-sm-9">
 										<h:inputText id="itProjectName"
-											value="#{projController.project.name}" required="true"
+											value="#{projectController.project.name}" required="true"
 											label="#{msgs.projectName}" class="form-control" />
 										<h:message errorClass="text-danger" for="itProjectName" />
 									</div>
@@ -93,7 +93,7 @@
 										class="col-sm-3 control-label" />
 									<div class="col-sm-9">
 										<h:inputTextarea id="itaProjectDescription"
-											value="#{projController.project.description}" required="true"
+											value="#{projectController.project.description}" required="true"
 											label="#{msgs.projectDescription}" cols="80" rows="10"
 											class="form-control" />
 										<h:message errorClass="text-danger"
@@ -106,7 +106,7 @@
 										class="col-sm-3 control-label" />
 									<div class="col-sm-9">
 										<p:calendar id="popupStartDate"
-											value="#{projController.project.startDate}" required="true"
+											value="#{projectController.startDate}" required="true"
 											label="#{msgs.startDate}" />
 										<h:message errorClass="text-danger" for="popupStartDate" />
 									</div>
@@ -117,13 +117,13 @@
 										class="col-sm-3 control-label" />
 									<div class="col-sm-9">
 										<p:calendar id="popupEndDate"
-											value="#{projController.project.endDate}" required="true"
+											value="#{projectController.endDate}" required="true"
 											label="#{msgs.endDate}" />
 										<h:message errorClass="text-danger" for="popupEndDate" />
 									</div>
 								</div>
 
-								<div class="form-group">
+								<!--  <div class="form-group">
 									<h:outputLabel for="itContractor" value="#{msgs.contractor}"
 										class="col-sm-3 control-label" />
 									<div class="col-sm-9">
@@ -131,12 +131,12 @@
 											label="#{msgs.contractor}" class="form-control" />
 										<h:message errorClass="text-danger" for="itContractor" />
 									</div>
-								</div>
+								</div> -->
 
 								<div class="form-group">
 									<div id="newProjectButtons" class="col-md-offset-3">
 										<h:commandButton value="#{msgs.save}" class="btn btn-primary "
-											action="#{projController.addProject}" />
+											action="#{projectController.addProject}" />
 										<h:commandButton value="#{msgs.clear}" class="btn btn-default" />
 									</div>
 								</div>

@@ -15,8 +15,24 @@ import ca.bcit.info.pms.service.ProjectService;
 @Named("projectController")
 @RequestScoped
 public class ProjectController implements Serializable{
-    
-    @Inject
+    private java.util.Date startDate, endDate;
+    public java.util.Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(java.util.Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public java.util.Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(java.util.Date endDate) {
+		this.endDate = endDate;
+	}
+
+	@Inject
     private ProjectService projService;
     
     /*
@@ -43,9 +59,15 @@ public class ProjectController implements Serializable{
     
     
     public String addProject(){
+    	project.setStartDate(convertJavaDateToSqlDate(startDate));
+    	project.setEndDate(convertJavaDateToSqlDate(endDate));
         projService.persistProject(project);
         logger.info("successfully create new project: " + project.toString());
         return "newProject";
+    }
+    
+    public java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
+        return new java.sql.Date(date.getTime());
     }
     
     public void clearFields(){
