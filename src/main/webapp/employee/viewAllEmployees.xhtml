@@ -73,36 +73,29 @@
 										<h:outputText value="#{employee.lastName}" />
 									</p:column>
 
-									<p:column headerText="#{msgs.email}">
-										<h:outputText value="#{employee.email}" />
-									</p:column>
-
 									<p:column headerText="#{msgs.payLevel}">
 										<h:outputText value="#{employee.payGrade}" />
 									</p:column>
 
 									<p:column headerText="#{msgs.supervisor}">
 										<h:outputText
-											value="#{employee.supervisor.credential.username}" />
+											value="#{employee.supervisor.firstName} #{employee.supervisor.lastName}" />
 									</p:column>
 
-									<p:column headerText="#{msgs.timesheetApprover}">
-										<h:outputText
-											value="#{employee.timesheetApprover.credential.username}" />
-									</p:column>
+                                    <p:column headerText="#{msgs.timesheetApprover}">
+                                        <h:outputText
+                                                value="#{employee.timesheetApprover.firstName} #{employee.timesheetApprover.lastName}" />
+                                    </p:column>
 
 									<p:column>
 										<h:commandLink value="#{msgs.emp_details}" /> |
-                                    <h:commandLink
-											value="#{msgs.edit_emp}" /> |
-                                    <h:commandLink
-											value="#{msgs.deactivate_emp}" />
+                                        <h:commandLink value="#{msgs.edit_emp}" /> |
+                                        <h:commandLink value="#{msgs.deactivate_emp}" />
 									</p:column>
 								</p:dataTable>
 							</h:form>
 						</div>
 					</div>
-					<!--<div class="col-xs-12 col-sm-12 col-md-5">right</div>-->
 				</div>
 			</div>
 			</div>
