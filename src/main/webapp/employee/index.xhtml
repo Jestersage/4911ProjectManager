@@ -24,87 +24,100 @@
 		<ui:define name="content">
 			<h:form>
 				<div class="col-xs-12 col-sm-12 col-md-12 heightHUN">
-					<div  class="container-fluid" id="content">
-					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="container-fluid" id="content">
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12">
 
-							<div id="breadcrumb">
-								<ol class="breadcrumb">
-									<li class="active">#{msgs.myPage}</li>
-								</ol>
-							</div>
+								<div id="breadcrumb">
+									<ol class="breadcrumb">
+										<li class="active">#{msgs.myPage}</li>
+									</ol>
+								</div>
 
-							<div id="pageTitle">
-								<h1>#{msgs.myPage}</h1>
+								<div id="pageTitle">
+									<h1>#{msgs.myPage}</h1>
+								</div>
+								<ui:insert name="notificationArea">
+									<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
+								</ui:insert>
 							</div>
-							<ui:insert name="notificationArea">
-								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
-							</ui:insert>
 						</div>
-					</div><!-- /search and breadcrumb -->
+						<!-- /search and breadcrumb -->
 
 
-					<div class="row" id="search">
-						<div class="col-xs-12 col-sm-12 col-md-6 bg-primary"
-							id="searchFilters">left</div>
-						<div class="bg-info" id="searchResults">right</div>
-					</div>
+						<div class="row" id="search">
+							<div class="col-xs-12 col-sm-12 col-md-6 bg-primary"
+								id="searchFilters">left</div>
+							<div class="bg-info" id="searchResults">right</div>
+						</div>
 
-					<div class="row heightHUN" id="dashboard">
-					<ui:fragment rendered="#{userController.authorization == 'HR'}">
-					<div class="container-fluid" id="row1">
-							<div class="row" >
-								<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
-									<h2>#{msgs.project}</h2>
-									<h:commandLink action="newProject" value="#{msgs.newProject}" />
-									<h:commandLink action="editProject" value="#{msgs.editProject}" />
-									<h:commandLink action="findProject" value="#{msgs.findProject}" />
-								</div>
-								<div class="col-xs-12 col-sm-12 col-md-4" id="middleSection">
-									<h2>#{msgs.workPackage}</h2>
-									<h:commandLink action="newWorkPackage"
-										value="#{msgs.newWorkPackage}" />
-									<h:commandLink action="editWorkPackage"
-										value="#{msgs.editWorkPackage}" />
-									<h:commandLink action="findWorkPackage"
-										value="#{msgs.findWorkPackage}" />
-									<a href="#">#{msgs.assignEmployeeToWP}</a>
-								</div>
-								<div class="col-xs-12 col-sm-12 col-md-4" id="rightSection">
-									<h2>#{msgs.timesheet}</h2>
-									<h:commandLink action="currentTimesheet" value="#{msgs.currentTimesheet}"/>
-									<h:commandLink action="previousTimesheet"
-										value="#{msgs.previousTimesheet}" />
-									<!-- timesheets not approved -->
-									<a href="#">#{msgs.pendingTimesheet}</a>
-								</div><!-- /col -->
-							</div><!-- /row -->
-						</div><!-- /up row -->				
-					</ui:fragment>
+						<div class="row heightHUN" id="dashboard">
 						
-						<div class="container-fluid" id="row2">
-							<div class="row">
-								<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
-									<h2>#{msgs.employees}</h2>
-									<h:commandLink action="newEmployee" value="#{msgs.newEmployee}" />
-									<h:commandLink action="editEmployee" value="#{msgs.editEmployee}" />
+								<div class="container-fluid" id="row1">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
+											<h2>#{msgs.project}</h2>
+											<h:commandLink action="newProject" value="#{msgs.newProject}" />
+											<h:commandLink action="editProject"
+												value="#{msgs.editProject}" />
+											<h:commandLink action="findProject"
+												value="#{msgs.findProject}" />
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-4" id="middleSection">
+											<h2>#{msgs.workPackage}</h2>
+											<h:commandLink action="newWorkPackage"
+												value="#{msgs.newWorkPackage}" />
+											<h:commandLink action="editWorkPackage"
+												value="#{msgs.editWorkPackage}" />
+											<h:commandLink action="findWorkPackage"
+												value="#{msgs.findWorkPackage}" />
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-4" id="rightSection">
+											<h2>#{msgs.timesheet}</h2>
+											<h:commandLink action="currentTimesheet"
+												value="#{msgs.currentTimesheet}" />
+											<h:commandLink action="previousTimesheet"
+												value="#{msgs.previousTimesheet}" />
+											<!-- timesheets not approved -->
+											<a href="#">#{msgs.pendingTimesheet}</a>
+										</div>
+										<!-- /col -->
+									</div>
+									<!-- /row -->
 								</div>
-								<div class="col-xs-12 col-sm-12 col-md-4" id="middleSection">
-									<h2>#{msgs.reports}</h2>
-									<h:commandLink action="monthReport" value="#{msgs.monthReport}" />
-									<a href="#">#{msgs.newWeekReport}</a>
+								<!-- /up row -->
+							
+
+							<div class="container-fluid" id="row2">
+								<div class="row">
+									<ui:fragment rendered="#{userController.authorization == 'HR'}">
+										<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
+											<h2>#{msgs.employees}</h2>
+											<h:commandLink action="newEmployee"
+												value="#{msgs.newEmployee}" />
+											<h:commandLink action="editEmployee"
+												value="#{msgs.editEmployee}" />
+										</div>
+									</ui:fragment>
+									<div class="col-xs-12 col-sm-12 col-md-4" id="middleSection">
+										<h2>#{msgs.reports}</h2>
+										<h:commandLink action="monthReport"
+											value="#{msgs.monthReport}" />
+										<a href="#">#{msgs.newWeekReport}</a>
+									</div>
+									<ui:fragment rendered="#{userController.authorization == 'HR'}">
+										<div class="col-xs-12 col-sm-12 col-md-4" id="rightSection">
+											<h2>#{msgs.rates}</h2>
+											<h:commandLink action="editPayLevels"
+												value="#{msgs.editPayLevels}" />
+										</div>
+									</ui:fragment>
 								</div>
-								<div class="col-xs-12 col-sm-12 col-md-4" id="rightSection">
-									<h2>#{msgs.rates}</h2>
-									<h:commandLink action="editPayLevels"
-										value="#{msgs.editPayLevels}" />
-								</div>
+								<!-- /row -->
 							</div>
-							<!-- /row -->
+							<!-- /container -->
 						</div>
-						<!-- /container -->
-					</div>
-					<!-- /lower row -->
+						<!-- /lower row -->
 					</div>
 				</div>
 				<!-- /main column -->
