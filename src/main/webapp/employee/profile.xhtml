@@ -50,82 +50,40 @@
 					<div class="row">
 
 						<div class="col-xs-12 col-sm-12 col-md-6">
-						
-							<form class="form-horizontal">
-								<div class="form-group">
-									<h:outputLabel for="txtID" class="col-sm-2 control-label"
-										value="#{msgs.id}" />
-									<div class="col-sm-4">
-										<h:outputText id="txtID" value="#{userController.user.id}" />
-									</div>
-								</div>
+                            <dl class="dl-horizontal">
+                                <dt>#{msgs.id}</dt>
+                                <dd>#{userController.user.id}</dd>
 
-								<div class="form-group">
-									<h:outputLabel for="txtFirstName" value="#{msgs.firstName}"
-										class="col-sm-2 control-label" />
-									<div class="col-sm-4">
-										<h:outputText id="txtFirstName" value="#{userController.user.firstName}" />
-									</div>
-								</div>
+                                <dt>#{msgs.userName}</dt>
+                                <dd>#{userController.user.credential.username}</dd>
 
-								<div class="form-group">
-									<h:outputLabel for="txtLastName" value="#{msgs.lastName}"
-										class="col-sm-2 control-label" />
-									<div class="col-sm-4">
-										<h:outputText id="txtLastName" value="#{userController.user.lastName}" />
-									</div>
-								</div>
+                                <dt>#{msgs.firstName}</dt>
+                                <dd>#{userController.user.firstName}</dd>
 
-								<div class="form-group">
-									<h:outputLabel for="txtUserName" value="#{msgs.userName}"
-										class="col-sm-2 control-label" />
-									<div class="col-sm-4">
-										<h:outputText id="txtUserName" value="#{userController.user.credential.username}" />
-									</div>
-								</div>
+                                <dt>#{msgs.lastName}</dt>
+                                <dd>#{userController.user.lastName}</dd>
 
-								<div class="form-group">
-									<h:outputLabel for="txtRole" value="#{msgs.authorizations}"
-										class="col-sm-2 control-label" />
-									<div class="col-sm-4">
-										<h:outputText id="txtRole" value="#{userController.authorizationString}" />
-									</div>
-								</div>
+                                <dt>#{msgs.email}</dt>
+                                <dd>#{userController.user.email}</dd>
 
-								<div class="form-group">
-									<h:outputLabel for="txtPayLevel" value="#{msgs.payLevel}"
-										class="col-sm-2 control-label" />
-									<div class="col-sm-4">
-										<h:outputText id="txtPayLevel" value="#{userController.user.payGrade}" />
-									</div>
-								</div>
+                                <dt>#{msgs.authorizations}</dt>
+                                <dd>#{userController.authorizationString}</dd>
 
-								<div class="form-group">
-									<h:outputLabel for="txtSupervisor" value="#{msgs.supervisor}"
-										class="col-sm-2 control-label" />
+                                <dt>#{msgs.payLevel}</dt>
+                                <dd>#{userController.user.payGrade}</dd>
 
-									<div class="col-sm-4">
-										<h:outputText id="txtSupervisor" value="#{userController.user.supervisor.firstName} #{userController.user.supervisor.lastName}" />
-									</div>
-								</div>								
-								
-								
-								<div class="form-group">
-									<h:outputLabel for="txtFlextime" value="#{msgs.flextime}"
-										class="col-sm-2 control-label" />
-									<div class="col-sm-4">
-										<h:outputText id="txtFlextime" value="#{userController.user.flexTimeBanked}" />
-									</div>
-								</div>
-								
-								<div class="form-group">
-									<h:outputLabel for="txtVacation" value="#{msgs.vacation}"
-										class="col-sm-2 control-label" />
-									<div class="col-sm-4">
-										<h:outputText id="txtVacation" value="#{userController.user.vacationBanked}" />
-									</div>
-								</div>	
-							</form>
+                                <dt>#{msgs.supervisor}</dt>
+                                <dd>#{userController.user.supervisor.firstName} #{userController.user.supervisor.lastName}</dd>
+
+                                <dt>#{msgs.timesheetApprover}</dt>
+                                <dd>#{userController.user.timesheetApprover.firstName} #{userController.user.timesheetApprover.lastName}</dd>
+
+                                <dt>#{msgs.flextime}</dt>
+                                <dd>#{userController.user.flexTimeBanked}</dd>
+
+                                <dt>#{msgs.vacation}</dt>
+                                <dd>#{userController.user.vacationBanked}</dd>
+                            </dl>
 						</div><!-- /col -->
 						
 						<!--  display information about the project and work packages the users is working on -->
