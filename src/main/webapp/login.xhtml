@@ -18,11 +18,8 @@
 
 	<!-- Bootstrap styles -->`
     <h:outputStylesheet
-		library="bootstrap-3.3.2-dist/bootstrap-3.3.2-dist/css"
-		name="bootstrap.css" />
-	<h:outputStylesheet
-		library="bootstrap-3.3.2-dist/bootstrap-3.3.2-dist/css"
-		name="bootstrap-theme.css" />
+            library="bootstrap-3.3.2-dist/bootstrap-3.3.2-dist/css"
+            name="bootstrap.min.css" />
 
 
 	<!-- needed for bootstrap -->
@@ -34,15 +31,19 @@
 
 		<h:form id="authForm" class="form-signin">
 			<h2 class="form-signin-heading">#{msgs.auth_form_name}</h2>
-            <h:messages id="messages" showDetail="true" errorClass="text-danger" infoClass="text-success"/>
+            <!-- TODO insert notification area -->
+            <h:messages globalOnly="true" errorClass="alert alert-danger"
+                        warnClass="alert alert-warning" infoClass="alert alert-success"/>
 
 			<h:outputLabel value="#{msgs.auth_username}" for="inputUsername" class="sr-only" />
+            <h:message for="inputUsername" errorClass="text-danger" />
 			<h:inputText value="#{userController.credential.username}" id="inputUsername"
 				class="form-control" required="true" label="#{msgs.auth_username}"
                 pt:placeholder="#{msgs.auth_username}" pt:autofocus="true" />
 
 			<h:outputLabel value="#{msgs.password}" for="inputPassword"
 				class="sr-only" />
+            <h:message for="inputPassword" errorClass="text-danger" />
 			<p:password value="#{userController.credential.password}" id="inputPassword"
                         class="form-control" required="true" label="#{msgs.auth_password}"
                         pt:placeholder="#{msgs.password}" />

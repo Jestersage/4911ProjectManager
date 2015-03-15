@@ -80,9 +80,9 @@ public class UserController implements Serializable {
         }
         else  {
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage("authForm",
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Login",
-                            "Your username and password didn't match. Try again."));
+            context.addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Your username and password didn't match. Try again. ", null));
             context.getExternalContext().invalidateSession();
 
             returnPath = "loginFail";
@@ -96,9 +96,9 @@ public class UserController implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
 
         if (!isAuthenticated()) {
-            context.addMessage("authForm",
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Unauthenticated! ",
-                            "Please login to access the page."));
+            context.addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Please login to access the page.", null));
 
             context.getApplication().getNavigationHandler().
                     handleNavigation(context, null, "unauthenticated");
@@ -127,9 +127,9 @@ public class UserController implements Serializable {
         boolean isHr = empService.isRoleHr(user);
 
         if (!isHr) {
-            ctx.addMessage("notifications",
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Unauthorized! ",
-                            "You don't have authorization to access " + ctx.getViewRoot().getViewId()));
+            ctx.addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "You don't have authorization to access " + ctx.getViewRoot().getViewId(), null));
 
             ctx.getApplication().getNavigationHandler().
                     handleNavigation(ctx, null, "unauthorized");
@@ -151,9 +151,9 @@ public class UserController implements Serializable {
                 empService.updateCredential(credential);
                 credential = new Credential();
 
-                context.addMessage("authForm",
-                        new FacesMessage(FacesMessage.SEVERITY_INFO, "Success",
-                                "Password changed. Please login again."));
+                context.addMessage(null,
+                        new FacesMessage(FacesMessage.SEVERITY_INFO,
+                                "Password changed successfully. Please login again.", null));
             } else {
                 context.addMessage("changePassForm:confirmNewPassword",
                         new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
