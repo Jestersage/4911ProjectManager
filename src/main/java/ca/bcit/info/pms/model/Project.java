@@ -28,6 +28,9 @@ public class Project implements Serializable {
 	@NotNull(message = "Project description can not be null")
 	private String description;
 
+	@NotNull(message = "Manager Id can not be null")
+	private String employeeID;
+	
 	@NotNull(message = "Start date can not 	be null")
 	private Date startDate;
 
@@ -36,11 +39,19 @@ public class Project implements Serializable {
     @Enumerated(EnumType.ORDINAL)
 	private ProjectStatus status;
 
+	public String getEmployeeID() {
+		return employeeID;
+	}
+
+	public void setEmployeeID(String employeeID) {
+		this.employeeID = employeeID;
+	}
+
 	@ManyToMany
     @JoinTable(name = "ProjectAssignment",
         joinColumns = {@JoinColumn(name = "projectID")},
         inverseJoinColumns = {@JoinColumn(name = "employeeID")})
-	@NotNull(message = "Employee ID can not be null")
+	//@NotNull(message = "Employee ID can not be null")
 	@Size(max = 10, message = "Employee ID cannot be longer than 10")
 	private Set<Employee> employees;
 

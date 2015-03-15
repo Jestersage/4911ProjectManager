@@ -20,20 +20,37 @@ import ca.bcit.info.pms.service.WorkPackageService;
  *
  */
 
-@Named("WPController")
+@Named("workPackageController")
 @RequestScoped
 public class WorkPackageController implements Serializable {
 
 	@Inject
-	private WorkPackage WP;
+	private WorkPackage workPackage;
 	@Inject
-	private WorkPackageService WPService;
+	private WorkPackageService workPackageService;
+	
+	
 	
     private static final Logger logger = LogManager.getLogger(WorkPackageController.class);
 
-	public String addWorkPackage(){
-		WPService.persistWorkPackage(WP);
-        logger.info("successfully create new WorkPackage: " + WP.toString());
-        return "newProject";
+    
+    public String index(){
+    	
+    	logger.info("index new WorkPackage: ");
+		return "newWorkPackage";
+    	
     }
+
+	public String addWorkPackage(){
+		workPackageService.persistWorkPackage(workPackage);
+        logger.info("successfully create new WorkPackage: " + workPackage.toString());
+        return "index";
+    }
+	
+	public WorkPackage getworkPackage() {
+		return workPackage;
+	}
+	public void setworkPackage(WorkPackage workPackage) {
+		this.workPackage = workPackage;
+	}
 }
