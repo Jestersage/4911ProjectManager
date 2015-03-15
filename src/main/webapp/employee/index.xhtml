@@ -111,7 +111,9 @@
 										<h2>#{msgs.reports}</h2>
 										<h:commandLink action="monthReport"
 											value="#{msgs.monthReport}" />
-										<a href="#">#{msgs.newWeekReport}</a>
+										
+										<h:commandLink action="weekReport"
+											value="#{msgs.newWeekReport}" />
 									</div>
 									<ui:fragment rendered="#{userController.authorization == 'HR'}">
 										<div class="col-xs-12 col-sm-12 col-md-4" id="rightSection">
