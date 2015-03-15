@@ -122,15 +122,16 @@
 									<div class="">
 										<button type="button" class="btn btn-default dropdown-toggle"
 											data-toggle="dropdown" aria-expanded="false">
-											#{msgs.firstName} #{msgs.lastName} <span class="caret"></span>
+											#{userController.user.firstName} #{userController.user.lastName}
+                                            <span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu" role="menu">
-											<li><h:commandLink value="#{msgs.logout}"
-													action="#{userController.logout}" /></li>
 											<li><h:commandLink action="profile"
 													value="#{msgs.profile}" /></li>
 											<li><h:commandLink value="#{msgs.settings}"
 													action="settings"></h:commandLink></li>
+                                            <li><h:commandLink value="#{msgs.logout}"
+                                                               action="#{userController.logout}" /></li>
 										</ul>
 									</div>
 									<!-- /btn-group -->

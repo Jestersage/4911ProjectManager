@@ -185,6 +185,14 @@ public class UserController implements Serializable {
         return null;
     }
 
+    public Employee getUser() {
+        return user;
+    }
+
+    public void setUser(Employee user) {
+        this.user = user;
+    }
+
     public String getCurrentPassword() {
         return currentPassword;
     }
