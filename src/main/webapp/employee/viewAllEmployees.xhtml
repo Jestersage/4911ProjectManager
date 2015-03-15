@@ -22,6 +22,7 @@
 			<h:outputStylesheet library="css" name="viewAllEmployees.css" />
 		</ui:define>
 		<ui:define name="content">
+		<div id="content">
 			<div class="col-xs-12 col-sm-12 colmd-12">
 
 
@@ -51,7 +52,7 @@
 					<div class="col-xs-12 col-sm-12 col-md-12 ">
 						<div id="employeesDataTable">
 							<h:form>
-								<p:dataTable styleClass="table" var="employee"
+								<p:dataTable id="empTable" styleClass="bg-none table" var="employee"
 									value="#{empController.employees}" paginator="true"
 									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 									rowsPerPageTemplate="10,20,30">
@@ -102,6 +103,7 @@
 					</div>
 					<!--<div class="col-xs-12 col-sm-12 col-md-5">right</div>-->
 				</div>
+			</div>
 			</div>
 		</ui:define>
 	</ui:composition>

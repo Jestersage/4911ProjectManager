@@ -175,7 +175,29 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	<!-- reports rules new Month Report -->
+	
+	<!-- pending timesheet -->
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>pendingTimesheet</from-outcome>
+			<to-view-id>/timesheets/pendingTimesheet.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	<!-- pending timesheet for timesheet approver -->
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>pendingTimesheetTA</from-outcome>
+			<to-view-id>/timesheets/pendingTimesheetTA.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<!-- reports rules - new Month Report -->
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -184,6 +206,18 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
+	
+	<!-- reports rules - new Week Report -->
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>weekReport</from-outcome>
+			<to-view-id>/reports/weekReport.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
 	<!-- pay levels rules edit pay levels -->
 	<navigation-rule>
 		<from-view-id>*</from-view-id>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<title></title>
+	<h:outputStylesheet library="css" name="reset.css" />
+	<h:outputStylesheet library="css" name="template.css" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
+
+		<ui:define name="windowTitle">#{msgs.editEmployee}</ui:define>
+
+		<ui:define name="additionalStyleSheets">
+			<h:outputStylesheet library="css" name="employee.css" />
+		</ui:define>
+
+		
+		<ui:define name="content">
+			<div class="col-md-10">
+				<div class="container-fluid" id="content">
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12">
+
+							<div id="breadcrumb">
+							<h:form>
+								<ol class="breadcrumb">
+									<li><h:commandLink action="mypage" value="#{msgs.myPage}"/></li>
+									<li class="active">#{msgs.editEmployee}</li>
+								</ol>
+								</h:form>
+							</div>
+
+							<div id="pageTitle">								
+									<h1>#{msgs.editEmployee}</h1>								
+							</div>
+							<ui:insert name="notificationArea">
+								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
+							</ui:insert>
+							
+						</div>						
+					</div>
+
+					<div class="row">
+
+						<div class="col-xs-12 col-sm-12 col-md-6" id="data">
+							<h:form id="newEmployeeForm" class="form-horizontal">
+								<div class="form-group">
+									<h:outputLabel for="itUserId" value="#{msgs.id}"
+										class="col-sm-3 control-label" />
+									<div class="col-sm-9">
+										<h:inputText id="itUserId" value="#{empController.employee.id}" required="true"
+											label="#{msgs.id}" class="form-control" />
+										<h:message errorClass="text-danger" for="itUserId" />
+									</div>
+								</div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="itUserName" value="#{msgs.userName}"
+                                                   class="col-sm-3 control-label" />
+                                    <div class="col-sm-9">
+                                        <h:inputText id="itUserName" value="#{empController.employee.credential.username}" required="true"
+                                                     label="#{msgs.userName}" class="form-control" />
+                                        <h:message errorClass="text-danger" for="itUserName" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="itPassword" value="#{msgs.password}"
+                                                   class="col-sm-3 control-label" />
+                                    <div class="col-sm-9">
+                                        <h:inputText id="itPassword" value="#{empController.employee.credential.password}" required="true"
+                                                     label="#{msgs.password}" class="form-control" />
+                                        <h:message errorClass="text-danger" for="itPassword" />
+                                    </div>
+                                </div>
+
+								<div class="form-group">
+									<h:outputLabel for="itFirstName" value="#{msgs.firstName}"
+										class="col-sm-3 control-label" />
+
+									<div class="col-sm-9">
+										<h:inputText id="itFirstName" value="#{empController.employee.firstName}" required="true"
+											label="#{msgs.firstName}" class="form-control" />
+										<h:message errorClass="text-danger" for="itFirstName" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="itLastName" value="#{msgs.lastName}"
+										class="col-sm-3 control-label" />
+									<div class="col-sm-9">
+										<h:inputText id="itLastName" value="#{empController.employee.lastName}" required="true"
+											label="#{msgs.lastName}" class="form-control" />
+										<h:message errorClass="text-danger" for="itLastName" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="itEmail" value="#{msgs.email}"
+										class="col-sm-3 control-label" />
+									<div class="col-sm-9">
+										<h:inputText id="itEmail" value="#{empController.employee.email}" required="true"
+											label="#{msgs.email}" class="form-control" />
+										<h:message errorClass="text-danger" for="itEmail" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="mnPayLevel" value="#{msgs.payLevel}"
+										class="col-sm-3 control-label" />
+									<div class="col-sm-9">
+										<h:selectOneMenu class="form-control" id="mnPayLevel" required="true"
+											value="#{empController.employee.payGrade}" label="#{msgs.payLevel}"
+                                            style="width:200px">
+											<f:selectItems value="#{empController.payLevelItems}" var="p"
+                                                    itemValue="#{p}" itemLabel="#{p.label}"/>
+										</h:selectOneMenu>
+										<h:message errorClass="text-danger" for="mnPayLevel" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel for="mnSupervisor" value="#{msgs.supervisor}"
+										class="col-sm-3 control-label" />
+									<div class="col-sm-9">
+                                        <h:inputText id="mnSupervisor" value="#{empController.supervisorUsername}" required="true"
+                                                     pt:placeholder="Supervisor Username" label="#{msgs.supervisor}" class="form-control" />
+										<h:message errorClass="text-danger" for="mnSupervisor" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div id="newEmployeeButtons" class="col-md-offset-3">
+										<h:commandButton  value="#{msgs.save}" class="btn btn-primary " action="#{empController.addEmployee}"/>
+										<h:commandButton value="#{msgs.clear}" class="btn btn-default"/>
+									</div>
+								</div>
+								<!-- end of new employee data -->
+
+							</h:form>
+							<!-- end of employee form -->
+						</div>
+						<!-- end of data div. Employee information -->
+
+						<!-- end of notificationEmployee div -->
+					</div>
+				</div>
+			</div>
+		</ui:define>
+		<!-- end of wrapper -->
+	</ui:composition>
+</h:body>
+<!-- end of body -->
+</html>

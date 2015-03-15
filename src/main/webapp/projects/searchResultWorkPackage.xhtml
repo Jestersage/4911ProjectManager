@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<title></title>
+</head>
+<body>
+
+<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
+
+	<ui:define name="windowTitle">#{msgs.search}</ui:define>
+
+	<ui:define name="content">
+		<div class="col-md-12">
+			<div class="container-fluid" id="content">
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+
+						<div id="breadcrumb">
+							<h:form>
+								<ol class="breadcrumb">
+									<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
+									<li class="active">#{msgs.search}</li>
+								</ol>
+							</h:form>
+						</div>
+
+						<div id="pageTitle">
+							<h1>#{msgs.workPackage} #{msgs.results}</h1>
+						</div>
+						<ui:insert name="notificationArea">
+							<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
+						</ui:insert>
+					</div>
+				</div>
+
+				<div class="row">
+
+				<div class="col-xs-12 col-sm-12 col-md-10">
+							<p:dataTable var="" value="">
+								<p:column headerText="#{msgs.workPackageNumber}">
+									<h:outputText value=""/>
+								</p:column>
+								<p:column headerText="#{msgs.projectNumber}">
+									<h:outputText value=""/>
+								</p:column>								
+								<p:column headerText="#{msgs.workPackageName}">
+									<h:outputText value=""/>
+								</p:column>
+								<p:column headerText="#{msgs.respEng}">
+									<h:outputText value=""/>
+								</p:column>
+								<p:column headerText="#{msgs.status}">
+									<h:outputText value=""/>
+								</p:column>
+								<p:column headerText="#{msgs.workPackageDescription}">
+									<h:outputText value=""/>
+								</p:column>								
+							</p:dataTable>						
+						</div>
+				</div>
+				<!-- /row of content -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /col -->
+	</ui:define>
+	</ui:composition>
+</body>
+</html>

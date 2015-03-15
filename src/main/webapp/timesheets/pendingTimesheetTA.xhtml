@@ -13,7 +13,7 @@
 <h:body>
 	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
 
-		<ui:define name="windowTitle">#{msgs.previousTimesheet}</ui:define>
+		<ui:define name="windowTitle">#{msgs.pendingTimesheet}</ui:define>
 
 		<ui:define name="additionalStyleSheets">
 			<h:outputStylesheet library="css" name="timesheet.css" />
@@ -34,13 +34,13 @@
 								<h:form>
 									<ol class="breadcrumb">
 										<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
-										<li class="active">#{msgs.previousTimesheet}</li>
+										<li class="active">#{msgs.pendingTimesheet}</li>
 									</ol>
 								</h:form>
 							</div>
 
 							<div id="pageTitle">
-								<h1>#{msgs.previousTimesheet}</h1>
+								<h1>#{msgs.pendingTimesheet}</h1>
 							</div>
 							<ui:insert name="notificationArea">
 								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
@@ -53,6 +53,10 @@
 						<div class="col-xs-12 col-sm-12 col-md-9">
 							<p:dataTable var="" value="">
 								<p:column headerText="#{msgs.timesheet}">
+									<!-- change later to outputLink -->
+									<h:outputText value="" />
+								</p:column>
+								<p:column headerText="#{msgs.id}">
 									<!-- change later to outputLink -->
 									<h:outputText value="" />
 								</p:column>

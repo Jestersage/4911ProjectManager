@@ -52,41 +52,49 @@
 						</div>
 
 						<div class="row heightHUN" id="dashboard">
-						
-								<div class="container-fluid" id="row1">
-									<div class="row">
-										<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
-											<h2>#{msgs.project}</h2>
-											<h:commandLink action="newProject" value="#{msgs.newProject}" />
-											<h:commandLink action="editProject"
-												value="#{msgs.editProject}" />
-											<h:commandLink action="findProject"
-												value="#{msgs.findProject}" />
-										</div>
-										<div class="col-xs-12 col-sm-12 col-md-4" id="middleSection">
-											<h2>#{msgs.workPackage}</h2>
-											<h:commandLink action="newWorkPackage"
-												value="#{msgs.newWorkPackage}" />
-											<h:commandLink action="editWorkPackage"
-												value="#{msgs.editWorkPackage}" />
-											<h:commandLink action="findWorkPackage"
-												value="#{msgs.findWorkPackage}" />
-										</div>
-										<div class="col-xs-12 col-sm-12 col-md-4" id="rightSection">
-											<h2>#{msgs.timesheet}</h2>
-											<h:commandLink action="currentTimesheet"
-												value="#{msgs.currentTimesheet}" />
-											<h:commandLink action="previousTimesheet"
-												value="#{msgs.previousTimesheet}" />
-											<!-- timesheets not approved -->
-											<a href="#">#{msgs.pendingTimesheet}</a>
-										</div>
-										<!-- /col -->
+
+							<div class="container-fluid" id="row1">
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
+										<h2>#{msgs.project}</h2>
+										<h:commandLink action="newProject" value="#{msgs.newProject}" />
+										<h:commandLink action="editProject"
+											value="#{msgs.editProject}" />
+
 									</div>
-									<!-- /row -->
+									<div class="col-xs-12 col-sm-12 col-md-4" id="middleSection">
+										<h2>#{msgs.workPackage}</h2>
+										<h:commandLink action="newWorkPackage"
+											value="#{msgs.newWorkPackage}" />
+										<h:commandLink action="editWorkPackage"
+											value="#{msgs.editWorkPackage}" />
+									</div>
+									<div class="col-xs-12 col-sm-12 col-md-4" id="rightSection">
+										<h2>#{msgs.timesheet}</h2>
+										<h:commandLink action="currentTimesheet"
+											value="#{msgs.currentTimesheet}" />
+										<h:commandLink action="previousTimesheet"
+											value="#{msgs.previousTimesheet}" />
+										<!-- timesheets not approved -->										
+
+										<ui:fragment rendered="true">
+											<h:commandLink action="pendingTimesheet"
+												value="#{msgs.pendingTimesheet}" />
+										</ui:fragment>
+
+										<!-- for timesheet approver -->
+										<ui:fragment rendered="true">
+											<h:commandLink action="pendingTimesheetTA"
+												value="#{msgs.pendingTimesheet}" />
+										</ui:fragment>
+
+									</div>
+									<!-- /col -->
 								</div>
-								<!-- /up row -->
-							
+								<!-- /row -->
+							</div>
+							<!-- /up row -->
+
 
 							<div class="container-fluid" id="row2">
 								<div class="row">
@@ -103,7 +111,9 @@
 										<h2>#{msgs.reports}</h2>
 										<h:commandLink action="monthReport"
 											value="#{msgs.monthReport}" />
-										<a href="#">#{msgs.newWeekReport}</a>
+										
+										<h:commandLink action="weekReport"
+											value="#{msgs.newWeekReport}" />
 									</div>
 									<ui:fragment rendered="#{userController.isAuthorized('HR')}">
 										<div class="col-xs-12 col-sm-12 col-md-4" id="rightSection">
