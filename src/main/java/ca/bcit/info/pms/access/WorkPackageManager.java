@@ -12,12 +12,18 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.WorkPackage;
 
 @Dependent
 @Stateless
 public class WorkPackageManager implements Serializable {
+	
+	private static final Logger logger = LogManager.getLogger(ProjectManager.class);
+	
 	@PersistenceContext(unitName = "pms-persistence-unit") private EntityManager em;
 	
 	public WorkPackage find(final int id) {
@@ -34,7 +40,17 @@ public class WorkPackageManager implements Serializable {
 	}
 	
 	public void persist(final WorkPackage newWorkPackage) {
-		em.persist(newWorkPackage);
+		
+		WorkPackage match = em.find(WorkPackage.class, newWorkPackage.getId());
+	        
+	        if (match != null) {
+	            logger.warn("Record(WorkPackage) already exist! ");
+	        }
+	        else {
+	        	em.persist(newWorkPackage);
+	            logger.info("Project added: " + newWorkPackage.getId() + ", " + newWorkPackage.getName());
+	        }
+		
 	}
 	
 	public List<WorkPackage> getWorkPackages(final String projectId) {

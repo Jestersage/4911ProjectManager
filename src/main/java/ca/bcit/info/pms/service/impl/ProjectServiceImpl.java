@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import ca.bcit.info.pms.access.ProjectManager;
 import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.service.ProjectService;
 
+
+@Named( "ProjectService" )
 public class ProjectServiceImpl implements Serializable, ProjectService{
 
     @Inject
@@ -27,13 +30,13 @@ public class ProjectServiceImpl implements Serializable, ProjectService{
     @Override
     public List<Project> getAllProjects() {
         // TODO Auto-generated method stub
-        return null;
+        return projManager.getAllProjects();
     }
 
     @Override
     public Project findProjectByProjectName(String projectName) {
         // TODO Auto-generated method stub
-        return null;
+        return projManager.findByProjectName(projectName);
     }
 
 }

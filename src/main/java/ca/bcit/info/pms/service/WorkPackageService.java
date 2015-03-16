@@ -3,6 +3,7 @@ package ca.bcit.info.pms.service;
 
 import java.util.List;
 
+import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.WorkPackage;
 
 public interface WorkPackageService {
@@ -13,5 +14,5 @@ public interface WorkPackageService {
     
     List<WorkPackage> getAllWorkPackages();
     
-    	
+    List<Project> getAllProjects();	
 }

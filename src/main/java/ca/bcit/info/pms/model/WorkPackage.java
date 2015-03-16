@@ -18,13 +18,16 @@ public class WorkPackage implements Serializable
 {
     @Id
 	@GeneratedValue( strategy = GenerationType.AUTO )
-	@Column( name = "packageID", updatable = false, nullable = false )
-	private Integer id;
+	@Column( name = "packageID" )
+	private Integer id=0;
 
+    
+    private String employeeID;
+    
 	@ManyToOne
 	@JoinColumn( name = "projectID", updatable = false )
-	@NotNull( message = "Project ID can not be null" )
-	@Size( max = 20, message = "Project ID cannot be longer than 20" )
+	//@NotNull( message = "Project ID can not be null" )
+	//@Size( max = 20, message = "Project ID cannot be longer than 20" )
 	private Project project;
 
 	@NotNull( message = "Package Number can not be null" )
@@ -35,16 +38,16 @@ public class WorkPackage implements Serializable
     @JoinTable(name = "WorkAssignment",
             joinColumns = {@JoinColumn(name = "packageID")},
             inverseJoinColumns = {@JoinColumn(name = "employeeID")})
-	@NotNull( message = "Employee ID can not be null" )
-	@Size( max = 10, message = "Employee ID cannot be longer than 10" )
+//	@NotNull( message = "Employee ID can not be null" )
+//	@Size( max = 10, message = "Employee ID cannot be longer than 10" )
 	private Set< Employee > employees;
 
 	@ManyToOne
     @JoinColumn(name = "parentwpID")
 	private WorkPackage parentWP;
 
-	@OneToMany( mappedBy = "parentWP" )
-	private Collection< WorkPackage > childWP;
+//	@OneToMany( mappedBy = "parentWP" )
+//	private Collection< WorkPackage > childWP;
 
 	@Column( name = "packageName" )
 	@Size( max = 20, message = "Package name cannot be longer than 20" )
@@ -58,7 +61,7 @@ public class WorkPackage implements Serializable
     @NotNull( message = "Work package status cannot be null.")
 	private ProjectStatus status;
 
-    @OneToOne(orphanRemoval = true)
+    @OneToOne(cascade = {CascadeType.ALL},orphanRemoval = true)
     @JoinColumn(name = "budgetID")
     private Budget budget;
     
@@ -86,6 +89,14 @@ public class WorkPackage implements Serializable
     
     @Transient
     private String totalVarianceCost;
+
+    
+    
+    
+    
+	public WorkPackage() {
+		this.budget = new Budget();
+	}
 
 	public String getVarianceManDays() {
 		return varianceManDays;
@@ -201,16 +212,16 @@ public class WorkPackage implements Serializable
 	{
 		this.parentWP = parentWP;
 	}
-
-	public Collection< WorkPackage > getChildWP()
-	{
-		return childWP;
-	}
-
-	public void setChildWP( Collection< WorkPackage > childWP )
-	{
-		this.childWP = childWP;
-	}
+//
+//	public Collection< WorkPackage > getChildWP()
+//	{
+//		return childWP;
+//	}
+//
+//	public void setChildWP( Collection< WorkPackage > childWP )
+//	{
+//		this.childWP = childWP;
+//	}
 
 	public String getName()
 	{
@@ -282,33 +293,19 @@ public class WorkPackage implements Serializable
 		return result;
 	}
 
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("WorkPackage{");
-        sb.append("id=").append(id);
-        sb.append(", project=").append(project.getId());
-        sb.append(", packageNum='").append(packageNum).append('\'');
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", description='").append(description).append('\'');
-        sb.append(", status=").append(status.toString());
-        sb.append(", budget=").append(budget);
+   
 
-        sb.append(", employees={");
-        for(Employee e : employees) {
-            sb.append(e.getCredential().getUsername()).append(",");
-        }
-        sb.append('}');
+	public String getEmployeeID() {
+		return employeeID;
+	}
 
-        if (parentWP != null) {
-            sb.append(", parentWP=").append(parentWP.getPackageNum());
-        }
+	public void setEmployeeID(String employeeID) {
+		this.employeeID = employeeID;
+	}
 
-        sb.append(", childWP={");
-        for (WorkPackage wp : childWP) {
-            sb.append(wp.getPackageNum()).append(",");
-        }
-        sb.append('}');
-        sb.append('}');
-        return sb.toString();
-    }
+	@Override
+	public String toString() {
+		return "WorkPackage [packageNum=" + packageNum + ", name=" + name
+				+ ", status=" + status + "]";
+	}
 }
