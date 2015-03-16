@@ -64,9 +64,36 @@ public class EmployeeController implements Serializable {
         return employee;
     }
 
+    /**
+     * View an employee profile detail.
+     * @param emp employee to view
+     * @return navigation view-id
+     */
     public String viewEmployee(final Employee emp) {
         employee = emp;
         return "viewEmployee";
+    }
+
+    /**
+     * Edit an employee's profile
+     * @param emp employee to edit
+     * @return navigation view-id
+     */
+    public String editEmployee(final Employee emp) {
+        employee = emp;
+        return "editEmp";
+    }
+
+    /**
+     * Edit an employee's profile.
+     * NOTE: somehow from viewEmployee.xhtml to edit, will loose
+     * employee object before it hit action method.
+     * @param empId employee id of the employee to edit
+     * @return navigation view-id
+     */
+    public String editEmployee(final String empId) {
+        employee = empService.findEmployeeById(empId);
+        return "editEmp";
     }
 
     public PayGrade[] getPayLevelItems() {

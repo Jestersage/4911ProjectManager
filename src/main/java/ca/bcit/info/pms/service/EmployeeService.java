@@ -60,6 +60,13 @@ public interface EmployeeService {
     Employee findEmployeeByUsername(final String username);
 
     /**
+     * Find employee by id.
+     * @param id employee id.
+     * @return employee or null
+     */
+    Employee findEmployeeById(final String id);
+
+    /**
      * Convert authorization map into string representation, displaying
      * only available ones.
      * @param authorizations auth map of an employee

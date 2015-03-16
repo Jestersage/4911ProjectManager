@@ -82,6 +82,11 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable
     }
 
     @Override
+    public Employee findEmployeeById(String id) {
+        return empManager.findById(id);
+    }
+
+    @Override
     public String getAvailableAuths(Map<String, Boolean> authorizations) {
         StringBuilder sb = new StringBuilder();
 

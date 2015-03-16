@@ -14,15 +14,18 @@
 </h:head>
 
 <h:body>
-	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
+    <f:metadata>
+        <f:event type="preRenderView"
+                 listener="#{userController.checkAuthorization}" />
+        <f:attribute name="requiredRoles" value="HR" />
+    </f:metadata>
 
+    <ui:composition template="/templatesBootstrap/masterLayout.xhtml">
 		<ui:define name="windowTitle">#{msgs.editEmployee}</ui:define>
-
 		<ui:define name="additionalStyleSheets">
 			<h:outputStylesheet library="css" name="employee.css" />
 		</ui:define>
 
-		
 		<ui:define name="content">
 			<div class="col-md-10">
 				<div class="container-fluid" id="content">
@@ -34,42 +37,37 @@
 							<h:form>
 								<ol class="breadcrumb">
 									<li><h:commandLink action="mypage" value="#{msgs.myPage}"/></li>
+                                    <li><h:commandLink action="viewAllEmployees" value="#{msgs.viewEmployees}" /></li>
 									<li class="active">#{msgs.editEmployee}</li>
 								</ol>
 								</h:form>
 							</div>
 
-							<div id="pageTitle">								
-									<h1>#{msgs.editEmployee}</h1>								
+							<div id="pageTitle">
+                                <h1>#{msgs.editEmployee}</h1>
 							</div>
 							<ui:insert name="notificationArea">
 								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
 							</ui:insert>
-							
-						</div>						
+
+						</div>
 					</div>
 
 					<div class="row">
 
 						<div class="col-xs-12 col-sm-12 col-md-6" id="data">
-							<h:form id="newEmployeeForm" class="form-horizontal">
+							<h:form id="editEmployeeForm" class="form-horizontal">
 								<div class="form-group">
-									<h:outputLabel for="itUserId" value="#{msgs.id}"
-										class="col-sm-3 control-label" />
+                                    <span class="col-sm-3 control-label">#{msgs.id}</span>
 									<div class="col-sm-9">
-										<h:inputText id="itUserId" value="#{empController.employee.id}" required="true"
-											label="#{msgs.id}" class="form-control" />
-										<h:message errorClass="text-danger" for="itUserId" />
+                                        #{empController.employee.id}
 									</div>
 								</div>
 
                                 <div class="form-group">
-                                    <h:outputLabel for="itUserName" value="#{msgs.userName}"
-                                                   class="col-sm-3 control-label" />
+                                    <span class="col-sm-3 control-label">#{msgs.userName}</span>
                                     <div class="col-sm-9">
-                                        <h:inputText id="itUserName" value="#{empController.employee.credential.username}" required="true"
-                                                     label="#{msgs.userName}" class="form-control" />
-                                        <h:message errorClass="text-danger" for="itUserName" />
+                                        #{empController.employee.credential.username}
                                     </div>
                                 </div>
 
