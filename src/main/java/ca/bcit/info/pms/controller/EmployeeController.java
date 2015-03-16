@@ -51,7 +51,8 @@ public class EmployeeController implements Serializable {
 
         empService.persistEmployee(employee);
         logger.info("successfully create new employee: " + employee.toString());
-        return "viewAllEmployees";
+
+        return "viewEmployee";
     }
 
     public String updateEmployee() {
@@ -69,8 +70,7 @@ public class EmployeeController implements Serializable {
         empService.updateEmployee(employee);
         logger.info("successfully updated employee: " + employee.toString());
 
-        // TODO navigate to viewEmployee
-        return "viewAllEmployees";
+        return "viewEmployee";
     }
 
     private Employee initializeNewEmployee() {
