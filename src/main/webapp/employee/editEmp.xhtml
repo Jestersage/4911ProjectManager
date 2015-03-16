@@ -56,7 +56,7 @@
 					<div class="row">
 
 						<div class="col-xs-12 col-sm-12 col-md-6" id="data">
-							<h:form id="editEmployeeForm" class="form-horizontal">
+							<h:form id="employeeForm" class="form-horizontal">
 								<div class="form-group">
                                     <span class="col-sm-3 control-label">#{msgs.id}</span>
 									<div class="col-sm-9">
@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
 
-								<div class="form-group">
+                                <div class="form-group">
 									<h:outputLabel for="itFirstName" value="#{msgs.firstName}"
 										class="col-sm-3 control-label" />
 
@@ -136,9 +136,27 @@
 									</div>
 								</div>
 
+                                <div class="form-group">
+                                    <h:outputLabel for="mnTimesheetApprover" value="#{msgs.timesheetApprover}"
+                                                   class="col-sm-3 control-label" />
+                                    <div class="col-sm-9">
+                                        <h:inputText id="mnTimesheetApprover" value="#{empController.tsApproverUsername}" required="true"
+                                                     pt:placeholder="Timesheet Approver Username" label="#{msgs.timesheetApprover}" class="form-control" />
+                                        <h:message errorClass="text-danger" for="mnTimesheetApprover" />
+                                    </div>
+                                </div>
+
+                                <div id="hiddenInputs">
+                                    <h:inputHidden id="hdUserId" value="#{empController.employee.id}" />
+                                    <h:inputHidden id="hdUserName" value="#{empController.employee.credential.username}" />
+                                    <h:inputHidden id="hdstatus" value="#{empController.employee.activeStatus}" />
+                                    <h:inputHidden id="hdflextime" value="#{empController.employee.flexTimeBanked}" />
+                                    <h:inputHidden id="hdvacation" value="#{empController.employee.vacationBanked}" />
+                                </div>
+
 								<div class="form-group">
 									<div id="newEmployeeButtons" class="col-md-offset-3">
-										<h:commandButton  value="#{msgs.save}" class="btn btn-primary " action="#{empController.addEmployee}"/>
+										<h:commandButton  value="#{msgs.save}" class="btn btn-primary " action="#{empController.updateEmployee}"/>
 										<h:commandButton value="#{msgs.clear}" class="btn btn-default"/>
 									</div>
 								</div>

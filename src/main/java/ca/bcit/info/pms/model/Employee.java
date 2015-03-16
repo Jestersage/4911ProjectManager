@@ -39,7 +39,7 @@ public class Employee implements Serializable {
     // TODO check uniqueness
 	private String id;
 
-    @OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+    @OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE},fetch=FetchType.EAGER)
     @JoinColumn(name = "username")
     @NotNull(message = "User credential cannot be null")
     private Credential credential;

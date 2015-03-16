@@ -32,26 +32,44 @@ public class EmployeeController implements Serializable {
     /** Hold info about new employee's supervisor username from and to form. */
     private String supervisorUsername;
 
+    /** Hold info about new employee's timesheet approver username from and to form. */
+    private String tsApproverUsername;
+
     private static final Logger logger = LogManager.getLogger(EmployeeController.class);
 
     /**
      * Add new Employee to database.
      */
     public String addEmployee() {
-        // find and set supervisor
-        final Employee supervisor = empService.findEmployeeByUsername(supervisorUsername);
-        if (supervisor == null) {
-            FacesContext.getCurrentInstance().addMessage("newEmployeeForm:mnSupervisor",
-                    new FacesMessage("No employee found with username: " + supervisorUsername));
+        boolean foundSupervisor = addEmpSupervisor();
+        // return to the form to correct information
+        if (!foundSupervisor) {
             return null;
-        } else {
-            employee.setSupervisor(supervisor);
         }
 
         initializeNewEmployee();
 
         empService.persistEmployee(employee);
         logger.info("successfully create new employee: " + employee.toString());
+        return "viewAllEmployees";
+    }
+
+    public String updateEmployee() {
+        boolean foundSupervisor = addEmpSupervisor();
+        // return to the form to correct information
+        if (!foundSupervisor) {
+            return null;
+        }
+
+        boolean foundApprover = addEmpTimesheetApprover();
+        if (!foundApprover) {
+            return null;
+        }
+
+        empService.updateEmployee(employee);
+        logger.info("successfully updated employee: " + employee.toString());
+
+        // TODO navigate to viewEmployee
         return "viewAllEmployees";
     }
 
@@ -62,6 +80,47 @@ public class EmployeeController implements Serializable {
         employee.setVacationBanked(new BigDecimal(0));
 
         return employee;
+    }
+
+    /**
+     * find employee with username = supervisorUsername, and set it as employee's supervisor.
+     * @return if supervisor was found
+     */
+    private boolean addEmpSupervisor() {
+        boolean found = false;
+        final Employee supervisor = empService.findEmployeeByUsername(supervisorUsername);
+        if (supervisor == null) {
+            FacesContext.getCurrentInstance().addMessage("employeeForm:mnSupervisor",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "",
+                            "No employee found with username: " + supervisorUsername));
+        } else {
+            employee.setSupervisor(supervisor);
+            found = true;
+        }
+
+        return found;
+    }
+
+    private boolean addEmpTimesheetApprover() {
+        boolean found = false;
+
+        if (tsApproverUsername != null && tsApproverUsername.equals(supervisorUsername)) {
+            employee.setTimesheetApprover(employee.getSupervisor());
+            found = true;
+        }
+        else {
+            final Employee approver = empService.findEmployeeByUsername(tsApproverUsername);
+            if (approver == null) {
+                FacesContext.getCurrentInstance().addMessage("employeeForm:mnTimesheetApprover",
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "",
+                                "No employee found with username: " + tsApproverUsername));
+            } else {
+                employee.setTimesheetApprover(approver);
+                found = true;
+            }
+        }
+
+        return found;
     }
 
     /**
@@ -81,6 +140,7 @@ public class EmployeeController implements Serializable {
      */
     public String editEmployee(final Employee emp) {
         employee = emp;
+        logger.info("before edit: " + employee);
         return "editEmp";
     }
 
@@ -116,11 +176,28 @@ public class EmployeeController implements Serializable {
     }
 
     public String getSupervisorUsername() {
+        final Employee supervisor = employee.getSupervisor();
+        if (supervisor != null) {
+            supervisorUsername = supervisor.getCredential().getUsername();
+        }
+
         return supervisorUsername;
     }
 
-    public void setSupervisorUsername(String supervisorUsername) {
-        this.supervisorUsername = supervisorUsername;
+    public void setSupervisorUsername(String username) {
+        this.supervisorUsername = username;
+    }
+
+    public String getTsApproverUsername() {
+        final Employee approver = employee.getTimesheetApprover();
+        if (approver != null) {
+            tsApproverUsername = approver.getCredential().getUsername();
+        }
+        return tsApproverUsername;
+    }
+
+    public void setTsApproverUsername(String username) {
+        this.tsApproverUsername = username;
     }
 
     public String getEmpAuthorizations() {
