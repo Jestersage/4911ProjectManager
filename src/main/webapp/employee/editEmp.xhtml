@@ -157,7 +157,7 @@
 								<div class="form-group">
 									<div id="newEmployeeButtons" class="col-md-offset-3">
 										<h:commandButton  value="#{msgs.save}" class="btn btn-primary " action="#{empController.updateEmployee}"/>
-										<h:commandButton value="#{msgs.clear}" class="btn btn-default"/>
+										<h:commandButton value="#{msgs.cancel}" immediate="true" class="btn btn-default" action="viewAllEmployees"/>
 									</div>
 								</div>
 								<!-- end of new employee data -->
