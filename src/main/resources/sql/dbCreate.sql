@@ -64,6 +64,7 @@ CREATE TABLE Project (
   employeeID    varchar(10),
   markupValue   double,
   genReport       tinyint(1) NOT NULL,
+  contractorName  varchar(512),
   CONSTRAINT projectID  
     PRIMARY KEY (projectID)
 );
