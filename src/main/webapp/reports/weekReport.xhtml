@@ -19,8 +19,8 @@
 
 		<ui:define name="windowTitle">#{msgs.newWeekReport}</ui:define>
 
-		
-		
+
+
 		<ui:define name="content">
 			<div class="col-md-10">
 				<div class="container-fluid" id="content">
@@ -57,10 +57,13 @@
 												<h:outputLabel for="itWorkPackageNumber"
 													value="#{msgs.workPackageNumber}"
 													class="col-sm-3 control-label" />
+
 												<div class="col-sm-9">
-													<h:inputText id="itWorkPackageNumber" value=""
-														required="true" label="#{msgs.workPackageNumber}"
-														class="form-control" />
+													<p:inputText pt:placeholder="type to search" id="itWorkPackageNumber"
+														value="#{weekReport.id}">
+														<p:ajax event="blur" update="out2"
+															listener="#{weekReport.findWP}" />
+													</p:inputText>
 													<h:message errorClass="text-danger"
 														for="itWorkPackageNumber" />
 												</div>
@@ -71,10 +74,7 @@
 													value="#{msgs.workPackageName}"
 													class="col-sm-3 control-label" />
 												<div class="col-sm-9">
-													<h:inputText id="itWorkPackageName" value=""
-														required="true" label="#{msgs.workPackageName}"
-														class="form-control" />
-													<h:message errorClass="text-danger" for="itWorkPackageName" />
+													<h:outputText id="out2" value="#{weekReport.wp.name}" />
 												</div>
 											</div>
 
@@ -87,25 +87,28 @@
 															class="col-sm-3 control-label" />
 														<div class="col-sm-2">
 															<h:inputText pt:placeholder="P1" id="itWorkPackageBudget"
-																value="" required="true"
+																value="#{weekReport.statusReport.p1}" required="true"
 																label="#{msgs.workPackageBudget}" class="form-control" />
 															<h:message errorClass="text-danger"
 																for="itWorkPackageBudget" />
 														</div>
 														<div class="col-sm-2">
-															<h:inputText pt:placeholder="P2" value="" required="true"
+															<h:inputText pt:placeholder="P2"
+																value="#{weekReport.statusReport.p2}" required="true"
 																label="#{msgs.workPackageBudget}" class="form-control" />
 															<h:message errorClass="text-danger" for="" />
 														</div>
 
 														<div class="col-sm-2">
-															<h:inputText pt:placeholder="P3" value="" required="true"
+															<h:inputText pt:placeholder="P3"
+																value="#{weekReport.statusReport.p3}" required="true"
 																label="#{msgs.workPackageBudget}" class="form-control" />
 															<h:message errorClass="text-danger" for="" />
 														</div>
 
 														<div class="col-sm-2">
-															<h:inputText pt:placeholder="P4" value="" required="true"
+															<h:inputText pt:placeholder="P4"
+																value="#{weekReport.statusReport.p4}" required="true"
 																label="#{msgs.workPackageBudget}" class="form-control" />
 															<h:message errorClass="text-danger" for="" />
 														</div>
@@ -114,24 +117,28 @@
 													<div class="form-group">
 
 														<div class="col-sm-2 col-sm-offset-3">
-															<h:inputText pt:placeholder="P5" value="" required="true"
+															<h:inputText pt:placeholder="P5"
+																value="#{weekReport.statusReport.p5}" required="true"
 																label="#{msgs.workPackageBudget}" class="form-control" />
 															<h:message errorClass="text-danger" for="" />
 														</div>
 														<div class="col-sm-2">
-															<h:inputText pt:placeholder="SS" value="" required="true"
-																label="#{msgs.workPackageBudget}" class="form-control" />
-															<h:message errorClass="text-danger" for="" />
-														</div>
-
-														<div class="col-sm-2">
-															<h:inputText pt:placeholder="JS" value="" required="true"
+															<h:inputText pt:placeholder="SS"
+																value="#{weekReport.statusReport.SS}" required="true"
 																label="#{msgs.workPackageBudget}" class="form-control" />
 															<h:message errorClass="text-danger" for="" />
 														</div>
 
 														<div class="col-sm-2">
-															<h:inputText pt:placeholder="DS" value="" required="true"
+															<h:inputText pt:placeholder="JS"
+																value="#{weekReport.statusReport.JS}" required="true"
+																label="#{msgs.workPackageBudget}" class="form-control" />
+															<h:message errorClass="text-danger" for="" />
+														</div>
+
+														<div class="col-sm-2">
+															<h:inputText pt:placeholder="DS"
+																value="#{weekReport.statusReport.DS}" required="true"
 																label="#{msgs.workPackageBudget}" class="form-control" />
 															<h:message errorClass="text-danger" for="" />
 														</div>
@@ -143,9 +150,10 @@
 												<h:outputLabel for="itaComments" value="#{msgs.comments}"
 													class="col-sm-3 control-label" />
 												<div class="col-sm-9">
-													<h:inputTextarea id="itaComments" value="" required="true"
-														label="#{msgs.comments}" cols="80" rows="10"
-														class="form-control" />
+													<h:inputTextarea id="itaComments"
+														value="#{weekReport.statusReport.comments}"
+														required="true" label="#{msgs.comments}" cols="80"
+														rows="10" class="form-control" />
 													<h:message errorClass="text-danger" for="itaComments" />
 												</div>
 											</div>
@@ -153,6 +161,7 @@
 											<div class="form-group">
 												<div id="newWeekReport" class="col-md-offset-3">
 													<h:commandButton value="#{msgs.save}"
+														action="#{weekReport.save}"
 														class="marginOneEm btn btn-primary " />
 													<h:commandButton value="#{msgs.clear}"
 														class="marginOneEm btn btn-default" />
@@ -171,7 +180,7 @@
 							<!-- end of employee form -->
 						</div>
 						<!-- end of data div. Employee information -->
-						
+
 						<!-- end of notificationEmployee div -->
 					</div>
 				</div>
