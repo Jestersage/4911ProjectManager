@@ -175,17 +175,17 @@ public class EmployeeController implements Serializable {
     }
 
     public String updateTsApprover() {
-        boolean found;
+        final boolean found;
+        String returnUrl = null;
 
         employee = empService.findEmployeeById(employee.getId());
         found = addEmpTimesheetApprover();
         if (found) {
             empService.updateEmployee(employee);
+            returnUrl = "viewEmployee";
         }
 
-        logger.info("update approver: " + employee);
-
-        return "viewEmployee";
+        return returnUrl;
     }
 
     public PayGrade[] getPayLevelItems() {

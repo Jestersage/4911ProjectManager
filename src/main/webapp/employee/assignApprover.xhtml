@@ -46,22 +46,29 @@
 				</div>
 
 				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12">
-						<h:form id="employeeForm" class="form-horizontal">
-                            <h:inputHidden value="#{empController.employee.id}" />
-                            <div class="input-group col-sm-4">
-                                <h:inputText id="mnTimesheetApprover" required="true"
-                                             value="#{empController.tsApproverUsername}"
-                                             pt:placeholder="Timesheet Approver Username" styleClass="form-control"
-                                             label="#{msgs.timesheetApprover}"/>
+                    <div class="col-sm-4">
+                        <div class="panel panel-default ">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">For Employee #{empController.employee.firstName} #{empController.employee.lastName}</h3>
+                            </div>
+                            <div class="panel-body">
+                                <h:form id="employeeForm">
+                                    <h:inputHidden value="#{empController.employee.id}" />
+                                    <div class="input-group">
+                                        <h:inputText id="mnTimesheetApprover" required="true"
+                                                     value="#{empController.tsApproverUsername}"
+                                                     pt:placeholder="Timesheet Approver Username" styleClass="form-control"
+                                                     label="#{msgs.timesheetApprover}"/>
                                         <span class="input-group-btn">
                                             <h:commandLink styleClass="btn btn-default" value="#{msgs.save}"
                                                            action="#{empController.updateTsApprover}" />
                                         </span>
+                                    </div>
+                                    <h:message errorClass="text-danger" for="mnTimesheetApprover"/>
+                                </h:form>
                             </div>
-                            <h:message errorClass="text-danger" for="mnTimesheetApprover"/>
-						</h:form>
-					</div><!-- /col -->
+                        </div>
+                    </div><!-- /col -->
 				</div><!-- /outter row -->
 			</div><!-- /col -->
 		</ui:define>
