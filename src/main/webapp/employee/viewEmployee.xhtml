@@ -2,147 +2,165 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://java.sun.com/jstl/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title></title>
+	<title></title>
 </h:head>
 <h:body>
-    <f:metadata>
-        <f:event type="preRenderView"
-                 listener="#{userController.checkAuthorization}" />
-        <f:attribute name="requiredRoles" value="HR" />
-    </f:metadata>
+	<f:metadata>
+		<f:event type="preRenderView"
+			listener="#{userController.checkAuthorization}" />
+		<f:attribute name="requiredRoles" value="HR" />
+	</f:metadata>
 
-    <ui:composition template="/templatesBootstrap/masterLayout.xhtml">
-        <ui:define name="windowTitle">#{msgs.employees}</ui:define>
-        <ui:define name="additionalStyleSheets">
-            <h:outputStylesheet library="css" name="viewAllEmployees.css" />
-        </ui:define>
-        <ui:define name="content">
-            <div id="content">
-                <div class="col-xs-12 col-sm-12 colmd-12">
+	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
+		<ui:define name="windowTitle">#{msgs.employees}</ui:define>
+		<ui:define name="additionalStyleSheets">
+			<h:outputStylesheet library="css" name="viewAllEmployees.css" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="content">
+				<div class="col-xs-12 col-sm-12 colmd-12">
 
 
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12">
 
-                            <div id="breadcrumb">
-                                <h:form>
-                                    <ol class="breadcrumb">
-                                        <li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
-                                        <li><h:commandLink action="viewAllEmployees" value="#{msgs.viewEmployees}" /></li>
-                                        <li class="active">#{msgs.viewEmployee}</li>
-                                    </ol>
-                                </h:form>
-                            </div>
+							<div id="breadcrumb">
+								<h:form>
+									<ol class="breadcrumb">
+										<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
+										<li><h:commandLink action="viewAllEmployees"
+												value="#{msgs.viewEmployees}" /></li>
+										<li class="active">#{msgs.viewEmployee}</li>
+									</ol>
+								</h:form>
+							</div>
 
-                            <div id="pageTitle">
-                                <h1>#{msgs.viewEmployee}</h1>
-                            </div>
-                            <ui:insert name="notificationArea">
-                                <ui:include src="/templatesBootstrap/notificationArea.xhtml" />
-                            </ui:insert>
-                        </div>
-                    </div>
+							<div id="pageTitle">
+								<h1>#{msgs.viewEmployee}</h1>
+							</div>
+							<ui:insert name="notificationArea">
+								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
+							</ui:insert>
+						</div>
+					</div>
 
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 ">
-                            <h:form>
-                            <dl class="dl-horizontal">
-                                <dt>#{msgs.id}</dt>
-                                <dd>#{empController.employee.id}</dd>
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 ">
+							<h:form>
+								<dl class="dl-horizontal">
+									<dt>#{msgs.id}</dt>
+									<dd>#{empController.employee.id}</dd>
 
-                                <dt>#{msgs.userName}</dt>
-                                <dd>#{empController.employee.credential.username}</dd>
+									<dt>#{msgs.userName}</dt>
+									<dd>#{empController.employee.credential.username}</dd>
 
-                                <dt>#{msgs.firstName}</dt>
-                                <dd>#{empController.employee.firstName}</dd>
+									<dt>#{msgs.firstName}</dt>
+									<dd>#{empController.employee.firstName}</dd>
 
-                                <dt>#{msgs.lastName}</dt>
-                                <dd>#{empController.employee.lastName}</dd>
+									<dt>#{msgs.lastName}</dt>
+									<dd>#{empController.employee.lastName}</dd>
 
-                                <dt>#{msgs.email}</dt>
-                                <dd>#{empController.employee.email}</dd>
+									<dt>#{msgs.email}</dt>
+									<dd>#{empController.employee.email}</dd>
 
-                                <dt>#{msgs.authorizations}</dt>
-                                <dd>#{empController.empAuthorizations}</dd>
+									<dt>#{msgs.authorizations}</dt>
+									<dd>#{empController.empAuthorizations}</dd>
 
-                                <!-- TODO implement change / assign methods -->
-                                <dt>#{msgs.payLevel}</dt>
-                                <dd>
-                                    <c:choose>
-                                        <c:when test="#{empController.employee.payGrade != null }">
+									<!-- TODO implement change / assign methods -->
+									<dt>#{msgs.payLevel}</dt>
+									<dd>
+										<c:choose>
+											<c:when test="#{empController.employee.payGrade != null }">
                                             #{empController.employee.payGrade}
-                                            <span> [ <h:commandLink value="change"/> ]</span>
-                                        </c:when>
-                                        <c:otherwise>
-                                            [ <h:commandLink value="assign" /> ]
+                                            <span> [ <h:commandLink
+														value="change" /> ]
+												</span>
+											</c:when>
+											<c:otherwise>
+                                            [ <h:commandLink
+													value="assign" /> ]
                                         </c:otherwise>
-                                    </c:choose>
-                                </dd>
+										</c:choose>
+									</dd>
 
-                                <dt>#{msgs.supervisor}</dt>
-                                <dd>
-                                    <c:choose>
-                                        <c:when test="#{empController.employee.supervisor != null }">
+									<dt>#{msgs.supervisor}</dt>
+									<dd>
+										<c:choose>
+											<c:when test="#{empController.employee.supervisor != null }">
                                             #{empController.employee.supervisor.firstName}
                                             #{empController.employee.supervisor.lastName}
-                                            <span> [ <h:commandLink value="change"/> ]</span>
-                                        </c:when>
-                                        <c:otherwise>
-                                            [ <h:commandLink value="assign" /> ]
+                                            <span> [ <h:commandLink
+														value="change" /> ]
+												</span>
+											</c:when>
+											<c:otherwise>
+                                            [ <h:commandLink
+													value="assign" /> ]
                                         </c:otherwise>
-                                    </c:choose>
-                                </dd>
+										</c:choose>
+									</dd>
 
-                                <dt>#{msgs.timesheetApprover}</dt>
-                                <dd>
-                                    <c:choose>
-                                        <c:when test="#{empController.employee.timesheetApprover != null }">
+									<dt>#{msgs.timesheetApprover}</dt>
+									<dd>
+										<c:choose>
+											<c:when
+												test="#{empController.employee.timesheetApprover != null }">
                                             #{empController.employee.timesheetApprover.firstName}
                                             #{empController.employee.timesheetApprover.lastName}
-                                            <span> [ <h:commandLink value="change"/> ]</span>
-                                        </c:when>
-                                        <c:otherwise>
-                                            [ <h:commandLink value="assign" /> ]
+                                            <span> [ <h:commandLink
+														value="change" /> ]
+												</span>
+											</c:when>
+											<c:otherwise>
+                                            [ <h:commandLink
+													value="assign" /> ]
                                         </c:otherwise>
-                                    </c:choose>
-                                </dd>
+										</c:choose>
+									</dd>
 
-                                <dt>#{msgs.flextime}</dt>
-                                <dd>#{empController.employee.flexTimeBanked}</dd>
+									<dt>#{msgs.flextime}</dt>
+									<dd>#{empController.employee.flexTimeBanked}</dd>
 
-                                <dt>#{msgs.vacation}</dt>
-                                <dd>#{empController.employee.vacationBanked}</dd>
+									<dt>#{msgs.vacation}</dt>
+									<dd>#{empController.employee.vacationBanked}</dd>
 
-                                <dt>#{msgs.emp_status}</dt>
-                                <dd>#{empController.employee.activeStatus == true ? 'Active' : 'Disabled'}</dd>
-                            </dl>
-                            </h:form>
-                        </div>
-                    </div>
+									<dt>#{msgs.emp_status}</dt>
+									<dd>#{empController.employee.activeStatus == true ?
+										'Active' : 'Disabled'}</dd>
+								</dl>
+							</h:form>
+						</div>
+					</div>
 
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-6 ">
-                            <h:form id="linkForm">
-                                <h:inputHidden binding="#{empIdHolder}" value="#{empController.employee.id}" />
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-2">
+							<div class="container">
+								<div class="row">
+									<h:form id="linkForm">
+										<h:inputHidden binding="#{empIdHolder}"
+											value="#{empController.employee.id}" />
 
-                                <h:commandLink value="#{msgs.edit_emp}" styleClass="btn btn-default"
-                                               action="#{empController.editEmployee(empIdHolder.value)}" />
-                                <h:commandLink value="#{msgs.emp_disable}"
-                                                 styleClass="btn btn-danger pull-right" />
-                            </h:form>
-                        </div>
-                    </div>
+										<h:commandLink value="#{msgs.edit_emp}"
+											styleClass="btn btn-default col-sm-1 col-sm-offset-1 marginOneEm"
+											action="#{empController.editEmployee(empIdHolder.value)}" />
+										<h:commandLink value="#{msgs.emp_disable}"
+											styleClass="btn btn-danger col-sm-1 marginOneEm" />
+									</h:form>
+								</div>
+							</div>
+						</div>
+					</div>
 
-                </div>
-            </div>
-        </ui:define>
-    </ui:composition>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>
