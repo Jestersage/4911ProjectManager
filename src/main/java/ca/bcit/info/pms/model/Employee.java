@@ -45,10 +45,9 @@ public class Employee implements Serializable {
     private Credential credential;
 
     @NotNull(message = "Email cannot be null")
-	@Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
-			+ "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9]"
-			+ "(?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9]"
-			+ "(?:[a-z0-9-]*[a-z0-9])?", message = "Invalid email")
+	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+" +
+            "(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+" +
+            "(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Invalid email")
 	private String email;
 
 	@NotNull(message = "First name cannot be null")
