@@ -62,8 +62,8 @@
 											<div class="form-group">
 												<h:outputLabel for="itProjectNumber"
 													value="#{msgs.projectNumber}"
-													class="col-sm-3 control-label" />
-												<div class="col-sm-9">
+													class="col-sm-4 control-label" />
+												<div class="col-sm-8">
 
 			<!-- 										<h:inputText id="itProjectNumber"
 														rendered="#{ not empty workPackageController.workPackage.project}"
@@ -104,8 +104,8 @@
 											<div class="form-group">
 												<h:outputLabel for="itWorkPackageNumber"
 													value="#{msgs.workPackageNumber}"
-													class="col-sm-3 control-label" />
-												<div class="col-sm-9">
+													class="col-sm-4 control-label" />
+												<div class="col-sm-8">
 													<h:inputText id="itWorkPackageNumber"
 														value="#{workPackageController.workPackage.packageNum}"
 														required="true" label="#{msgs.workPackageNumber}"
@@ -118,8 +118,8 @@
 											<div class="form-group">
 												<h:outputLabel for="itWorkPackageName"
 													value="#{msgs.workPackageName}"
-													class="col-sm-3 control-label" />
-												<div class="col-sm-9">
+													class="col-sm-4 control-label" />
+												<div class="col-sm-8">
 													<h:inputText id="itWorkPackageName"
 														value="#{workPackageController.workPackage.name}"
 														required="true" label="#{msgs.workPackageName}"
@@ -131,8 +131,8 @@
 											<div class="form-group">
 												<h:outputLabel for="itaWorkPackageDescription"
 													value="#{msgs.workPackageDescription}"
-													class="col-sm-3 control-label" />
-												<div class="col-sm-9">
+													class="col-sm-4 control-label" />
+												<div class="col-sm-8">
 													<h:inputTextarea id="itaWorkPackageDescription"
 														value="#{workPackageController.workPackage.description}"
 														required="true" label="#{msgs.workPackageDescription}"
@@ -144,8 +144,8 @@
 
 											<div class="form-group">
 												<h:outputLabel for="mnSupervisor" value="#{msgs.supervisor}"
-													class="col-sm-3 control-label" />
-												<div class="col-sm-9">
+													class="col-sm-4 control-label" />
+												<div class="col-sm-8">
 													<h:inputText id="mnSupervisor"
 														value="#{workPackageController.workPackage.employeeID}"
 														required="true" pt:placeholder="Supervisor ID"
@@ -162,7 +162,7 @@
 													<div class="form-group">
 														<h:outputLabel for="itWorkPackageBudget"
 															value="#{msgs.workPackageBudget}"
-															class="col-sm-3 control-label" />
+															class="col-sm-4 control-label" />
 														<div class="col-sm-2">
 															<h:inputText pt:placeholder="P1" id="itWorkPackageBudget"
 																value="#{workPackageController.workPackage.budget.p1}"
@@ -198,7 +198,7 @@
 
 													<div class="form-group">
 
-														<div class="col-sm-2 col-sm-offset-3">
+														<div class="col-sm-2 col-sm-offset-4">
 															<h:inputText pt:placeholder="P5"
 																value="#{workPackageController.workPackage.budget.p5}"
 																required="true" label="#{msgs.workPackageBudget}"
@@ -233,7 +233,7 @@
 											</div>
 
 											<div class="form-group">
-												<div id="newWorkPackageButtons" class="col-md-offset-3">
+												<div id="newWorkPackageButtons" class="col-md-offset-4">
 													<h:commandButton value="#{msgs.save}"
 														class="btn btn-primary "
 														action="#{workPackageController.addWorkPackage}" />

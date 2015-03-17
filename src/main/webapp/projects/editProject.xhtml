@@ -57,8 +57,8 @@
 
 								<div class="form-group">
 									<h:outputLabel for="itProjectNumber"
-										value="#{msgs.projectNumber}" class="col-sm-3 control-label" />
-									<div class="col-sm-9">
+										value="#{msgs.projectNumber}" class="col-sm-4 control-label" />
+									<div class="col-sm-8">
 										<h:inputText id="itProjectNumber" value="" required="true"
 											label="#{msgs.projectNumber}" class="form-control" />
 										<h:message errorClass="text-danger" for="itProjectNumber" />
@@ -67,8 +67,8 @@
 
 								<div class="form-group">
 									<h:outputLabel for="itProjectName" value="#{msgs.projectName}"
-										class="col-sm-3 control-label" />
-									<div class="col-sm-9">
+										class="col-sm-4 control-label" />
+									<div class="col-sm-8">
 										<h:inputText id="itProjectName" value="" required="true"
 											label="#{msgs.projectName}" class="form-control" />
 										<h:message errorClass="text-danger" for="itProjectName" />
@@ -77,8 +77,8 @@
 
 								<div class="form-group">
 									<h:outputLabel for="mnSupervisor" value="#{msgs.supervisor}"
-										class="col-sm-3 control-label" />
-									<div class="col-sm-9">
+										class="col-sm-4 control-label" />
+									<div class="col-sm-8">
 										<h:inputText id="mnSupervisor"
 											value="#{empController.supervisorUsername}" required="true"
 											pt:placeholder="Supervisor Username"
@@ -90,8 +90,8 @@
 								<div class="form-group">
 									<h:outputLabel for="itaProjectDescription"
 										value="#{msgs.projectDescription}"
-										class="col-sm-3 control-label" />
-									<div class="col-sm-9">
+										class="col-sm-4 control-label" />
+									<div class="col-sm-8">
 										<h:inputTextarea id="itaProjectDescription" value=""
 											required="true" label="#{msgs.projectDescription}" cols="80"
 											rows="10" class="form-control" />
@@ -102,8 +102,8 @@
 
 								<div class="form-group">
 									<h:outputLabel for="popupStartDate" value="#{msgs.startDate}"
-										class="col-sm-3 control-label" />
-									<div class="col-sm-9">
+										class="col-sm-4 control-label" />
+									<div class="col-sm-8">
 										<p:calendar id="popupStartDate"
 											value="#{projController.project.startDate}" required="true"
 											label="#{msgs.startDate}" />
@@ -113,8 +113,8 @@
 
 								<div class="form-group">
 									<h:outputLabel for="popupEndDate" value="#{msgs.endDate}"
-										class="col-sm-3 control-label" />
-									<div class="col-sm-9">
+										class="col-sm-4 control-label" />
+									<div class="col-sm-8">
 										<p:calendar id="popupEndDate"
 											value="#{projController.project.endDate}" required="true"
 											label="#{msgs.endDate}" />
@@ -124,8 +124,8 @@
 
 								<div class="form-group">
 									<h:outputLabel for="itContractor" value="#{msgs.contractor}"
-										class="col-sm-3 control-label" />
-									<div class="col-sm-9">
+										class="col-sm-4 control-label" />
+									<div class="col-sm-8">
 										<h:inputText id="itContractor" value="" required="true"
 											label="#{msgs.contractor}" class="form-control" />
 										<h:message errorClass="text-danger" for="itContractor" />
@@ -133,7 +133,7 @@
 								</div>
 
 								<div class="form-group">
-									<div id="newProjectButtons" class="col-md-offset-3">
+									<div id="newProjectButtons" class="col-md-offset-4">
 										<h:commandButton value="#{msgs.save}" class="btn btn-primary " />
 										<h:commandButton value="#{msgs.clear}" class="btn btn-default" />
 									</div>
