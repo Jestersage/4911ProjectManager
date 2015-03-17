@@ -151,15 +151,15 @@ public class EmployeeController implements Serializable {
         return "editEmp";
     }
 
+
     /**
      * Edit an employee's profile.
-     * NOTE: somehow from viewEmployee.xhtml to edit, will loose
-     * employee object before it hit action method.
-     * @param empId employee id of the employee to edit
+     * NOTE: from viewEmployee.xhtml to edit, employee object is lost
+     * before page hit action method because requestScoped.
      * @return navigation view-id
      */
-    public String editEmployee(final String empId) {
-        employee = empService.findEmployeeById(empId);
+    public String editEmployee() {
+        employee = empService.findEmployeeById(employee.getId());
         return "editEmp";
     }
 

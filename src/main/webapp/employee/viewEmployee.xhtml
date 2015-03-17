@@ -144,12 +144,11 @@
 							<div class="container">
 								<div class="row">
 									<h:form id="linkForm">
-										<h:inputHidden binding="#{empIdHolder}"
-											value="#{empController.employee.id}" />
+										<h:inputHidden value="#{empController.employee.id}" />
 
 										<h:commandLink value="#{msgs.edit_emp}"
 											styleClass="btn btn-default col-sm-1 col-sm-offset-1 marginOneEm"
-											action="#{empController.editEmployee(empIdHolder.value)}" />
+											action="#{empController.editEmployee}" />
 										<h:commandLink value="#{msgs.emp_disable}"
 											styleClass="btn btn-danger col-sm-1 marginOneEm" />
 									</h:form>
