@@ -87,6 +87,10 @@ public class EmployeeController implements Serializable {
      * @return if supervisor was found
      */
     private boolean addEmpSupervisor() {
+        if (supervisorUsername == null || supervisorUsername.isEmpty()) {
+            return true; // no supervisor assigned, no need to search
+        }
+
         boolean found = false;
         final Employee supervisor = empService.findEmployeeByUsername(supervisorUsername);
         if (supervisor == null) {
@@ -104,7 +108,10 @@ public class EmployeeController implements Serializable {
     private boolean addEmpTimesheetApprover() {
         boolean found = false;
 
-        if (tsApproverUsername != null && tsApproverUsername.equals(supervisorUsername)) {
+        if (tsApproverUsername == null || tsApproverUsername.isEmpty()) {
+            return true; // no supervisor assigned, no need to search
+        }
+        else if (tsApproverUsername.equals(supervisorUsername)) {
             employee.setTimesheetApprover(employee.getSupervisor());
             found = true;
         }
