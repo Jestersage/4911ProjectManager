@@ -52,31 +52,48 @@
 							<h:form id="newProjectForm" class="form-horizontal">
 								<div class="container-fluid">
 									<div class="row">
-										<div class="col-md-7">
-											<div class="form-group">
-												<h:outputLabel for="itWorkPackageNumber"
-													value="#{msgs.workPackageNumber}"
-													class="col-sm-3 control-label" />
+										<div class="col-md-8">
 
-												<div class="col-sm-9">
-													<p:inputText pt:placeholder="type to search" id="itWorkPackageNumber"
+											<div class="form-group">
+												<h:outputLabel for="inputEmail3" value="#{msgs.workPackageNumber}" class="col-sm-4 control-label" />
+												<div class="col-sm-4">
+													<h:inputText pt:placeholder="type to search"
+														class="form-control" id="itWorkPackageNumber"
 														value="#{weekReport.id}">
-														<p:ajax event="blur" update="out2"
+														<p:ajax event="blur" update="out out2"
 															listener="#{weekReport.findWP}" />
-													</p:inputText>
+													</h:inputText>
 													<h:message errorClass="text-danger"
 														for="itWorkPackageNumber" />
 												</div>
 											</div>
 
+											
+
 											<div class="form-group">
+
 												<h:outputLabel for="itWorkPackageName"
 													value="#{msgs.workPackageName}"
-													class="col-sm-3 control-label" />
-												<div class="col-sm-9">
-													<h:outputText id="out2" value="#{weekReport.wp.name}" />
+													class="col-sm-4 control-label" />
+
+												<div class="col-sm-4">												
+													<h:outputText id="out" class="form-control"
+														value="#{weekReport.wp.name}" />
 												</div>
 											</div>
+											
+											<div class="form-group">
+
+												<h:outputLabel for="itProject"
+													value="#{msgs.project}"
+													class="col-sm-4 control-label" />
+
+												<div class="col-sm-4">												
+													<h:outputText id="out2" class="form-control"
+														value="#{weekReport.wp.project}" />
+												</div>
+											</div>
+											
 
 											<div class="panel panel-default">
 												<div class="panel-body">
@@ -84,7 +101,7 @@
 													<div class="form-group">
 														<h:outputLabel for="itWorkPackageBudget"
 															value="#{msgs.workPackageBudget}"
-															class="col-sm-3 control-label" />
+															class="col-sm-4 control-label" />
 														<div class="col-sm-2">
 															<h:inputText pt:placeholder="P1" id="itWorkPackageBudget"
 																value="#{weekReport.statusReport.p1}" required="true"
@@ -116,7 +133,7 @@
 
 													<div class="form-group">
 
-														<div class="col-sm-2 col-sm-offset-3">
+														<div class="col-sm-2 col-sm-offset-4">
 															<h:inputText pt:placeholder="P5"
 																value="#{weekReport.statusReport.p5}" required="true"
 																label="#{msgs.workPackageBudget}" class="form-control" />
@@ -148,8 +165,8 @@
 
 											<div class="form-group">
 												<h:outputLabel for="itaComments" value="#{msgs.comments}"
-													class="col-sm-3 control-label" />
-												<div class="col-sm-9">
+													class="col-sm-4 control-label" />
+												<div class="col-sm-8">
 													<h:inputTextarea id="itaComments"
 														value="#{weekReport.statusReport.comments}"
 														required="true" label="#{msgs.comments}" cols="80"
@@ -159,7 +176,7 @@
 											</div>
 
 											<div class="form-group">
-												<div id="newWeekReport" class="col-md-offset-3">
+												<div id="newWeekReport" class="col-md-offset-4">
 													<h:commandButton value="#{msgs.save}"
 														action="#{weekReport.save}"
 														class="marginOneEm btn btn-primary " />

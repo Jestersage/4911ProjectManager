@@ -57,10 +57,23 @@
 							<div class="container-flid">
 								<h:form id="timesheetForm">
 									<div class="row">
-										<div class="panel panel-default col-md-7">
-
+										<div id="formTitle" class="panel panel-default col-md-7">
+											<div class="panel-heading">Panel heading</div>
+											<div class="panel-body">
+												<h:commandButton class="marginOneEm btn btn-success"
+													value="#{msgs.signTimesheet}" id="signTimesheet" />
+												<h:commandButton class=" marginOneEm btn btn-success"
+													value="#{msgs.save}" id="saveTimesheet" />
+												<ui:fragment>
+													<h:commandButton class="marginOneEm btn btn-info"
+														value="#{msgs.approve}" id="approveTimesheet" />
+													<h:commandButton class="marginOneEm btn btn-danger"
+														value="#{msgs.revision}" id="revisionTimesheet" />
+												</ui:fragment>
+											</div>
 											<!-- Table -->
-											<table class="table container">
+											<table class="table">
+									
 												<tr class="row">
 													<td class="col-md-2"><h:outputLabel
 															value="#{msgs.weekNo}" /></td>
@@ -70,7 +83,7 @@
 															value="#{msgs.total}" /></td>
 													<td class="col-md-2"><h:outputLabel
 															value="#{msgs.overtime}" /></td>
-													<td class="col-md-2"><h:outputLabel
+													<td class="col-md-3"><h:outputLabel
 															value="#{msgs.flextime}" /></td>
 												</tr>
 												<tr class="row">
@@ -78,21 +91,9 @@
 													<td class="col-md-2"><h:outputText value="" /></td>
 													<td class="col-md-2"><h:outputText value="" /></td>
 													<td class="col-md-2"><h:outputText value="" /></td>
-													<td class="col-md-2"><h:outputText value="" /></td>
+													<td class="col-md-3"><h:outputText value="" /></td>
 												</tr>
-												<tr class="row">
-													<td class="col-md-2"><h:commandButton
-															class="btn btn-success" value="#{msgs.signTimesheet}"
-															id="signTimesheet" /></td>
-													<td class="col-md-2"><h:commandButton
-															class="btn btn-success" value="#{msgs.save}"
-															id="saveTimesheet" /></td>
-													<ui:fragment>
-														<td class="col-md-2"><h:commandButton
-																class="btn btn-success" value="#{msgs.approve}"
-																id="approveTimesheet" /></td>
-													</ui:fragment>
-												</tr>
+												
 											</table>
 										</div>
 									</div>

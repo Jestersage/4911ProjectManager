@@ -1,8 +1,7 @@
 #timesheetForm .col-md-1
 {
 	padding: 0;
-	margin: 0;
-	
+	margin: 0;	
 }
 
 #timesheetForm .col-md-1 .input
@@ -11,12 +10,13 @@
 	margin: 1px;
 	width: 100%;
 	font-size: 1.5em;
-
 }
-
-.input{}
 
 #summary {
 	position: relative;
 	bottom: 0;
+}
+
+#formTitle {
+	padding: 0;
 }
