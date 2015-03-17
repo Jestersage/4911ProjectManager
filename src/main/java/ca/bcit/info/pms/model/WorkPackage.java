@@ -90,10 +90,29 @@ public class WorkPackage implements Serializable
     @Transient
     private String totalVarianceCost;
 
+    @Transient
+    private double totalEngineerCost;
+    
+    @Transient
+    private double engineerManDays;
     
     
-    
-    
+	public double getTotalEngineerCost() {
+		return totalEngineerCost;
+	}
+
+	public void setTotalEngineerCost(double totalEngineerCost) {
+		this.totalEngineerCost = totalEngineerCost;
+	}
+
+	public double getEngineerManDays() {
+		return engineerManDays;
+	}
+
+	public void setEngineerManDays(double engineerManDays) {
+		this.engineerManDays = engineerManDays;
+	}
+
 	public WorkPackage() {
 		this.budget = new Budget();
 	}

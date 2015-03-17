@@ -43,6 +43,7 @@ CREATE TABLE WorkPackage (
   packageID    int(10) NOT NULL AUTO_INCREMENT,
   projectID    varchar(20) NOT NULL,
   budgetID     int(10),
+  engBudgetID  int(10),
   packageNum   varchar(20) NOT NULL,
   employeeID   varchar(10) NOT NULL,
   parentwpID   int(10),
@@ -87,6 +88,22 @@ CREATE TABLE Budget(
     P6 int(10),
     other int(10),
     PRIMARY KEY (budgetId)
+);
+--
+-- EngineerBudget is for WorkPackage
+CREATE TABLE EngineerBudget(
+    engBudgetID   int(10) NOT NULL,
+    JS int(10),
+    SS int(10),
+    DS int(10),
+    P1 int(10),
+    P2 int(10),
+    P3 int(10),
+    P4 int(10),
+    P5 int(10),
+    P6 int(10),
+    other int(10),
+    PRIMARY KEY (engBudgetID)
 );
 --
 -- RateSheet is for Project
@@ -227,6 +244,7 @@ ALTER TABLE ProjectSummary ADD CONSTRAINT FKPSproj FOREIGN KEY (projectID) REFER
 --
 -- ALTER TABLE Budget ADD CONSTRAINT FKBWork FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
 ALTER TABLE WorkPackage ADD CONSTRAINT FKBWork FOREIGN KEY (budgetID) REFERENCES Budget (budgetID);
+ALTER TABLE WorkPackage ADD CONSTRAINT FKEBWork FOREIGN KEY (engBudgetID) REFERENCES EngineerBudget (engBudgetID);
 --
 -- ALTER TABLE RateSheet ADD CONSTRAINT FKRSProj FOREIGN KEY (projectID) REFERENCES Project (projectID);
 ALTER TABLE Project ADD CONSTRAINT FKRSProj FOREIGN KEY (ratesheetID) REFERENCES Ratesheet (ratesheetID);
