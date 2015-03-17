@@ -123,6 +123,9 @@ public class MonthlyReportController implements Serializable {
 			}
 			workPackages.get(i).setEngineerManDays(engineerBudgetManager.getTotalBudget(workPackages.get(i).getId()));
 			workPackages.get(i).setTotalEngineerCost(totalEngineerCost);
+			
+			workPackages.get(i).setCompletionPercentage(df.format(((double)timesheetRowManager.getTotalManDays(workPackages.get(i).getId()))
+					/ (double)statusReportManager.getTotalCompletionEstimate(workPackages.get(i).getId()) * 100));
 		}
 		return workPackages;
 	}

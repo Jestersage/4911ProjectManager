@@ -96,7 +96,17 @@ public class WorkPackage implements Serializable
     @Transient
     private double engineerManDays;
     
+    @Transient
+    private String completionPercentage;
     
+	public String getCompletionPercentage() {
+		return completionPercentage;
+	}
+
+	public void setCompletionPercentage(String completionPercentage) {
+		this.completionPercentage = completionPercentage + "% complete";
+	}
+
 	public double getTotalEngineerCost() {
 		return totalEngineerCost;
 	}
