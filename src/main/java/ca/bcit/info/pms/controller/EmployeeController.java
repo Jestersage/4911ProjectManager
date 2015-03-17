@@ -41,7 +41,7 @@ public class EmployeeController implements Serializable {
      * Add new Employee to database.
      */
     public String addEmployee() {
-        boolean foundSupervisor = addEmpSupervisor();
+        boolean foundSupervisor = updateEmpSupervisor();
         // return to the form to correct information
         if (!foundSupervisor) {
             return null;
@@ -56,7 +56,7 @@ public class EmployeeController implements Serializable {
     }
 
     public String updateEmployee() {
-        boolean foundSupervisor = addEmpSupervisor();
+        boolean foundSupervisor = updateEmpSupervisor();
         // return to the form to correct information
         if (!foundSupervisor) {
             return null;
@@ -86,7 +86,7 @@ public class EmployeeController implements Serializable {
      * find employee with username = supervisorUsername, and set it as employee's supervisor.
      * @return if supervisor was found
      */
-    private boolean addEmpSupervisor() {
+    private boolean updateEmpSupervisor() {
         if (supervisorUsername == null || supervisorUsername.isEmpty()) {
             return true; // no supervisor assigned, no need to search
         }
@@ -161,6 +161,31 @@ public class EmployeeController implements Serializable {
     public String editEmployee() {
         employee = empService.findEmployeeById(employee.getId());
         return "editEmp";
+    }
+
+    public String assignTsApprover() {
+        employee = empService.findEmployeeById(employee.getId());
+
+        final Employee approver = employee.getTimesheetApprover();
+        if(approver != null) {
+            tsApproverUsername = approver.getCredential().getUsername();
+        }
+
+        return "assignApprover";
+    }
+
+    public String updateTsApprover() {
+        boolean found;
+
+        employee = empService.findEmployeeById(employee.getId());
+        found = addEmpTimesheetApprover();
+        if (found) {
+            empService.updateEmployee(employee);
+        }
+
+        logger.info("update approver: " + employee);
+
+        return "viewEmployee";
     }
 
     public PayGrade[] getPayLevelItems() {

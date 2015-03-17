@@ -83,7 +83,8 @@ public class EmployeeManager implements Serializable
 			return employee;
 		} catch ( Exception e )
 		{
-			logger.warn( "Update employee failed." );
+			logger.warn( "Update employee failed. Error: " );
+            logger.warn(e.getMessage());
 			return null;
 		}
 	}

@@ -241,7 +241,8 @@ public class Employee implements Serializable {
     public String toString() {
         final StringBuffer sb = new StringBuffer("Employee{");
         sb.append("id='").append(id).append('\'');
-        sb.append(", username='").append(credential.getUsername()).append('\'');
+        final String username = (credential != null) ? credential.getUsername() : null;
+        sb.append(", username='").append(username).append('\'');
         sb.append(", email='").append(email).append('\'');
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", lastName='").append(lastName).append('\'');

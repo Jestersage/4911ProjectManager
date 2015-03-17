@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
+
+		<ui:define name="windowTitle">#{msgs.user} #{msgs.settings}</ui:define>
+
+		<ui:define name="additionalStyleSheets">
+			<h:outputStylesheet library="css" name="employee.css" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+
+						<div id="breadcrumb">
+							<h:form>
+								<ol class="breadcrumb">
+                                    <li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
+                                    <li><h:commandLink action="viewAllEmployees"
+                                                       value="#{msgs.viewEmployees}" /></li>
+									<li class="active">#{msgs.assignApprover}</li>
+								</ol>
+							</h:form>
+						</div>
+
+						<div id="pageTitle">
+							<h1>#{msgs.assignApprover}</h1>
+						</div>
+						<ui:insert name="notificationArea">
+							<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
+						</ui:insert>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<h:form id="employeeForm" class="form-horizontal">
+                            <h:inputHidden value="#{empController.employee.id}" />
+                            <div class="input-group col-sm-4">
+                                <h:inputText id="mnTimesheetApprover" required="true"
+                                             value="#{empController.tsApproverUsername}"
+                                             pt:placeholder="Timesheet Approver Username" styleClass="form-control"
+                                             label="#{msgs.timesheetApprover}"/>
+                                        <span class="input-group-btn">
+                                            <h:commandLink styleClass="btn btn-default" value="#{msgs.save}"
+                                                           action="#{empController.updateTsApprover}" />
+                                        </span>
+                            </div>
+                            <h:message errorClass="text-danger" for="mnTimesheetApprover"/>
+						</h:form>
+					</div><!-- /col -->
+				</div><!-- /outter row -->
+			</div><!-- /col -->
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
