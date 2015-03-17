@@ -48,6 +48,13 @@ public class TimesheetManager implements Serializable {
         entityManager.persist(timesheet);
     }
 
+    //total
+    public void getTotal (final Timesheet timesheet){
+        Timesheet ts = findById(timesheet.getId());
+        Query query = entityManager.createNativeQuery("select * "
+                + "from timeshee "
+                + "where packageID = :workpackageId", Timesheet.class);
 
+    }
 
 }

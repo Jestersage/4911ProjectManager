@@ -205,15 +205,15 @@ CREATE TABLE WorkAssignment(
     employeeID   varchar(10) NOT NULL, 
     PRIMARY KEY (packageID, employeeID)
 );
-
+--
 CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
   `next_val` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+--
 --
 -- Dumping data for table `hibernate_sequence`
 --
-
+--
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
 (1);
 --
