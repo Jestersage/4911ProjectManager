@@ -1,7 +1,7 @@
-package ca.bcit.info.pms.access;
+package ca.bcit.info.pms.model;
 
-import ca.bcit.info.pms.model.Credential;
-import ca.bcit.info.pms.model.Employee;
+import javax.inject.Inject;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -11,38 +11,33 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import ca.bcit.info.pms.util.PasswordHash;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
-public class EmployeeManagerTest {
+public class CredentialTest {
     @Deployment
     public static Archive<?> createDeployment() {
         WebArchive war = ShrinkWrap
                 .create(WebArchive.class, "test.war")
-                .addPackage(EmployeeManager.class.getPackage())
                 .addPackage(Credential.class.getPackage())
-                .addPackage(Employee.class.getPackage())
+                .addPackage(PasswordHash.class.getPackage())
                 .addAsResource("test-persistence.xml",
                         "META-INF/persistence.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-
+                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");   
         return war;
     }
-
+    
     @Inject
-    EmployeeManager empMngr;
-
-    @PersistenceContext
-    EntityManager em;
-
+    Credential cred;
+    
     @Test
-    public void should_persist_credential() {
-        Credential cred = new Credential("bob", "password");
-        empMngr.persistCredential(cred);
-        assertTrue(em.find(Credential.class, cred.getUsername()) != null);
+    public void should_pass() {
+        cred = new Credential();
+        String pass = "password";
+
+        cred.setPassword(pass);
+        
+        assertTrue(cred.getPassword().equals(pass));
     }
 }

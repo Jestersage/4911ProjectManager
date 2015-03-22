@@ -1,4 +1,4 @@
-package ca.bcit.info.pms.service;
+package ca.bcit.info.pms.util;
 
 /* 
  * Password Hashing With PBKDF2 (http://crackstation.net/hashing-security.htm).

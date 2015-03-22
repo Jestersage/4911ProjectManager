@@ -1,7 +1,8 @@
-package ca.bcit.info.pms.service;
+package ca.bcit.info.pms.util;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
 
 
 
@@ -19,6 +20,8 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 //  import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import ca.bcit.info.pms.util.PasswordHash;
 
 @RunWith(Arquillian.class)
 public class PasswordHashTest {
