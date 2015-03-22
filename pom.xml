@@ -150,7 +150,6 @@
 		</profile>
 
 		<!-- Managed Wildfly Container -->
-		<!-- * special thanks to azlak on irc.freenode.net #arquillian * -->
 		<profile>
 			<id>arq-wildfly-managed</id>
 			<activation>
@@ -161,6 +160,12 @@
 					<groupId>org.wildfly</groupId>
 					<artifactId>wildfly-arquillian-container-managed</artifactId>
 					<scope>test</scope>
+					<exclusions>
+						<exclusion>
+							<groupId>sun.jdk</groupId>
+							<artifactId>jconsole</artifactId>
+						</exclusion>
+					</exclusions>
 				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.protocol</groupId>
