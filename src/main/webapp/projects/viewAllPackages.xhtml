@@ -18,7 +18,7 @@
     </f:metadata>-->
 
     <ui:composition template="/templatesBootstrap/masterLayout.xhtml">
-		<ui:define name="windowTitle">#{msgs.project}</ui:define>
+		<ui:define name="windowTitle">#{msgs.workPackage}</ui:define>
 		<ui:define name="additionalStyleSheets">
 			<h:outputStylesheet library="css" name="viewAllEmployees.css" />
 		</ui:define>
@@ -34,13 +34,13 @@
 							<h:form>
 								<ol class="breadcrumb">
 									<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
-									<li class="active">#{msgs.project}</li>
+									<li class="active">#{msgs.workPackage}</li>
 								</ol>
 							</h:form>
 						</div>
 
 						<div id="pageTitle">
-							<h1>#{msgs.project}</h1>
+							<h1>#{msgs.workPackage}</h1>
 						</div>
 						<ui:insert name="notificationArea">
 							<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
@@ -53,44 +53,52 @@
 					<div class="col-xs-12 col-sm-12 col-md-12 ">
 						<div id="employeesDataTable">
 							<h:form>
-								<p:dataTable id="projTable" styleClass="bg-none table" var="project"
-									value="#{projectController.projects}" paginator="true"
+								<p:dataTable id="packageTable" styleClass="bg-none table" var="package"
+									value="#{workPackageController.workPackages}" paginator="true"
 									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 									rowsPerPageTemplate="10,20,30">
+									<p:column headerText="#{msgs.id}">
+										<h:outputText value="#{package.id}" />
+									</p:column>
+
 									<p:column headerText="#{msgs.projectNumber}">
-										<h:outputText value="#{project.id}" />
+										<h:outputText value="#{package.project.id}" />
 									</p:column>
 
-									<p:column headerText="#{msgs.projectName}">
-										<h:outputText value="#{project.name}" />
+									<p:column headerText="#{msgs.budgetID}">
+										<h:outputText value="#{package.budget.id}" />
+									</p:column>
+									
+									<!--<p:column headerText="#{msgs.engBudgetID}">
+										<h:outputText value="#{package.id}" />
+									</p:column>-->
+									
+									<p:column headerText="#{msgs.workPackageNumber}">
+										<h:outputText value="#{package.packageNum}" />
 									</p:column>
 
-									<p:column headerText="#{msgs.projectDescription}">
-										<h:outputText value="#{project.description}" />
+									<p:column headerText="#{msgs.workPackageName}">
+										<h:outputText value="#{package.name}" />
+									</p:column>
+									
+									<p:column headerText="#{msgs.empID}">
+										<h:outputText value="#{package.employeeID}" />
 									</p:column>
 
-									<p:column headerText="#{msgs.startDate}">
-										<h:outputText value="#{project.startDate}" />
+									<p:column headerText="#{msgs.parentWpId}">
+										<h:outputText value="#{package.parentWP.id}" />
 									</p:column>
-
-									<p:column headerText="#{msgs.endDate}">
-										<h:outputText value="#{project.endDate}" />
+									
+									<p:column headerText="#{msgs.workPackageDescription}">
+										<h:outputText value="#{package.description}" />
 									</p:column>
 
 									<p:column headerText="#{msgs.status}">
-										<h:outputText value="#{project.status}" />
-									</p:column>
-
-									<p:column headerText="#{msgs.projectManager}">
-										<h:outputText value="#{project.employeeID}" />
-									</p:column>
-									
-									<p:column headerText="#{msgs.genReport}">
-										<h:outputText value="#{project.employeeID}" />
+										<h:outputText value="#{package.status}" />
 									</p:column>
 
 									<p:column>
-                                        <h:commandLink value="#{msgs.edit_emp}" action="#{projectController.goEditProject()}" /> |               
+                                        <h:commandLink value="#{msgs.edit_emp}" action="#{workPackageController.goEditPackage()}" /> |               
 									</p:column>
 								</p:dataTable>
 							</h:form>

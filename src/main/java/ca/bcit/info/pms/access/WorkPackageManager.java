@@ -10,10 +10,12 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.WorkPackage;
 
 @Dependent
@@ -92,4 +94,12 @@ public class WorkPackageManager implements Serializable
 		}
 	}
 
+    /*
+     * gets all the packages from the database
+     */
+    public List<WorkPackage> getAllWorkPackages(){
+        CriteriaQuery<WorkPackage> criteria = this.em.getCriteriaBuilder().createQuery(WorkPackage.class);
+        return this.em.createQuery(criteria.select(criteria.from(WorkPackage.class))).getResultList();
+    }
+	
 }

@@ -58,7 +58,7 @@ public class WorkPackageServiceImpl implements WorkPackageService {
 	@Override
 	public List<WorkPackage> getAllWorkPackages() {
 		// TODO Auto-generated method stub
-		return null;
+		return WPManager.getAllWorkPackages();
 	}
 	
     @Override

@@ -86,4 +86,11 @@ public class WorkPackageController implements Serializable {
 		this.workPackage = workPackage;
 	}
 
+    public List<WorkPackage> getWorkPackages() {
+        return workPackageService.getAllWorkPackages();
+    }
+    
+    public String goEditPackage() {
+    	return "editWorkPackage";
+    }
 }

@@ -110,6 +110,7 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	<!-- View All Project -->
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -142,6 +143,15 @@
 		<navigation-case>
 			<from-outcome>editWorkPackage</from-outcome>
 			<to-view-id>/projects/editWorkPackage.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<!-- View All Work Packages -->
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>viewAllPackages</from-outcome>
+			<to-view-id>/projects/viewAllPackages.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
