@@ -42,7 +42,11 @@ public class Credential implements Serializable {
 
     public Credential(String username, String password) {
         this.username = username;
-        this.password = password;
+        try {
+            this.password = PasswordHash.createHash(password);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public String getUsername() {

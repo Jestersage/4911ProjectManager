@@ -30,7 +30,14 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable
 		credentialList = empManager.getCredentials();
 		
 		if ( credentialList != null ) {
-			return credentialList.contains( credential );
+		    for (Credential c : credentialList) {
+		        if (c.getUsername().equals(credential.getUsername())) {
+		            // TODO: Authenticate password with HashTest
+		            return true;
+		        }
+		    }
+		    // If no match found in list
+		    return false;
 		} else {
 			return false;
 		}
