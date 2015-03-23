@@ -102,6 +102,8 @@
 														<p:column headerText="#{msgs.manDays}"></p:column>
 														<p:column headerText="#{msgs.labour}"></p:column>
 													</p:row>
+
+
 												</p:columnGroup>
 												<p:column>
 													<h:outputText value="#{workPackage.packageNum}" />
@@ -140,6 +142,51 @@
 													<h:outputText value="#{workPackage.completionPercentage}" />
 												</p:column>
 											</p:dataTable>
+										</div>
+										<!-- /col -->
+									</div>
+									<!-- /row -->
+									<br/>
+									<div class="row">
+										<div class="col=lg-12">
+											<p:panelGrid>
+												<f:facet name="header">
+													<p:row>
+														<p:column></p:column>
+														<p:column>#{msgs.bcws}</p:column>
+														<p:column>#{msgs.engineer}</p:column>
+														<p:column>#{msgs.acwp}</p:column>
+														<p:column>#{msgs.eac}</p:column>
+														<p:column>#{msgs.variance}</p:column>
+													</p:row>
+												</f:facet>
+												<p:row></p:row>
+												<p:row>
+													<p:column>#{msgs.manDays}</p:column>
+													<p:column>bcws</p:column>
+													<p:column>eng</p:column>
+													<p:column>acwp</p:column>
+													<p:column>eac</p:column>
+													<p:column>var</p:column>
+												</p:row>
+												<p:row>
+													<p:column>#{msgs.labour}</p:column>
+													<p:column>bcws</p:column>
+													<p:column>eng</p:column>
+													<p:column>acwp</p:column>
+													<p:column>eac</p:column>
+													<p:column>var</p:column>
+												</p:row>
+												<p:row>
+													<p:column>#{msgs.total}</p:column>
+													<p:column>bcws</p:column>
+													<p:column>eng</p:column>
+													<p:column>acwp</p:column>
+													<p:column>eac</p:column>
+													<p:column>var</p:column>
+												</p:row>
+											</p:panelGrid>
+
 										</div>
 										<!-- /col -->
 									</div>
