@@ -28,7 +28,7 @@ public class UserController implements Serializable {
     @Inject
     private EmployeeService empService;
 
-    @Inject 
+    @Inject @Named("credential") 
     private Credential credential;
 
     @Inject

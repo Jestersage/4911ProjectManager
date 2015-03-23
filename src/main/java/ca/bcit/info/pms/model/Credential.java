@@ -21,7 +21,6 @@ import javax.enterprise.inject.New;
 /**
  * User login credential - username and password.
  */
-@New
 @Named
 @Entity
 @Table(name = "Credentials")
@@ -37,7 +36,7 @@ public class Credential implements Serializable {
     private String username;
 
     @NotNull (message = "Password must not be null")
-    private String password;
+    protected String password;
 
     public Credential() {}
 
@@ -59,7 +58,11 @@ public class Credential implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        try {
+            this.password = PasswordHash.createHash(password);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
