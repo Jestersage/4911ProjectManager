@@ -32,8 +32,9 @@ public class Credential implements Serializable {
             message = "Username can only contain alphabet characters, "
                     + "underscore (_) and hyphen (-). "
                     + "Minimum length 3 and maximum length 30.")
+    protected
     // TODO check uniqueness
-    private String username;
+ String username;
 
     @NotNull (message = "Password must not be null")
     protected String password;
@@ -50,7 +51,7 @@ public class Credential implements Serializable {
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public void setUsername(String username) {
@@ -58,7 +59,7 @@ public class Credential implements Serializable {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {

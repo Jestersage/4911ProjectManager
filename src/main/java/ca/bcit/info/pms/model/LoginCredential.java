@@ -1,10 +1,6 @@
 package ca.bcit.info.pms.model;
 
-
 public class LoginCredential extends Credential {
-    private String username;
-    private String password;
-    
     public LoginCredential() {
         super();
     }

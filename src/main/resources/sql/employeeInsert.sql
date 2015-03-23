@@ -10,7 +10,7 @@
 INSERT INTO Credentials
   (username, password) 
 VALUES 
-  ("root", "password");
+  ("root", "1000:5ebbe77a486e8aea2d893c4c4c763f0bafb2351597aa28ab:7420a2f2c2889f78e8498bf18064367680e571ab69937894");
 INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, active, payGrade) 
 VALUES 
