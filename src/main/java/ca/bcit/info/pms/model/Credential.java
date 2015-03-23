@@ -15,10 +15,14 @@ import javax.validation.constraints.Pattern;
 import ca.bcit.info.pms.util.PasswordHash;
 
 import java.lang.Override;
+import javax.inject.Named;
+import javax.enterprise.inject.New;
 
 /**
  * User login credential - username and password.
  */
+@New
+@Named
 @Entity
 @Table(name = "Credentials")
 public class Credential implements Serializable {

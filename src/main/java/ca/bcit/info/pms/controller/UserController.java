@@ -19,6 +19,7 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
+import javax.enterprise.inject.New;
 
 @Named( "userController" )
 @SessionScoped
@@ -27,7 +28,7 @@ public class UserController implements Serializable {
     @Inject
     private EmployeeService empService;
 
-    @Inject
+    @Inject 
     private Credential credential;
 
     @Inject
