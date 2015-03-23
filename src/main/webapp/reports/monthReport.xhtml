@@ -50,9 +50,9 @@
 								<h:form>
 									<!-- project summary -->
 									<div class="row">
-										<div class="panel panel-default col-lg-4">
+										<div id="monthReportPanelHeader" class="panel panel-default col-lg-4">
 											<!-- Default panel contents -->
-											<div class="panel-heading">#{msgs.monthReport}</div>
+											<div  class="panel-heading">#{msgs.monthReport}</div>
 
 											<!-- Table -->
 											<table class="table">
@@ -71,6 +71,7 @@
 											</table>
 										</div>
 									</div>
+									<br/>
 
 
 
@@ -149,7 +150,7 @@
 									<br/>
 									<div class="row">
 										<div class="col=lg-12">
-											<p:panelGrid>
+											<p:panelGrid styleClass="table-bordered">
 												<f:facet name="header">
 													<p:row>
 														<p:column></p:column>

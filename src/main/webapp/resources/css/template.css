@@ -157,7 +157,7 @@ p {
 	
 }
 /********** Pay Levels page *************/
-#headerPayLevels, #headerCurrentPayLevels {
+#headerPayLevels, #headerCurrentPayLevels, #monthReportPanelHeader {
 	padding-left: 0;
 	padding-right: 0;
 	margin: 0 1em;
