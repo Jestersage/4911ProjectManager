@@ -28,10 +28,12 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable
 	public boolean checkCredentials( final Credential credential )
 	{
 		credentialList = empManager.getCredentials();
-		if ( credentialList != null )
+		
+		if ( credentialList != null ) {
 			return credentialList.contains( credential );
-		else
+		} else {
 			return false;
+		}
 	}
 
     @Override

@@ -16,6 +16,7 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
 public class CredentialTest {
+    
     @Deployment
     public static Archive<?> createDeployment() {
         WebArchive war = ShrinkWrap

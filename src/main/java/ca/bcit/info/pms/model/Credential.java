@@ -12,6 +12,8 @@ import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import ca.bcit.info.pms.util.PasswordHash;
+
 import java.lang.Override;
 
 /**
@@ -37,7 +39,11 @@ public class Credential implements Serializable {
 
     public Credential(String username, String password) {
         this.username = username;
-        this.password = password;
+        try {
+            this.password = PasswordHash.createHash(password);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public String getUsername() {
