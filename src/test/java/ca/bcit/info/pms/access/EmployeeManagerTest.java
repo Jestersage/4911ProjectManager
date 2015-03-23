@@ -2,6 +2,9 @@ package ca.bcit.info.pms.access;
 
 import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
+import ca.bcit.info.pms.model.LoginCredential;
+import ca.bcit.info.pms.util.PasswordHash;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -25,6 +28,8 @@ public class EmployeeManagerTest {
                 .create(WebArchive.class, "test.war")
                 .addPackage(EmployeeManager.class.getPackage())
                 .addPackage(Credential.class.getPackage())
+                .addPackage(LoginCredential.class.getPackage())
+                .addPackage(PasswordHash.class.getPackage())
                 .addPackage(Employee.class.getPackage())
                 .addAsResource("test-persistence.xml",
                         "META-INF/persistence.xml")

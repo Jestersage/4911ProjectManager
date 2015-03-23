@@ -1,6 +1,7 @@
 package ca.bcit.info.pms.model;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -12,6 +13,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import ca.bcit.info.pms.util.PasswordHash;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
@@ -30,15 +32,15 @@ public class CredentialTest {
     }
     
     @Inject
+    @Named("credential")
     Credential cred;
     
     @Test
     public void should_pass() {
-        cred = new Credential();
+        //TODO Create actual test method
         String pass = "password";
-
-        cred.setPassword(pass);
+        cred = new Credential("username", pass);
         
-        assertTrue(cred.getPassword().equals(pass));
+        assertFalse(cred.getPassword().equals(pass));
     }
 }
