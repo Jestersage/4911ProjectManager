@@ -76,16 +76,32 @@
 								</div>
 
 								<div class="form-group">
-									<h:outputLabel for="mnSupervisor" value="#{msgs.projectManager}"
-										class="col-sm-4 control-label" />
+									<h:outputLabel for="mnSupervisor"
+										value="#{msgs.projectManager}" class="col-sm-4 control-label" />
 									<div class="col-sm-8">
 										<h:inputText id="mnSupervisor"
-											value="#{projectController.project.employeeID}" required="true"
-											pt:placeholder="Supervisor Username"
+											value="#{projectController.project.employeeID}"
+											required="true" pt:placeholder="Supervisor Username"
 											label="#{msgs.supervisor}" class="form-control" />
 										<h:message errorClass="text-danger" for="mnSupervisor" />
 									</div>
 								</div>
+
+
+
+								<div class="form-group">
+									<h:outputLabel for="itMarkup" value="#{msgs.markup}"
+										class="col-sm-4 control-label" />
+									<div class="col-sm-8">
+										<h:inputText id="itMarkup" value="" required="false"
+											pt:placeholder="markup" class="form-control" />
+										<span id="helpBlock" class="help-block">If it is an
+											external project, enter markup rate</span>
+										<h:message errorClass="text-danger" for="itMarkup" />
+									</div>
+								</div>
+
+
 
 								<div class="form-group">
 									<h:outputLabel for="itaProjectDescription"
@@ -93,9 +109,9 @@
 										class="col-sm-4 control-label" />
 									<div class="col-sm-8">
 										<h:inputTextarea id="itaProjectDescription"
-											value="#{projectController.project.description}" required="true"
-											label="#{msgs.projectDescription}" cols="80" rows="10"
-											class="form-control" />
+											value="#{projectController.project.description}"
+											required="true" label="#{msgs.projectDescription}" cols="80"
+											rows="10" class="form-control" />
 										<h:message errorClass="text-danger"
 											for="itaProjectDescription" />
 									</div>
