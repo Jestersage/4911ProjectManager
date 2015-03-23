@@ -65,7 +65,7 @@
 													class="col-sm-4 control-label" />
 												<div class="col-sm-8">
 
-			<!-- 										<h:inputText id="itProjectNumber"
+													<!-- 										<h:inputText id="itProjectNumber"
 														rendered="#{ not empty workPackageController.workPackage.project}"
 														value="#{workPackageController.workPackage.project.id}"
 														required="true" label="#{msgs.projectNumber}"
@@ -76,16 +76,14 @@
 
 													<h:selectOneMenu id="smProjectNumber"
 														value="#{workPackageController.workPackage.project}"
-														required="true"
-														converter="#{projectConverterBean}"
-										
+														required="true" converter="#{projectConverterBean}"
 														rendered="#{not empty workPackageController.projectList}"
 														class="form-control" label="#{msgs.projectNumber}">
-												
+
 														<f:selectItems
 															value="#{workPackageController.projectList}" />
 													</h:selectOneMenu>
-<!-- 
+													<!-- 
 													<h:selectOneMenu id="smProjectNumbe"
 														value="#{workPackageController.workPackage.project}"
 														converter="#{projectConverterBean}"
@@ -153,17 +151,17 @@
 													<h:message errorClass="text-danger" for="mnSupervisor" />
 												</div>
 											</div>
- 
+
 
 											<div class="panel panel-default">
 												<div class="panel-body">
 
 
 													<div class="form-group">
-														<h:outputLabel for="itWorkPackageBudget"
-															value="#{msgs.workPackageBudget}"
+														<h:outputLabel value="#{msgs.workPackageBudget}"
 															class="col-sm-4 control-label" />
 														<div class="col-sm-2">
+															<h:outputLabel value="#{msgs.p1}" />
 															<h:inputText pt:placeholder="P1" id="itWorkPackageBudget"
 																value="#{workPackageController.workPackage.budget.p1}"
 																required="true" label="#{msgs.workPackageBudget}"
@@ -172,6 +170,8 @@
 																for="itWorkPackageBudget" />
 														</div>
 														<div class="col-sm-2">
+															<h:outputLabel value="#{msgs.p2}" />
+
 															<h:inputText pt:placeholder="P2"
 																value="#{workPackageController.workPackage.budget.p2}"
 																required="true" label="#{msgs.workPackageBudget}"
@@ -180,6 +180,8 @@
 														</div>
 
 														<div class="col-sm-2">
+															<h:outputLabel value="#{msgs.p3}" />
+
 															<h:inputText pt:placeholder="P3"
 																value="#{workPackageController.workPackage.budget.p3}"
 																required="true" label="#{msgs.workPackageBudget}"
@@ -188,6 +190,8 @@
 														</div>
 
 														<div class="col-sm-2">
+															<h:outputLabel value="#{msgs.p4}" />
+
 															<h:inputText pt:placeholder="P4"
 																value="#{workPackageController.workPackage.budget.p4}"
 																required="true" label="#{msgs.workPackageBudget}"
@@ -199,6 +203,8 @@
 													<div class="form-group">
 
 														<div class="col-sm-2 col-sm-offset-4">
+															<h:outputLabel value="#{msgs.p5}" />
+
 															<h:inputText pt:placeholder="P5"
 																value="#{workPackageController.workPackage.budget.p5}"
 																required="true" label="#{msgs.workPackageBudget}"
@@ -206,6 +212,8 @@
 															<h:message errorClass="text-danger" for="" />
 														</div>
 														<div class="col-sm-2">
+															<h:outputLabel value="#{msgs.ss}" />
+
 															<h:inputText pt:placeholder="SS"
 																value="#{workPackageController.workPackage.budget.SS}"
 																required="true" label="#{msgs.workPackageBudget}"
@@ -214,6 +222,8 @@
 														</div>
 
 														<div class="col-sm-2">
+															<h:outputLabel value="#{msgs.js}" />
+
 															<h:inputText pt:placeholder="JS"
 																value="#{workPackageController.workPackage.budget.JS}"
 																required="true" label="#{msgs.workPackageBudget}"
@@ -222,6 +232,8 @@
 														</div>
 
 														<div class="col-sm-2">
+															<h:outputLabel value="#{msgs.ds}" />
+
 															<h:inputText pt:placeholder="DS"
 																value="#{workPackageController.workPackage.budget.DS}"
 																required="true" label="#{msgs.workPackageBudget}"
