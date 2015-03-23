@@ -2,7 +2,9 @@ package ca.bcit.info.pms.controller;
 
 import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
+import ca.bcit.info.pms.model.LoginCredential;
 import ca.bcit.info.pms.service.EmployeeService;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -12,6 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import java.io.Serializable;
 import java.util.Map;
 import java.util.Set;
@@ -27,6 +30,9 @@ public class UserController implements Serializable {
     @Inject
     private Credential credential;
 
+    @Inject
+    private LoginCredential loginCredential;
+    
     @Inject
     private Employee user;
 
@@ -44,11 +50,11 @@ public class UserController implements Serializable {
      * @return navigation view-id
      */
     public String login() {
-        final boolean isCorrect = empService.checkCredentials(credential);
+        final boolean isCorrect = empService.checkCredentials(loginCredential);
         String returnPath;
 
         if (isCorrect) {
-            user = empService.findEmployeeByUsername(credential.getUsername());
+            user = empService.findEmployeeByUsername(loginCredential.getUsername());
             authorizations = empService.checkAuthorization( user.getId() );
 
             returnPath = "loginSuccess";
@@ -236,6 +242,14 @@ public class UserController implements Serializable {
 
     public void setCredential(Credential credential) {
         this.credential = credential;
+    }
+    
+    public Credential getLoginCredential() {
+        return loginCredential;
+    }
+    
+    public void setLoginCredential(LoginCredential c) {
+        loginCredential = c;
     }
 
 }

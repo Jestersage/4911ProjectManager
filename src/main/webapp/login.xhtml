@@ -37,14 +37,14 @@
 
 			<h:outputLabel value="#{msgs.auth_username}" for="inputUsername" class="sr-only" />
             <h:message for="inputUsername" errorClass="text-danger" />
-			<h:inputText value="#{userController.credential.username}" id="inputUsername"
+			<h:inputText value="#{userController.loginCredential.username}" id="inputUsername"
 				class="form-control" required="true" label="#{msgs.auth_username}"
                 pt:placeholder="#{msgs.auth_username}" pt:autofocus="true" />
 
 			<h:outputLabel value="#{msgs.password}" for="inputPassword"
 				class="sr-only" />
             <h:message for="inputPassword" errorClass="text-danger" />
-			<p:password value="#{userController.credential.password}" id="inputPassword"
+			<p:password value="#{userController.loginCredential.password}" id="inputPassword"
                         class="form-control" required="true" label="#{msgs.auth_password}"
                         pt:placeholder="#{msgs.password}" />
 

@@ -39,11 +39,7 @@ public class Credential implements Serializable {
 
     public Credential(String username, String password) {
         this.username = username;
-        try {
-            this.password = PasswordHash.createHash(password);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        this.password = password;
     }
 
     public String getUsername() {
