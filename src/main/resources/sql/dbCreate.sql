@@ -231,6 +231,7 @@ ALTER TABLE Timesheet ADD CONSTRAINT FKTimesheetEmp FOREIGN KEY (employeeID) REF
 ALTER TABLE Timesheet ADD CONSTRAINT FKsignature FOREIGN KEY (signID) REFERENCES Signature (signID);
 --
 ALTER TABLE Employee ADD CONSTRAINT FKSupervisor FOREIGN KEY (supervisorID) REFERENCES Employee (employeeID);
+ALTER TABLE Employee ADD CONSTRAINT FKAssistant FOREIGN KEY (assistantId) REFERENCES Employee (employeeID);
 ALTER TABLE Employee ADD CONSTRAINT FKApprover FOREIGN KEY (approverID) REFERENCES Employee (employeeID);
 ALTER TABLE Employee ADD CONSTRAINT FKemployeeCred FOREIGN KEY (username) REFERENCES Credentials (username);
 -- ALTER TABLE Employee ADD CONSTRAINT FKemployeePay FOREIGN KEY (paygradeID) REFERENCES Paygrade (paygradeID);
