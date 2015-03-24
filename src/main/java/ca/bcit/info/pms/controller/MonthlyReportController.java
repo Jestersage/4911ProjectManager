@@ -38,7 +38,99 @@ public class MonthlyReportController implements Serializable {
 	EngineerBudget engineerBudget;
 	StatusReport statusReport;
 	Map<String, Double> payLevelMap;
-	
+	private int totalProjectBudget = 0;
+	private double totalProjectBudgetCost = 0;
+	private int totalEngineerBudget = 0;
+	private double totalEngineerBudgetCost = 0;
+	private double totalActualBudget = 0;
+	private double totalActualBudgetCost = 0;
+	private int totalEacBudget = 0;
+	private double totalEacBudgetCost = 0;
+	private String totalVarianceBudget = "";
+	private String totalVarianceBudgetCost = "";
+
+	public double getTotalProjectBudgetCost() {
+		return totalProjectBudgetCost;
+	}
+
+	public void setTotalProjectBudgetCost(double totalProjectBudgetCost) {
+		this.totalProjectBudgetCost = totalProjectBudgetCost;
+	}
+
+	public int getTotalEngineerBudget() {
+		return totalProjectBudget - totalEngineerBudget;
+	}
+
+	public void setTotalEngineerBudget(int totalEngineerBudget) {
+		this.totalEngineerBudget = totalEngineerBudget;
+	}
+
+	public double getTotalEngineerBudgetCost() {
+		return totalProjectBudgetCost - totalEngineerBudgetCost;
+	}
+
+	public void setTotalEngineerBudgetCost(double totalEngineerBudgetCost) {
+		this.totalEngineerBudgetCost = totalEngineerBudgetCost;
+	}
+
+	public double getTotalActualBudget() {
+		return totalActualBudget;
+	}
+
+	public void setTotalActualBudget(int totalActualBudget) {
+		this.totalActualBudget = totalActualBudget;
+	}
+
+	public double getTotalActualBudgetCost() {
+		return totalActualBudgetCost;
+	}
+
+	public void setTotalActualBudgetCost(double totalActualBudgetCost) {
+		this.totalActualBudgetCost = totalActualBudgetCost;
+	}
+
+	public int getTotalEacBudget() {
+		return totalEacBudget;
+	}
+
+	public void setTotalEacBudget(int totalEacBudget) {
+		this.totalEacBudget = totalEacBudget;
+	}
+
+	public double getTotalEacBudgetCost() {
+		return totalEacBudgetCost;
+	}
+
+	public void setTotalEacBudgetCost(double totalEacBudgetCost) {
+		this.totalEacBudgetCost = totalEacBudgetCost;
+	}
+
+	public String getTotalVarianceBudget() {
+		DecimalFormat df = new DecimalFormat("#.##");
+		return df.format(-100 * (1 - ((double)totalEacBudget / (double)totalProjectBudget )));
+	}
+
+	public void setTotalVarianceBudget(String totalVarianceBudget) {
+		this.totalVarianceBudget = totalVarianceBudget;
+	}
+
+	public String getTotalVarianceBudgetCost() {
+		DecimalFormat df = new DecimalFormat("#.##");
+		return df.format(-100 * (1 - (totalEacBudgetCost / totalProjectBudgetCost )));
+	}
+
+	public void setTotalVarianceBudgetCost(String totalVarianceBudgetCost) {
+		this.totalVarianceBudgetCost = totalVarianceBudgetCost;
+	}
+
+	public int getTotalProjectBudget() {
+		return totalProjectBudget;
+	}
+
+	public void setTotalProjectBudget(int totalProjectBudget) {
+		this.totalProjectBudget = totalProjectBudget;
+	}
+
 	public String getProject(final String id) {
 		project = reportManager.find("1202");
 		
@@ -75,9 +167,12 @@ public class MonthlyReportController implements Serializable {
 			totalCost += budget.getP5() * payGradeManager.getCost("P5");
 			totalCost += budget.getP6() * payGradeManager.getCost("P6");
 			workPackages.get(i).setTotalBudget(budgetManager.getTotalBudget(workPackages.get(i).getId()));
+			totalProjectBudget += budgetManager.getTotalBudget(workPackages.get(i).getId());
 			workPackages.get(i).setTotalCost(totalCost);
+			totalProjectBudgetCost += totalCost;
 			
 			workPackages.get(i).setActualManDays(timesheetRowManager.getTotalManDays(workPackages.get(i).getId()));
+			totalActualBudget += timesheetRowManager.getTotalManDays(workPackages.get(i).getId());
 			payLevelMap = timesheetRowManager.getManHoursPerPayLevel(workPackages.get(i).getId());
 			totalActualCost += payLevelMap.get("DS") * payGradeManager.getCost("DS");
 			totalActualCost += payLevelMap.get("JS") * payGradeManager.getCost("JS");
@@ -89,6 +184,7 @@ public class MonthlyReportController implements Serializable {
 			totalActualCost += payLevelMap.get("P5") * payGradeManager.getCost("P5");
 			totalActualCost += payLevelMap.get("P6") * payGradeManager.getCost("P6");
 			workPackages.get(i).setTotalActualCost(totalActualCost);
+			totalActualBudgetCost += totalActualCost;
 			
 			statusReport = statusReportManager.getStatusReport(workPackages.get(i).getId());
 			totalEstimateCost += statusReport.getDS() * payGradeManager.getCost("DS");
@@ -102,6 +198,8 @@ public class MonthlyReportController implements Serializable {
 			totalEstimateCost += statusReport.getP6() * payGradeManager.getCost("P6");
 			workPackages.get(i).setEstimateManDays(statusReportManager.getTotalCompletionEstimate(workPackages.get(i).getId()));
 			workPackages.get(i).setTotalEstimateCost(totalEstimateCost);
+			totalEacBudget += statusReportManager.getTotalCompletionEstimate(workPackages.get(i).getId());
+			totalEacBudgetCost += totalEstimateCost;
 			
 			workPackages.get(i).setVarianceManDays(df.format((1 - ((double)statusReportManager.getTotalCompletionEstimate(workPackages.get(i).getId())
 					/ (double)budgetManager.getTotalBudget(workPackages.get(i).getId()))) * -100));
@@ -122,7 +220,10 @@ public class MonthlyReportController implements Serializable {
 				totalEngineerCost += engineerBudget.getP6() * payGradeManager.getCost("P6");
 			}
 			workPackages.get(i).setEngineerManDays(engineerBudgetManager.getTotalBudget(workPackages.get(i).getId()));
+			totalEngineerBudget += budgetManager.getTotalBudget(workPackages.get(i).getId()) 
+					- engineerBudgetManager.getTotalBudget(workPackages.get(i).getId());
 			workPackages.get(i).setTotalEngineerCost(totalEngineerCost);
+			totalEngineerBudgetCost += totalCost - totalEngineerCost;
 			
 			workPackages.get(i).setCompletionPercentage(df.format(((double)timesheetRowManager.getTotalManDays(workPackages.get(i).getId()))
 					/ (double)statusReportManager.getTotalCompletionEstimate(workPackages.get(i).getId()) * 100));
