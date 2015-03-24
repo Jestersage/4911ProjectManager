@@ -11,11 +11,11 @@
 	<title></title>
 </h:head>
 <h:body>
-    <!--<f:metadata>
+    <f:metadata>
         <f:event type="preRenderView"
                  listener="#{userController.checkAuthorization}" />
-        <f:attribute name="requiredRoles" value="HR" />
-    </f:metadata>-->
+        <f:attribute name="requiredRoles" value="Supervisor" />
+    </f:metadata>
 
     <ui:composition template="/templatesBootstrap/masterLayout.xhtml">
 		<ui:define name="windowTitle">#{msgs.assignToProject}</ui:define>
@@ -82,7 +82,7 @@
 									</p:column>
 
 									<p:column>
-                                        <h:commandLink value="#{msgs.assignEmpToProj}" />
+                                        <h:commandLink value="#{msgs.assignEmpToProj}" action="#{empController.assignToProject(project)}" />
 									</p:column>
 								</p:dataTable>
 							</h:form>

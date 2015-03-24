@@ -47,7 +47,7 @@ public class Project implements Serializable {
 		this.employeeID = employeeID;
 	}
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "ProjectAssignment",
         joinColumns = {@JoinColumn(name = "projectID")},
         inverseJoinColumns = {@JoinColumn(name = "employeeID")})
