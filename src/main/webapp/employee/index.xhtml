@@ -103,13 +103,19 @@
 
 							<div class="container-fluid" id="row2">
 								<div class="row">
-									<ui:fragment rendered="#{userController.isAuthorized('HR')}">
+									<ui:fragment rendered="#{userController.isAuthorized('HR,Supervisor')}">
 										<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
 											<h2>#{msgs.employees}</h2>
-											<h:commandLink action="newEmployee"
-												value="#{msgs.newEmployee}" />
-											<h:commandLink action="viewAllEmployees"
-												value="#{msgs.viewEmployees}" />
+                                            <ui:fragment rendered="#{userController.isAuthorized('HR')}">
+                                                <h:commandLink action="newEmployee"
+                                                    value="#{msgs.newEmployee}" />
+                                                <h:commandLink action="viewAllEmployees"
+                                                    value="#{msgs.viewEmployees}" />
+                                            </ui:fragment>
+                                            <ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">
+                                                <h:commandLink action="viewManagedEmp"
+                                                               value="#{msgs.manageEmployees}" />
+                                            </ui:fragment>
 										</div>
 									</ui:fragment>
 									<div class="col-xs-12 col-sm-12 col-md-4" id="middleSection">
