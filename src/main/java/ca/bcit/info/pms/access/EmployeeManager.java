@@ -16,6 +16,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Hr;
+import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.service.PasswordHash;
 
 import org.apache.log4j.LogManager;
@@ -293,4 +294,17 @@ public class EmployeeManager implements Serializable
         return isApprover;
     }
 
+    /**
+     * @param id project manager's employee id.
+     * @return if this employee is project manager.
+     */
+    public boolean hasProjectManagerRole(final String id) {
+        final TypedQuery<Project> query = entityManager
+                .createQuery("SELECT p FROM Project p " +
+                        "WHERE p.employeeID = :managerId", Project.class);
+        query.setParameter("managerId", id);
+
+        final int numOfManagedProjects = query.getResultList().size();
+        return (numOfManagedProjects != 0);
+    }
 }
