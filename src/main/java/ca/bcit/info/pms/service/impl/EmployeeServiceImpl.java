@@ -45,9 +45,9 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable
         Map<String, Boolean> authorization = new HashMap<>();
 
         authorization.put(Employee.ROLE_HR, empManager.hasHrRole(empId));
+        authorization.put(Employee.ROLE_SUPERVISOR, empManager.hasSupervisorRole(empId));
 
         // TODO stub method, create empManager methods
-        authorization.put(Employee.ROLE_SUPERVISOR, false);
         authorization.put(Employee.ROLE_TS_APPROVER, false);
         authorization.put(Employee.ROLE_PROJECT_MANAGER, false);
         authorization.put(Employee.ROLE_ASSISTANT, false);

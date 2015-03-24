@@ -243,4 +243,18 @@ public class EmployeeManager implements Serializable
 
         return userInHrTable;
     }
+
+    public boolean hasSupervisorRole(final String id) {
+        List<Employee> managedEmp = getManagedEmployees(id);
+
+        return (managedEmp.size() != 0);
+    }
+
+    public List<Employee> getManagedEmployees(final String id) {
+        TypedQuery<Employee> query = entityManager
+                .createQuery("SELECT e FROM Employee  e " +
+                        "WHERE e.supervisor.id = :supId", Employee.class);
+        query.setParameter("supId", id);
+        return query.getResultList();
+    }
 }
