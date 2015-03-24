@@ -83,4 +83,26 @@ public class ProjectController implements Serializable{
     public void clearFields(){
         
     }
+
+    /**
+     * Route to assign employee to project page.
+     * @return navigating route.
+     */
+    public String assignToProject(final Project proj) {
+        project = proj;
+        return "assignEmpToProject";
+    }
+
+    /**
+     * Assign employee to project and update project in database.
+     * @param emp employee to assign.
+     * @return navigating route.
+     */
+    public String insertEmpToProject(final Employee emp) {
+        project = projService.getProject(project.getId());
+        project.assignEmployee(emp);
+
+        projService.updateProject(project);
+        return null;
+    }
 }

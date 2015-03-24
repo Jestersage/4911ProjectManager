@@ -55,20 +55,20 @@
                     <div class="col-sm-4">
                         <div class="panel panel-default ">
                             <div class="panel-heading">
-                                <h3 class="panel-title">For Project #{empController.project.name}</h3>
+                                <h3 class="panel-title">For Project #{projectController.project.name}</h3>
                             </div>
                             <div class="panel-body">
                                 <dl class="dl-horizontal">
                                     <dt>ID</dt>
-                                    <dd>#{empController.project.id}</dd>
+                                    <dd>#{projectController.project.id}</dd>
                                     <dt>Name</dt>
-                                    <dd>#{empController.project.name}</dd>
+                                    <dd>#{projectController.project.name}</dd>
                                     <dt>Description</dt>
-                                    <dd>#{empController.project.description}</dd>
+                                    <dd>#{projectController.project.description}</dd>
                                     <dt>Employees Assigned</dt>
                                     <dd>
                                         <ol>
-                                            <ui:repeat var="assigned" value="#{empController.project.employees.toArray()}">
+                                            <ui:repeat var="assigned" value="#{projectController.project.employees.toArray()}">
                                                 <li>#{assigned.firstName} #{assigned.lastName}</li>
                                             </ui:repeat>
                                         </ol>
@@ -83,7 +83,7 @@
                     <div class="container">
                         <h3>Select Employees to Assign</h3>
                         <h:form>
-                            <h:inputHidden value="#{empController.project.id}" />
+                            <h:inputHidden value="#{projectController.project.id}" />
 
                             <p:dataTable id="empTable" styleClass="bg-none table" var="employee"
                                          value="#{empController.managedEmployees}">
@@ -108,7 +108,7 @@
                                     <h:outputText value="#{employee.payGrade}" />
                                 </p:column>
                                 <p:column>
-                                    <h:commandLink value="Assign" /> <!-- TODO add function -->
+                                    <h:commandLink value="Assign" action="#{projectController.insertEmpToProject(employee)}"/>
                                 </p:column>
                             </p:dataTable>
 

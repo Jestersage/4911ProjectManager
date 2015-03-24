@@ -156,6 +156,19 @@ public class Project implements Serializable {
         this.rateSheet = rateSheet;
     }
 
+    /**
+     * Assign employee to this project.
+     * @param employee employee to be aded.
+     * @return if insert success. False if employee already included.
+     */
+    public boolean assignEmployee(final Employee employee) {
+        System.out.println("before assign: " + employees.toString());
+        boolean inserted = employees.add(employee);
+        System.out.println("insert success: " + inserted);
+        System.out.println("after assign: " + employees.toString());
+        return inserted;
+    }
+
 	@Override
 	public String toString() {
 		String result = getClass().getSimpleName() + " ";

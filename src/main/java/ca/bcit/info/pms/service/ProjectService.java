@@ -13,4 +13,10 @@ public interface ProjectService {
     List<Project> getAllProjects();
     
     Project findProjectByProjectName(final String projectName);
+
+    /**
+     * @param id project id.
+     * @return project with specified id.
+     */
+    Project getProject(final String id);
 }

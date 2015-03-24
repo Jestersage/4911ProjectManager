@@ -4,7 +4,6 @@ import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.PayLevel;
 import ca.bcit.info.pms.model.PayLevel.PayGrade;
-import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.service.EmployeeService;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -32,10 +31,6 @@ public class EmployeeController implements Serializable {
     /** Hold the new employee information. */
     @Inject
     private Employee employee;
-
-    /** Hold the project to assign emp to. */
-    @Inject
-    private Project project;
 
     /** Hold info about new employee's supervisor username from and to form. */
     private String supervisorUsername;
@@ -185,11 +180,6 @@ public class EmployeeController implements Serializable {
         return "assignApprover";
     }
 
-    public String assignToProject(final Project proj) {
-        project = proj;
-        return "assignEmpToProject";
-    }
-
     public String updateTsApprover() {
         final boolean found;
         String returnUrl = null;
@@ -226,14 +216,6 @@ public class EmployeeController implements Serializable {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
     }
 
     public String getSupervisorUsername() {

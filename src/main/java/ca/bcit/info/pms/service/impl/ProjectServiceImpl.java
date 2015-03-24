@@ -29,14 +29,16 @@ public class ProjectServiceImpl implements Serializable, ProjectService{
 
     @Override
     public List<Project> getAllProjects() {
-        // TODO Auto-generated method stub
         return projManager.getAllProjects();
     }
 
     @Override
     public Project findProjectByProjectName(String projectName) {
-        // TODO Auto-generated method stub
         return projManager.findByProjectName(projectName);
     }
 
+    @Override
+    public Project getProject(String id) {
+        return projManager.findByProjectId(id);
+    }
 }
