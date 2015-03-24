@@ -244,12 +244,20 @@ public class EmployeeManager implements Serializable
         return userInHrTable;
     }
 
+    /**
+     * @param id supervisor's employee id.
+     * @return if this employee is a supervisor.
+     */
     public boolean hasSupervisorRole(final String id) {
         List<Employee> managedEmp = getManagedEmployees(id);
 
         return (managedEmp.size() != 0);
     }
 
+    /**
+     * @param id supervisor's employee id.
+     * @return a list of employees managed by the specified supervisor.
+     */
     public List<Employee> getManagedEmployees(final String id) {
         TypedQuery<Employee> query = entityManager
                 .createQuery("SELECT e FROM Employee  e " +

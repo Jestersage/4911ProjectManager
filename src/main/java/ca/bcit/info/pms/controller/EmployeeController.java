@@ -25,6 +25,9 @@ public class EmployeeController implements Serializable {
     @Inject
     private EmployeeService empService;
 
+    @Inject
+    private UserController userController;
+
     /** Hold the new employee information. */
     @Inject
     private Employee employee;
@@ -194,6 +197,11 @@ public class EmployeeController implements Serializable {
 
     public List<Employee> getEmployees() {
         return empService.getAllEmployee();
+    }
+
+    public List<Employee> getManagedEmployees() {
+        final String currUserId = userController.getUser().getId();
+        return empService.getManagedEmployeeFor(currUserId);
     }
 
     public Employee getEmployee() {

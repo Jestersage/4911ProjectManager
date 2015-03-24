@@ -51,6 +51,12 @@ public interface EmployeeService {
      */
 	List<Employee> getAllEmployee();
 
+    /**
+     * @param empId supervisor employee id
+     * @return a list of employees managed by specified supervisor.
+     */
+    List<Employee> getManagedEmployeeFor(final String empId);
+
     // ========= Helper methods ========
     /**
      * Find employee by username.

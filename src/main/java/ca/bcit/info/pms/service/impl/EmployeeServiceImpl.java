@@ -75,6 +75,12 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable
 		return empManager.getAllEmployee();
 	}
 
+    @Override
+    public List<Employee> getManagedEmployeeFor(String empId) {
+        return empManager.getManagedEmployees(empId);
+    }
+
+
     // ========= Helper methods ========
     @Override
     public Employee findEmployeeByUsername(String username) {
