@@ -50,6 +50,7 @@ CREATE TABLE WorkPackage (
   packageName  varchar(20),
   packageDesc  varchar(20),
   status       int(1),
+  isLead       tinyint(1),
   CONSTRAINT packageID
     PRIMARY KEY (packageID));
 --
@@ -174,6 +175,7 @@ CREATE TABLE Employee (
   lastName     varchar(255) NOT NULL,
   supervisorID varchar(10),
   approverId   varchar(10),
+  assistantId   varchar(10), 
   payGrade     varchar(2),
   active       bool NOT NULL,
   vacationTime    numeric(4, 2) NOT NULL DEFAULT 0,
