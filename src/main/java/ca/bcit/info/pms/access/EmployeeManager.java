@@ -275,4 +275,22 @@ public class EmployeeManager implements Serializable
         query.setParameter("supId", id);
         return query.getResultList();
     }
+
+    /**
+     * @param id supervisor's employee id.
+     * @return if this employee is a timesheet approver.
+     */
+    public boolean hasTsApproverRole(final String id) {
+        TypedQuery<Employee> query = entityManager
+                .createQuery("SELECT e FROM Employee e " +
+                        "WHERE e.timesheetApprover.id = :approverId", Employee.class);
+        query.setParameter("approverId", id);
+
+        List<Employee> toApprove = query.getResultList();
+        boolean isApprover = toApprove.size() != 0;
+
+        logger.info("Employee with id " + id + ", has " + toApprove.size() + " emp to approve");
+        return isApprover;
+    }
+
 }
