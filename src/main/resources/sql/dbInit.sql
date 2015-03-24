@@ -16,3 +16,5 @@ source timesheetInsert.sql
 source paygradeInsert.sql
 --
 source statusReportInsert.sql
+--
+source assignmentConstant.sql
