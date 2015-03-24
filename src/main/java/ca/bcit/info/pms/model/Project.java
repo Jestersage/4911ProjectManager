@@ -162,11 +162,7 @@ public class Project implements Serializable {
      * @return if insert success. False if employee already included.
      */
     public boolean assignEmployee(final Employee employee) {
-        System.out.println("before assign: " + employees.toString());
-        boolean inserted = employees.add(employee);
-        System.out.println("insert success: " + inserted);
-        System.out.println("after assign: " + employees.toString());
-        return inserted;
+        return employees.add(employee);
     }
 
 	@Override

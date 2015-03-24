@@ -30,10 +30,10 @@
 						<div id="breadcrumb">
 							<h:form>
 								<ol class="breadcrumb">
-									<li><h:commandLink action="mypage" value="#{msgs.myPage}"/></li>
+									<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
 									<li><a href="#">#{msgs.rates}</a></li>
 									<li class="active">#{msgs.payLevel}</li>
-							</ol>
+								</ol>
 							</h:form>
 						</div>
 
@@ -48,24 +48,27 @@
 
 
 				<div class="row">
-					<div id="headerPayLevels" class="panel panel-default col-sm-12 col-md-3">
+					<div id="headerPayLevels"
+						class="panel panel-default col-sm-12 col-md-3">
 						<div class="panel-heading">#{msgs.payLevels}</div>
 						<div class="panel-body col-sm-12 col-md-12">
 
 							<h:form class="form-horizontal col-sm-12 col-md-12">
-
+								<div class="">
+									<h:messages errorClass="error" />
+								</div>
 
 								<div class="form-group">
 									<h:outputLabel for="payLevel1" value="#{msgs.year}"
 										class="col-sm-2 control-label" />
-									<div class="col-sm-5">
-										<h:selectOneMenu class="form-control" id="year" value=""
-											style="width:200px">
-											<f:selectItem itemValue="2" itemLabel="2012" />
-											<f:selectItem itemValue="1" itemLabel="2013" />
-											<f:selectItem itemValue="2" itemLabel="2014" />
-											<f:selectItem itemValue="2" itemLabel="2015" />
-										</h:selectOneMenu>
+									<div class="col-sm-6">
+										<p:selectOneMenu class="" id="year" style="width:200px"
+											value="#{payGradeController.year}" >
+											<f:selectItem itemValue="2012" itemLabel="2012" />
+											<f:selectItem itemValue="2013" itemLabel="2013" />
+											<f:selectItem itemValue="2014" itemLabel="2014" />
+											<f:selectItem itemValue="2015" itemLabel="2015" />
+										</p:selectOneMenu>
 									</div>
 								</div>
 
@@ -73,9 +76,12 @@
 									<h:outputLabel for="payLevel1" value="#{msgs.p1}"
 										class="col-sm-2 control-label" />
 									<div class="col-sm-5">
-										<h:inputText id="payLevel1" value="" required="true"
-											class="form-control" />
-										<h:message for="payLevel1" />
+										<p:inputText size="2" id="payLevel1"
+											value="#{payGradeController.p1}" required="true"
+											label="#{msgs.p1}" class="form-control"
+											style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}">
+											<f:validateDoubleRange minimum="0.0" maximum="99.99" />
+										</p:inputText>
 									</div>
 								</div>
 
@@ -83,9 +89,12 @@
 									<h:outputLabel for="payLevel2" value="#{msgs.p2}"
 										class="col-sm-2 control-label" />
 									<div class="col-sm-5">
-										<h:inputText id="payLevel2" value="" required="true"
-											class="form-control" />
-										<h:message for="payLevel2" />
+										<p:inputText id="payLevel2" value="#{payGradeController.p2}"
+											style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+											label="#{msgs.p2}" required="true" class="form-control"
+											validatorMessage="Value between 0.0 and 99.99">
+											<f:validateDoubleRange minimum="0.0" maximum="99.99" />
+										</p:inputText>
 									</div>
 								</div>
 
@@ -94,9 +103,13 @@
 									<h:outputLabel for="payLevel3" value="#{msgs.p3}"
 										class="col-sm-2 control-label" />
 									<div class="col-sm-5">
-										<h:inputText id="payLevel3" value="" required="true"
-											class="form-control" />
-										<h:message for="payLevel3" />
+										<p:inputText id="payLevel3" value="#{payGradeController.p3}"
+											label="#{msgs.p3}"
+											style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+											required="true" class="form-control"
+											validatorMessage="Value between 0.0 and 99.99">
+											<f:validateDoubleRange minimum="0.0" maximum="99.99" />
+										</p:inputText>
 									</div>
 								</div>
 
@@ -104,9 +117,13 @@
 									<h:outputLabel for="payLevel4" value="#{msgs.p4}"
 										class="col-sm-2 control-label" />
 									<div class="col-sm-5">
-										<h:inputText id="payLevel4" value="" required="true"
-											class="form-control" />
-										<h:message for="payLevel4" />
+										<p:inputText id="payLevel4" value="#{payGradeController.p4}"
+											label="#{msgs.p4}"
+											style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+											required="true" class="form-control"
+											validatorMessage="Value between 0.0 and 99.99">
+											<f:validateDoubleRange minimum="0.0" maximum="99.99" />
+										</p:inputText>
 									</div>
 								</div>
 
@@ -114,9 +131,13 @@
 									<h:outputLabel for="payLevel5" value="#{msgs.p5}"
 										class="col-sm-2 control-label" />
 									<div class="col-sm-5">
-										<h:inputText id="payLevel5" value="" required="true"
-											class="form-control" />
-										<h:message for="payLevel5" />
+										<p:inputText id="payLevel5" value="#{payGradeController.p5}"
+											label="#{msgs.p5}"
+											style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+											required="true" class="form-control"
+											validatorMessage="Value between 0.0 and 99.99">
+											<f:validateDoubleRange minimum="0.0" maximum="99.99" />
+										</p:inputText>
 									</div>
 								</div>
 
@@ -124,9 +145,13 @@
 									<h:outputLabel for="payLevelSS" value="#{msgs.ss}"
 										class="col-sm-2 control-label" />
 									<div class="col-sm-5">
-										<h:inputText id="payLevelSS" value="" required="true"
-											class="form-control" />
-										<h:message for="payLevelSS" />
+										<p:inputText id="payLevelSS" value="#{payGradeController.SS}"
+											label="#{msgs.ss}"
+											style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+											required="true" class="form-control"
+											validatorMessage="Value between 0.0 and 99.99">
+											<f:validateDoubleRange minimum="0.0" maximum="99.99" />
+										</p:inputText>
 									</div>
 								</div>
 
@@ -134,9 +159,13 @@
 									<h:outputLabel for="payLevelJS" value="#{msgs.js}"
 										class="col-sm-2 control-label" />
 									<div class="col-sm-5">
-										<h:inputText id="payLevelJS" value="" required="true"
-											class="form-control" />
-										<h:message for="payLevelJS" />
+										<p:inputText id="payLevelJS" value="#{payGradeController.JS}"
+											label="#{msgs.js}"
+											style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+											required="true" class="form-control"
+											validatorMessage="Value between 0.0 and 99.99">
+											<f:validateDoubleRange minimum="0.0" maximum="99.99" />
+										</p:inputText>
 									</div>
 								</div>
 
@@ -144,15 +173,20 @@
 									<h:outputLabel for="payLevelDS" value="#{msgs.ds}"
 										class="col-sm-2 control-label" />
 									<div class="col-sm-5">
-										<h:inputText id="payLevelDS" value="" required="true"
-											class="form-control" />
-										<h:message for="payLevelDS" />
+										<p:inputText id="payLevelDS" value="#{payGradeController.DS}"
+											label="#{msgs.ds}"
+											style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+											required="true" class="form-control"
+											validatorMessage="Value between 0.0 and 99.99">
+											<f:validateDoubleRange minimum="0.0" maximum="99.99" />
+										</p:inputText>
 									</div>
 								</div>
 								<!-- change to command button -->
 								<div class="form-group">
 									<div id="newEmployeeButtons" class="col-md-offset-2">
-										<h:button value="#{msgs.save}" class="btn bg-info marginOneEm" />
+										<h:commandButton action="#{payGradeController.save}"
+											class="btn bg-info marginOneEm" value="#{msgs.save}" />
 										<h:button value="#{msgs.clear}"
 											class="btn bg-info marginOneEm" />
 									</div>
@@ -162,7 +196,8 @@
 						</div>
 					</div>
 
-					<div id="headerCurrentPayLevels" class="panel panel-default col-md-7">
+					<div id="headerCurrentPayLevels"
+						class="panel panel-default col-md-7">
 						<div class="panel-heading">Pay Levels</div>
 						<div class="panel-body">
 
@@ -176,7 +211,7 @@
 										<h:outputText value="" />
 									</p:column>
 									<p:column headerText="#{msgs.p2}">
-										<h:outputText value="" />
+										<h:outputText value="#{pl.p2}" />
 									</p:column>
 									<p:column headerText="#{msgs.p3}">
 										<h:outputText value="" />

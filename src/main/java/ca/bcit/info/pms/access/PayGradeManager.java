@@ -2,6 +2,10 @@ package ca.bcit.info.pms.access;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
@@ -9,39 +13,77 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import ca.bcit.info.pms.model.Budget;
 import ca.bcit.info.pms.model.PayLevel;
 
 @Dependent
 @Stateless
-public class PayGradeManager implements Serializable {
-	@PersistenceContext(unitName = "pms-persistence-unit") private EntityManager em;
-	
-	public PayLevel find(final int id) {
-		return em.find(PayLevel.class, id);
+public class PayGradeManager implements Serializable
+{
+	@PersistenceContext( unitName = "pms-persistence-unit" )
+	private EntityManager em;
+
+	public PayLevel find( final int id )
+	{
+		return em.find( PayLevel.class, id );
 	}
-	
-	public void remove(final PayLevel payLevel) {
-		PayLevel pl = find(payLevel.getId());
-		em.remove(pl);
+
+	public void remove( final PayLevel payLevel )
+	{
+		PayLevel pl = find( payLevel.getId() );
+		em.remove( pl );
 	}
-	
-	public void merge(final PayLevel payLevel) {
-		em.merge(payLevel);
+
+	public void merge( final PayLevel payLevel )
+	{
+		em.merge( payLevel );
 	}
-	
-	public void persist(final PayLevel payLevel) {
-		em.persist(payLevel);
+
+	public void persist( final PayLevel payLevel )
+	{
+		em.persist( payLevel );
 	}
-	
-	public double getCost(final String payLevelName) {
-		Query query = em.createNativeQuery("select * "
-				+ "from paygrade "
-				+ "where name = :payName", PayLevel.class)
-				.setParameter("payName", payLevelName);
-	    PayLevel payLevel = (PayLevel) query.getSingleResult();
-	    BigDecimal cost = payLevel.getCost();
+
+	public void persist( final Map< String, BigDecimal > map, int year )
+	{
+		Set< Map.Entry< String, BigDecimal >> entrySet = map.entrySet();
+
+		for ( Map.Entry< String, BigDecimal > entry : entrySet )
+		{
+			PayLevel payLevel = new PayLevel();
+			String str = entry.getKey();
+			BigDecimal value = entry.getValue();
+			payLevel.setName( str );
+			payLevel.setYear( year );
+			payLevel.setCost( value );
+			em.persist( payLevel );
+			payLevel = null;
+
+		}
+
+	}
+
+	public List< PayLevel > getAllPayLevels()
+	{
+		ArrayList< PayLevel > list = new ArrayList< PayLevel >();
+		Query qry = em.createNativeQuery( "SELECT * FROM PayGrade", PayLevel.class );
+
+		try
+		{
+			list = ( ArrayList< PayLevel > ) qry.getResultList();
+		} catch ( Exception e )
+		{
+			// do nothing ?
+		}
+		return list;
+	}
+
+	public double getCost( final String payLevelName )
+	{
+		Query query = em.createNativeQuery( "select * " + "from paygrade " + "where name = :payName",
+		        PayLevel.class ).setParameter( "payName", payLevelName );
+		PayLevel payLevel = ( PayLevel ) query.getSingleResult();
+		BigDecimal cost = payLevel.getCost();
 		return cost.doubleValue();
 	}
-	
+
 }
