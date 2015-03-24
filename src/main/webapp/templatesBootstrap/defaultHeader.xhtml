@@ -55,19 +55,23 @@
 										value="#{msgs.editWorkPackage}" /></li>
 							</ul></li>
 							
-                        <ui:fragment rendered="#{userController.isAuthorized('HR')}">
+                        <ui:fragment rendered="#{userController.isAuthorized('HR,Supervisor')}">
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown" role="button" aria-expanded="false">#{msgs.employees}<span
 									class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
+                                    <ui:fragment rendered="#{userController.isAuthorized('HR')}">
 									<li><h:commandLink value="#{msgs.viewEmployees}"
 											action="viewAllEmployees" /></li>
                                     <li><h:commandLink value="#{msgs.newEmployee}"
                                                        action="newEmployee" /></li>
+                                    </ui:fragment>
+                                    <ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">
+                                    <li><h:commandLink action="viewManagedEmp"
+                                                       value="#{msgs.manageEmployees}" /></li>
+                                    </ui:fragment>
 								</ul></li>
 						</ui:fragment>
-
-
 
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false">#{msgs.reports}<span
