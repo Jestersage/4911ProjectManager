@@ -13,6 +13,7 @@ import ca.bcit.info.pms.access.EmployeeManager;
 import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.service.EmployeeService;
+import ca.bcit.info.pms.service.PasswordHash;
 
 @Named( "EmployeeService" )
 public class EmployeeServiceImpl implements EmployeeService, Serializable
@@ -28,10 +29,26 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable
 	public boolean checkCredentials( final Credential credential )
 	{
 		credentialList = empManager.getCredentials();
-		if ( credentialList != null )
-			return credentialList.contains( credential );
-		else
-			return false;
+		// Ensure list is not null
+        if ( credentialList != null ) {
+            for (Credential c : credentialList) {
+                // If match is found
+                if (c.getUsername().equals(credential.getUsername())) {
+                    // Return authentication result
+                    try {
+                        return PasswordHash.validatePassword(credential.getPassword(),
+                                                             c.getPassword());
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        return false;
+                    }
+                }
+            }
+            // If no match found in list
+            return false;
+        } else {
+            return false;
+        }
 	}
 
     @Override

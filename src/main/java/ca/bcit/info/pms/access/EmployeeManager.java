@@ -109,6 +109,7 @@ public class EmployeeManager implements Serializable
 			{
 			    // Hash the password
 			    employee.getCredential().setPassword(PasswordHash.createHash(employee.getCredential().getPassword()));
+			    
 				entityManager.persist( employee );
 				logger.info( "Employee added: " + employee.getCredential().getUsername() );
 
@@ -216,6 +217,11 @@ public class EmployeeManager implements Serializable
 				return null;
 			} else
 			{
+			    // If the password is not hashed
+			    if(credential.getPassword().length() != 102 ) {
+			        // Hash the password
+			        credential.setPassword(PasswordHash.createHash(credential.getPassword()));
+			    }
 				return this.entityManager.merge( credential );
 			}
 		} catch ( Exception e )
