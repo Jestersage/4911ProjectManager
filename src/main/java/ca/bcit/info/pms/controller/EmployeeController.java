@@ -150,7 +150,6 @@ public class EmployeeController implements Serializable {
      */
     public String editEmployee(final Employee emp) {
         employee = emp;
-        logger.info("before edit: " + employee);
         return "editEmp";
     }
 
