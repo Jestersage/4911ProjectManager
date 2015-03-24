@@ -35,8 +35,14 @@
 								<h:form>
 									<ol class="breadcrumb">
 										<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
+                                        <ui:fragment rendered="#{userController.isAuthorized('HR')}">
 										<li><h:commandLink action="viewAllEmployees"
 												value="#{msgs.viewEmployees}" /></li>
+                                        </ui:fragment>
+                                        <ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">
+                                            <li><h:commandLink action="viewManagedEmp"
+                                                               value="#{msgs.manageEmployees}" /></li>
+                                        </ui:fragment>
 										<li class="active">#{msgs.viewEmployee}</li>
 									</ol>
 								</h:form>
