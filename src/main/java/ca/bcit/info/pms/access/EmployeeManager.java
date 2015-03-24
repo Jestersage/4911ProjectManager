@@ -16,6 +16,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Hr;
+import ca.bcit.info.pms.service.PasswordHash;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -105,6 +107,8 @@ public class EmployeeManager implements Serializable
 		{
 			try
 			{
+			    // Hash the password
+			    employee.getCredential().setPassword(PasswordHash.createHash(employee.getCredential().getPassword()));
 				entityManager.persist( employee );
 				logger.info( "Employee added: " + employee.getCredential().getUsername() );
 
