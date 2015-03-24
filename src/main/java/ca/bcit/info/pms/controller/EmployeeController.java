@@ -167,7 +167,11 @@ public class EmployeeController implements Serializable {
     }
 
     public String assignTsApprover() {
-        employee = empService.findEmployeeById(employee.getId());
+        return assignTsApprover(employee.getId());
+    }
+
+    public String assignTsApprover(final String empId) {
+        employee = empService.findEmployeeById(empId);
 
         final Employee approver = employee.getTimesheetApprover();
         if(approver != null) {

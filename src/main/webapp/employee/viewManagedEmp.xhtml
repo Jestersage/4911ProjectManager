@@ -63,6 +63,7 @@
 
 									<p:column headerText="#{msgs.userName}">
 										<h:outputText value="#{employee.credential.username}" />
+                                        [ <h:commandLink value="#{msgs.emp_details}" action="#{empController.viewEmployee(employee)}" /> ]
 									</p:column>
 
 									<p:column headerText="#{msgs.firstName}">
@@ -83,12 +84,15 @@
 									</p:column>
 
                                     <p:column headerText="#{msgs.timesheetApprover}">
+                                        <h:inputHidden value="#{empController.employee.id}" />
                                         <h:outputText
                                                 value="#{employee.timesheetApprover.firstName} #{employee.timesheetApprover.lastName}" />
+                                        [ <h:commandLink action="#{empController.assignTsApprover(employee.id)}"
+                                                         value="#{employee.timesheetApprover != null ? 'change' : 'assign' }" /> ]
                                     </p:column>
 
 									<p:column>
-										<h:commandLink value="#{msgs.emp_details}" action="#{empController.viewEmployee(employee)}" />
+                                        assign to project
 									</p:column>
 								</p:dataTable>
 							</h:form>
