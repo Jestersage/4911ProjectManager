@@ -71,7 +71,6 @@ public class WorkPackageController implements Serializable {
 	
 	
 	public String addWorkPackage() {
-		
 		workPackageService.persistWorkPackage(workPackage);
 		logger.info("successfully create new WorkPackage: "
 				+ workPackage.toString());
@@ -92,5 +91,10 @@ public class WorkPackageController implements Serializable {
     
     public String goEditPackage() {
     	return "editWorkPackage";
+    }
+    
+    public String goNewTopLevelPackage(Project project) {
+    	workPackage.setProject(project);
+    	return "newWorkPackage";
     }
 }
