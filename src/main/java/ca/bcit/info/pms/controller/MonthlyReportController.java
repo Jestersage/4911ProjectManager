@@ -14,16 +14,19 @@ import ca.bcit.info.pms.model.StatusReport;
 import ca.bcit.info.pms.model.WorkPackage;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 @Named("monthlyReport")
-@RequestScoped
+@SessionScoped
 public class MonthlyReportController implements Serializable {
 	@Inject private MonthlyReportManager reportManager;
 	@Inject private WorkPackageManager workPackageManager;
@@ -48,6 +51,7 @@ public class MonthlyReportController implements Serializable {
 	private double totalEacBudgetCost = 0;
 	private String totalVarianceBudget = "";
 	private String totalVarianceBudgetCost = "";
+	private int todayDate = Calendar.getInstance().get(Calendar.YEAR);
 
 	public double getTotalProjectBudgetCost() {
 		return totalProjectBudgetCost;
@@ -138,7 +142,6 @@ public class MonthlyReportController implements Serializable {
 	}
 	
 	public String getProjectName() {
-		project = reportManager.find("1202"); //Using hard coded value now for testing
 		return project.getName();
 	}
 	
@@ -147,6 +150,16 @@ public class MonthlyReportController implements Serializable {
 		double totalActualCost = 0;
 		double totalEstimateCost = 0;
 		double totalEngineerCost = 0;
+		totalProjectBudget = 0;
+		totalProjectBudgetCost = 0;
+		totalEngineerBudget = 0;
+		totalEngineerBudgetCost = 0;
+		totalActualBudget = 0;
+		totalActualBudgetCost = 0;
+		totalEacBudget = 0;
+		totalEacBudgetCost = 0;
+		totalVarianceBudget = "";
+		totalVarianceBudgetCost = "";
 		DecimalFormat df = new DecimalFormat("#.##");
 		
 		workPackages = workPackageManager.getWorkPackages(project.getId());
@@ -157,15 +170,19 @@ public class MonthlyReportController implements Serializable {
 			totalEngineerCost = 0;
 			
 			budget = budgetManager.getBudget(workPackages.get(i).getId());
-			totalCost += budget.getDS() * payGradeManager.getCost("DS");
-			totalCost += budget.getJS() * payGradeManager.getCost("JS");
-			totalCost += budget.getSS() * payGradeManager.getCost("SS");
-			totalCost += budget.getP1() * payGradeManager.getCost("P1");
-			totalCost += budget.getP2() * payGradeManager.getCost("P2");
-			totalCost += budget.getP3() * payGradeManager.getCost("P3");
-			totalCost += budget.getP4() * payGradeManager.getCost("P4");
-			totalCost += budget.getP5() * payGradeManager.getCost("P5");
-			totalCost += budget.getP6() * payGradeManager.getCost("P6");
+			if (budget == null) {
+				totalCost = 0;
+			} else {
+				totalCost += budget.getDS() * payGradeManager.getCost("DS", todayDate);
+				totalCost += budget.getJS() * payGradeManager.getCost("JS", todayDate);
+				totalCost += budget.getSS() * payGradeManager.getCost("SS", todayDate);
+				totalCost += budget.getP1() * payGradeManager.getCost("P1", todayDate);
+				totalCost += budget.getP2() * payGradeManager.getCost("P2", todayDate);
+				totalCost += budget.getP3() * payGradeManager.getCost("P3", todayDate);
+				totalCost += budget.getP4() * payGradeManager.getCost("P4", todayDate);
+				totalCost += budget.getP5() * payGradeManager.getCost("P5", todayDate);
+				totalCost += budget.getP6() * payGradeManager.getCost("P6", todayDate);
+			}
 			workPackages.get(i).setTotalBudget(budgetManager.getTotalBudget(workPackages.get(i).getId()));
 			totalProjectBudget += budgetManager.getTotalBudget(workPackages.get(i).getId());
 			workPackages.get(i).setTotalCost(totalCost);
@@ -174,28 +191,32 @@ public class MonthlyReportController implements Serializable {
 			workPackages.get(i).setActualManDays(timesheetRowManager.getTotalManDays(workPackages.get(i).getId()));
 			totalActualBudget += timesheetRowManager.getTotalManDays(workPackages.get(i).getId());
 			payLevelMap = timesheetRowManager.getManHoursPerPayLevel(workPackages.get(i).getId());
-			totalActualCost += payLevelMap.get("DS") * payGradeManager.getCost("DS");
-			totalActualCost += payLevelMap.get("JS") * payGradeManager.getCost("JS");
-			totalActualCost += payLevelMap.get("SS") * payGradeManager.getCost("SS");
-			totalActualCost += payLevelMap.get("P1") * payGradeManager.getCost("P1");
-			totalActualCost += payLevelMap.get("P2") * payGradeManager.getCost("P2");
-			totalActualCost += payLevelMap.get("P3") * payGradeManager.getCost("P3");
-			totalActualCost += payLevelMap.get("P4") * payGradeManager.getCost("P4");
-			totalActualCost += payLevelMap.get("P5") * payGradeManager.getCost("P5");
-			totalActualCost += payLevelMap.get("P6") * payGradeManager.getCost("P6");
+			totalActualCost += payLevelMap.get("DS") * payGradeManager.getCost("DS", todayDate);
+			totalActualCost += payLevelMap.get("JS") * payGradeManager.getCost("JS", todayDate);
+			totalActualCost += payLevelMap.get("SS") * payGradeManager.getCost("SS", todayDate);
+			totalActualCost += payLevelMap.get("P1") * payGradeManager.getCost("P1", todayDate);
+			totalActualCost += payLevelMap.get("P2") * payGradeManager.getCost("P2", todayDate);
+			totalActualCost += payLevelMap.get("P3") * payGradeManager.getCost("P3", todayDate);
+			totalActualCost += payLevelMap.get("P4") * payGradeManager.getCost("P4", todayDate);
+			totalActualCost += payLevelMap.get("P5") * payGradeManager.getCost("P5", todayDate);
+			totalActualCost += payLevelMap.get("P6") * payGradeManager.getCost("P6", todayDate);
 			workPackages.get(i).setTotalActualCost(totalActualCost);
 			totalActualBudgetCost += totalActualCost;
 			
 			statusReport = statusReportManager.getStatusReport(workPackages.get(i).getId());
-			totalEstimateCost += statusReport.getDS() * payGradeManager.getCost("DS");
-			totalEstimateCost += statusReport.getJS() * payGradeManager.getCost("JS");
-			totalEstimateCost += statusReport.getSS() * payGradeManager.getCost("SS");
-			totalEstimateCost += statusReport.getP1() * payGradeManager.getCost("P1");
-			totalEstimateCost += statusReport.getP2() * payGradeManager.getCost("P2");
-			totalEstimateCost += statusReport.getP3() * payGradeManager.getCost("P3");
-			totalEstimateCost += statusReport.getP4() * payGradeManager.getCost("P4");
-			totalEstimateCost += statusReport.getP5() * payGradeManager.getCost("P5");
-			totalEstimateCost += statusReport.getP6() * payGradeManager.getCost("P6");
+			if (statusReport == null) {
+				totalEstimateCost = 0;
+			} else {
+				totalEstimateCost += statusReport.getDS() * payGradeManager.getCost("DS", todayDate);
+				totalEstimateCost += statusReport.getJS() * payGradeManager.getCost("JS", todayDate);
+				totalEstimateCost += statusReport.getSS() * payGradeManager.getCost("SS", todayDate);
+				totalEstimateCost += statusReport.getP1() * payGradeManager.getCost("P1", todayDate);
+				totalEstimateCost += statusReport.getP2() * payGradeManager.getCost("P2", todayDate);
+				totalEstimateCost += statusReport.getP3() * payGradeManager.getCost("P3", todayDate);
+				totalEstimateCost += statusReport.getP4() * payGradeManager.getCost("P4", todayDate);
+				totalEstimateCost += statusReport.getP5() * payGradeManager.getCost("P5", todayDate);
+				totalEstimateCost += statusReport.getP6() * payGradeManager.getCost("P6", todayDate);
+			}
 			workPackages.get(i).setEstimateManDays(statusReportManager.getTotalCompletionEstimate(workPackages.get(i).getId()));
 			workPackages.get(i).setTotalEstimateCost(totalEstimateCost);
 			totalEacBudget += statusReportManager.getTotalCompletionEstimate(workPackages.get(i).getId());
@@ -209,15 +230,15 @@ public class MonthlyReportController implements Serializable {
 			if(engineerBudget == null) {
 				totalEngineerCost = 0;
 			} else {
-				totalEngineerCost += engineerBudget.getDS() * payGradeManager.getCost("DS");
-				totalEngineerCost += engineerBudget.getJS() * payGradeManager.getCost("JS");
-				totalEngineerCost += engineerBudget.getSS() * payGradeManager.getCost("SS");
-				totalEngineerCost += engineerBudget.getP1() * payGradeManager.getCost("P1");
-				totalEngineerCost += engineerBudget.getP2() * payGradeManager.getCost("P2");
-				totalEngineerCost += engineerBudget.getP3() * payGradeManager.getCost("P3");
-				totalEngineerCost += engineerBudget.getP4() * payGradeManager.getCost("P4");
-				totalEngineerCost += engineerBudget.getP5() * payGradeManager.getCost("P5");
-				totalEngineerCost += engineerBudget.getP6() * payGradeManager.getCost("P6");
+				totalEngineerCost += engineerBudget.getDS() * payGradeManager.getCost("DS", todayDate);
+				totalEngineerCost += engineerBudget.getJS() * payGradeManager.getCost("JS", todayDate);
+				totalEngineerCost += engineerBudget.getSS() * payGradeManager.getCost("SS", todayDate);
+				totalEngineerCost += engineerBudget.getP1() * payGradeManager.getCost("P1", todayDate);
+				totalEngineerCost += engineerBudget.getP2() * payGradeManager.getCost("P2", todayDate);
+				totalEngineerCost += engineerBudget.getP3() * payGradeManager.getCost("P3", todayDate);
+				totalEngineerCost += engineerBudget.getP4() * payGradeManager.getCost("P4", todayDate);
+				totalEngineerCost += engineerBudget.getP5() * payGradeManager.getCost("P5", todayDate);
+				totalEngineerCost += engineerBudget.getP6() * payGradeManager.getCost("P6", todayDate);
 			}
 			workPackages.get(i).setEngineerManDays(engineerBudgetManager.getTotalBudget(workPackages.get(i).getId()));
 			totalEngineerBudget += budgetManager.getTotalBudget(workPackages.get(i).getId()) 
@@ -229,5 +250,11 @@ public class MonthlyReportController implements Serializable {
 					/ (double)statusReportManager.getTotalCompletionEstimate(workPackages.get(i).getId()) * 100));
 		}
 		return workPackages;
+	}
+	
+	public String viewMonthlyReport(Project project) {
+		this.project = project;
+		
+		return "viewMonthlyReport";
 	}
 }

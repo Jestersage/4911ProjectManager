@@ -245,6 +245,16 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
+	<!-- monthly report rules - view monthly report -->
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>viewMonthlyReport</from-outcome>
+			<to-view-id>/reports/monthReport.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 	<!-- other rules -->
 	<application>
 		<locale-config>

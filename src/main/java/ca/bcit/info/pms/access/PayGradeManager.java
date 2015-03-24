@@ -76,13 +76,17 @@ public class PayGradeManager implements Serializable
 		}
 		return list;
 	}
+	
+	public double getCost(final String payLevelName, final int year) {
+		Query query = em.createNativeQuery("select * "
+				+ "from paygrade "
+				+ "where name = :payName "
+				+ "and year = :year", PayLevel.class)
+				.setParameter("payName", payLevelName)
+				.setParameter("year", year);
+	    PayLevel payLevel = (PayLevel) query.getSingleResult();
+	    BigDecimal cost = payLevel.getCost();
 
-	public double getCost( final String payLevelName )
-	{
-		Query query = em.createNativeQuery( "select * " + "from paygrade " + "where name = :payName",
-		        PayLevel.class ).setParameter( "payName", payLevelName );
-		PayLevel payLevel = ( PayLevel ) query.getSingleResult();
-		BigDecimal cost = payLevel.getCost();
 		return cost.doubleValue();
 	}
 

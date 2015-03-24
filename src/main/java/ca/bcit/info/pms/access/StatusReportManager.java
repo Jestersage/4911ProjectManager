@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -40,10 +41,14 @@ public class StatusReportManager implements Serializable {
 				+ "from statusreport "
 				+ "where packageID = :wpId", StatusReport.class)
 				.setParameter("wpId", wpId);
-		StatusReport statusReport = (StatusReport) query.getSingleResult();
-	    int totalBudget = statusReport.getDS() + statusReport.getJS() + statusReport.getSS() + statusReport.getP1() + statusReport.getP2()
-	    		+ statusReport.getP3() + statusReport.getP4() + statusReport.getP5() + statusReport.getP6();
-		return totalBudget;
+		try {
+			StatusReport statusReport = (StatusReport) query.getSingleResult();
+		    int totalBudget = statusReport.getDS() + statusReport.getJS() + statusReport.getSS() + statusReport.getP1() + statusReport.getP2()
+		    		+ statusReport.getP3() + statusReport.getP4() + statusReport.getP5() + statusReport.getP6();
+			return totalBudget;
+		} catch (NoResultException e) {
+			return 0;
+		}
 	}
 	
 	public StatusReport getStatusReport(final int wpId) {
@@ -51,8 +56,13 @@ public class StatusReportManager implements Serializable {
 				+ "from statusreport "
 				+ "where packageID = :wpId", StatusReport.class)
 				.setParameter("wpId", wpId);
-		StatusReport statusReport = (StatusReport) query.getSingleResult();
-		return statusReport;
+		
+		try {
+			StatusReport statusReport = (StatusReport) query.getSingleResult();
+			return statusReport;
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 	
 }
