@@ -160,11 +160,14 @@
 												<div class="col-sm-8">
 													<h:selectBooleanCheckbox id="isLeafOrNot"
 														value="#{workPackageController.workPackage.leaf}"
-														label="#{msgs.isLeafOrNot}" class="form-control" />
+														label="#{msgs.isLeafOrNot}" class="form-control">
+														<f:ajax event="click" render="@form" />
+													</h:selectBooleanCheckbox>
 													<h:message errorClass="text-danger" for="isLeafOrNot" />
 												</div>
 											</div>
 
+											<h:panelGroup rendered="#{workPackageController.workPackage.leaf}">
 											<div class="panel panel-default">
 												<div class="panel-body">
 
@@ -255,7 +258,7 @@
 													</div>
 												</div>
 											</div>
-
+											</h:panelGroup>
 											<div class="form-group">
 												<div id="newWorkPackageButtons" class="col-md-offset-4">
 													<h:commandButton value="#{msgs.save}"
