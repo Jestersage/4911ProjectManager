@@ -20,6 +20,7 @@ import javax.inject.Named;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -52,6 +53,15 @@ public class MonthlyReportController implements Serializable {
 	private String totalVarianceBudget = "";
 	private String totalVarianceBudgetCost = "";
 	private int todayDate = Calendar.getInstance().get(Calendar.YEAR);
+	private String todayMonth = new SimpleDateFormat("MMM").format(Calendar.getInstance().getTime());
+
+	public int getTodayDate() {
+		return todayDate;
+	}
+
+	public String getTodayMonth() {
+		return todayMonth;
+	}
 
 	public double getTotalProjectBudgetCost() {
 		return totalProjectBudgetCost;
