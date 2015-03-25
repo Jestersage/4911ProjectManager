@@ -307,4 +307,18 @@ public class EmployeeManager implements Serializable
         final int numOfManagedProjects = query.getResultList().size();
         return (numOfManagedProjects != 0);
     }
+
+    /**
+     * @param id project assistant's employee id.
+     * @return if this employee is an assistant to a project manager.
+     */
+    public boolean hasAssistantRole(final String id) {
+        final TypedQuery<Project> query = entityManager
+                .createQuery("SELECT p FROM Project p " +
+                        "WHERE p.assistant.id = :assistantId", Project.class);
+        query.setParameter("assistantId", id);
+
+        final int numOfManagedProjects = query.getResultList().size();
+        return (numOfManagedProjects != 0);
+    }
 }
