@@ -255,6 +255,25 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>viewAllProjectsForAssign</from-outcome>
+            <to-view-id>/employee/viewAllProjectsForAssign.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>viewManagedEmp</from-outcome>
+            <to-view-id>/employee/viewManagedEmp.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+
 	<!-- other rules -->
 	<application>
 		<locale-config>

@@ -38,5 +38,4 @@ public class TimesheetController implements Serializable {
         //persist timesheet
         return "newTimesheet";
     }
-    
 }
