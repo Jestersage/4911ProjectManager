@@ -2,12 +2,9 @@ package ca.bcit.info.pms.access;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -15,14 +12,16 @@ import javax.persistence.TypedQuery;
 
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Timesheet;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 @Stateless
 @LocalBean
 public class TimesheetManager implements Serializable {
     @PersistenceContext
     private EntityManager entityManager;
-    
-    //private static final Logger logger = LogManager.getLogger(TimesheetManager.class);
+
+    private static final Logger logger = LogManager.getLogger(TimesheetManager.class);
 
 
     public Timesheet findById(final long id) {
@@ -93,5 +92,20 @@ public class TimesheetManager implements Serializable {
 
     }
 
-   
+    /**
+     * @param empId timesheet approver's employee id.
+     * @return a list of timesheets to be approved by this employee.
+     */
+    // TODO uncertain correct query. what can be signed and approved field's values
+    public List<Timesheet> getTimesheetsToApprove(final String empId) {
+        TypedQuery<Timesheet> query = entityManager
+                .createQuery("SELECT t FROM Timesheet t, " +
+                        "IN (t.owner) AS e " +
+                        "WHERE e.timesheetApprover.id = :approverId " +
+                        "AND t.approved <> 'approved'" +
+                        "AND t.signed = 'Signed'", Timesheet.class);
+        query.setParameter("approverId", empId);
+        List<Timesheet> timesheets = query.getResultList();
+        return timesheets;
+    }
 }
