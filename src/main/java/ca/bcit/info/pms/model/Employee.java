@@ -27,10 +27,10 @@ public class Employee implements Serializable {
 
     public static final String ROLE_HR = "HR";
     public static final String ROLE_SUPERVISOR = "Supervisor";
-    public static final String ROLE_TS_APPROVER = "TimesheetApprover";
-    public static final String ROLE_PROJECT_MANAGER = "ProjectManager";
-    public static final String ROLE_ASSISTANT = "Assistant";
-    public static final String ROLE_WP_MANAGER = "WorkPackageManager";
+    public static final String ROLE_TS_APPROVER = "Timesheet Approver";
+    public static final String ROLE_PROJECT_MANAGER = "Project Manager";
+    public static final String ROLE_ASSISTANT = "Project Assistant";
+    public static final String ROLE_WP_MANAGER = "Responsible Engineer";
 
     @Id
 	@Column(name = "employeeID", updatable = false)
