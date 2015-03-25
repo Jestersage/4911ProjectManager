@@ -234,6 +234,8 @@
     TARGET="rules:#reports#weekReport.xhtml" TITLE="weekReport" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#projects#viewAllProjects.xhtml"
+  PATH="/projects/viewAllProjects.xhtml" SHAPE="240,2529,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:*:24" PATH="*" SHAPE="32,2625,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:24" NAME="item" PATH="*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="editPayLevels::#rates#payLevel.xhtml"
@@ -243,8 +245,6 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#projects#viewAllPackages.xhtml"
   PATH="/projects/viewAllPackages.xhtml" SHAPE="240,3537,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#projects#viewAllProjects.xhtml"
-  PATH="/projects/viewAllProjects.xhtml" SHAPE="240,2529,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:*:25" PATH="*" SHAPE="32,2737,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:25" NAME="item" PATH="*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT

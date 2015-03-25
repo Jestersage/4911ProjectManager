@@ -23,7 +23,7 @@ import ca.bcit.info.pms.model.WorkPackage;
 public class WorkPackageManager implements Serializable
 {
 
-	private static final Logger logger = LogManager.getLogger( ProjectManager.class );
+	private static final Logger logger = LogManager.getLogger( WorkPackageManager.class );
 
 	@PersistenceContext( unitName = "pms-persistence-unit" )
 	private EntityManager em;
@@ -55,7 +55,7 @@ public class WorkPackageManager implements Serializable
 		} else
 		{
 			em.persist( newWorkPackage );
-			logger.info( "Project added: " + newWorkPackage.getId() + ", "
+			logger.info( "Workpackage added: " + newWorkPackage.getId() + ", "
 			        + newWorkPackage.getName() );
 		}
 

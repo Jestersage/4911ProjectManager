@@ -63,17 +63,19 @@
 												<h:outputLabel for="itProjectNumber"
 													value="#{msgs.projectNumber}"
 													class="col-sm-4 control-label" />
+
 												<div class="col-sm-8">
 
-													<!-- 										<h:inputText id="itProjectNumber"
+
+												 	<h:outputText id="itProjectNumber"
 														rendered="#{ not empty workPackageController.workPackage.project}"
 														value="#{workPackageController.workPackage.project.id}"
 														required="true" label="#{msgs.projectNumber}"
 														class="form-control" />
 													<h:message errorClass="text-danger" for="itProjectNumber" />
--->
 
-													<h:selectOneMenu id="smProjectNumber"
+
+													<!--<h:selectOneMenu id="smProjectNumber"
 														value="#{workPackageController.workPackage.project}"
 														required="true" converter="#{projectConverterBean}"
 														rendered="#{not empty workPackageController.projectList}"
@@ -81,7 +83,7 @@
 
 														<f:selectItems
 															value="#{workPackageController.projectList}" />
-													</h:selectOneMenu>
+													</h:selectOneMenu>  -->
 													<!-- 
 													<h:selectOneMenu id="smProjectNumbe"
 														value="#{workPackageController.workPackage.project}"

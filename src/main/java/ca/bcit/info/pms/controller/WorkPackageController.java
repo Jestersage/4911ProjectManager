@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -37,29 +39,39 @@ public class WorkPackageController implements Serializable {
 	private Project[] projectList;
 	
 	
-
+//    @ManagedProperty("#{param.projId}")
+//    private String projectId;
+//
+//	public String getProjectId() {
+//		return projectId;
+//	}
+//
+//
+//	public void setProjectId(String projectId) {
+//		this.projectId = projectId;
+//	}
 
 	private static final Logger logger = LogManager
 			.getLogger(WorkPackageController.class);
 
-	public String index() {
-		if (workPackage == null)
-			workPackage = new WorkPackage();
-		if (workPackage.getProject() == null) {
-//			 FacesContext context = FacesContext.getCurrentInstance();
-//			 context.addMessage(null,
-//	                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
-//	                            "You haven't select a Project", null));	
-//			 return "";
-			workPackage.setProject(new Project());
-			projectList = getProjectList();
-			   
-		}
-		
-		logger.info("index new WorkPackage: ");
-		return "newWorkPackage";
-
-	}
+//	public String index() {
+//		if (workPackage == null)
+//			workPackage = new WorkPackage();
+//		if (workPackage.getProject() == null) {
+////			 FacesContext context = FacesContext.getCurrentInstance();
+////			 context.addMessage(null,
+////	                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+////	                            "You haven't select a Project", null));	
+////			 return "";
+//			workPackage.setProject(new Project());
+//			projectList = getProjectList();
+//			   
+//		}
+//		
+//		logger.info("index new WorkPackage: ");
+//		return "newWorkPackage";
+//
+//	}
 
 	
 	public Project[] getProjectList() {
@@ -71,10 +83,11 @@ public class WorkPackageController implements Serializable {
 	
 	
 	public String addWorkPackage() {
+		System.out.println(workPackage.getProject().getId());
 		workPackageService.persistWorkPackage(workPackage);
 		logger.info("successfully create new WorkPackage: "
 				+ workPackage.toString());
-		return "newWorkPackage";
+		return "newWorkPackage?faces-redirect=true";
 	}
 
 	public WorkPackage getworkPackage() {

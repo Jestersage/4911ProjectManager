@@ -125,6 +125,7 @@ public class WorkPackage implements Serializable
 
 	public WorkPackage() {
 		this.budget = new Budget();
+		this.project = new Project();
 	}
 
 	public String getVarianceManDays() {
