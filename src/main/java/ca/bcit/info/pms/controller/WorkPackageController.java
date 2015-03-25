@@ -110,4 +110,10 @@ public class WorkPackageController implements Serializable {
     	workPackage.setProject(project);
     	return "newWorkPackage";
     }
+    
+	public int findNumOfChildWP(String projId) {
+		int i = workPackageService.getNumOfChildWP(projId);
+		System.out.println(i);
+		return workPackageService.getNumOfChildWP(projId);
+	}
 }

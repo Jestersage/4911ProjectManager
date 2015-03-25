@@ -15,4 +15,6 @@ public interface WorkPackageService {
     List<WorkPackage> getAllWorkPackages();
     
     List<Project> getAllProjects();	
+    
+    int getNumOfChildWP(String projId);
 }
