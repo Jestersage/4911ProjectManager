@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 
 import org.apache.log4j.LogManager;
@@ -101,5 +102,17 @@ public class WorkPackageManager implements Serializable
         CriteriaQuery<WorkPackage> criteria = this.em.getCriteriaBuilder().createQuery(WorkPackage.class);
         return this.em.createQuery(criteria.select(criteria.from(WorkPackage.class))).getResultList();
     }
-	
+
+
+    /**
+     * @param empId responsible engineer's employee id.
+     * @return a list of all work package managed by this employee disregarding which project.
+     */
+    // TODO fix to engineer.id when employeeID change to manager in WorkPackage
+    public List<WorkPackage> getManagedWorkPackage(final String empId) {
+        TypedQuery<WorkPackage> query = em.createQuery("SELECT w FROM WorkPackage w " +
+                "WHERE w.employeeID = :assistantId", WorkPackage.class);
+        query.setParameter("assistantId", empId);
+        return query.getResultList();
+    }
 }

@@ -17,6 +17,7 @@ import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Hr;
 import ca.bcit.info.pms.model.Project;
+import ca.bcit.info.pms.model.WorkPackage;
 import ca.bcit.info.pms.service.PasswordHash;
 
 import org.apache.log4j.LogManager;
@@ -321,5 +322,19 @@ public class EmployeeManager implements Serializable
 
         final int numOfManagedProjects = query.getResultList().size();
         return (numOfManagedProjects != 0);
+    }
+
+    /**
+     * @param id responsible engineer's employee id.
+     * @return if this employee is an responsible engineer to a work package.
+     */
+    public boolean hasWpManagerRole(final String id) {
+        final TypedQuery<WorkPackage> query = entityManager
+                .createQuery("SELECT w FROM WorkPackage w " +
+                        "WHERE w.employeeID = :assistantId", WorkPackage.class);
+        query.setParameter("assistantId", id);
+
+        final int numOfWPs = query.getResultList().size();
+        return (numOfWPs != 0);
     }
 }

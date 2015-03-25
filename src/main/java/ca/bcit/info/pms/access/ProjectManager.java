@@ -100,7 +100,7 @@ public class ProjectManager implements Serializable{
         }
     }
 
-    /**]
+    /**
      * @param empId project manager's employee id.
      * @return a list of projects managed by this employee.
      */
@@ -113,7 +113,7 @@ public class ProjectManager implements Serializable{
         return query.getResultList();
     }
 
-    /**]
+    /**
      * @param empId project assistant's employee id.
      * @return a list of projects managed by this employee.
      */
