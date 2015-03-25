@@ -50,9 +50,9 @@
 					</div>
 
 					<div class="row">
+						<h:form id="newProjectForm" class="form-horizontal">
 
-						<div class="col-xs-12 col-sm-12 col-md-6" id="data">
-							<h:form id="newProjectForm" class="form-horizontal">
+							<div class="col-xs-12 col-sm-12 col-md-6" id="data">
 
 								<div class="form-group">
 									<h:outputLabel for="itWorkPackageNumber"
@@ -101,13 +101,25 @@
 									</div>
 								</div>
 
+
+								<div class="form-group">
+									<div id="newWorkPackageButtons" class="col-md-offset-4">
+										<h:commandButton value="#{msgs.save}" class="btn btn-primary " />
+										<h:commandButton value="#{msgs.clear}" class="btn btn-default" />
+									</div>
+								</div>
+								<!-- end of new employee data -->
+
+								<!-- end of employee form -->
+							</div>
+							<div class="col-md-6">
+
 								<div class="panel panel-default">
 									<div class="panel-body">
-
-
+										<span id="helpBlock" class="help-block">Project Manager</span>
 										<div class="form-group">
 											<h:outputLabel value="#{msgs.workPackageBudget}"
-												class="col-sm-4 control-label" />
+												class="col-sm-2 control-label" />
 											<div class="col-sm-2">
 												<h:outputLabel value="#{msgs.p1}" />
 
@@ -144,7 +156,7 @@
 
 										<div class="form-group">
 
-											<div class="col-sm-2 col-sm-offset-4">
+											<div class="col-sm-2 col-sm-offset-2">
 												<h:outputLabel value="#{msgs.p5}" />
 
 												<h:inputText pt:placeholder="P5" value="" required="true"
@@ -177,17 +189,85 @@
 										</div>
 									</div>
 								</div>
-								<div class="form-group">
-									<div id="newWorkPackageButtons" class="col-md-offset-4">
-										<h:commandButton value="#{msgs.save}" class="btn btn-primary " />
-										<h:commandButton value="#{msgs.clear}" class="btn btn-default" />
+
+
+								<div class="panel panel-default">
+									<div class="panel-body">
+
+										<span id="helpBlock" class="help-block">Engineer</span>
+
+										<div class="form-group">
+											<h:outputLabel value="#{msgs.workPackageBudget}"
+												class="col-sm-2 control-label" />
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p1}" />
+												<h:inputText pt:placeholder="P1" value="" required="true"
+													label="#{msgs.p1}" class="form-control" />
+												<h:message errorClass="text-danger" />
+											</div>
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p2}" />
+
+												<h:inputText pt:placeholder="P2" value="" required="true"
+													label="#{msgs.p2}" class="form-control" />
+												<h:message errorClass="text-danger" for="" />
+											</div>
+
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p3}" />
+
+												<h:inputText pt:placeholder="P3" value="" required="true"
+													label="#{msgs.p3}" class="form-control" />
+												<h:message errorClass="text-danger" for="" />
+											</div>
+
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p4}" />
+
+												<h:inputText pt:placeholder="P4" value="" required="true"
+													label="#{msgs.p4}" class="form-control" />
+												<h:message errorClass="text-danger" for="" />
+											</div>
+										</div>
+
+										<div class="form-group">
+
+											<div class="col-sm-2 col-sm-offset-2">
+												<h:outputLabel value="#{msgs.p5}" />
+
+												<h:inputText pt:placeholder="P5" value="" required="true"
+													label="#{msgs.p5}" class="form-control" />
+												<h:message errorClass="text-danger" for="" />
+											</div>
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.ss}" />
+
+												<h:inputText pt:placeholder="SS" value="" required="true"
+													label="#{msgs.ss}" class="form-control" />
+												<h:message errorClass="text-danger" for="" />
+											</div>
+
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.js}" />
+
+												<h:inputText pt:placeholder="JS" value="" required="true"
+													label="#{msgs.js}" class="form-control" />
+												<h:message errorClass="text-danger" for="" />
+											</div>
+
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.ds}" />
+
+												<h:inputText pt:placeholder="DS" value="" required="true"
+													label="#{msgs.ds}" class="form-control" />
+												<h:message errorClass="text-danger" for="" />
+											</div>
+										</div>
 									</div>
 								</div>
-								<!-- end of new employee data -->
 
-							</h:form>
-							<!-- end of employee form -->
-						</div>
+							</div>
+						</h:form>
 						<!-- end of data div. Employee information -->
 
 
