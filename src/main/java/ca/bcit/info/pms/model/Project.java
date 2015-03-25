@@ -137,6 +137,8 @@ public class Project implements Serializable {
 //    }
 
 	public double getMarkupValue() {
+		if(markupValue == null) 
+			return 0;
 		return markupValue;
 	}
 

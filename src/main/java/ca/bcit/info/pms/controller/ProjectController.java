@@ -96,7 +96,12 @@ public class ProjectController implements Serializable{
         return managedProjects;
     }
     
+    /**
+     * 
+     * @return
+     */
     public String goEditProject() {
+    	this.project = projService.getProject(project.getId());
     	return "editProject";
     }
     
@@ -124,5 +129,15 @@ public class ProjectController implements Serializable{
 
         projService.updateProject(project);
         return null;
+    }
+    
+    /**
+     * 
+     * @param prject
+     * @return
+     */
+    public String viewProjectDetails(final Project project){
+    	this.project = project;
+    	return "viewProjectDetails";
     }
 }

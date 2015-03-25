@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:event type="preRenderView"
+			listener="#{userController.checkAuthorization}" />
+		<f:attribute name="requiredRoles" value="HR" />
+	</f:metadata>
+
+	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
+		<ui:define name="windowTitle">#{msgs.employees}</ui:define>
+		<ui:define name="additionalStyleSheets">
+			<h:outputStylesheet library="css" name="viewAllEmployees.css" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="content">
+				<div class="col-xs-12 col-sm-12 colmd-12">
+
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12">
+
+							<div id="breadcrumb">
+								<h:form>
+									<ol class="breadcrumb">
+										<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
+                                        <ui:fragment rendered="#{userController.isAuthorized('HR')}">
+										<li><h:commandLink action="viewAllEmployees"
+												value="#{msgs.viewEmployees}" /></li>
+                                        </ui:fragment>
+                                        <ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">
+                                            <li><h:commandLink action="viewManagedEmp"
+                                                               value="#{msgs.manageEmployees}" /></li>
+                                        </ui:fragment>
+										<li class="active">#{msgs.viewEmployee}</li>
+									</ol>
+								</h:form>
+							</div>
+
+							<div id="pageTitle">
+								<h1>#{msgs.viewProjectDetails}</h1>
+							</div>
+							<ui:insert name="notificationArea">
+								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
+							</ui:insert>
+						</div>
+					</div>
+
+					<div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 ">
+                        <h:form id="projectForm" styleClass="form-inline">
+                            <h:inputHidden value="#{projectController.project.id}" />
+
+                            <dl class="dl-horizontal">
+                                <dt>#{msgs.projectNumber}</dt>
+                                <dd>#{projectController.project.id}</dd>
+
+                                <dt>#{msgs.projectName}</dt>
+                                <dd>#{projectController.project.name}</dd>
+
+                                <dt>#{msgs.projectDescription}</dt>
+                                <dd>#{projectController.project.description}</dd>
+
+                                <dt>#{msgs.projectManager}</dt>
+                                <dd>#{projectController.project.employeeID}</dd>
+
+                                <dt>#{msgs.projectAssistant}</dt>
+                                <dd>#{projectController.project.assistant.firstName}
+                                	#{projectController.project.assistant.lastName}
+                                </dd>
+
+                                <dt>#{msgs.startDate}</dt>
+                                <dd>#{projectController.project.startDate}</dd>
+
+                          
+                                <dt>#{msgs.endDate}</dt>
+                                <dd>
+                                    #{projectController.project.endDate}
+                                </dd>
+                         
+                                                     
+
+                                <dt>#{msgs.status}</dt>
+                                <dd>#{projectController.project.status}</dd>
+
+                                <!-- <dt>#{msgs.vacation}</dt>
+                                <dd>#{projectController.project.markupValue}</dd> -->
+
+                                <dt>#{msgs.genReport}</dt>
+                                <dd>#{projectController.project.genReport}</dd>
+                            </dl>
+                        </h:form>
+                    </div>
+					</div>
+
+                  <ui:fragment rendered="#{userController.isAuthorized('Project Manager')}">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-2">
+                                <div class="container">
+                                    <div class="row">
+                                        <h:form id="linkForm">
+                                            <h:inputHidden value="#{projectController.project.id}" />
+                                            <h:commandLink value="#{msgs.edit_emp}"
+                                                styleClass="btn btn-default col-sm-1 col-sm-offset-1 marginOneEm"
+                                                action="#{projectController.goEditProject}" />
+                                          </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ui:fragment>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

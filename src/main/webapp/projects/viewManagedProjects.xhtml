@@ -86,11 +86,11 @@
 									</p:column>
 									
 									<p:column headerText="#{msgs.genReport}">
-										<h:outputText value="#{project.employeeID}" />
+										<h:outputText value="#{project.genReport}" />
 									</p:column>
 
 									<p:column>
-                                        <h:commandLink value="#{msgs.edit_emp}" action="#{projectController.goEditProject()}" /> |
+                                        <h:commandLink value="#{msgs.project_details}" action="#{projectController.viewProjectDetails(project)}" /> |
                                         <h:commandLink value="#{msgs.viewMonthlyReport}" action="#{monthlyReport.viewMonthlyReport(project)}" />     
                                         <h:commandLink value="#{msgs.newWorkPackage}" action="#{workPackageController.goNewTopLevelPackage(project)}" />           
 									</p:column>

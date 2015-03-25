@@ -11,85 +11,89 @@
 	<title></title>
 </h:head>
 <h:body>
-    <f:metadata>
-        <f:event type="preRenderView"
-                 listener="#{userController.checkAuthorization}" />
-        <f:attribute name="requiredRoles" value="Supervisor" />
-    </f:metadata>
+	<f:metadata>
+		<f:event type="preRenderView"
+			listener="#{userController.checkAuthorization}" />
+		<f:attribute name="requiredRoles" value="Supervisor" />
+	</f:metadata>
 
-    <ui:composition template="/templatesBootstrap/masterLayout.xhtml">
+	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
 		<ui:define name="windowTitle">#{msgs.assignToProject}</ui:define>
 		<ui:define name="additionalStyleSheets">
 			<h:outputStylesheet library="css" name="viewAllEmployees.css" />
 		</ui:define>
 		<ui:define name="content">
-		<div id="content">
-			<div class="col-xs-12 col-sm-12 colmd-12">
+			<div id="content">
+				<div class="col-xs-12 col-sm-12 colmd-12">
 
 
-				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12">
 
-						<div id="breadcrumb">
-							<h:form>
-								<ol class="breadcrumb">
-									<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
-									<li class="active">#{msgs.assignToProject}</li>
-								</ol>
-							</h:form>
-						</div>
+							<div id="breadcrumb">
+								<h:form>
+									<ol class="breadcrumb">
+										<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
+										<li class="active">#{msgs.assignToProject}</li>
+									</ol>
+								</h:form>
+							</div>
 
-						<div id="pageTitle">
-							<h1>#{msgs.assignToProject}</h1>
-						</div>
-						<ui:insert name="notificationArea">
-							<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
-						</ui:insert>
-					</div>
-				</div>
-
-
-				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12 ">
-						<div id="employeesDataTable">
-							<h:form>
-								<p:dataTable id="projTable" styleClass="bg-none table" var="project"
-									value="#{projectController.projects}" paginator="true"
-									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-									rowsPerPageTemplate="10,20,30">
-									<p:column headerText="#{msgs.projectNumber}">
-										<h:outputText value="#{project.id}" />
-									</p:column>
-
-									<p:column headerText="#{msgs.projectName}">
-										<h:outputText value="#{project.name}" />
-									</p:column>
-
-									<p:column headerText="#{msgs.startDate}">
-										<h:outputText value="#{project.startDate}" />
-									</p:column>
-
-									<p:column headerText="#{msgs.endDate}">
-										<h:outputText value="#{project.endDate}" />
-									</p:column>
-
-									<p:column headerText="#{msgs.status}">
-										<h:outputText value="#{project.status}" />
-									</p:column>
-
-									<p:column headerText="#{msgs.projectManager}">
-										<h:outputText value="#{project.employeeID}" />
-									</p:column>
-
-									<p:column>
-                                        <h:commandLink value="#{msgs.assignEmpToProj}" action="#{projectController.assignToProject(project)}" />
-									</p:column>
-								</p:dataTable>
-							</h:form>
+							<div id="pageTitle">
+								<h1>#{msgs.assignToProject}</h1>
+							</div>
+							<ui:insert name="notificationArea">
+								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
+							</ui:insert>
 						</div>
 					</div>
+
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 ">
+							<div id="employeesDataTable">
+								<h:form>
+									<p:dataTable id="projTable" styleClass="bg-none table"
+										var="project" value="#{projectController.projects}"
+										paginator="true"
+										paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+										rowsPerPageTemplate="10,20,30">
+										<p:column headerText="#{msgs.projectNumber}">
+											<h:outputText value="#{project.id}" />
+										</p:column>
+
+										<p:column headerText="#{msgs.projectName}">
+											<h:outputText value="#{project.name}" />
+										</p:column>
+
+										<p:column headerText="#{msgs.startDate}">
+											<h:outputText value="#{project.startDate}" />
+										</p:column>
+
+										<p:column headerText="#{msgs.endDate}">
+											<h:outputText value="#{project.endDate}" />
+										</p:column>
+
+										<p:column headerText="#{msgs.status}">
+											<h:outputText value="#{project.status}" />
+										</p:column>
+
+										<p:column headerText="#{msgs.projectManager}">
+											<h:outputText value="#{project.employeeID}" />
+										</p:column>
+										<p:column headerText="#{msgs.genReport}">
+											<h:outputText value="#{project.genReport}" />
+										</p:column>
+										<p:column>
+											<h:commandLink value="#{msgs.assignEmpToProj}"
+												action="#{projectController.assignToProject(project)}" />
+										</p:column>
+									</p:dataTable>
+								</h:form>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
 			</div>
 		</ui:define>
 	</ui:composition>
