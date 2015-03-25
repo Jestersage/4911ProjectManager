@@ -91,11 +91,9 @@
 
 									<p:column>
                                         <h:commandLink value="#{msgs.project_details}" action="#{projectController.viewProjectDetails(project)}" /> |
-                                        <h:commandLink value="#{msgs.viewMonthlyReport}" action="#{monthlyReport.viewMonthlyReport(project)}" />     
-                                        <h:commandLink value="#{msgs.newWorkPackage}" action="#{workPackageController.goNewTopLevelPackage(project)}" />           
-									</p:column>
-									<p:column>
-										<h:commandLink value="#{msgs.project_details}" action="#{workPackageController.findNumOfChildWP(project.id)}" />
+                                        <h:commandLink value="#{msgs.viewMonthlyReport}" action="#{monthlyReport.viewMonthlyReport(project)}" /> |    
+                                        <h:commandLink value="#{msgs.newWorkPackage}" action="#{workPackageController.goNewTopLevelPackage(project)}" 
+                                        			   rendered="#{workPackageController.findNumOfChildWP(project.id) > '0'}"/>           
 									</p:column>
 								</p:dataTable>
 							</h:form>
