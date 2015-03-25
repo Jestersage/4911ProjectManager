@@ -91,7 +91,8 @@
 
 									<p:column>
                                         <h:commandLink value="#{msgs.edit_emp}" action="#{projectController.goEditProject()}" /> |
-                                        <h:commandLink value="#{msgs.viewMonthlyReport}" action="#{monthlyReport.viewMonthlyReport(project)}" />               
+                                        <h:commandLink value="#{msgs.viewMonthlyReport}" action="#{monthlyReport.viewMonthlyReport(project)}" />     
+                                        <h:commandLink value="#{msgs.newWorkPackage}" action="#{workPackageController.goNewTopLevelPackage(project)}" />           
 									</p:column>
 								</p:dataTable>
 							</h:form>
