@@ -112,4 +112,16 @@ public class ProjectManager implements Serializable{
         query.setParameter("managerId", empId);
         return query.getResultList();
     }
+
+    /**]
+     * @param empId project assistant's employee id.
+     * @return a list of projects managed by this employee.
+     */
+    public List<Project> getAssistedProjects(final String empId) {
+        TypedQuery<Project> query = entityManager
+                .createQuery("SELECT p FROM Project p " +
+                        "WHERE p.assistant.id = :assistantId", Project.class);
+        query.setParameter("assistantId", empId);
+        return query.getResultList();
+    }
 }
