@@ -66,6 +66,7 @@ CREATE TABLE Project (
   markupValue   double,
   genReport       tinyint(1) NOT NULL,
   contractorName  varchar(512),
+  assistantId   varchar(10), 
   CONSTRAINT projectID  
     PRIMARY KEY (projectID)
 );
@@ -175,7 +176,6 @@ CREATE TABLE Employee (
   lastName     varchar(255) NOT NULL,
   supervisorID varchar(10),
   approverId   varchar(10),
-  assistantId   varchar(10), 
   payGrade     varchar(2),
   active       bool NOT NULL,
   vacationTime    numeric(4, 2) NOT NULL DEFAULT 0,
@@ -222,6 +222,8 @@ INSERT INTO `hibernate_sequence` (`next_val`) VALUES
 --
 ALTER TABLE StatusReport ADD CONSTRAINT FKReportWP FOREIGN KEY (packageID) REFERENCES WorkPackage (packageID);
 --
+ALTER TABLE Project ADD CONSTRAINT FKAssistant FOREIGN KEY (assistantId) REFERENCES Employee (employeeID);
+--
 ALTER TABLE WorkPackage ADD CONSTRAINT FKSubWorkPackage FOREIGN KEY (parentwpID) REFERENCES WorkPackage (packageID);
 ALTER TABLE WorkPackage ADD CONSTRAINT FKWPProject FOREIGN KEY (projectID) REFERENCES Project (projectID);
 --
@@ -231,7 +233,6 @@ ALTER TABLE Timesheet ADD CONSTRAINT FKTimesheetEmp FOREIGN KEY (employeeID) REF
 ALTER TABLE Timesheet ADD CONSTRAINT FKsignature FOREIGN KEY (signID) REFERENCES Signature (signID);
 --
 ALTER TABLE Employee ADD CONSTRAINT FKSupervisor FOREIGN KEY (supervisorID) REFERENCES Employee (employeeID);
-ALTER TABLE Employee ADD CONSTRAINT FKAssistant FOREIGN KEY (assistantId) REFERENCES Employee (employeeID);
 ALTER TABLE Employee ADD CONSTRAINT FKApprover FOREIGN KEY (approverID) REFERENCES Employee (employeeID);
 ALTER TABLE Employee ADD CONSTRAINT FKemployeeCred FOREIGN KEY (username) REFERENCES Credentials (username);
 -- ALTER TABLE Employee ADD CONSTRAINT FKemployeePay FOREIGN KEY (paygradeID) REFERENCES Paygrade (paygradeID);
