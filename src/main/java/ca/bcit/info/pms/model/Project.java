@@ -30,6 +30,10 @@ public class Project implements Serializable {
 
 	@NotNull(message = "Manager Id can not be null")
 	private String employeeID;
+
+    @ManyToOne
+    @JoinColumn(name = "assistantID")
+    private Employee assistant;
 	
 	@NotNull(message = "Start date can not 	be null")
 	private Date startDate;
@@ -38,14 +42,6 @@ public class Project implements Serializable {
 
     @Enumerated(EnumType.ORDINAL)
 	private ProjectStatus status;
-
-	public String getEmployeeID() {
-		return employeeID;
-	}
-
-	public void setEmployeeID(String employeeID) {
-		this.employeeID = employeeID;
-	}
 
 	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "ProjectAssignment",
@@ -115,6 +111,14 @@ public class Project implements Serializable {
 	public void setStatus(ProjectStatus status) {
 		this.status = status;
 	}
+
+    public String getEmployeeID() {
+        return employeeID;
+    }
+
+    public void setEmployeeID(String employeeID) {
+        this.employeeID = employeeID;
+    }
 
 	public Set<Employee> getEmployees() {
 		return employees;
