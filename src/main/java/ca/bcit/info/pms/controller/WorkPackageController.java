@@ -87,7 +87,7 @@ public class WorkPackageController implements Serializable {
 		workPackageService.persistWorkPackage(workPackage);
 		logger.info("successfully create new WorkPackage: "
 				+ workPackage.toString());
-		return "newWorkPackage?faces-redirect=true";
+		return "viewAllPackages";
 	}
 
 	public WorkPackage getworkPackage() {

@@ -73,6 +73,7 @@
 														required="true" label="#{msgs.projectNumber}"
 														class="form-control" />
 													<h:message errorClass="text-danger" for="itProjectNumber" />
+													<h:inputHidden value="#{workPackageController.workPackage.project.id}" />
 
 
 													<!--<h:selectOneMenu id="smProjectNumber"

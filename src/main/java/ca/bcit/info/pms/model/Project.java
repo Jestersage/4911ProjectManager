@@ -201,4 +201,16 @@ public class Project implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
+	public Employee getAssistant() {
+		return assistant;
+	}
+
+	public void setAssistant(Employee assistant) {
+		this.assistant = assistant;
+	}
+
+	public void setMarkupValue(Double markupValue) {
+		this.markupValue = markupValue;
+	}
 }
