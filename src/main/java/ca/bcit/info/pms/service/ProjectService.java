@@ -25,4 +25,10 @@ public interface ProjectService {
      * @return list of projects managed by this employee.
      */
     public List<Project> getManagedProjectsFor(String empId);
+
+    /**
+     * @param empId project assistant's employee id.
+     * @return list of projects managed by this assistant.
+     */
+    public List<Project> getAssistedProjectsFor(final String empId);
 }

@@ -47,4 +47,9 @@ public class ProjectServiceImpl implements Serializable, ProjectService{
         return projManager.getManagedProjects(empId);
     }
 
+    @Override
+    public List<Project> getAssistedProjectsFor(String empId) {
+        return projManager.getAssistedProjects(empId);
+    }
+
 }

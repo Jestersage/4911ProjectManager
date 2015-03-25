@@ -83,7 +83,17 @@ public class ProjectController implements Serializable{
      * @return a list of projects managed by current user.
      */
     public List<Project> getManagedProjects() {
-        return projService.getManagedProjectsFor(userController.getUser().getId());
+        List<Project> managedProjects;
+        final String userId = userController.getUser().getId();
+
+        if (userController.isAuthorized(Employee.ROLE_PROJECT_MANAGER)) {
+            managedProjects = projService.getManagedProjectsFor(userId);
+        }
+        else {
+            managedProjects = projService.getAssistedProjectsFor(userId);
+        }
+
+        return managedProjects;
     }
     
     public String goEditProject() {
