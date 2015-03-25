@@ -259,8 +259,8 @@
     <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
-            <from-outcome>viewAllProjectsForAssign</from-outcome>
-            <to-view-id>/employee/viewAllProjectsForAssign.xhtml</to-view-id>
+            <from-outcome>viewAllProjects</from-outcome>
+            <to-view-id>/employee/viewAllProjects.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>
