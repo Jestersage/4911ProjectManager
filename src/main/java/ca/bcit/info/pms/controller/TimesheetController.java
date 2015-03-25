@@ -18,4 +18,25 @@ public class TimesheetController implements Serializable {
 
     @Inject
     private TimesheetService timeService;
+
+    /**
+     * @return Return timesheet
+     */
+    public Timesheet getTimesheet(){
+        return timesheet;
+    }
+
+    /**
+     * @param timesheet the timesheet to set
+     */
+    public void setTimesheet(Timesheet timesheet) {
+        this.timesheet = timesheet;
+    }
+
+    public String addTimesheet(){
+        //set functions
+        //persist timesheet
+        return "newTimesheet";
+    }
+    }
 }
