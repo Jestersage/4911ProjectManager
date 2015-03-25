@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 
 import org.apache.log4j.LogManager;
@@ -97,5 +98,18 @@ public class ProjectManager implements Serializable{
                     new FacesMessage(e.getMessage()));
             return null;
         }
+    }
+
+    /**]
+     * @param empId project manager's employee id.
+     * @return a list of projects managed by this employee.
+     */
+    // TODO fix to manager.id when employeeID change to manager in Project
+    public List<Project> getManagedProjects(final String empId) {
+        TypedQuery<Project> query = entityManager
+                .createQuery("SELECT p FROM Project p " +
+                        "WHERE p.employeeID = :managerId", Project.class);
+        query.setParameter("managerId", empId);
+        return query.getResultList();
     }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -39,10 +40,14 @@ public class BudgetManager implements Serializable {
 				+ "from budget "
 				+ "where budgetId = :wpId", Budget.class)
 				.setParameter("wpId", wpId);
-	    Budget budget = (Budget) query.getSingleResult();
-	    int totalBudget = budget.getDS() + budget.getJS() + budget.getSS() + budget.getP1() + budget.getP2()
-	    		+ budget.getP3() + budget.getP4() + budget.getP5() + budget.getP6();
-		return totalBudget;
+		try {
+			Budget budget = (Budget) query.getSingleResult();
+		    int totalBudget = budget.getDS() + budget.getJS() + budget.getSS() + budget.getP1() + budget.getP2()
+		    		+ budget.getP3() + budget.getP4() + budget.getP5() + budget.getP6();
+			return totalBudget;
+		} catch (NoResultException e) {
+			return 0;
+		}
 	}
 	
 	public Budget getBudget(final int wpId) {
@@ -50,8 +55,12 @@ public class BudgetManager implements Serializable {
 				+ "from budget "
 				+ "where budgetId = :wpId", Budget.class)
 				.setParameter("wpId", wpId);
-	    Budget budget = (Budget) query.getSingleResult();
-		return budget;
+		try {
+			Budget budget = (Budget) query.getSingleResult();
+			return budget;
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 	
 }

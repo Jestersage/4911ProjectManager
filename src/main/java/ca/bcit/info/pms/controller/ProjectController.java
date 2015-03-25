@@ -36,6 +36,9 @@ public class ProjectController implements Serializable{
 
 	@Inject
     private ProjectService projService;
+
+    @Inject
+    private UserController userController;
     
     /*
      * holds the project information
@@ -74,6 +77,13 @@ public class ProjectController implements Serializable{
     
     public List<Project> getProjects() {
         return projService.getAllProjects();
+    }
+
+    /**
+     * @return a list of projects managed by current user.
+     */
+    public List<Project> getManagedProjects() {
+        return projService.getManagedProjectsFor(userController.getUser().getId());
     }
     
     public String goEditProject() {

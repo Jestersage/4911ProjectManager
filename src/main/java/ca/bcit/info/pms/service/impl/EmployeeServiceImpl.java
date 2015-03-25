@@ -63,10 +63,10 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable
 
         authorization.put(Employee.ROLE_HR, empManager.hasHrRole(empId));
         authorization.put(Employee.ROLE_SUPERVISOR, empManager.hasSupervisorRole(empId));
+        authorization.put(Employee.ROLE_TS_APPROVER, empManager.hasTsApproverRole(empId));
+        authorization.put(Employee.ROLE_PROJECT_MANAGER, empManager.hasProjectManagerRole(empId));
 
         // TODO stub method, create empManager methods
-        authorization.put(Employee.ROLE_TS_APPROVER, false);
-        authorization.put(Employee.ROLE_PROJECT_MANAGER, false);
         authorization.put(Employee.ROLE_ASSISTANT, false);
         authorization.put(Employee.ROLE_WP_MANAGER, false);
 
