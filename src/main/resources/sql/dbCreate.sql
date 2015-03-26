@@ -111,7 +111,7 @@ CREATE TABLE EngineerBudget(
 --
 -- RateSheet is for Project
 CREATE TABLE RateSheet(
-    ratesheetID int(10) NOT NULL,
+    ratesheetID int(10) NOT NULL AUTO_INCREMENT,
     year  int(4),
     JS int(10),
     SS int(10),
@@ -150,8 +150,7 @@ CREATE TABLE Timesheet (
   weekending  date NOT NULL, 
   overtime    numeric(4, 2) NOT NULL DEFAULT 0, 
   flexTime    numeric(4, 2) NOT NULL DEFAULT 0, 
-  signed      varchar(255), 
-  approved    varchar(255),
+  approved    bool,
   signID      int(10),
   CONSTRAINT timesheetID 
     PRIMARY KEY (timesheetID));
