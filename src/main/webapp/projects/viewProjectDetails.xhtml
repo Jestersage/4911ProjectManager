@@ -103,7 +103,100 @@
                         </h:form>
                     </div>
 					</div>
+					<div class="col-md-6">
+								<div class="panel panel-default">
+												<div class="panel-body">
 
+
+													<div class="form-group">
+														<h:outputLabel value="#{msgs.workPackageBudget}"
+															class="col-sm-2 control-label" />
+														<div class="col-sm-2">
+															<h:outputLabel value="#{msgs.p1}" />
+															<h:outputText pt:placeholder="P1" 
+																value="#{projectController.project.rateSheet.p1}"
+																required="true" label="#{msgs.p1}"
+																class="form-control" />
+															<h:message errorClass="text-danger"/>
+														</div>
+														<div class="col-sm-2">
+															<h:outputLabel value="#{msgs.p2}" />
+
+															<h:outputText pt:placeholder="P2"
+																value="#{projectController.project.rateSheet.p2}"
+																required="true" label="#{msgs.p2}"
+																class="form-control" />
+															<h:message errorClass="text-danger" for="" />
+														</div>
+
+														<div class="col-sm-2">
+															<h:outputLabel value="#{msgs.p3}" />
+
+															<h:outputText pt:placeholder="P3"
+																value="#{projectController.project.rateSheet.p3}"
+																required="true" label="#{msgs.p3}"
+																class="form-control" />
+															<h:message errorClass="text-danger" for="" />
+														</div>
+
+														<div class="col-sm-2">
+															<h:outputLabel value="#{msgs.p4}" />
+
+															<h:outputText pt:placeholder="P4"
+																value="#{projectController.project.rateSheet.p4}"
+																required="true" label="#{msgs.p4}"
+																class="form-control" />
+															<h:message errorClass="text-danger" for="" />
+														</div>
+													</div>
+
+													<div class="form-group">
+
+														<div class="col-sm-2 col-sm-offset-2">
+															<h:outputLabel value="#{msgs.p5}" />
+
+															<h:outputText pt:placeholder="P5"
+																value="#{projectController.project.rateSheet.p5}"
+																required="true" label="#{msgs.p5}"
+																class="form-control" />
+															<h:message errorClass="text-danger" for="" />
+														</div>
+														<div class="col-sm-2">
+															<h:outputLabel value="#{msgs.ss}" />
+
+															<h:outputText pt:placeholder="SS"
+																value="#{projectController.project.rateSheet.SS}"
+																required="true" label="#{msgs.ss}"
+																class="form-control" />
+															<h:message errorClass="text-danger" for="" />
+														</div>
+
+														<div class="col-sm-2">
+															<h:outputLabel value="#{msgs.js}" />
+
+															<h:outputText pt:placeholder="JS"
+																value="#{projectController.project.rateSheet.JS}"
+																required="true" label="#{msgs.js}"
+																class="form-control" />
+															<h:message errorClass="text-danger" for="" />
+														</div>
+
+														<div class="col-sm-2">
+															<h:outputLabel value="#{msgs.ds}" />
+
+															<h:outputText pt:placeholder="DS"
+																value="#{projectController.project.rateSheet.DS}"
+																required="true" label="#{msgs.ds}"
+																class="form-control" />
+															<h:message errorClass="text-danger" for="" />
+														</div>
+													</div>
+												</div>
+											</div>
+								
+							
+							
+							</div>
                   <ui:fragment rendered="#{userController.isAuthorized('Project Manager')}">
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-2">

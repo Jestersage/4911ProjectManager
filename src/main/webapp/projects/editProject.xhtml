@@ -51,15 +51,16 @@
 					</div>
 
 					<div class="row">
-							<h:form id="newProjectForm" class="form-horizontal">
+						<h:form id="newProjectForm" class="form-horizontal">
 
-						<div class="col-xs-12 col-sm-12 col-md-6" id="data">
+							<div class="col-xs-12 col-sm-12 col-md-6" id="data">
 
 								<div class="form-group">
 									<h:outputLabel for="itProjectNumber"
 										value="#{msgs.projectNumber}" class="col-sm-4 control-label" />
 									<div class="col-sm-8">
-										<h:inputText id="itProjectNumber" value="" required="true"
+										<h:inputText id="itProjectNumber"
+											value="#{projectController.project.id}" required="true"
 											label="#{msgs.projectNumber}" class="form-control" />
 										<h:message errorClass="text-danger" for="itProjectNumber" />
 									</div>
@@ -69,20 +70,21 @@
 									<h:outputLabel for="itProjectName" value="#{msgs.projectName}"
 										class="col-sm-4 control-label" />
 									<div class="col-sm-8">
-										<h:inputText id="itProjectName" value="" required="true"
+										<h:inputText id="itProjectName"
+											value="#{projectController.project.name}" required="true"
 											label="#{msgs.projectName}" class="form-control" />
 										<h:message errorClass="text-danger" for="itProjectName" />
 									</div>
 								</div>
 
 								<div class="form-group">
-									<h:outputLabel for="mnSupervisor" value="#{msgs.supervisor}"
-										class="col-sm-4 control-label" />
+									<h:outputLabel for="mnSupervisor"
+										value="#{msgs.projectManager}" class="col-sm-4 control-label" />
 									<div class="col-sm-8">
 										<h:inputText id="mnSupervisor"
-											value="#{empController.supervisorUsername}" required="true"
-											pt:placeholder="Supervisor Username"
-											label="#{msgs.supervisor}" class="form-control" />
+											value="#{projectController.project.employeeID}"
+											required="true" pt:placeholder="Project Manager"
+											label="#{msgs.projectManager}" class="form-control" />
 										<h:message errorClass="text-danger" for="mnSupervisor" />
 									</div>
 								</div>
@@ -94,21 +96,26 @@
 										value="#{msgs.projectDescription}"
 										class="col-sm-4 control-label" />
 									<div class="col-sm-8">
-										<h:inputTextarea id="itaProjectDescription" value=""
+										<h:inputTextarea id="itaProjectDescription"
+											value="#{projectController.project.description}"
 											required="true" label="#{msgs.projectDescription}" cols="80"
 											rows="10" class="form-control" />
 										<h:message errorClass="text-danger"
 											for="itaProjectDescription" />
 									</div>
 								</div>
-
+					
 								<div class="form-group">
+
 									<h:outputLabel for="popupStartDate" value="#{msgs.startDate}"
 										class="col-sm-4 control-label" />
 									<div class="col-sm-8">
-										<p:calendar id="popupStartDate"
-											value="#{projController.project.startDate}" required="true"
-											label="#{msgs.startDate}" />
+										
+										<p:calendar id="popupStartDate" 
+											value="#{projectController.startDate}" required="true"
+											label="#{msgs.startDate}" >
+											<f:convertDateTime pattern="M/d/yy"/>
+										</p:calendar>
 										<h:message errorClass="text-danger" for="popupStartDate" />
 									</div>
 								</div>
@@ -117,8 +124,8 @@
 									<h:outputLabel for="popupEndDate" value="#{msgs.endDate}"
 										class="col-sm-4 control-label" />
 									<div class="col-sm-8">
-										<p:calendar id="popupEndDate"
-											value="#{projController.project.endDate}" required="true"
+										<p:calendar id="popupEndDate" pattern="yyyy-MM-dd"
+											value="#{projectController.endDate}" required="true"
 											label="#{msgs.endDate}" />
 										<h:message errorClass="text-danger" for="popupEndDate" />
 									</div>
@@ -135,7 +142,7 @@
 											<h:outputLabel for="itContractor" value="#{msgs.contractor}"
 												class="col-sm-4 control-label" />
 											<div class="col-sm-8">
-												<h:inputText id="itContractor" value="" required="true"
+												<h:inputText id="itContractor" value="#{projectController.project.contractorName}" required="true"
 													label="#{msgs.contractor}" class="form-control" />
 												<h:message errorClass="text-danger" for="itContractor" />
 											</div>
@@ -144,9 +151,11 @@
 											<h:outputLabel for="itMarkup" value="#{msgs.markup}"
 												class="col-sm-4 control-label" />
 											<div class="col-sm-8">
-												<h:inputText id="itMarkup" value="" required="false"
-													pt:placeholder="markup" class="form-control" />
-												
+												<h:inputText id="itMarkup"
+													value="#{projectController.project.markupValue}"
+													required="false" pt:placeholder="markup"
+													class="form-control" />
+
 												<h:message errorClass="text-danger" for="itMarkup" />
 											</div>
 										</div>
@@ -156,108 +165,102 @@
 
 								<div class="form-group">
 									<div id="newProjectButtons" class="col-md-offset-4">
-										<h:commandButton value="#{msgs.save}" class="btn btn-primary " />
-										<h:commandButton value="#{msgs.clear}" class="btn btn-default" />
+										<h:commandButton value="#{msgs.save}" class="btn btn-primary "  action="#{projectController.updateProject}"/>
+									<!-- 	<h:commandButton value="#{msgs.clear}" class="btn btn-default" /> -->
 									</div>
 								</div>
-								<!-- end of new employee data -->
-		
-						
-							<!-- end of employee form -->
-						</div>
-						<div class="col-md-6">
-								<div class="panel panel-default">
-												<div class="panel-body">
 
 
-													<div class="form-group">
-														<h:outputLabel value="#{msgs.workPackageBudget}"
-															class="col-sm-2 control-label" />
-														<div class="col-sm-2">
-															<h:outputLabel value="#{msgs.p1}" />
-															<h:inputText pt:placeholder="P1" 
-																value=""
-																required="true" label="#{msgs.p1}"
-																class="form-control" />
-															<h:message errorClass="text-danger"/>
-														</div>
-														<div class="col-sm-2">
-															<h:outputLabel value="#{msgs.p2}" />
 
-															<h:inputText pt:placeholder="P2"
-																value=""
-																required="true" label="#{msgs.p2}"
-																class="form-control" />
-															<h:message errorClass="text-danger" for="" />
-														</div>
-
-														<div class="col-sm-2">
-															<h:outputLabel value="#{msgs.p3}" />
-
-															<h:inputText pt:placeholder="P3"
-																value=""
-																required="true" label="#{msgs.p3}"
-																class="form-control" />
-															<h:message errorClass="text-danger" for="" />
-														</div>
-
-														<div class="col-sm-2">
-															<h:outputLabel value="#{msgs.p4}" />
-
-															<h:inputText pt:placeholder="P4"
-																value=""
-																required="true" label="#{msgs.p4}"
-																class="form-control" />
-															<h:message errorClass="text-danger" for="" />
-														</div>
-													</div>
-
-													<div class="form-group">
-
-														<div class="col-sm-2 col-sm-offset-2">
-															<h:outputLabel value="#{msgs.p5}" />
-
-															<h:inputText pt:placeholder="P5"
-																value=""
-																required="true" label="#{msgs.p5}"
-																class="form-control" />
-															<h:message errorClass="text-danger" for="" />
-														</div>
-														<div class="col-sm-2">
-															<h:outputLabel value="#{msgs.ss}" />
-
-															<h:inputText pt:placeholder="SS"
-																value=""
-																required="true" label="#{msgs.ss}"
-																class="form-control" />
-															<h:message errorClass="text-danger" for="" />
-														</div>
-
-														<div class="col-sm-2">
-															<h:outputLabel value="#{msgs.js}" />
-
-															<h:inputText pt:placeholder="JS"
-																value=""
-																required="true" label="#{msgs.js}"
-																class="form-control" />
-															<h:message errorClass="text-danger" for="" />
-														</div>
-
-														<div class="col-sm-2">
-															<h:outputLabel value="#{msgs.ds}" />
-
-															<h:inputText pt:placeholder="DS"
-																value=""
-																required="true" label="#{msgs.ds}"
-																class="form-control" />
-															<h:message errorClass="text-danger" for="" />
-														</div>
-													</div>
-												</div>
-											</div>
 							</div>
-						<!-- end of data div. Employee information -->
-							</h:form>
+							<div class="col-md-6">
+								<div class="panel panel-default">
+									<div class="panel-body">
+
+
+										<div class="form-group">
+											<h:outputLabel value="#{msgs.workPackageBudget}"
+												class="col-sm-2 control-label" />
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p1}" />
+												<h:inputText pt:placeholder="P1"
+													value="#{projectController.project.rateSheet.p1}"
+													required="true" label="#{msgs.p1}" class="form-control" />
+												<h:message errorClass="text-danger" />
+											</div>
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p2}" />
+
+												<h:inputText pt:placeholder="P2"
+													value="#{projectController.project.rateSheet.p2}"
+													required="true" label="#{msgs.p2}" class="form-control" />
+												<h:message errorClass="text-danger" for="" />
+											</div>
+
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p3}" />
+
+												<h:inputText pt:placeholder="P3"
+													value="#{projectController.project.rateSheet.p3}"
+													required="true" label="#{msgs.p3}" class="form-control" />
+												<h:message errorClass="text-danger" for="" />
+											</div>
+
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p4}" />
+
+												<h:inputText pt:placeholder="P4"
+													value="#{projectController.project.rateSheet.p4}"
+													required="true" label="#{msgs.p4}" class="form-control" />
+												<h:message errorClass="text-danger" for="" />
+											</div>
+										</div>
+
+										<div class="form-group">
+
+											<div class="col-sm-2 col-sm-offset-2">
+												<h:outputLabel value="#{msgs.p5}" />
+
+												<h:inputText pt:placeholder="P5"
+													value="#{projectController.project.rateSheet.p5}"
+													required="true" label="#{msgs.p5}" class="form-control" />
+												<h:message errorClass="text-danger" for="" />
+											</div>
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.ss}" />
+
+												<h:inputText pt:placeholder="SS"
+													value="#{projectController.project.rateSheet.SS}"
+													required="true" label="#{msgs.ss}" class="form-control" />
+												<h:message errorClass="text-danger" for="" />
+											</div>
+
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.js}" />
+
+												<h:inputText pt:placeholder="JS"
+													value="#{projectController.project.rateSheet.JS}"
+													required="true" label="#{msgs.js}" class="form-control" />
+												<h:message errorClass="text-danger" for="" />
+											</div>
+
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.ds}" />
+
+												<h:inputText pt:placeholder="DS"
+													value="#{projectController.project.rateSheet.DS}"
+													required="true" label="#{msgs.ds}" class="form-control" />
+												<h:message errorClass="text-danger" for="" />
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+
+							</div>
+							<!-- end of data div. Employee information -->
+						</h:form>
 					</div>
 				</div>
 			</div>

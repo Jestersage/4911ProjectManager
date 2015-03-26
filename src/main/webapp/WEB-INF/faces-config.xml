@@ -107,7 +107,6 @@
 		<navigation-case>
 			<from-outcome>editProject</from-outcome>
 			<to-view-id>/projects/editProject.xhtml</to-view-id>
-			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<!-- View All Project -->

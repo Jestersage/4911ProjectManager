@@ -117,10 +117,9 @@ public class WorkPackageManager implements Serializable
     }
     
     public int findNumOfChildWP(String projId) {
-		Query query = em.createNativeQuery(
-		        "select COUNT(w.packageID) from WorkPackage w where w.projectID = :projectId" );
-		query.setParameter( "projectId", projId );
+		Query query = em.createNativeQuery("select COUNT(*) from WorkPackage  where projectID = :projectId" );
+				query.setParameter( "projectId", projId );
 		int workPackages = ((Number)query.getSingleResult()).intValue();
-		return 0;
+		return workPackages;
     }
 }
