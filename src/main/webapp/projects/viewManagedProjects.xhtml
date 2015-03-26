@@ -48,7 +48,7 @@
 					</div>
 				</div>
 
-
+<f:view>
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 col-md-12 ">
 						<div id="employeesDataTable">
@@ -92,14 +92,18 @@
 									<p:column>
                                         <h:commandLink value="#{msgs.project_details}" action="#{projectController.viewProjectDetails(project)}" /> |
                                         <h:commandLink value="#{msgs.viewMonthlyReport}" action="#{monthlyReport.viewMonthlyReport(project)}" /> |    
-                                        <h:commandLink value="#{msgs.newWorkPackage}" action="#{workPackageController.goNewTopLevelPackage(project)}" 
-                                        			   rendered="#{workPackageController.findNumOfChildWP(project.id) > '0'}"/>           
+                                        <h:commandLink value="#{msgs.newWorkPackage}"
+                                        			   action="#{workPackageController.goNewTopLevelPackage(project)}" 
+                                        			   rendered="#{!project.hasWorkPackage}">
+                                     
+                                     </h:commandLink>           
 									</p:column>
 								</p:dataTable>
 							</h:form>
 						</div>
 					</div>
 				</div>
+</f:view>				
 			</div>
 			</div>
 		</ui:define>
