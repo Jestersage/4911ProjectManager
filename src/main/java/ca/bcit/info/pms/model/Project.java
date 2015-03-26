@@ -9,7 +9,6 @@ import javax.validation.constraints.Size;
 
 import java.lang.Override;
 import java.sql.Date;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -51,7 +50,7 @@ public class Project implements Serializable {
 	@Size(max = 10, message = "Employee ID cannot be longer than 10")
 	private Set<Employee> employees;
 
-    @OneToOne(orphanRemoval = true)
+    @OneToOne(cascade = {CascadeType.ALL},orphanRemoval = true)
     @JoinColumn(name = "ratesheetID")
     private RateSheet rateSheet;
 
@@ -64,6 +63,10 @@ public class Project implements Serializable {
 	@Column(name = "genReport")
 	private boolean genReport;
 
+	
+	@Column(name = "contractorName")
+	private String contractorName;
+	
     public String getId() {
         return this.id;
     }
@@ -155,6 +158,8 @@ public class Project implements Serializable {
 	}
 
     public RateSheet getRateSheet() {
+    	if(rateSheet == null )
+    		return new RateSheet();
         return rateSheet;
     }
 
@@ -196,6 +201,10 @@ public class Project implements Serializable {
 		return true;
 	}
 
+	public Project() {
+		this.rateSheet = new RateSheet();
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -214,5 +223,13 @@ public class Project implements Serializable {
 
 	public void setMarkupValue(Double markupValue) {
 		this.markupValue = markupValue;
+	}
+
+	public String getContractorName() {
+		return contractorName;
+	}
+
+	public void setContractorName(String contractorName) {
+		this.contractorName = contractorName;
 	}
 }

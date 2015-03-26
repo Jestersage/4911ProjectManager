@@ -96,10 +96,10 @@
  <PROCESS-ITEM NAME="rules:*:11" PATH="*" SHAPE="32,1393,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:11" NAME="item" PATH="*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="viewAllProjects::#projects#viewAllProjects.xhtml" NAME="output"
-    PATH="/projects/viewAllProjects.xhtml"
-    TARGET="rules:#projects#viewAllProjects.xhtml"
-    TITLE="viewAllProjects" model-entity="JSFProcessItemOutput"/>
+    ID="viewManagedProjects::#projects#viewManagedProjects.xhtml"
+    NAME="output" PATH="/projects/viewManagedProjects.xhtml"
+    TARGET="rules:#projects#viewManagedProjects.xhtml"
+    TITLE="viewManagedProjects" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:*:12" PATH="*" SHAPE="32,1505,0,0" model-entity="JSFProcessGroup">

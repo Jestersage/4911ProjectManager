@@ -16,6 +16,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import ca.bcit.info.pms.model.Project;
+import ca.bcit.info.pms.model.ProjectStatus;
 
 @Stateless
 @LocalBean
@@ -36,6 +37,8 @@ public class ProjectManager implements Serializable{
             logger.warn("Record(Project) already exist! Project Id: " + newProject.getId() + ", " + newProject.getName());
         }
         else {
+        	if(newProject.getStatus()==null)
+        		newProject.setStatus(ProjectStatus.CREATED);
             entityManager.persist(newProject);
             logger.info("Project added: " + newProject.getId() + ", " + newProject.getName());
         }
@@ -91,7 +94,8 @@ public class ProjectManager implements Serializable{
                 return "search?faces-redirect=true";
             } else {
                 this.entityManager.merge(project);
-                return "view?faces-redirect=true&id=" + project.getId();
+                //return "view?faces-redirect=true&id=" + project.getId();
+                return "";
             }
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,

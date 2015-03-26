@@ -102,6 +102,10 @@ public class ProjectController implements Serializable{
      */
     public String goEditProject() {
     	this.project = projService.getProject(project.getId());
+    	if(project.getStartDate() != null)
+    		startDate = new java.util.Date(project.getStartDate().getTime());
+    	if(project.getEndDate() != null)
+    		endDate = new java.util.Date(project.getEndDate().getTime());
     	return "editProject";
     }
     
@@ -138,6 +142,18 @@ public class ProjectController implements Serializable{
      */
     public String viewProjectDetails(final Project project){
     	this.project = project;
+    	return "viewProjectDetails";
+    }
+    
+    /**
+     * 
+     * @param updatedProject
+     * @return
+     */
+    public String updateProject(){
+    	project.setStartDate(convertJavaDateToSqlDate(startDate));
+    	project.setEndDate(convertJavaDateToSqlDate(endDate));
+    	projService.updateProject(project);
     	return "viewProjectDetails";
     }
 }

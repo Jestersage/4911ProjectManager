@@ -2,6 +2,8 @@ package ca.bcit.info.pms.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -13,6 +15,7 @@ import javax.persistence.TemporalType;
 public class RateSheet {
 
     @Id
+    @GeneratedValue( strategy = GenerationType.AUTO )
     @Column(name = "ratesheetID")
     private int id;
     

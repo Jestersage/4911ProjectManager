@@ -111,7 +111,7 @@ CREATE TABLE EngineerBudget(
 --
 -- RateSheet is for Project
 CREATE TABLE RateSheet(
-    ratesheetID int(10) NOT NULL AUTO_INCREMENT,
+    ratesheetID int(10) NOT NULL,
     year  int(4),
     JS int(10),
     SS int(10),
