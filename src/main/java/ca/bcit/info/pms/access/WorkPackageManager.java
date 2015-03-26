@@ -121,6 +121,6 @@ public class WorkPackageManager implements Serializable
 		        "select COUNT(w.packageID) from WorkPackage w where w.projectID = :projectId" );
 		query.setParameter( "projectId", projId );
 		int workPackages = ((Number)query.getSingleResult()).intValue();
-		return 0;
+		return workPackages;
     }
 }
