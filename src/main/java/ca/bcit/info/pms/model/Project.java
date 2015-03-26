@@ -30,23 +30,21 @@ public class Project implements Serializable {
 	@NotNull(message = "Manager Id can not be null")
 	private String employeeID;
 
-    @ManyToOne
-    @JoinColumn(name = "assistantID")
-    private Employee assistant;
-	
+	@ManyToOne
+	@JoinColumn(name = "assistantID")
+	private Employee assistant;
+
 	@NotNull(message = "Start date can not 	be null")
 	private Date startDate;
 
 	private Date endDate;
 
-    @Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.ORDINAL)
 	private ProjectStatus status;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "ProjectAssignment",
-        joinColumns = {@JoinColumn(name = "projectID")},
-        inverseJoinColumns = {@JoinColumn(name = "employeeID")})
-	//@NotNull(message = "Employee ID can not be null")
+	@JoinTable(name = "ProjectAssignment", joinColumns = { @JoinColumn(name = "projectID") }, inverseJoinColumns = { @JoinColumn(name = "employeeID") })
+	// @NotNull(message = "Employee ID can not be null")
 	@Size(max = 10, message = "Employee ID cannot be longer than 10")
 	private Set<Employee> employees;
 
@@ -54,28 +52,38 @@ public class Project implements Serializable {
     @JoinColumn(name = "ratesheetID")
     private RateSheet rateSheet;
 
-//    @OneToMany(mappedBy = "id", orphanRemoval = true)
-//    private List<WorkPackage> workPackages;
+	// @OneToMany(mappedBy = "id", orphanRemoval = true)
+	// private List<WorkPackage> workPackages;
 
 	@Column(name = "markupValue")
 	private Double markupValue;
 
 	@Column(name = "genReport")
 	private boolean genReport;
-
 	
 	@Column(name = "contractorName")
 	private String contractorName;
 	
-    public String getId() {
-        return this.id;
-    }
+	@Transient
+	private boolean hasWorkPackage = false;
 
-    public void setId(final String id) {
-        this.id = id;
-    }
+	public boolean isHasWorkPackage() {
+		return hasWorkPackage;
+	}
 
-    public String getName() {
+	public void setHasWorkPackage(boolean hasWorkPackage) {
+		this.hasWorkPackage = hasWorkPackage;
+	}
+
+	public String getId() {
+		return this.id;
+	}
+
+	public void setId(final String id) {
+		this.id = id;
+	}
+
+	public String getName() {
 		return name;
 	}
 
@@ -115,13 +123,13 @@ public class Project implements Serializable {
 		this.status = status;
 	}
 
-    public String getEmployeeID() {
-        return employeeID;
-    }
+	public String getEmployeeID() {
+		return employeeID;
+	}
 
-    public void setEmployeeID(String employeeID) {
-        this.employeeID = employeeID;
-    }
+	public void setEmployeeID(String employeeID) {
+		this.employeeID = employeeID;
+	}
 
 	public Set<Employee> getEmployees() {
 		return employees;
@@ -131,16 +139,16 @@ public class Project implements Serializable {
 		this.employees = employees;
 	}
 
-//    public List<WorkPackage> getWorkPackages() {
-//        return workPackages;
-//    }
-//
-//    public void setWorkPackages(List<WorkPackage> workPackages) {
-//        this.workPackages = workPackages;
-//    }
+	// public List<WorkPackage> getWorkPackages() {
+	// return workPackages;
+	// }
+	//
+	// public void setWorkPackages(List<WorkPackage> workPackages) {
+	// this.workPackages = workPackages;
+	// }
 
 	public double getMarkupValue() {
-		if(markupValue == null) 
+		if (markupValue == null)
 			return 0;
 		return markupValue;
 	}
@@ -163,18 +171,20 @@ public class Project implements Serializable {
         return rateSheet;
     }
 
-    public void setRateSheet(RateSheet rateSheet) {
-        this.rateSheet = rateSheet;
-    }
+	public void setRateSheet(RateSheet rateSheet) {
+		this.rateSheet = rateSheet;
+	}
 
-    /**
-     * Assign employee to this project.
-     * @param employee employee to be aded.
-     * @return if insert success. False if employee already included.
-     */
-    public boolean assignEmployee(final Employee employee) {
-        return employees.add(employee);
-    }
+	/**
+	 * Assign employee to this project.
+	 * 
+	 * @param employee
+	 *            employee to be aded.
+	 * @return if insert success. False if employee already included.
+	 */
+	public boolean assignEmployee(final Employee employee) {
+		return employees.add(employee);
+	}
 
 	@Override
 	public String toString() {

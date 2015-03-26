@@ -65,7 +65,7 @@ public class WorkPackage implements Serializable
     @JoinColumn(name = "budgetID")
     private Budget budget;
     
-	@Column( name = "isLead" )
+    @Transient
 	private Boolean leaf = false;
     
 	public boolean isLeaf() {

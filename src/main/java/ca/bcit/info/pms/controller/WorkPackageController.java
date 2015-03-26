@@ -11,6 +11,7 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -38,7 +39,7 @@ public class WorkPackageController implements Serializable {
 
 	private Project[] projectList;
 	
-	
+//	private boolean isNodes;
 //    @ManagedProperty("#{param.projId}")
 //    private String projectId;
 //
@@ -49,6 +50,15 @@ public class WorkPackageController implements Serializable {
 //
 //	public void setProjectId(String projectId) {
 //		this.projectId = projectId;
+//	}
+
+//	public boolean isNodes() {
+//		return isNodes;
+//	}
+//
+//
+//	public void setNodes(boolean isNodes) {
+//		this.isNodes = isNodes;
 //	}
 
 	private static final Logger logger = LogManager
@@ -111,9 +121,18 @@ public class WorkPackageController implements Serializable {
     	return "newWorkPackage";
     }
     
-	public int findNumOfChildWP(String projId) {
-		int i = workPackageService.getNumOfChildWP(projId);
-		System.out.println(i);
-		return workPackageService.getNumOfChildWP(projId);
-	}
+//	public boolean findNumOfChildWP(ComponentSystemEvent event) {
+//	    String projId = (String) event.getComponent().getAttributes().get("projectid");
+//
+//		System.out.println("projId"+projId);
+//		if(workPackageService.getNumOfChildWP(projId) > 0)
+//			this.isNodes = true;
+//		else
+//			//this.workPackage.setIsNode(false);
+//			this.isNodes = false;
+//		System.out.println(this.isNodes);
+//		//int i = workPackageService.getNumOfChildWP(projId);
+//		//System.out.println(i);
+//		return workPackageService.getNumOfChildWP(projId) != 0;
+//	}
 }
