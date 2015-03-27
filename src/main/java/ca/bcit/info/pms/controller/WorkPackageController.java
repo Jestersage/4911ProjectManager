@@ -19,8 +19,10 @@ import javax.inject.Named;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import ca.bcit.info.pms.model.Budget;
 import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.WorkPackage;
+import ca.bcit.info.pms.service.ProjectService;
 import ca.bcit.info.pms.service.WorkPackageService;
 
 /**
@@ -36,7 +38,9 @@ public class WorkPackageController implements Serializable {
 	private WorkPackage workPackage;
 	@Inject
 	private WorkPackageService workPackageService;
-
+	@Inject
+	private ProjectService projectService;
+	
 	private Project[] projectList;
 	
 //	private boolean isNodes;
@@ -94,7 +98,10 @@ public class WorkPackageController implements Serializable {
 	
 	public String addWorkPackage() {
 		System.out.println(workPackage.getProject().getId());
+		System.out.println(workPackage.getBudget().getP1());
 		workPackageService.persistWorkPackage(workPackage);
+
+		//workPackageService.persistBudget(budget);
 		logger.info("successfully create new WorkPackage: "
 				+ workPackage.toString());
 		return "viewAllPackages";
@@ -118,6 +125,13 @@ public class WorkPackageController implements Serializable {
     
     public String goNewTopLevelPackage(Project project) {
     	workPackage.setProject(project);
+    	return "newWorkPackage";
+    }
+    
+    public String goChildPackage(WorkPackage parentWorkPackage) {
+    	Project project = projectService.getProject(parentWorkPackage.getProject().getId());    		
+    	workPackage.setProject(project);
+    	workPackage.setParentWP(parentWorkPackage);
     	return "newWorkPackage";
     }
     

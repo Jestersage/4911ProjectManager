@@ -46,7 +46,6 @@ public class WorkPackageManager implements Serializable
 
 	public void persist( final WorkPackage newWorkPackage )
 	{
-
 		WorkPackage match = em.find( WorkPackage.class, newWorkPackage.getId() );
 
 		if ( match != null )
@@ -54,6 +53,8 @@ public class WorkPackageManager implements Serializable
 			logger.warn( "Record(WorkPackage) already exist! " );
 		} else
 		{
+			if(!newWorkPackage.isLeaf())
+				newWorkPackage.setBudget(null);
 			em.persist( newWorkPackage );
 			logger.info( "Workpackage added: " + newWorkPackage.getId() + ", " + newWorkPackage.getName() );
 		}

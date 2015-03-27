@@ -6,8 +6,10 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import ca.bcit.info.pms.access.BudgetManager;
 import ca.bcit.info.pms.access.ProjectManager;
 import ca.bcit.info.pms.access.WorkPackageManager;
+import ca.bcit.info.pms.model.Budget;
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.ProjectStatus;
@@ -29,6 +31,9 @@ public class WorkPackageServiceImpl implements WorkPackageService {
 	@Inject
 	private ProjectManager projManager;
 	
+	@Inject
+    private BudgetManager bgManager;
+	
 	/* (non-Javadoc)
 	 * @see ca.bcit.info.pms.service.WorkPackageService#persistWorkPackage(ca.bcit.info.pms.model.WorkPackage)
 	 */
@@ -40,9 +45,9 @@ public class WorkPackageServiceImpl implements WorkPackageService {
 //		if(newWorkPackage.getEmployees() == null)
 //			newWorkPackage.setEmployees(new HashSet<Employee>());
 		WPManager.persist(newWorkPackage);
-
+		
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see ca.bcit.info.pms.service.WorkPackageService#updateWorkPackage(ca.bcit.info.pms.model.WorkPackage)
 	 */

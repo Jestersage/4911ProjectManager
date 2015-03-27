@@ -43,7 +43,7 @@ public class WorkPackage implements Serializable
 	private Set< Employee > employees;
 
 	@ManyToOne
-    @JoinColumn(name = "parentwpID")
+    @JoinColumn(name = "parentwpID", nullable=true)
 	private WorkPackage parentWP;
 
 //	@OneToMany( mappedBy = "parentWP" )
@@ -62,10 +62,10 @@ public class WorkPackage implements Serializable
 	private ProjectStatus status;
 
     @OneToOne(cascade = {CascadeType.ALL},orphanRemoval = true)
-    @JoinColumn(name = "budgetID")
+    @JoinColumn(name = "budgetID", nullable=true)
     private Budget budget;
     
-    @Transient
+    @Column( name = "isLead" )
 	private Boolean leaf = false;
     
 	public boolean isLeaf() {
@@ -137,6 +137,7 @@ public class WorkPackage implements Serializable
 	public WorkPackage() {
 		this.budget = new Budget();
 		this.project = new Project();
+		//this.parentWP = new WorkPackage();
 	}
 
 	public String getVarianceManDays() {

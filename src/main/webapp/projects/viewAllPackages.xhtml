@@ -98,7 +98,10 @@
 									</p:column>
 
 									<p:column>
-                                        <h:commandLink value="#{msgs.edit_emp}" action="#{workPackageController.goEditPackage()}" /> |               
+                                        <h:commandLink value="#{msgs.edit_emp}" action="#{workPackageController.goEditPackage()}" /> |      
+                                        <h:commandLink value="#{msgs.newWorkPackage}"
+                                     		action="#{workPackageController.goChildPackage(package)}" 
+                                     		rendered="#{!package.leaf}" />                                       
 									</p:column>
 								</p:dataTable>
 							</h:form>
