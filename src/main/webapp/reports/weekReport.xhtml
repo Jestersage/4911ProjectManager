@@ -45,14 +45,15 @@
 							</ui:insert>
 						</div>
 					</div>
-
+					<div class="row"></div>
+					<!-- /row -->
 					<div class="row">
 
 						<div class="col-xs-12 col-sm-12 col-md-12" id="data">
 							<h:form id="newProjectForm" class="form-horizontal">
 								<div class="container-fluid">
 									<div class="row">
-										<div class="col-md-8">
+										<div class="col-md-7">
 
 											<div class="form-group">
 												<h:outputLabel for="inputEmail3"
@@ -62,7 +63,7 @@
 													<h:inputText pt:placeholder="type to search"
 														class="form-control" id="itWorkPackageNumber"
 														value="#{weekReport.id}">
-														<p:ajax event="blur" update="out out2"
+														<p:ajax event="blur" update="out out2 out3"
 															listener="#{weekReport.findWP}" />
 													</h:inputText>
 													<h:message errorClass="text-danger"
@@ -202,9 +203,50 @@
 											</div>
 										</div>
 										<!-- /col -->
-
+										<div class="col-md-4">
+											<p:panelGrid id="out3" styleClass="table-bordered">
+												<f:facet name="header">
+													<p:row>
+														<p:column>#{msgs.total}</p:column>
+														<p:column>#{msgs.p1}</p:column>
+														<p:column>#{msgs.p2}</p:column>
+														<p:column>#{msgs.p3}</p:column>
+														<p:column>#{msgs.p4}</p:column>
+														<p:column>#{msgs.p5}</p:column>
+														<p:column>#{msgs.js}</p:column>
+														<p:column>#{msgs.ss}</p:column>
+														<p:column>#{msgs.ds}</p:column>
+													</p:row>
+												</f:facet>
+												<p:row></p:row>
+												<p:row>
+													<p:column>#{msgs.allocated}</p:column>
+													<p:column>#{weekReport.engineerBudget.p1}</p:column>
+													<p:column>#{weekReport.engineerBudget.p2}</p:column>
+													<p:column>#{weekReport.engineerBudget.p3}</p:column>
+													<p:column>#{weekReport.engineerBudget.p4}</p:column>
+													<p:column>#{weekReport.engineerBudget.p5}</p:column>
+													<p:column>#{weekReport.engineerBudget.DS}</p:column>
+													<p:column>#{weekReport.engineerBudget.JS}</p:column>
+													<p:column>#{weekReport.engineerBudget.SS}</p:column>
+												</p:row>
+												<p:row>
+													<p:column>#{msgs.remaining}</p:column>
+													<p:column></p:column>
+													<p:column></p:column>
+													<p:column></p:column>
+													<p:column></p:column>
+													<p:column></p:column>
+													<p:column></p:column>
+													<p:column></p:column>
+													<p:column></p:column>
+												</p:row>
+											</p:panelGrid>
+										</div>
+										<!-- /col -->
 									</div>
 									<!-- end of new employee data -->
+
 								</div>
 								<!-- /row -->
 
@@ -213,6 +255,7 @@
 							<!-- end of employee form -->
 						</div>
 						<!-- end of data div. Employee information -->
+
 
 						<!-- end of notificationEmployee div -->
 					</div>

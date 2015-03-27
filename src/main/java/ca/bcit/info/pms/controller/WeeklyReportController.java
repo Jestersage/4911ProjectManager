@@ -6,8 +6,10 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import ca.bcit.info.pms.access.EngineerBudgetManager;
 import ca.bcit.info.pms.access.StatusReportManager;
 import ca.bcit.info.pms.access.WorkPackageManager;
+import ca.bcit.info.pms.model.EngineerBudget;
 import ca.bcit.info.pms.model.StatusReport;
 import ca.bcit.info.pms.model.WorkPackage;
 
@@ -32,9 +34,16 @@ public class WeeklyReportController implements Serializable
 	private WorkPackage wp;
 
 	@Inject
+	private EngineerBudgetManager engineerBudgetMngr;
+
+	@Inject
+	private EngineerBudget engineerBudget;
+
+	@Inject
 	private StatusReport statusReport;
 
 	private int id;
+	private int prev;
 	private String name;
 
 	public WeeklyReportController()
@@ -53,8 +62,35 @@ public class WeeklyReportController implements Serializable
 
 	public void findWP()
 	{
+
 		wp = workPackageMngr.find( id );
-		setName( wp.getName() );
+
+		if ( wp != null )
+		{
+			setName( wp.getName() );
+
+			EngineerBudget budget = new EngineerBudget();
+			int num = workPackageMngr.getEngBudgetID( id );
+			budget = engineerBudgetMngr.find( num );
+			engineerBudget.setP1( budget.getP1() );
+			engineerBudget.setP2( budget.getP2() );
+			engineerBudget.setP3( budget.getP3() );
+			engineerBudget.setP4( budget.getP4() );
+			engineerBudget.setP5( budget.getP5() );
+			engineerBudget.setDS( budget.getDS() );
+			engineerBudget.setJS( budget.getJS() );
+			engineerBudget.setSS( budget.getSS() );
+		} else
+		{
+			setName( "" );
+		}
+	}
+
+	public EngineerBudget getBudgetForWP( int id )
+	{
+		EngineerBudget budget = engineerBudgetMngr.find( id );
+
+		return budget;
 	}
 
 	public WorkPackage getWp()
@@ -95,6 +131,27 @@ public class WeeklyReportController implements Serializable
 	public void setName( String name )
 	{
 		this.name = name;
+	}
+
+	public EngineerBudgetManager getEngineerBudgetMngr()
+	{
+		return engineerBudgetMngr;
+	}
+
+	public void setEngineerBudgetMngr( EngineerBudgetManager engineerBudgetMngr )
+	{
+		this.engineerBudgetMngr = engineerBudgetMngr;
+	}
+
+	public EngineerBudget getEngineerBudget()
+	{
+		return engineerBudget;
+	}
+
+	public void setEngineerBudget( EngineerBudget engineerBudget )
+	{
+		this.engineerBudget = engineerBudget;
+
 	}
 
 }

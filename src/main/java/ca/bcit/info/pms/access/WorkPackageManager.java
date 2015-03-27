@@ -16,7 +16,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.WorkPackage;
 
 @Dependent
@@ -56,8 +55,7 @@ public class WorkPackageManager implements Serializable
 		} else
 		{
 			em.persist( newWorkPackage );
-			logger.info( "Workpackage added: " + newWorkPackage.getId() + ", "
-			        + newWorkPackage.getName() );
+			logger.info( "Workpackage added: " + newWorkPackage.getId() + ", " + newWorkPackage.getName() );
 		}
 
 	}
@@ -65,8 +63,8 @@ public class WorkPackageManager implements Serializable
 	public List< WorkPackage > getWorkPackages( final String projectId )
 	{
 		Query query = em.createNativeQuery(
-		        "select * " + "from workpackage " + "where projectId LIKE :projectId",
-		        WorkPackage.class ).setParameter( "projectId", projectId );
+		        "select * " + "from workpackage " + "where projectId LIKE :projectId", WorkPackage.class )
+		        .setParameter( "projectId", projectId );
 		List< WorkPackage > workPackages = query.getResultList();
 		return workPackages;
 	}
@@ -89,37 +87,50 @@ public class WorkPackageManager implements Serializable
 			}
 		} catch ( Exception e )
 		{
-			FacesContext.getCurrentInstance().addMessage( null,
-			        new FacesMessage( e.getMessage() ) );
+			FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( e.getMessage() ) );
 			return null;
 		}
 	}
 
-    /*
-     * gets all the packages from the database
-     */
-    public List<WorkPackage> getAllWorkPackages(){
-        CriteriaQuery<WorkPackage> criteria = this.em.getCriteriaBuilder().createQuery(WorkPackage.class);
-        return this.em.createQuery(criteria.select(criteria.from(WorkPackage.class))).getResultList();
-    }
+	/*
+	 * gets all the packages from the database
+	 */
+	public List< WorkPackage > getAllWorkPackages()
+	{
+		CriteriaQuery< WorkPackage > criteria = this.em.getCriteriaBuilder().createQuery( WorkPackage.class );
+		return this.em.createQuery( criteria.select( criteria.from( WorkPackage.class ) ) ).getResultList();
+	}
 
+	/**
+	 * @param empId
+	 *            responsible engineer's employee id.
+	 * @return a list of all work package managed by this employee disregarding
+	 *         which project.
+	 */
+	// TODO fix to engineer.id when employeeID change to manager in WorkPackage
+	public List< WorkPackage > getManagedWorkPackage( final String empId )
+	{
+		TypedQuery< WorkPackage > query = em.createQuery( "SELECT w FROM WorkPackage w "
+		        + "WHERE w.employeeID = :assistantId", WorkPackage.class );
+		query.setParameter( "assistantId", empId );
+		return query.getResultList();
+	}
 
-    /**
-     * @param empId responsible engineer's employee id.
-     * @return a list of all work package managed by this employee disregarding which project.
-     */
-    // TODO fix to engineer.id when employeeID change to manager in WorkPackage
-    public List<WorkPackage> getManagedWorkPackage(final String empId) {
-        TypedQuery<WorkPackage> query = em.createQuery("SELECT w FROM WorkPackage w " +
-                "WHERE w.employeeID = :assistantId", WorkPackage.class);
-        query.setParameter("assistantId", empId);
-        return query.getResultList();
-    }
-    
-    public int findNumOfChildWP(String projId) {
-		Query query = em.createNativeQuery("select COUNT(*) from WorkPackage  where projectID = :projectId" );
-				query.setParameter( "projectId", projId );
-		int workPackages = ((Number)query.getSingleResult()).intValue();
+	public int findNumOfChildWP( String projId )
+	{
+		Query query = em.createNativeQuery( "select COUNT(*) from WorkPackage  where projectID = :projectId" );
+		query.setParameter( "projectId", projId );
+		int workPackages = ( ( Number ) query.getSingleResult() ).intValue();
 		return workPackages;
-    }
+	}
+
+	public int getEngBudgetID( int id )
+	{
+		Query query = em
+		        .createNativeQuery( "SELECT engBudgetID from WorkPackage WHERE packageID = :packageID" );
+		query.setParameter( "packageID", id );
+
+		int num = ( int ) query.getSingleResult();
+		return num;
+	}
 }
