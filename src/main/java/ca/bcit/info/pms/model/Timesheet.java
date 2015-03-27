@@ -69,11 +69,7 @@ public class Timesheet implements Serializable
     @Max(value = MAX_OVERTIME, message = "Flexible hours cannot exceed" + MAX_OVERTIME +"hr")
 	private BigDecimal flextime;
 
-	@Column(name = "signed")
-	private String signed;
-	
-    @Enumerated(EnumType.STRING)
-	private ApprovedStatus approved;
+	private Boolean approved;
 
     @OneToOne
     @JoinColumn(name = "signId")
@@ -138,19 +134,11 @@ public class Timesheet implements Serializable
         this.flextime = flextime;
     }
 
-    public String getSigned() {
-		return signed;
-	}
-
-	public void setSigned(String signed) {
-		this.signed = signed;
-	}
-
-	public ApprovedStatus getApproved() {
+	public Boolean isApproved() {
 		return approved;
 	}
 
-	public void setApproved(ApprovedStatus approved) {
+	public void setApproved(Boolean approved) {
 		this.approved = approved;
 	}
 
@@ -205,7 +193,6 @@ public class Timesheet implements Serializable
         sb.append(", weekNumber=").append(weekNumber);
         sb.append(", weekEnding=").append(weekEnding.toLocalDate());
         sb.append(", timesheetRows=").append(timesheetRows);
-        sb.append(", signed='").append(signed).append('\'');
         sb.append(", approved=").append(approved);
         sb.append(", signID=").append(signID);
         sb.append('}');
