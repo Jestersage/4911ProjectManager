@@ -38,7 +38,20 @@
 								<span class="sr-only">(current)</span>
 							</h:commandLink></li>
 
-
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+							   aria-expanded="false">
+							   #{msgs.timesheet} <span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" role="menu">
+								<li><h:commandLink action="currentTimesheet" value="#{msgs.currentTimesheet}" /> </li>
+								<li><h:commandLink action="previousTimesheet" value="#{msgs.previousTimesheet}" /></li>
+								<li><h:commandLink action="pendingTimesheet" value="#{msgs.pendingTimesheet}" /></li>
+							<ui:fragment rendered="#{userController.isAuthorized('Timesheet Approver')}">
+								<li><h:commandLink action="pendingTimesheetTA" value="#{msgs.timesheetsToApprove}" /></li>
+							</ui:fragment>
+							</ul>
+						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false">#{msgs.project}
 								<span class="caret"></span>
