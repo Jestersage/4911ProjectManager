@@ -208,35 +208,16 @@
 
 							<h:form>
 
-								<p:dataTable var="" value="">
+								<p:dataTable var="level" value="#{payGradeController.payLevelList}">
 									<p:column headerText="#{msgs.year}">
-										<h:outputText value="" />
+										<h:outputText value="#{level.year}" />
 									</p:column>
-									<p:column headerText="#{msgs.p1}">
-										<h:outputText value="" />
+									<p:column headerText="#{msgs.name}">
+										<h:outputText value="#{level.name}" />
 									</p:column>
-									<p:column headerText="#{msgs.p2}">
-										<h:outputText value="#{pl.p2}" />
-									</p:column>
-									<p:column headerText="#{msgs.p3}">
-										<h:outputText value="" />
-									</p:column>
-									<p:column headerText="#{msgs.p4}">
-										<h:outputText value="" />
-									</p:column>
-									<p:column headerText="#{msgs.p5}">
-										<h:outputText value="" />
-									</p:column>
-									<p:column headerText="#{msgs.ss}">
-										<h:outputText value="" />
-									</p:column>
-									<p:column headerText="#{msgs.ds}">
-										<h:outputText value="" />
-									</p:column>
-
-									<p:column headerText="#{msgs.js}">
-										<h:outputText value="" />
-									</p:column>
+									<p:column headerText="#{msgs.cost}">
+										<h:outputText value="#{level.cost}" />
+									</p:column>							
 
 								</p:dataTable>
 							</h:form>
