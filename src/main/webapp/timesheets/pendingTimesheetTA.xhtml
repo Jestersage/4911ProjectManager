@@ -51,22 +51,22 @@
 					<div class="row">
 						<!-- displays info about previous timesheets of current user -->
 						<div class="col-xs-12 col-sm-12 col-md-9">
-							<p:dataTable var="" value="">
+							<p:dataTable var="timesheet" value="#{timesheetController.tsApproverPendingList}">
 								<p:column headerText="#{msgs.timesheet}">
 									<!-- change later to outputLink -->
-									<h:outputText value="" />
+									<h:outputText value="#{timesheet.id}" />
 								</p:column>
-								<p:column headerText="#{msgs.id}">
+								<p:column headerText="#{msgs.employee}">
 									<!-- change later to outputLink -->
-									<h:outputText value="" />
+									<h:outputText value="#{timesheet.owner.firstName} #{timesheet.owner.lastName}" />
 								</p:column>
 								<p:column headerText="#{msgs.weekNo}">
 									<!-- change later to outputLink -->
-									<h:outputText value="" />
+									<h:outputText value="#{timesheet.weekNumber}" />
 								</p:column>
 								<p:column headerText="#{msgs.weekEnding}">
 									<!-- change later to outputLink -->
-									<h:outputText value="" />
+									<h:outputText value="#{timesheet.weekEnding}" />
 								</p:column>
 							</p:dataTable>
 						</div>

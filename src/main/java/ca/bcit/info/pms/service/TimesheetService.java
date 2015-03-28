@@ -39,4 +39,6 @@ public interface TimesheetService {
      * @return employee or null
      */
     List<Timesheet> findTimesheetsByOwner(final Employee owner);
+
+    List<Timesheet> getApproverPendingTimesheets(final String empId);
 }

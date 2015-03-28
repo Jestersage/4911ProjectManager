@@ -41,4 +41,9 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
     public List<Timesheet> findTimesheetsByOwner(Employee owner) {
         return timesheetManager.findAllByOwner(owner);
     }
+
+    @Override
+    public List<Timesheet> getApproverPendingTimesheets(String empId) {
+        return timesheetManager.getTimesheetsToApprove(empId);
+    }
 }

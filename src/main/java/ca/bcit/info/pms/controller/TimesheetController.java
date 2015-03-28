@@ -1,6 +1,7 @@
 package ca.bcit.info.pms.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -18,6 +19,9 @@ public class TimesheetController implements Serializable {
 
     @Inject
     private TimesheetService timeService;
+
+    @Inject
+    private UserController userController;
 
     /**
      * @return Return timesheet
@@ -37,5 +41,10 @@ public class TimesheetController implements Serializable {
         //set functions
         //persist timesheet
         return "newTimesheet";
+    }
+
+    public List<Timesheet> getTsApproverPendingList() {
+        final String currUserid = userController.getUser().getId();
+        return timeService.getApproverPendingTimesheets(currUserid);
     }
 }
