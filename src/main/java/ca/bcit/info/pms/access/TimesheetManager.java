@@ -102,7 +102,8 @@ public class TimesheetManager implements Serializable {
                         "IN (t.owner) AS e " +
                         "WHERE e.timesheetApprover.id = :approverId " +
                         "AND t.signID IS NOT NULL " +
-                        "AND t.approved IS NULL", Timesheet.class);
+                        "AND t.approved IS NULL " +
+                        "ORDER BY t.owner.id, t.weekEnding", Timesheet.class);
         query.setParameter("approverId", empId);
         List<Timesheet> timesheets = query.getResultList();
         return timesheets;
