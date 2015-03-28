@@ -3,7 +3,7 @@ package ca.bcit.info.pms.controller;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -11,7 +11,7 @@ import ca.bcit.info.pms.model.Timesheet;
 import ca.bcit.info.pms.service.TimesheetService;
 
 @Named( "timesheetController" )
-@SessionScoped
+@RequestScoped
 public class TimesheetController implements Serializable {
 
     @Inject
