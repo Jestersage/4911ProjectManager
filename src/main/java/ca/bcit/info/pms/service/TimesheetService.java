@@ -6,6 +6,8 @@ import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Timesheet;
 
 public interface TimesheetService {
+    
+    Timesheet getCurrentTimesheet(Employee emp);
 
 //      Timesheet CRUD
     /**

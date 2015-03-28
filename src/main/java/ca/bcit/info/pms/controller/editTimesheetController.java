@@ -42,38 +42,9 @@ public class editTimesheetController implements Serializable {
      */
     public String fillThisWeek() {
         Employee user = userController.getUser();
-        
-        
-        // Get current week end date
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
-        Date weekEnd = c.getTime(); 
-        
-        List<Timesheet> sheets = timeService.findTimesheetsByOwner(user);
-        
-        if( sheets == null ) {
-            timesheet = new Timesheet();
-            List<TimesheetRow> tsRows = new ArrayList<TimesheetRow>();
-            tsRows.add(new TimesheetRow());
-            timesheet.setTimesheetRows(tsRows);
-            timesheet.setOwner(user);
-        } else {
-            for( Timesheet t : sheets ) {
-                // If there is a timesheet for this week
-                if (t.getWeekEnding() == weekEnd) {
-                    // Set it
-                    timesheet = t;
-                } else {
-                    // Otherwise create a new timesheet
-                    timesheet = new Timesheet();
-                    List<TimesheetRow> tsRows = new ArrayList<TimesheetRow>();
-                    tsRows.add(new TimesheetRow());
-                    timesheet.setTimesheetRows(tsRows);
-                    timesheet.setOwner(user);
-                }
-            }
-        }
-        
+ 
+        timesheet = timeService.getCurrentTimesheet(user);
+
         return "currentTimesheet";
     }
 
