@@ -57,11 +57,45 @@
 							<div class="container-flid">
 								<h:form>
 									<div class="row">
+										<div class="col-md-4">
+										<div class="panel panel-default">
+											<div class="panel-heading"><b>#{msgs.tsSummary}</b></div>
+											<div class="panel-body">
+												<dl class="dl-horizontal">
+													<dt>#{msgs.tsOwner}</dt>
+													<dd>
+														#{timesheetController.timesheet.owner.firstName}
+														#{timesheetController.timesheet.owner.lastName}
+													</dd>
+													<dt>#{msgs.weekEnding}</dt>
+													<dd>#{timesheetController.timesheet.weekEnding}</dd>
+
+													<dt>#{msgs.weekNo}</dt>
+													<dd>#{timesheetController.timesheet.weekNumber}</dd>
+
+													<dt>#{msgs.totalHours}</dt>
+													<dd>//TODO</dd>
+
+													<dt>#{msgs.tsFlextime}</dt>
+													<dd>#{timesheetController.timesheet.flextime}</dd>
+
+													<dt>#{msgs.overtime}</dt>
+													<dd>#{timesheetController.timesheet.overtime}</dd>
+
+													<dt>#{msgs.tsValid}</dt>
+													<dd>//TODO </dd>
+
+													<dt>#{msgs.status}</dt>
+													<dd>#{timesheetController.timesheet.approved}</dd>
+												</dl>
+											</div>
+										</div>
+										</div>
 									</div>
 									<!-- /row of timesheet summary -->
 
 									<div class="row">
-										<div id="timesheetTable" class="col-md-12">
+										<div id="timesheetTable">
 											<p:dataTable var="row" value="#{timesheetController.timesheet.timesheetRows}">
 												<p:column headerText="#{msgs.project}">
 													#{row.project.id}
@@ -98,69 +132,6 @@
 												</p:column>
 											</p:dataTable>
 										</div>
-									</div>
-
-
-									<div class="row">
-										<div class="col-md-12">
-
-
-											<p:dataTable var="" value="" cellpadding="0" cellspacing="0">
-												<div class="row table table-bordered">
-
-													<p:column headerText="#{msgs.project}" class="col-md-1">
-														<h:outputText value="" />
-														<p:inputText class="input cell" value="" size="10" />
-													</p:column>
-													<p:column headerText="#{msgs.workPackage}" class="col-md-1">
-														<h:outputText value="" />
-														<p:inputText class="input" value="" size="10" />
-													</p:column>
-													<p:column headerText="#{msgs.total}" class="col-md-1">
-														<h:outputText value="" />
-														<p:inputText class="input" value="" size="10" />
-													</p:column>
-													<p:column headerText="#{msgs.sun}" class="col-md-1">
-														<h:outputText value="" />
-														<p:inputText class="input" value="" size="10" />
-													</p:column>
-													<p:column headerText="#{msgs.mon}" class="col-md-1">
-														<h:outputText value="" />
-														<p:inputText class="input" value="" size="10" />
-													</p:column>
-													<p:column headerText="#{msgs.tue}" class="col-md-1">
-														<h:outputText value="" />
-														<p:inputText class="input" value="" size="10" />
-													</p:column>
-													<p:column headerText="#{msgs.wed}" class="col-md-1">
-														<h:outputText value="" />
-														<p:inputText class="input" value="" size="10" />
-													</p:column>
-													<p:column headerText="#{msgs.thu}" class="col-md-1">
-														<h:outputText value="" />
-														<p:inputText class="input" value="" size="10" />
-													</p:column>
-													<p:column headerText="#{msgs.fri}" class="col-md-1">
-														<h:outputText value="" />
-														<p:inputText class="input" value="" size="10" />
-													</p:column>
-													<p:column headerText="#{msgs.sat}" class="col-md-1">
-														<h:outputText value="" />
-														<p:inputText class="input" value="" size="10" />
-													</p:column>
-													<p:column headerText="#{msgs.notes}" class="col-md-1">
-														<h:outputText value="" />
-														<p:inputText class="input" value="" size="10" />
-													</p:column>
-												</div>
-
-											</p:dataTable>
-											<!-- /timesheetForm -->
-
-
-
-										</div>
-										<!-- /col timesheet -->
 									</div>
 									<!-- /row timesheet -->
 

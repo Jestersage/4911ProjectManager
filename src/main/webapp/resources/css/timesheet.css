@@ -22,14 +22,12 @@
 }
 
 #timesheetTable {
-
-	font-size: 12px;
 	background-color: white;
 	margin: 1em;
 	padding-bottom: 5em;
 }
 
-#timesheetTable .hour-col {
+.hour-col {
 	width: 80px;
 	text-align: center;
 }

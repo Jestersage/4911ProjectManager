@@ -146,6 +146,20 @@ public class Timesheet implements Serializable
 		return approved;
 	}
 
+	public String getApproved() {
+        String label;
+
+        if(approved == null) {
+            label = "Not reviewed";
+        } else if (approved) {
+            label = "Approved";
+        } else {
+            label = "Rejected";
+        }
+
+		return label;
+	}
+
 	public void setApproved(Boolean approved) {
 		this.approved = approved;
 	}
