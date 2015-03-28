@@ -108,17 +108,17 @@
 
 						<p:column headerText="#{msgs.project}" class="col-md-1">
 							<h:outputText value="" />
-							<p:inputText class="input cell" value="" size="10"
+							<p:inputText class="input cell" value="#{tsRow.project.id}" size="10"
 								readonly="true" />
 						</p:column>
 						<p:column headerText="#{msgs.workPackage}" class="col-md-1">
 							<h:outputText value="" />
-							<p:inputText class="input" value="" size="10"
+							<p:inputText class="input" value="#{tsRow.workPackage.id}" size="10"
 								readonly="true" />
 						</p:column>
 						<p:column headerText="#{msgs.total}" class="col-md-1">
 							<h:outputText value="" />
-							<p:inputText class="input" value="" size="10"
+							<p:inputText class="input" value="#{tsRow.totalHours}" size="10"
 								readonly="true" />
 						</p:column>
 						<p:column headerText="#{msgs.sun}" class="col-md-1">
@@ -128,27 +128,27 @@
 						</p:column>
 						<p:column headerText="#{msgs.mon}" class="col-md-1">
 							<h:outputText value="" />
-							<p:inputText class="input" value="" size="10" />
+							<p:inputText class="input" value="#{tsRow.mondayHour}" size="10" />
 						</p:column>
 						<p:column headerText="#{msgs.tue}" class="col-md-1">
 							<h:outputText value="" />
-							<p:inputText class="input" value="" size="10" />
+							<p:inputText class="input" value="#{tsRow.tuesdayHour}" size="10" />
 						</p:column>
 						<p:column headerText="#{msgs.wed}" class="col-md-1">
 							<h:outputText value="" />
-							<p:inputText class="input" value="" size="10" />
+							<p:inputText class="input" value="#{tsRow.wednesdayHour}" size="10" />
 						</p:column>
 						<p:column headerText="#{msgs.thu}" class="col-md-1">
 							<h:outputText value="" />
-							<p:inputText class="input" value="" size="10" />
+							<p:inputText class="input" value="#{tsRow.thursdayHour}" size="10" />
 						</p:column>
 						<p:column headerText="#{msgs.fri}" class="col-md-1">
 							<h:outputText value="" />
-							<p:inputText class="input" value="" size="10" />
+							<p:inputText class="input" value="#{tsRow.fridayHour}" size="10" />
 						</p:column>
 						<p:column headerText="#{msgs.sat}" class="col-md-1">
 							<h:outputText value="" />
-							<p:inputText class="input" value="" size="10" />
+							<p:inputText class="input" value="#{tsRow.saturdayHour}" size="10" />
 						</p:column>
 						<p:column headerText="#{msgs.flex}" class="col-md-1">
 							<h:outputText value="" />
