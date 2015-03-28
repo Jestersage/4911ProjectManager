@@ -1,12 +1,15 @@
 package ca.bcit.info.pms.service.impl;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.bcit.info.pms.access.TimesheetManager;
+import ca.bcit.info.pms.controller.UserController;
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Timesheet;
 import ca.bcit.info.pms.service.TimesheetService;
@@ -17,6 +20,17 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
     @Inject
     private TimesheetManager timesheetManager;
 
+    @Override
+    public Timesheet getCurrentTimesheet(Employee emp) {
+       
+        // Get current week end date
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
+        Date wkEnding = c.getTime(); 
+        
+        return timesheetManager.find(emp, wkEnding);
+    }
+    
     @Override
     public void persistTimesheet(Timesheet newTimesheet) {
         timesheetManager.persist(newTimesheet);        

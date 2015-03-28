@@ -1,6 +1,7 @@
 package ca.bcit.info.pms.access;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -12,6 +13,7 @@ import javax.persistence.TypedQuery;
 
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Timesheet;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -51,6 +53,30 @@ public class TimesheetManager implements Serializable {
             //logger.warn( "timesheet not found for username " + employee.getId() );
             return null;
         }
+    }
+    
+    /**
+     * Get timesheet belong to a given employee and given week.
+     *
+     * @param e owner of timesheet.
+     * @param weekEnd timesheet's week end day
+     * @return a timesheet of a given employee and given week.
+     */
+    public Timesheet find(final Employee e, final Date weekEnd) {
+        TypedQuery<Timesheet> query = entityManager.createQuery(
+                "SELECT t FROM Timesheet t WHERE t.owner = :employee "
+                        + "AND t.weekEnding = :endWeek", Timesheet.class);
+        query.setParameter("employee", e);
+        query.setParameter("endWeek", weekEnd);
+
+        Timesheet result;
+        try {
+            result = query.getSingleResult();
+        } catch (NoResultException nre) {
+            result = new Timesheet(e);
+        }
+
+        return result;
     }
     
     /**

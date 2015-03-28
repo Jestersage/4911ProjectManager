@@ -74,6 +74,13 @@ public class Timesheet implements Serializable
     @OneToOne
     @JoinColumn(name = "signId")
 	private Signature signID;
+    
+    public Timesheet() { super(); }
+    
+    public Timesheet(Employee e) {
+        super();
+        this.owner = e;
+    }
 
     public int getId() {
         return this.id;
