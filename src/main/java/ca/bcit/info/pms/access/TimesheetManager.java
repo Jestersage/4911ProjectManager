@@ -96,14 +96,14 @@ public class TimesheetManager implements Serializable {
      * @param empId timesheet approver's employee id.
      * @return a list of timesheets to be approved by this employee.
      */
-    // TODO uncertain correct query. what can be signed and approved field's values
     public List<Timesheet> getTimesheetsToApprove(final String empId) {
         TypedQuery<Timesheet> query = entityManager
                 .createQuery("SELECT t FROM Timesheet t, " +
                         "IN (t.owner) AS e " +
                         "WHERE e.timesheetApprover.id = :approverId " +
-                        "AND t.approved <> 'approved'" +
-                        "AND t.signed = 'Signed'", Timesheet.class);
+                        "AND t.signID IS NOT NULL " +
+                        "AND t.approved IS NULL " +
+                        "ORDER BY t.owner.id, t.weekEnding", Timesheet.class);
         query.setParameter("approverId", empId);
         List<Timesheet> timesheets = query.getResultList();
         return timesheets;

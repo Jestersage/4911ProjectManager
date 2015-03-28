@@ -90,4 +90,9 @@ public class TimesheetController implements Serializable {
         //persist timesheet
         return "newTimesheet";
     }
+
+    public List<Timesheet> getTsApproverPendingList() {
+        final String currUserid = userController.getUser().getId();
+        return timeService.getApproverPendingTimesheets(currUserid);
+    }
 }

@@ -38,9 +38,9 @@ VALUES
 -- Week 2, Employee 4
 INSERT INTO Timesheet
   (timesheetID, employeeID, weeknumber, weekending,
-    overtime, flexTime, approved, signID) 
+    overtime, flexTime, approved, signID)
 VALUES
-  (2, 2, 2, '2015-01-09', 
+  (2, 2, 2, '2015-01-09',
    0, 0, true, 01);
 INSERT INTO TimesheetRow
     (timesheetID, timesheetrowID, projectID, packageID,
@@ -99,4 +99,101 @@ VALUES
     (5, 5, 111, 6,
      "notes", 0, 9, 9,
      8, 8, 8, 0);
+--
+-- Pending timsheets
+-- Week 1, (empId 4)
+INSERT INTO Timesheet
+(timesheetID, employeeID, weeknumber, weekending,
+ overtime, flexTime, approved, signID)
+VALUES
+  (6, 4, 1, '2015-01-02',
+   0, 0, NULL, 01);
+INSERT INTO TimesheetRow
+(timesheetID, timesheetrowID, projectID, packageID,
+ notes, sunday, monday, tuesday,
+ wednesday, thursday, friday, saturday)
+VALUES
+  (6, 6, 111, 6,
+   "notes", 0, 8, 8,
+   8, 8, 8, 0);
+--
+-- Week 2, (empId 4)
+INSERT INTO Timesheet
+(timesheetID, employeeID, weeknumber, weekending,
+ overtime, flexTime, approved, signID)
+VALUES
+  (7, 4, 1, '2015-01-09',
+   0, 0, NULL, 01);
+INSERT INTO TimesheetRow
+(timesheetID, timesheetrowID, projectID, packageID,
+ notes, sunday, monday, tuesday,
+ wednesday, thursday, friday, saturday)
+VALUES
+  (7, 7, 111, 6,
+   "notes", 0, 8, 8,
+   8, 8, 8, 0);
+--
+-- Week 3, (empId 5)
+INSERT INTO Timesheet
+(timesheetID, employeeID, weeknumber, weekending,
+ overtime, flexTime, approved, signID)
+VALUES
+  (8, 5, 1, '2015-01-16',
+   0, 0, NULL, 01);
+INSERT INTO TimesheetRow
+(timesheetID, timesheetrowID, projectID, packageID,
+ notes, sunday, monday, tuesday,
+ wednesday, thursday, friday, saturday)
+VALUES
+  (8, 8, 111, 6,
+   "notes", 0, 8, 8,
+   8, 8, 8, 0);
+--
+-- Week 3, (empId 4)
+INSERT INTO Timesheet
+(timesheetID, employeeID, weeknumber, weekending,
+ overtime, flexTime, approved, signID)
+VALUES
+  (9, 4, 1, '2015-01-16',
+   0, 0, NULL, 01);
+INSERT INTO TimesheetRow
+(timesheetID, timesheetrowID, projectID, packageID,
+ notes, sunday, monday, tuesday,
+ wednesday, thursday, friday, saturday)
+VALUES
+  (9, 9, 111, 6,
+   "notes", 0, 8, 8,
+   8, 8, 8, 0);
+--
+-- Week 4, (empId 4)
+INSERT INTO Timesheet
+(timesheetID, employeeID, weeknumber, weekending,
+ overtime, flexTime, approved, signID)
+VALUES
+  (10, 4, 1, '2015-01-23',
+   0, 0, NULL, 01);
+INSERT INTO TimesheetRow
+(timesheetID, timesheetrowID, projectID, packageID,
+ notes, sunday, monday, tuesday,
+ wednesday, thursday, friday, saturday)
+VALUES
+  (10, 10, 111, 6,
+   "notes", 0, 8, 8,
+   8, 8, 8, 0);
+--
+-- Week 4, (empId 4)
+INSERT INTO Timesheet
+(timesheetID, employeeID, weeknumber, weekending,
+ overtime, flexTime, approved, signID)
+VALUES
+  (11, 5, 1, '2015-01-23',
+   0, 0, NULL, 01);
+INSERT INTO TimesheetRow
+(timesheetID, timesheetrowID, projectID, packageID,
+ notes, sunday, monday, tuesday,
+ wednesday, thursday, friday, saturday)
+VALUES
+  (11, 11, 111, 6,
+   "notes", 0, 8, 8,
+   8, 8, 8, 0);
 --

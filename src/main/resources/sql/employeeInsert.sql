@@ -70,18 +70,18 @@ INSERT INTO Credentials
 VALUES
     ("rBurns", "1000:1d6908fa9fa950130d1b0521757534d4b1319e343ec0e1ad:7aac50411a88e90a75fe4610a8943e4c7b6b092d3847d300");
 INSERT INTO Employee
-    (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade)
+    (employeeID, username, email, firstName, lastName, supervisorID, approverId, active, payGrade)
 VALUES
-    (000004, "rBurns", "bdole@email.com", "Robet", "Dolenson", 000001, 1, "P1");
+    (000004, "rBurns", "bdole@email.com", "Robet", "Dolenson", 000001, 000001, 1, "P1");
 --
 INSERT INTO Credentials
     (username, password)
 VALUES
     ("hSimpson", "1000:6a831b839c8bfa8d5e3483f6a58b53c98555df01fca2ec39:b95b51ff8434cd83c79fc83d2e0bbb3515f9e1a7c28b8b6e");
 INSERT INTO Employee
-    (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade)
+    (employeeID, username, email, firstName, lastName, supervisorID, approverId, active, payGrade)
 VALUES
-    (000005, "hSimpson", "homerS@email.com", "Homer", "Simpson", 000004, 1, "P6");
+    (000005, "hSimpson", "homerS@email.com", "Homer", "Simpson", 000004, 000001, 1, "P6");
 --
 INSERT INTO Credentials
     (username, password)
