@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Id;
@@ -57,7 +58,7 @@ public class Timesheet implements Serializable
     @Column(name = "weekending")
 	private Date weekEnding;
 
-    @OneToMany(orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "timesheetID")
     private List<TimesheetRow> timesheetRows;
 

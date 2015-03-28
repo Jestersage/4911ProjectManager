@@ -9,19 +9,25 @@ import javax.inject.Named;
 
 import ca.bcit.info.pms.model.Timesheet;
 import ca.bcit.info.pms.service.TimesheetService;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 @Named( "timesheetController" )
 @RequestScoped
 public class TimesheetController implements Serializable {
 
     @Inject
-    private Timesheet timesheet;
-
-    @Inject
     private TimesheetService timeService;
     
     @Inject
     private UserController userController;
+
+    @Inject
+    private Timesheet timesheet;
+
+    private List<Timesheet> tsApproverPendingList;
+
+    private static final Logger logger = LogManager.getLogger(TimesheetController.class);
 
     /**
      * @return Return timesheet
@@ -45,7 +51,16 @@ public class TimesheetController implements Serializable {
     }
 
     public List<Timesheet> getTsApproverPendingList() {
-        final String currUserid = userController.getUser().getId();
-        return timeService.getApproverPendingTimesheets(currUserid);
+        if (tsApproverPendingList == null) {
+            final String currUserid = userController.getUser().getId();
+            tsApproverPendingList = timeService.getApproverPendingTimesheets(currUserid);
+        }
+        return tsApproverPendingList;
+    }
+
+
+    public String reviewTimesheet(final Timesheet ts) {
+        timesheet = ts;
+        return "viewTimesheet";
     }
 }
