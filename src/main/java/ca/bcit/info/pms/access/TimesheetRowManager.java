@@ -33,6 +33,12 @@ public class TimesheetRowManager implements Serializable {
 		em.merge(timesheetRow);
 	}
 	
+	public void merge(final List<TimesheetRow> timesheetRows) {
+	    for ( TimesheetRow tsr : timesheetRows ) {
+	        em.merge(tsr);
+	    }
+	}
+	
 	public void persist(final TimesheetRow timesheetRow) {
 		em.persist(timesheetRow);
 	}
