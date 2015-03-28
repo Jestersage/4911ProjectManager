@@ -56,14 +56,14 @@
 										<div class="col-md-7">
 
 											<div class="form-group">
-												<h:outputLabel for="inputEmail3"
+												<h:outputLabel for="itWorkPackageNumber"
 													value="#{msgs.workPackageNumber}"
 													class="col-sm-4 control-label" />
 												<div class="col-sm-4">
 													<h:inputText pt:placeholder="type to search"
 														class="form-control" id="itWorkPackageNumber"
 														value="#{weekReport.id}">
-														<p:ajax event="blur" update="out out2 out3"
+														<p:ajax event="blur" update="itWorkPackageName itProject summaryOfCost"
 															listener="#{weekReport.findWP}" />
 													</h:inputText>
 													<h:message errorClass="text-danger"
@@ -80,7 +80,7 @@
 													class="col-sm-4 control-label" />
 
 												<div class="col-sm-4">
-													<h:outputText id="out" class="form-control"
+													<h:outputText id="itWorkPackageName" class="form-control"
 														value="#{weekReport.wp.name}" />
 												</div>
 											</div>
@@ -91,7 +91,7 @@
 													class="col-sm-4 control-label" />
 
 												<div class="col-sm-4">
-													<h:outputText id="out2" class="form-control"
+													<h:outputText id="itProject" class="form-control"
 														value="#{weekReport.wp.project}" />
 												</div>
 											</div>
@@ -204,7 +204,7 @@
 										</div>
 										<!-- /col -->
 										<div class="col-md-4">
-											<p:panelGrid id="out3" styleClass="table-bordered">
+											<p:panelGrid id="summaryOfCost" styleClass="table-bordered">
 												<f:facet name="header">
 													<p:row>
 														<p:column>#{msgs.total}</p:column>
@@ -212,6 +212,7 @@
 														<p:column>#{msgs.p2}</p:column>
 														<p:column>#{msgs.p3}</p:column>
 														<p:column>#{msgs.p4}</p:column>
+														<p:column>#{msgs.p5}</p:column>
 														<p:column>#{msgs.p5}</p:column>
 														<p:column>#{msgs.js}</p:column>
 														<p:column>#{msgs.ss}</p:column>
@@ -232,14 +233,15 @@
 												</p:row>
 												<p:row>
 													<p:column>#{msgs.remaining}</p:column>
-													<p:column></p:column>
-													<p:column></p:column>
-													<p:column></p:column>
-													<p:column></p:column>
-													<p:column></p:column>
-													<p:column></p:column>
-													<p:column></p:column>
-													<p:column></p:column>
+													<p:column>#{weekReport.p1}</p:column>
+													<p:column>#{weekReport.p2}</p:column>
+													<p:column>#{weekReport.p3}</p:column>
+													<p:column>#{weekReport.p4}</p:column>
+													<p:column>#{weekReport.p5}</p:column>
+													<p:column>#{weekReport.p6}</p:column>													
+													<p:column>#{weekReport.ss}</p:column>
+													<p:column>#{weekReport.ds}</p:column>
+													<p:column>#{weekReport.js}</p:column>
 												</p:row>
 											</p:panelGrid>
 										</div>
