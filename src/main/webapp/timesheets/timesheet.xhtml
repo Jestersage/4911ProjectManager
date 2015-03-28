@@ -62,7 +62,8 @@
                                     <h:commandButton class="marginOneEm btn btn-success"
                                         value="#{msgs.signTimesheet}" id="signTimesheet" />
                                     <h:commandButton class=" marginOneEm btn btn-success"
-                                        value="#{msgs.save}" id="saveTimesheet" />
+                                        value="#{msgs.save}" id="saveTimesheet"
+                                        action="#{editTimesheetController.saveTimesheet}" />
                                     <ui:fragment>
                                         <h:commandButton class="marginOneEm btn btn-info"
                                             value="#{msgs.approve}" id="approveTimesheet" />
@@ -165,7 +166,7 @@
                         </p:column>
                         <p:column headerText="#{msgs.notes}" class="col-md-1">
                             <h:outputText value="" />
-                            <p:inputText class="input" value="" size="10" />
+                            <p:inputText class="input" value="#{tsRow.notes}" size="10" />
                         </p:column>
                     </div>
 

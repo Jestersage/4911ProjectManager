@@ -7,6 +7,9 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Timesheet;
 import ca.bcit.info.pms.service.TimesheetService;
@@ -14,6 +17,8 @@ import ca.bcit.info.pms.service.TimesheetService;
 @Named( "editTimesheetController" )
 @SessionScoped
 public class editTimesheetController implements Serializable {
+    
+    private static final Logger logger = LogManager.getLogger(editTimesheetController.class);
 
     @Inject
     private Timesheet timesheet;
@@ -60,5 +65,11 @@ public class editTimesheetController implements Serializable {
     public List<Timesheet> getTsApproverPendingList() {
         final String currUserid = userController.getUser().getId();
         return timeService.getApproverPendingTimesheets(currUserid);
+    }
+    
+    public String saveTimesheet() {
+        logger.info(timesheet.toString());
+        timeService.updateTimesheet(timesheet);
+        return "currentTimesheet";
     }
 }

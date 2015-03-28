@@ -12,6 +12,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import ca.bcit.info.pms.access.TimesheetManager;
+import ca.bcit.info.pms.access.TimesheetRowManager;
 import ca.bcit.info.pms.controller.UserController;
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Timesheet;
@@ -22,6 +23,9 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
     
     @Inject
     private TimesheetManager timesheetManager;
+    
+    @Inject
+    private TimesheetRowManager tsrManager;
 
     @Override
     public Timesheet getCurrentTimesheet(Employee emp) {
@@ -40,6 +44,7 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
 
     @Override
     public void updateTimesheet(Timesheet timesheet) {
+        tsrManager.merge(timesheet.getTimesheetRows());
         timesheetManager.merge(timesheet);
     }
 

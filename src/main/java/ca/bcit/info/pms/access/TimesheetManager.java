@@ -106,6 +106,7 @@ public class TimesheetManager implements Serializable {
      * @return new timesheet after update
      */
     public void merge(final Timesheet timesheet) {
+        logger.info("merge:" + timesheet.toString());
         entityManager.merge(timesheet);
     }
     
