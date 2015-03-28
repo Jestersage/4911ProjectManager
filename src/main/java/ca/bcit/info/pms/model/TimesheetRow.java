@@ -62,6 +62,9 @@ public class TimesheetRow implements Serializable {
 	@Column(name = "friday")
 	private BigDecimal fridayHour;
 	
+	@Transient
+	private double totalHours;
+	
     public int getId() {
         return this.id;
     }
@@ -94,62 +97,60 @@ public class TimesheetRow implements Serializable {
 		this.notes = notes;
 	}
 
-	
-
 	public double getSaturdayHour() {
 		return saturdayHour.doubleValue();
 	}
 
-	public void setSaturdayHour(BigDecimal saturdayHour) {
-		this.saturdayHour = saturdayHour;
+	public void setSaturdayHour(double saturdayHour) {
+		this.saturdayHour = new BigDecimal(saturdayHour);
 	}
 
 	public double getSundayHour() {
 		return sundayHour.doubleValue();
 	}
 
-	public void setSundayHour(BigDecimal sundayHour) {
-		this.sundayHour = sundayHour;
+	public void setSundayHour(double sundayHour) {
+		this.sundayHour = new BigDecimal(sundayHour);
 	}
 
 	public double getMondayHour() {
 		return mondayHour.doubleValue();
 	}
 
-	public void setMondayHour(BigDecimal mondayHour) {
-		this.mondayHour = mondayHour;
+	public void setMondayHour(double mondayHour) {
+		this.mondayHour = new BigDecimal(mondayHour);
 	}
 
 	public double getTuesdayHour() {
 		return tuesdayHour.doubleValue();
 	}
 
-	public void setTuesdayHour(BigDecimal tuesdayHour) {
-		this.tuesdayHour = tuesdayHour;
+	public void setTuesdayHour(double tuesdayHour) {
+		this.tuesdayHour = new BigDecimal(tuesdayHour);
 	}
 
 	public double getWednesdayHour() {
 		return wednesdayHour.doubleValue();
 	}
 
-	public void setWednesdayHour(BigDecimal wednesdayHour) {
-		this.wednesdayHour = wednesdayHour;
+	public void setWednesdayHour(double wednesdayHour) {
+		this.wednesdayHour = new BigDecimal(wednesdayHour);
 	}
 
 	public double getThursdayHour() {
 		return thursdayHour.doubleValue();
 	}
 
-	public void setThursdayHour(BigDecimal thursdayHour) {
-		this.thursdayHour = thursdayHour;
+	public void setThursdayHour(double thursdayHour) {
+		this.thursdayHour = new BigDecimal(thursdayHour);
 	}
 
 	public double getFridayHour() {
 		return fridayHour.doubleValue();
 	}
 
-	public void setFridayHour(BigDecimal fridayHour) {
-		this.fridayHour = fridayHour;
+	public void setFridayHour(double fridayHour) {
+		this.fridayHour = new BigDecimal(fridayHour);
 	}
 
 	@Override
@@ -197,9 +198,8 @@ public class TimesheetRow implements Serializable {
     
     @Transient
     public double getTotalHours() {
-        BigDecimal total = fridayHour.add(saturdayHour.add(sundayHour.add(
-                                mondayHour.add(tuesdayHour.add(wednesdayHour.add(
-                                thursdayHour))))));
-        return total.doubleValue();
+        return fridayHour.add(saturdayHour.add(sundayHour.add(
+                mondayHour.add(tuesdayHour.add(wednesdayHour.add(
+                thursdayHour)))))).doubleValue();
     }
 }
