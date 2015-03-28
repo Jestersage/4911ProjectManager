@@ -8,6 +8,9 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import ca.bcit.info.pms.access.TimesheetManager;
 import ca.bcit.info.pms.controller.UserController;
 import ca.bcit.info.pms.model.Employee;
@@ -19,6 +22,8 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
     
     @Inject
     private TimesheetManager timesheetManager;
+    
+    private static final Logger logger = LogManager.getLogger(UserController.class);
 
     @Override
     public Timesheet getCurrentTimesheet(Employee emp) {
@@ -27,6 +32,7 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
         Calendar c = Calendar.getInstance();
         c.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
         Date wkEnding = c.getTime(); 
+        logger.info("weekEnding:"+wkEnding);
         
         return timesheetManager.find(emp, wkEnding);
     }

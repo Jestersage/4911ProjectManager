@@ -1,10 +1,3 @@
--- -----------------------
--- Timesheet Sample Data
--- - - - - - - - - - - - 
--- 1) Source dbCreate.sql
--- 2) Source employeeInsert.sql
--- 3) Source timesheetInsert.sql
--- - - - - - - - - - - - 
 -- 
 -- Sample Signature data
 --
@@ -194,6 +187,22 @@ INSERT INTO TimesheetRow
  wednesday, thursday, friday, saturday)
 VALUES
   (11, 11, 111, 6,
+   "notes", 0, 8, 8,
+   8, 8, 8, 0);
+--
+-- SAMPLE DATA FOR root USER    --
+INSERT INTO Timesheet
+(timesheetID, employeeID, weeknumber, weekending,
+ overtime, flexTime, approved, signID)
+VALUES
+  (666, 1, 13, '2015-03-27',
+   0, 0, NULL, 01);
+INSERT INTO TimesheetRow
+(timesheetID, timesheetrowID, projectID, packageID,
+ notes, sunday, monday, tuesday,
+ wednesday, thursday, friday, saturday)
+VALUES
+  (666, 666, 111, 6,
    "notes", 0, 8, 8,
    8, 8, 8, 0);
 --
