@@ -16,7 +16,7 @@ public interface TimesheetService {
     
     /**
      * Update existing employee.
-     * @param employee employee to update.
+     * @param timesheet timesheet to update.
      */
     void updateTimesheet(Timesheet timesheet);
     
@@ -35,7 +35,7 @@ public interface TimesheetService {
     
     /**
      * Find employee by username.
-     * @param username employee username
+     * @param owner employee username
      * @return employee or null
      */
     List<Timesheet> findTimesheetsByOwner(final Employee owner);
