@@ -63,4 +63,22 @@ public class TimesheetController implements Serializable {
         timesheet = ts;
         return "viewTimesheet";
     }
+
+    public String approveTimseheet() {
+        timesheet = timeService.findTimesheetById(timesheet.getId());
+        timesheet.setApproved(true);
+
+        timeService.updateTimesheet(timesheet);
+
+        return "pendingTimesheetTA";
+    }
+
+    public String rejectTimseheet() {
+        timesheet = timeService.findTimesheetById(timesheet.getId());
+        timesheet.setApproved(false);
+
+        timeService.updateTimesheet(timesheet);
+
+        return "pendingTimesheetTA";
+    }
 }

@@ -26,7 +26,7 @@ public class TimesheetManager implements Serializable {
     private static final Logger logger = LogManager.getLogger(TimesheetManager.class);
 
 
-    public Timesheet findById(final long id) {
+    public Timesheet findById(final int id) {
 
         return this.entityManager.find(Timesheet.class, id);
     }
@@ -84,7 +84,7 @@ public class TimesheetManager implements Serializable {
      */
     public List<Timesheet> getAllTimesheets(){
         TypedQuery<Timesheet> query = entityManager.createQuery("select t "
-                + "from Timesheet t ORDER BY t.endWeek DESC", Timesheet.class);
+                + "from Timesheet t ORDER BY t.weekEnding DESC", Timesheet.class);
         return query.getResultList();
     }
 

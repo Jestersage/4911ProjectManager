@@ -24,10 +24,16 @@
 #timesheetTable {
 	background-color: white;
 	margin: 1em;
-	padding-bottom: 5em;
+	padding-bottom: 2em;
 }
 
 .hour-col {
 	width: 80px;
 	text-align: center;
+}
+
+.spacer-horizontal {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
 }

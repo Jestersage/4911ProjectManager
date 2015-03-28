@@ -17,7 +17,7 @@
 	</f:metadata>
 	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
 
-		<ui:define name="windowTitle">#{msgs.pendingTimesheet}</ui:define>
+		<ui:define name="windowTitle">#{msgs.approverPendingList}</ui:define>
 
 		<ui:define name="additionalStyleSheets">
 			<h:outputStylesheet library="css" name="timesheet.css" />
@@ -38,13 +38,13 @@
 								<h:form>
 									<ol class="breadcrumb">
 										<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
-										<li class="active">#{msgs.pendingTimesheet}</li>
+										<li class="active">#{msgs.approverPendingList}</li>
 									</ol>
 								</h:form>
 							</div>
 
 							<div id="pageTitle">
-								<h1>#{msgs.pendingTimesheet}</h1>
+								<h1>#{msgs.approverPendingList}</h1>
 							</div>
 							<ui:insert name="notificationArea">
 								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
