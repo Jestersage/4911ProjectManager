@@ -37,9 +37,9 @@ public class TimesheetManager implements Serializable {
      */
     public List<Timesheet> findAllByOwner(final Employee employee) {
         TypedQuery<Timesheet> query = entityManager.createQuery(
-                "SELECT t FROM Timesheet t WHERE t.employee = :employeeId",
+                "SELECT t FROM Timesheet t WHERE t.owner = :emp",
                 Timesheet.class);
-        query.setParameter("employeeId", employee.getId());
+        query.setParameter("emp", employee);
 
         try
         {

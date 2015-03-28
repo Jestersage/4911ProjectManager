@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -60,7 +61,7 @@ public class TimesheetRow implements Serializable {
 	
 	@Column(name = "friday")
 	private BigDecimal fridayHour;
-
+	
     public int getId() {
         return this.id;
     }
@@ -192,5 +193,13 @@ public class TimesheetRow implements Serializable {
         sb.append("notes='").append(notes).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+    
+    @Transient
+    public double getTotalHours() {
+        BigDecimal total = fridayHour.add(saturdayHour.add(sundayHour.add(
+                                mondayHour.add(tuesdayHour.add(wednesdayHour.add(
+                                thursdayHour))))));
+        return total.doubleValue();
     }
 }

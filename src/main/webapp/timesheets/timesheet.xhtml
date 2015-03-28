@@ -19,8 +19,6 @@
 			<h:outputStylesheet library="css" name="timesheet.css" />
 		</ui:define>
 
-
-
 		<ui:define name="content">
 			<!-- change the value if using left menu -->
 			<div class="col-md-12">
@@ -99,31 +97,27 @@
 									</div>
 									<!-- /row of timesheet summary -->
 
-
-
 									<div class="row">
 										<div class="col-md-12">
 
-
-
-											<p:dataTable var="" value="" cellpadding="0" cellspacing="0">
+											<p:dataTable var="tsRow" value="#{timesheetController.timesheet.timesheetRows}" cellpadding="0" cellspacing="0">
 												<div class="row table table-bordered">
 
 													<p:column headerText="#{msgs.project}" class="col-md-1">
 														<h:outputText value="" />
-														<p:inputText class="input cell" value="" size="10" />
+														<p:inputText class="input cell" value="" size="10" readonly="true" />
 													</p:column>
 													<p:column headerText="#{msgs.workPackage}" class="col-md-1">
 														<h:outputText value="" />
-														<p:inputText class="input" value="" size="10" />
+														<p:inputText class="input" value="" size="10" readonly="true"/>
 													</p:column>
 													<p:column headerText="#{msgs.total}" class="col-md-1">
 														<h:outputText value="" />
-														<p:inputText class="input" value="" size="10" />
+														<p:inputText class="input" value="" size="10" readonly="true"/>
 													</p:column>
 													<p:column headerText="#{msgs.sun}" class="col-md-1">
 														<h:outputText value="" />
-														<p:inputText class="input" value="" size="10" />
+														<p:inputText class="input" value="#{tsRow.sundayHour}" size="10" />
 													</p:column>
 													<p:column headerText="#{msgs.mon}" class="col-md-1">
 														<h:outputText value="" />
@@ -149,6 +143,14 @@
 														<h:outputText value="" />
 														<p:inputText class="input" value="" size="10" />
 													</p:column>
+													<p:column headerText="#{msgs.flex}" class="col-md-1">
+                                                        <h:outputText value="" />
+                                                        <p:inputText class="input" value="" size="10" />
+                                                    </p:column>
+                                                    <p:column headerText="#{msgs.overtime}" class="col-md-1">
+                                                        <h:outputText value="" />
+                                                        <p:inputText class="input" value="" size="10" />
+                                                    </p:column>
 													<p:column headerText="#{msgs.notes}" class="col-md-1">
 														<h:outputText value="" />
 														<p:inputText class="input" value="" size="10" />
