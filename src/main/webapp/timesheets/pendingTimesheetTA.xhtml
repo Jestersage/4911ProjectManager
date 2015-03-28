@@ -67,7 +67,7 @@
 									<h:outputText value="#{timesheet.weekEnding}" />
 								</p:column>
 								<p:column>
-									<h:commandLink value="#{msgs.review}" />
+									<h:commandLink value="#{msgs.review}" action="#{timesheetController.reviewTimesheet(timesheet)}" />
 								</p:column>
 							</p:dataTable>
 							</h:form>
