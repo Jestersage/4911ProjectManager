@@ -22,17 +22,13 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
     
     @Inject
     private TimesheetManager timesheetManager;
-    
-    private static final Logger logger = LogManager.getLogger(UserController.class);
 
     @Override
     public Timesheet getCurrentTimesheet(Employee emp) {
-       
         // Get current week end date
         Calendar c = Calendar.getInstance();
         c.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
         Date wkEnding = c.getTime(); 
-        logger.info("weekEnding:"+wkEnding);
         
         return timesheetManager.find(emp, wkEnding);
     }
