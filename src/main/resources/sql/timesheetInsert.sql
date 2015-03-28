@@ -202,7 +202,13 @@ INSERT INTO TimesheetRow
  notes, sunday, monday, tuesday,
  wednesday, thursday, friday, saturday)
 VALUES
-  (666, 666, 111, 6,
-   "notes", 0, 8, 8,
-   8, 8, 8, 0);
+  (666, 666, 1202, 5,
+   "notes", 0, 8, 0,
+   8, 8, 8, 0),
+   (666, 667, 1202, 6,
+   "notes", 0, 0, 8,
+   0, 0, 0, 0),
+   (666, 668, 1202, 
+   7,"notes", 0, 0, 8,
+   0, 0, 0, 0);
 --
