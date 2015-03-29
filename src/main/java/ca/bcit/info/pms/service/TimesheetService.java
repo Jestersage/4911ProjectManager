@@ -46,9 +46,20 @@ public interface TimesheetService {
 
     /**
      * @param empId timesheet's owner's employee id
-     * @return a list of all submitted and approved timesheets by this employee.
+     * @return a list of all timesheets waiting for timesheet approver to review.
      */
     List<Timesheet> getApproverPendingTimesheets(final String empId);
 
+    /**
+     * @param empId timesheet's owner's employee id
+     * @return a list of all submitted and approved timesheets by this employee.
+     */
     List<Timesheet> findApprovedTimesheetsByOwner(final String empId);
+
+    /**
+     * Get a list of all submitted, but not approved (not reviewed or rejected) timesheets.
+     * @param empId timesheet's owner's employee id
+     * @return a list of all pending timesheets by this employee.
+     */
+    List<Timesheet> findPendingTimesheetsByOwner(final String empId);
 }

@@ -158,8 +158,19 @@ public class TimesheetManager implements Serializable {
         List<WorkPackage> packages = query.getResultList();
 
         logger.info("TimesheetManager.getWorkPackages().packages.size():"
-                +packages.size());
+                + packages.size());
 
         return packages;
+    }
+
+    public List<Timesheet> getAllPendingTimesheets(final String empId) {
+        TypedQuery<Timesheet> query = entityManager
+                .createQuery("SELECT t from Timesheet t " +
+                        "WHERE t.owner.id = :empId " +
+                        "AND t.signID IS NOT NULL " +
+                        "AND ( t.approved = false OR t.approved IS NULL )", Timesheet.class);
+        query.setParameter("empId", empId);
+
+        return query.getResultList();
     }
 }

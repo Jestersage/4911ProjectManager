@@ -29,6 +29,8 @@ public class TimesheetController implements Serializable {
 
     private List<Timesheet> previousSheets;
 
+    private List<Timesheet> pendingsSheets;
+
     private static final Logger logger = LogManager.getLogger(TimesheetController.class);
 
     /**
@@ -68,9 +70,22 @@ public class TimesheetController implements Serializable {
         return previousSheets;
     }
 
+    public List<Timesheet> getPendingsSheets() {
+        if (pendingsSheets == null) {
+            final String currUserid = userController.getUser().getId();
+            pendingsSheets = timeService.findPendingTimesheetsByOwner(currUserid);
+        }
+        return pendingsSheets;
+    }
+
     public String reviewTimesheet(final Timesheet ts) {
         timesheet = ts;
         return "reviewTimesheet";
+    }
+
+    public String viewPendingTimesheet(final Timesheet ts) {
+        timesheet = ts;
+        return "viewPendingTimesheet";
     }
 
     public String viewTimesheet(final Timesheet ts) {

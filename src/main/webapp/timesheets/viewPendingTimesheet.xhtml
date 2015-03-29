@@ -13,7 +13,7 @@
 <h:body>
 	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
 
-		<ui:define name="windowTitle">#{msgs.pendingTimesheet}</ui:define>
+		<ui:define name="windowTitle">#{msgs.timesheet}</ui:define>
 
 		<ui:define name="additionalStyleSheets">
 			<h:outputStylesheet library="css" name="timesheet.css" />
@@ -34,13 +34,17 @@
 								<h:form>
 									<ol class="breadcrumb">
 										<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
-										<li class="active">#{msgs.pendingTimesheet}</li>
+										<li><h:commandLink action="pendingTimesheet"
+														   value="#{msgs.pendingTimesheet}" /></li>
+										<li class="active">#{msgs.timesheet}</li>
 									</ol>
 								</h:form>
 							</div>
 
 							<div id="pageTitle">
-								<h1>#{msgs.pendingTimesheet}</h1>
+
+								<h1>#{msgs.timesheet}</h1>
+
 							</div>
 							<ui:insert name="notificationArea">
 								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
@@ -49,36 +53,21 @@
 					</div>
 
 					<div class="row">
-						<!-- displays info about previous timesheets of current user -->
-						<div class="col-xs-12 col-sm-12 col-md-9">
-							<h:form>
-								<p:dataTable var="timesheet" value="#{timesheetController.pendingsSheets}">
-									<p:column headerText="#{msgs.weekNo}">
-										<h:outputText value="#{timesheet.weekNumber}" />
-									</p:column>
-									<p:column headerText="#{msgs.weekEnding}">
-										<h:outputText value="#{timesheet.weekEnding}" />
-									</p:column>
-									<p:column headerText="#{msgs.status}">
-										<h:outputText value="#{timesheet.approved}" styleClass="#{timesheet.approved == 'Rejected' ? 'text-danger' : ''}" />
-									</p:column>
-									<p:column>
-										[ <h:commandLink value="#{msgs.view}" action="#{timesheetController.viewPendingTimesheet(timesheet)}" /> ]
-										<ui:fragment rendered="#{timesheet.approved == 'Rejected'}">
-											| [ <h:commandLink value="#{msgs.correct}" /> ]
-										</ui:fragment>
-									</p:column>
-								</p:dataTable>
-							</h:form>
-						</div>
-						<!-- /col -->
-					</div>
-					<!-- /row -->
-				</div>
-				<!-- /container -->
-			</div>
-			<!-- /col -->
 
+						<div class="col-xs-12 col-sm-12 col-md-12">
+
+							<div class="container-flid">
+								<ui:insert name="disaplyTimesheet">
+									<ui:include src="_timesheetTablePartial.xhtml" />
+								</ui:insert>
+							</div>
+							<!-- /container -->
+
+						</div>
+					</div>
+				</div>
+
+			</div>
 		</ui:define>
 		<!-- end of wrapper -->
 	</ui:composition>
