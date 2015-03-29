@@ -36,11 +36,16 @@ public interface TimesheetService {
     Timesheet findTimesheetById(final int id);
     
     /**
-     * Find employee by username.
-     * @param owner employee username
-     * @return employee or null
+     * @param owner employee
+     * @return all timesheets of a owner
      */
     List<Timesheet> findTimesheetsByOwner(final Employee owner);
 
+    /**
+     * @param empId timesheet's owner's employee id
+     * @return a list of all submitted and approved timesheets by this employee.
+     */
     List<Timesheet> getApproverPendingTimesheets(final String empId);
+
+    List<Timesheet> findApprovedTimesheetsByOwner(final String empId);
 }

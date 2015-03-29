@@ -1,6 +1,7 @@
 package ca.bcit.info.pms.access;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -134,5 +135,19 @@ public class TimesheetManager implements Serializable {
         query.setParameter("approverId", empId);
         List<Timesheet> timesheets = query.getResultList();
         return timesheets;
+    }
+
+    /**
+     * @param empId timesheet's owner's employee id
+     * @return a list of all submitted and approved timesheets by this employee.
+     */
+    public List<Timesheet> getAllApprovedTimesheets(final String empId) {
+        TypedQuery<Timesheet> query = entityManager
+                .createQuery("SELECT t FROM Timesheet t " +
+                        "WHERE t.owner.id = :empId " +
+                        "AND t.signID IS NOT NULL " +
+                        "AND t.approved = true", Timesheet.class);
+        query.setParameter("empId", empId);
+        return query.getResultList();
     }
 }
