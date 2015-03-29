@@ -61,7 +61,7 @@ public class TimesheetController implements Serializable {
 
     public String reviewTimesheet(final Timesheet ts) {
         timesheet = ts;
-        return "viewTimesheet";
+        return "reviewTimesheet";
     }
 
     public String approveTimseheet() {
