@@ -54,7 +54,6 @@
 			<!-- timesheet table -->
 			<div class="row">
 				<div id="timesheetTable">
-					<h:inputHidden value="#{timesheetController.timesheet.id}" />
 					<p:dataTable var="row" value="#{timesheetController.timesheet.timesheetRows}">
 						<p:column headerText="#{msgs.project}">
 							#{row.project.id}
