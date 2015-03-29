@@ -4,22 +4,15 @@
 package ca.bcit.info.pms.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import ca.bcit.info.pms.model.Budget;
 import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.WorkPackage;
 import ca.bcit.info.pms.service.ProjectService;
@@ -67,6 +60,9 @@ public class WorkPackageController implements Serializable {
 
 	private static final Logger logger = LogManager
 			.getLogger(WorkPackageController.class);
+
+	@Inject
+	private UserController userController;
 
 //	public String index() {
 //		if (workPackage == null)
@@ -134,7 +130,15 @@ public class WorkPackageController implements Serializable {
     	workPackage.setParentWP(parentWorkPackage);
     	return "newWorkPackage";
     }
-    
+
+	/**
+	 * @return a list of all work packages an employee is assigned to.
+	 */
+	public List<WorkPackage> getMyWorkPackages() {
+		final String userId = userController.getUser().getId();
+		return workPackageService.findAssignedWorkPackages(userId);
+	}
+
 //	public boolean findNumOfChildWP(ComponentSystemEvent event) {
 //	    String projId = (String) event.getComponent().getAttributes().get("projectid");
 //

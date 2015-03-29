@@ -1,8 +1,10 @@
 package ca.bcit.info.pms.access;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import ca.bcit.info.pms.model.Employee;
+import ca.bcit.info.pms.model.Timesheet;
+import ca.bcit.info.pms.model.WorkPackage;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -10,12 +12,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
-import ca.bcit.info.pms.model.Employee;
-import ca.bcit.info.pms.model.Timesheet;
-
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 @Stateless
 @LocalBean
@@ -26,7 +25,7 @@ public class TimesheetManager implements Serializable {
     private static final Logger logger = LogManager.getLogger(TimesheetManager.class);
 
 
-    public Timesheet findById(final long id) {
+    public Timesheet findById(final int id) {
 
         return this.entityManager.find(Timesheet.class, id);
     }
@@ -73,7 +72,7 @@ public class TimesheetManager implements Serializable {
         try {
             result = query.getSingleResult();
         } catch (NoResultException nre) {
-            result = new Timesheet(e);
+            result = null;
         }
 
         return result;
@@ -84,7 +83,7 @@ public class TimesheetManager implements Serializable {
      */
     public List<Timesheet> getAllTimesheets(){
         TypedQuery<Timesheet> query = entityManager.createQuery("select t "
-                + "from Timesheet t ORDER BY t.endWeek DESC", Timesheet.class);
+                + "from Timesheet t ORDER BY t.weekEnding DESC", Timesheet.class);
         return query.getResultList();
     }
 
@@ -134,5 +133,33 @@ public class TimesheetManager implements Serializable {
         query.setParameter("approverId", empId);
         List<Timesheet> timesheets = query.getResultList();
         return timesheets;
+    }
+    
+    /**
+     * @param empId timesheet's owner's employee id
+     * @return a list of all submitted and approved timesheets by this employee.
+     */
+    public List<Timesheet> getAllApprovedTimesheets(final String empId) {
+        TypedQuery<Timesheet> query = entityManager
+                .createQuery("SELECT t FROM Timesheet t " +
+                        "WHERE t.owner.id = :empId " +
+                        "AND t.signID IS NOT NULL " +
+                        "AND t.approved = true", Timesheet.class);
+        query.setParameter("empId", empId);
+        return query.getResultList();
+    }
+    
+    public List<WorkPackage> getWorkPackagesByOwner(final String empId) {
+        TypedQuery<WorkPackage> query = entityManager
+                .createQuery("SELECT wp FROM WorkPackage wp, " +
+                        "IN (wp.employees) AS e " +
+                        "WHERE e.id = :empId", WorkPackage.class);
+        query.setParameter("empId", empId);
+        List<WorkPackage> packages = query.getResultList();
+
+        logger.info("TimesheetManager.getWorkPackages().packages.size():"
+                +packages.size());
+
+        return packages;
     }
 }

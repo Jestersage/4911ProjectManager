@@ -17,7 +17,13 @@ public interface WorkPackageService {
     
     List<WorkPackage> getAllWorkPackages();
     
-    List<Project> getAllProjects();	
+    List<Project> getAllProjects();
+
+    /**
+     * @param empId id of employee assigned to work packages.
+     * @return a list of all work packages an employee is assigned to.
+     */
+    List<WorkPackage> findAssignedWorkPackages(final String empId);
     
     int getNumOfChildWP(String projId);
 }

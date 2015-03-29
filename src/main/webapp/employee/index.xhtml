@@ -150,14 +150,13 @@
 											<div class="collapse" id="collapseExample">
 												<div class="well container-fluid">
 													<div class="row">
-
-														<div class="col-xs-12 col-sm-12 col-md-6">
-															<p:dataTable var="" value="">
+														<div class="col-xs-12 col-sm-12 col-md-5">
+															<p:dataTable var="package" value="#{workPackageController.myWorkPackages}">
 																<p:column headerText="#{msgs.project}">
-																	<h:outputText value="" />
+																	<h:outputText value="#{package.project.id}" />
 																</p:column>
 																<p:column headerText="#{msgs.workPackage}">
-																	<h:outputText value="" />
+																	#{package.packageNum}
 																</p:column>
 															</p:dataTable>
 														</div>

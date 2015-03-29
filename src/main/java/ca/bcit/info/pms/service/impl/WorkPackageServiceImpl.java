@@ -1,6 +1,5 @@
 package ca.bcit.info.pms.service.impl;
 
-import java.util.HashSet;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,8 +8,6 @@ import javax.inject.Named;
 import ca.bcit.info.pms.access.BudgetManager;
 import ca.bcit.info.pms.access.ProjectManager;
 import ca.bcit.info.pms.access.WorkPackageManager;
-import ca.bcit.info.pms.model.Budget;
-import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.ProjectStatus;
 import ca.bcit.info.pms.model.WorkPackage;
@@ -72,7 +69,12 @@ public class WorkPackageServiceImpl implements WorkPackageService {
         return projManager.getAllProjects();
     }
 
-    public int getNumOfChildWP(String projId) {
+	@Override
+	public List<WorkPackage> findAssignedWorkPackages(String empId) {
+		return WPManager.getWorkPackagesByAssignee(empId);
+	}
+
+	public int getNumOfChildWP(String projId) {
     	return WPManager.findNumOfChildWP(projId);
     }
 }

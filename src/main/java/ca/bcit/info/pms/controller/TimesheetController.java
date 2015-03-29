@@ -27,6 +27,8 @@ public class TimesheetController implements Serializable {
 
     private List<Timesheet> tsApproverPendingList;
 
+    private List<Timesheet> previousSheets;
+
     private static final Logger logger = LogManager.getLogger(TimesheetController.class);
 
     /**
@@ -58,9 +60,39 @@ public class TimesheetController implements Serializable {
         return tsApproverPendingList;
     }
 
+    public List<Timesheet> getPreviousSheets() {
+        if (previousSheets == null) {
+            final String currUserid = userController.getUser().getId();
+            previousSheets = timeService.findApprovedTimesheetsByOwner(currUserid);
+        }
+        return previousSheets;
+    }
 
     public String reviewTimesheet(final Timesheet ts) {
         timesheet = ts;
+        return "reviewTimesheet";
+    }
+
+    public String viewTimesheet(final Timesheet ts) {
+        timesheet = ts;
         return "viewTimesheet";
+    }
+
+    public String approveTimesheet() {
+        timesheet = timeService.findTimesheetById(timesheet.getId());
+        timesheet.setApproved(true);
+
+        timeService.updateTimesheet(timesheet);
+
+        return "pendingTimesheetTA";
+    }
+
+    public String rejectTimesheet() {
+        timesheet = timeService.findTimesheetById(timesheet.getId());
+        timesheet.setApproved(false);
+
+        timeService.updateTimesheet(timesheet);
+
+        return "pendingTimesheetTA";
     }
 }

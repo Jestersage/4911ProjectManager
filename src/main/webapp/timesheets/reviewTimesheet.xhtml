@@ -11,13 +11,9 @@
 	<title></title>
 </h:head>
 <h:body>
-	<f:metadata>
-		<f:event type="preRenderView" listener="#{userController.checkAuthorization}" />
-		<f:attribute name="requiredRoles" value="Timesheet Approver" />
-	</f:metadata>
 	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
 
-		<ui:define name="windowTitle">#{msgs.approverPendingList}</ui:define>
+		<ui:define name="windowTitle">#{msgs.timesheet}</ui:define>
 
 		<ui:define name="additionalStyleSheets">
 			<h:outputStylesheet library="css" name="timesheet.css" />
@@ -38,13 +34,17 @@
 								<h:form>
 									<ol class="breadcrumb">
 										<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
-										<li class="active">#{msgs.approverPendingList}</li>
+										<li><h:commandLink action="pendingTimesheetTA"
+														   value="#{msgs.approverPendingList}" /></li>
+										<li class="active">#{msgs.timesheet}</li>
 									</ol>
 								</h:form>
 							</div>
 
 							<div id="pageTitle">
-								<h1>#{msgs.approverPendingList}</h1>
+
+								<h1>#{msgs.timesheet}</h1>
+
 							</div>
 							<ui:insert name="notificationArea">
 								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
@@ -53,33 +53,39 @@
 					</div>
 
 					<div class="row">
-						<!-- displays info about previous timesheets of current user -->
-						<div class="col-xs-12 col-sm-12 col-md-9">
-							<h:form>
-							<p:dataTable var="timesheet" value="#{timesheetController.tsApproverPendingList}">
-								<p:column headerText="#{msgs.employee}">
-									<h:outputText value="#{timesheet.owner.firstName} #{timesheet.owner.lastName}" />
-								</p:column>
-								<p:column headerText="#{msgs.weekNo}">
-									<h:outputText value="#{timesheet.weekNumber}" />
-								</p:column>
-								<p:column headerText="#{msgs.weekEnding}">
-									<h:outputText value="#{timesheet.weekEnding}" />
-								</p:column>
-								<p:column>
-									<h:commandLink value="#{msgs.review}" action="#{timesheetController.reviewTimesheet(timesheet)}" />
-								</p:column>
-							</p:dataTable>
-							</h:form>
-						</div>
-						<!-- /col -->
-					</div>
-					<!-- /row -->
-				</div>
-				<!-- /container -->
-			</div>
-			<!-- /col -->
 
+						<div class="col-xs-12 col-sm-12 col-md-12">
+
+							<div class="container-flid">
+								<ui:insert name="disaplyTimesheet">
+									<ui:include src="_timesheetTablePartial.xhtml" />
+								</ui:insert>
+
+								<h:form>
+									<h:inputHidden value="#{timesheetController.timesheet.id}" />
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="pull-right">
+												<h:commandButton styleClass="btn btn-success" value="#{msgs.approve}"
+														action="#{timesheetController.approveTimesheet}" />
+												<div class="spacer-horizontal"></div>
+												<h:commandButton styleClass="btn btn-danger" value="#{msgs.reject}"
+														action="#{timesheetController.rejectTimesheet}" />
+											</div>
+										</div>
+									</div>
+									<!-- /row approver / reject button -->
+								</h:form>
+							</div>
+							<!-- /container -->
+
+
+
+						</div>
+					</div>
+				</div>
+
+			</div>
 		</ui:define>
 		<!-- end of wrapper -->
 	</ui:composition>

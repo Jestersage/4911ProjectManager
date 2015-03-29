@@ -51,20 +51,19 @@
 					<div class="row">
 						<!-- displays info about previous timesheets of current user -->
 						<div class="col-xs-12 col-sm-12 col-md-9">
-							<p:dataTable var="" value="">
-								<p:column headerText="#{msgs.timesheet}">
-									<!-- change later to outputLink -->
-									<h:outputText value="" />
-								</p:column>
-								<p:column headerText="#{msgs.weekNo}">
-									<!-- change later to outputLink -->
-									<h:outputText value="" />
-								</p:column>
-								<p:column headerText="#{msgs.weekEnding}">
-									<!-- change later to outputLink -->
-									<h:outputText value="" />
-								</p:column>
-							</p:dataTable>
+							<h:form>
+								<p:dataTable var="timesheet" value="#{timesheetController.previousSheets}">
+									<p:column headerText="#{msgs.weekNo}">
+										<h:outputText value="#{timesheet.weekNumber}" />
+									</p:column>
+									<p:column headerText="#{msgs.weekEnding}">
+										<h:outputText value="#{timesheet.weekEnding}" />
+									</p:column>
+									<p:column>
+										<h:commandLink value="#{msgs.view}" action="#{timesheetController.viewTimesheet(timesheet)}" />
+									</p:column>
+								</p:dataTable>
+							</h:form>
 						</div>
 						<!-- /col -->
 					</div>

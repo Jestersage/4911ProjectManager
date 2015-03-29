@@ -100,10 +100,15 @@ public class Timesheet implements Serializable
 	}
 
 	public int getWeekNumber() {
-        Calendar c = new GregorianCalendar();
-        c.setTime(weekEnding);
-        c.setFirstDayOfWeek(Calendar.SATURDAY);
-        return c.get(Calendar.WEEK_OF_YEAR);
+	    if(weekEnding != null) {
+            Calendar c = new GregorianCalendar();
+            c.setTime(weekEnding);
+            c.setFirstDayOfWeek(Calendar.SATURDAY);
+            return c.get(Calendar.WEEK_OF_YEAR);
+	    } else {
+	        return 0;
+	    }
+        
     }
 
 	public void setWeekNumber(int weekNum) {
@@ -115,6 +120,7 @@ public class Timesheet implements Serializable
 	}
 
 	public void setWeekEnding(Date weekEnding) {
+	    System.out.println("Timesheet.setWeekEnding().weekEnding:"+weekEnding);
 		this.weekEnding = weekEnding;
 	}
 
@@ -144,6 +150,20 @@ public class Timesheet implements Serializable
 
 	public Boolean isApproved() {
 		return approved;
+	}
+
+	public String getApproved() {
+        String label;
+
+        if(approved == null) {
+            label = "Not reviewed";
+        } else if (approved) {
+            label = "Approved";
+        } else {
+            label = "Rejected";
+        }
+
+		return label;
 	}
 
 	public void setApproved(Boolean approved) {
