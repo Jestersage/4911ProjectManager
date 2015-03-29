@@ -88,12 +88,15 @@
                     </tr>
                     <tr class="row">
                         <td class="col-md-2"><h:outputText
-                            value="#{editTimesheetController.timesheet.weekNumber}" /></td>
+                            value="#{editTimesheetController.timesheet.weekNumber}"/></td>
                         <td class="col-md-2"><h:outputText 
-                            value="#{editTimesheetController.timesheet.weekEnding}" /></td>
-                        <td class="col-md-2"><h:outputText value="" /></td>
-                        <td class="col-md-2"><h:outputText value="" /></td>
-                        <td class="col-md-3"><h:outputText value="" /></td>
+                            value="#{editTimesheetController.timesheet.weekEnding}"/></td>
+                        <td class="col-md-2" id="sheetTotal">
+                            <h:outputText value="" /></td>
+                        <td class="col-md-2" id="sheetOT">
+                            <h:outputText value="" /></td>
+                        <td class="col-md-3" id="sheetFLEX">
+                            <h:outputText value="" /></td>
                     </tr>
 
                 </table>
@@ -171,7 +174,7 @@
                             <p:inputText class="input" value="#{tsRow.notes}" size="10" />
                         </p:column>
                     </div>
-
+                    
                 </p:dataTable>
                 <!-- /timesheetForm -->
             </div>

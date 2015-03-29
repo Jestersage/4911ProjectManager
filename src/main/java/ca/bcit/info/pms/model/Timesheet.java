@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -41,7 +42,7 @@ public class Timesheet implements Serializable
     public static final int MAX_OVERTIME = 128;
 
     @Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "timesheetID", updatable = false, nullable = false)
 	private int id;
 
@@ -58,7 +59,7 @@ public class Timesheet implements Serializable
     @Column(name = "weekending")
 	private Date weekEnding;
 
-    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "timesheetID")
     private List<TimesheetRow> timesheetRows;
 

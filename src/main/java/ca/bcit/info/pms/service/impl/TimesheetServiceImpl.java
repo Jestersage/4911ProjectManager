@@ -7,12 +7,15 @@ import ca.bcit.info.pms.model.Timesheet;
 import ca.bcit.info.pms.model.TimesheetRow;
 import ca.bcit.info.pms.model.WorkPackage;
 import ca.bcit.info.pms.service.TimesheetService;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,7 +40,7 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
 
         Timesheet sheet = timesheetManager.find(emp, wkEnding);
         logger.info("wkEnding:"+wkEnding);
-        logger.info("sheet:"+sheet);
+        logger.info("getCurrentTimesheet().sheet:"+sheet);
         if( sheet == null ) {
             sheet = createNewCurrentTimesheetForEmployee(emp, c);
         }
@@ -52,6 +55,8 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
         sheet.setOwner(emp);
         sheet.setWeekEnding(wkEnding);        
         sheet.setWeekNumber(c.get(Calendar.WEEK_OF_YEAR));
+        sheet.setFlextime(new BigDecimal(0));
+        sheet.setOvertime(new BigDecimal(0));
         List<TimesheetRow> rows = new ArrayList<TimesheetRow>();
         for(WorkPackage wp : timesheetManager.getWorkPackagesByOwner(emp.getId())) {
             TimesheetRow tsr = new TimesheetRow();
@@ -68,7 +73,8 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
             rows.add(tsr);
         }
         sheet.setTimesheetRows(rows);
-        //timesheetManager.persist(sheet);
+        logger.info("newTimesheet().sheet:"+sheet.toString());
+        timesheetManager.persist(sheet);
         return sheet;
     }
 
@@ -79,7 +85,7 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
 
     @Override
     public void updateTimesheet(Timesheet timesheet) {
-        tsrManager.merge(timesheet.getTimesheetRows());
+        //tsrManager.merge(timesheet.getTimesheetRows());
         timesheetManager.merge(timesheet);
     }
 

@@ -25,7 +25,7 @@ import java.sql.Date;
 @Entity
 public class TimesheetRow implements Serializable {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "timesheetrowID", updatable = false, nullable = false)
 	private int id;
 
@@ -181,7 +181,7 @@ public class TimesheetRow implements Serializable {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("TimesheetRow{");
-        sb.append(", id=").append(id);
+        sb.append("id=").append(id);
         sb.append(", project=").append(project.getId());
         sb.append(", workPackage=").append(workPackage.getPackageNum());
         sb.append(", saturdayHour=").append(saturdayHour);
@@ -191,7 +191,7 @@ public class TimesheetRow implements Serializable {
         sb.append(", wednesdayHour=").append(wednesdayHour);
         sb.append(", thursdayHour=").append(thursdayHour);
         sb.append(", fridayHour=").append(fridayHour);
-        sb.append("notes='").append(notes).append('\'');
+        sb.append(", notes='").append(notes).append('\'');
         sb.append('}');
         return sb.toString();
     }
