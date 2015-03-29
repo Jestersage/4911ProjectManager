@@ -1,3 +1,7 @@
+--
+--
+-- Notes
+-- Mar 29: Removed projectID from TimehseetRow. Reason: package have projectID, streamlining.
 DROP DATABASE pms;
 CREATE DATABASE pms;
 --
@@ -128,9 +132,8 @@ CREATE TABLE RateSheet(
 --
 --
 CREATE TABLE TimesheetRow (
-  timesheetID    int(10), 
   timesheetrowID int(10) NOT NULL AUTO_INCREMENT, 
-  projectID      varchar(20) NOT NULL, 
+  timesheetID    int(10), 
   packageID      int(10) NOT NULL, 
   notes          varchar(255), 
   sunday         numeric(4, 2) NOT NULL DEFAULT 0, 
