@@ -100,10 +100,15 @@ public class Timesheet implements Serializable
 	}
 
 	public int getWeekNumber() {
-        Calendar c = new GregorianCalendar();
-        c.setTime(weekEnding);
-        c.setFirstDayOfWeek(Calendar.SATURDAY);
-        return c.get(Calendar.WEEK_OF_YEAR);
+	    if(weekEnding != null) {
+            Calendar c = new GregorianCalendar();
+            c.setTime(weekEnding);
+            c.setFirstDayOfWeek(Calendar.SATURDAY);
+            return c.get(Calendar.WEEK_OF_YEAR);
+	    } else {
+	        return 0;
+	    }
+        
     }
 
 	public void setWeekNumber(int weekNum) {
@@ -115,6 +120,7 @@ public class Timesheet implements Serializable
 	}
 
 	public void setWeekEnding(Date weekEnding) {
+	    System.out.println("Timesheet.setWeekEnding().weekEnding:"+weekEnding);
 		this.weekEnding = weekEnding;
 	}
 

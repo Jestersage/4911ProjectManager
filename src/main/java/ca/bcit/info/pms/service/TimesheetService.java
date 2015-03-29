@@ -1,5 +1,6 @@
 package ca.bcit.info.pms.service;
 
+import java.util.Calendar;
 import java.util.List;
 
 import ca.bcit.info.pms.model.Employee;
@@ -8,6 +9,8 @@ import ca.bcit.info.pms.model.Timesheet;
 public interface TimesheetService {
     
     Timesheet getCurrentTimesheet(Employee emp);
+    Timesheet createNewCurrentTimesheetForEmployee
+        (Employee emp, Calendar c);
 
 //      Timesheet CRUD
     /**

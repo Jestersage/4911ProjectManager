@@ -3,7 +3,8 @@ package ca.bcit.info.pms.service.impl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.sql.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -30,33 +31,47 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
     @Inject
     private TimesheetRowManager tsrManager;
     
-    @Inject
-    private ProjectManager projectManager;
-
     @Override
     public Timesheet getCurrentTimesheet(Employee emp) {
         // Get current week end date
-        Calendar c = Calendar.getInstance();
+        Calendar c = new GregorianCalendar();
         c.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
-        java.sql.Date wkEnding = new java.sql.Date(c.getTime().getTime()); 
+        Date wkEnding = new Date(c.getTime().getTime()); 
 
         Timesheet sheet = timesheetManager.find(emp, wkEnding);
-        
-        if( sheet == null) {
-            sheet = new Timesheet();
-            sheet.setOwner(emp);
-            sheet.setWeekEnding(wkEnding);
-            sheet.setWeekNumber(sheet.getWeekNumber());
-
-            List<TimesheetRow> rows = new ArrayList<TimesheetRow>();
-            for(WorkPackage wp : timesheetManager.getWorkPackages(emp)) {
-                TimesheetRow tsr = new TimesheetRow();
-                tsr.setProject(wp.getProject());
-                tsr.setWorkPackage(wp);
-                rows.add(tsr);
-            }
+        logger.info("wkEnding:"+wkEnding);
+        logger.info("sheet:"+sheet);
+        if( sheet == null ) {
+            sheet = createNewCurrentTimesheetForEmployee(emp, c);
         }
-        
+             
+        return sheet;
+    }
+    
+    @Override
+    public Timesheet createNewCurrentTimesheetForEmployee(Employee emp, Calendar c) {
+        Timesheet sheet = new Timesheet();
+        Date wkEnding = new Date(c.getTime().getTime());
+        sheet.setOwner(emp);
+        sheet.setWeekEnding(wkEnding);        
+        sheet.setWeekNumber(c.get(Calendar.WEEK_OF_YEAR));
+        List<TimesheetRow> rows = new ArrayList<TimesheetRow>();
+        for(WorkPackage wp : timesheetManager.getWorkPackagesByOwner(emp.getId())) {
+            TimesheetRow tsr = new TimesheetRow();
+            tsr.setProject(wp.getProject());
+            tsr.setWorkPackage(wp);
+            tsr.setMondayHour(0);
+            tsr.setTuesdayHour(0);
+            tsr.setWednesdayHour(0);
+            tsr.setThursdayHour(0);
+            tsr.setFridayHour(0);
+            tsr.setSaturdayHour(0);
+            tsr.setSundayHour(0);
+            tsr.setNotes("");
+            rows.add(tsr);
+        }
+        sheet.setTimesheetRows(rows);
+        //timesheetManager.persist(sheet);
         return sheet;
     }
     
