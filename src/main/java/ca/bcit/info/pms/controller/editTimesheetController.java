@@ -12,6 +12,8 @@ import org.apache.log4j.Logger;
 
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Timesheet;
+import ca.bcit.info.pms.model.TimesheetRow;
+import ca.bcit.info.pms.model.WorkPackage;
 import ca.bcit.info.pms.service.TimesheetService;
 
 @Named( "editTimesheetController" )
@@ -36,6 +38,25 @@ public class editTimesheetController implements Serializable {
         return timesheet;
     }
     
+    public void addTimesheetRow() {
+        List<TimesheetRow> tsRows = timesheet.getTimesheetRows();
+        tsRows.add(newTimesheetRow());
+        timesheet.setTimesheetRows(tsRows);
+    }
+    
+    public TimesheetRow newTimesheetRow() {
+        TimesheetRow tsr = new TimesheetRow();
+        WorkPackage wp = new WorkPackage();
+        tsr.setWorkPackage(wp);
+        tsr.setFridayHour(0);
+        tsr.setSaturdayHour(0);
+        tsr.setSundayHour(0);
+        tsr.setMondayHour(0);
+        tsr.setTuesdayHour(0);
+        tsr.setWednesdayHour(0);
+        tsr.setThursdayHour(0);
+        return tsr;
+    }
     /**
      * Populates timesheet data-member for current user.
      * 
@@ -43,9 +64,9 @@ public class editTimesheetController implements Serializable {
      */
     public String fillThisWeek() {
         Employee user = userController.getUser();
- 
+        
         timesheet = timeService.getCurrentTimesheet(user);
-
+                
         return "currentTimesheet";
     }
 
@@ -68,7 +89,15 @@ public class editTimesheetController implements Serializable {
     }
     
     public String saveTimesheet() {
-        logger.info(timesheet.toString());
+        logger.info("editTimesheetController.saveTimsheet()");
+        List<TimesheetRow> validRows = timesheet.getTimesheetRows();
+        logger.info("timesheet:"+timesheet.toString());
+        for(TimesheetRow row : timesheet.getTimesheetRows()) {
+            if (row.getTotalHours() == 0)
+                validRows.remove(row);
+        }
+        logger.info("validRows:"+validRows.toString());
+        timesheet.setTimesheetRows(validRows);
         timeService.updateTimesheet(timesheet);
         return "currentTimesheet";
     }

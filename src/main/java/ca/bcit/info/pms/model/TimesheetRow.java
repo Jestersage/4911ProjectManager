@@ -198,8 +198,14 @@ public class TimesheetRow implements Serializable {
     
     @Transient
     public double getTotalHours() {
-        return fridayHour.add(saturdayHour.add(sundayHour.add(
-                mondayHour.add(tuesdayHour.add(wednesdayHour.add(
-                thursdayHour)))))).doubleValue();
+        double total;
+        try {
+            total = fridayHour.add(saturdayHour.add(sundayHour.add(
+                    mondayHour.add(tuesdayHour.add(wednesdayHour.add(
+                            thursdayHour)))))).doubleValue();
+        } catch (Exception ex) {
+            total = 0;
+        }
+        return total;
     }
 }

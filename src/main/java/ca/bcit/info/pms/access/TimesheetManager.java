@@ -149,19 +149,6 @@ public class TimesheetManager implements Serializable {
         return query.getResultList();
     }
     
-    public List<WorkPackage> getWorkPackagesByOwner(final String empId) {
-        TypedQuery<WorkPackage> query = entityManager
-                .createQuery("SELECT wp FROM WorkPackage wp, " +
-                        "IN (wp.employees) AS e " +
-                        "WHERE e.id = :empId", WorkPackage.class);
-        query.setParameter("empId", empId);
-        List<WorkPackage> packages = query.getResultList();
-
-        logger.info("TimesheetManager.getWorkPackages().packages.size():"
-                + packages.size());
-
-        return packages;
-    }
 
     public List<Timesheet> getAllPendingTimesheets(final String empId) {
         TypedQuery<Timesheet> query = entityManager
