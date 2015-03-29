@@ -14,6 +14,8 @@ import javax.persistence.TypedQuery;
 
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Timesheet;
+import ca.bcit.info.pms.model.TimesheetRow;
+import ca.bcit.info.pms.model.WorkPackage;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -107,7 +109,6 @@ public class TimesheetManager implements Serializable {
      * @return new timesheet after update
      */
     public void merge(final Timesheet timesheet) {
-        logger.info("merge:" + timesheet.toString());
         entityManager.merge(timesheet);
     }
     
@@ -136,7 +137,7 @@ public class TimesheetManager implements Serializable {
         List<Timesheet> timesheets = query.getResultList();
         return timesheets;
     }
-
+    
     /**
      * @param empId timesheet's owner's employee id
      * @return a list of all submitted and approved timesheets by this employee.
@@ -149,5 +150,17 @@ public class TimesheetManager implements Serializable {
                         "AND t.approved = true", Timesheet.class);
         query.setParameter("empId", empId);
         return query.getResultList();
+    }
+    
+    // TODO In progress
+    public List<WorkPackage> getWorkPackages(final Employee e) {
+        TypedQuery<WorkPackage> query = entityManager
+                .createQuery("SELECT wp FROM WorkPackage wp, " +
+                        "IN (workassignment AS wa)" +
+                        "WHERE wa.employeeID = :empId", WorkPackage.class);
+        query.setParameter("empId", e.getId());
+        List<WorkPackage> packages = query.getResultList();
+        
+        return packages;
     }
 }
