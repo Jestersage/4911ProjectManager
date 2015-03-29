@@ -113,10 +113,10 @@
                     <div class="row table table-bordered">
                         <p:column headerText="#{msgs.workPackage}" class="col-md-1">
                             <h:outputText value="" />
-                            <p:selectOneMenu id="selectPackage" value="#{tsRow.workPackage.id}">
+                            <p:selectOneMenu id="selectPackage" value="#{tsRow.workPackage}">
                                 <f:selectItem itemLabel="#{msgs.selectWP}" itemValue="" noSelectOption="true"/>
                                 <f:selectItems value="#{workPackageController.myWorkPackages}" 
-                                    var="package" itemValue="#{package.id}" 
+                                    var="package" itemValue="#{package}"
                                     itemLabel="#{package.project.id}:#{package.packageNum}"/>
                             </p:selectOneMenu>
                         </p:column>

@@ -43,6 +43,12 @@ public class TimesheetRowManager implements Serializable {
 		em.persist(timesheetRow);
 	}
 	
+	public void persist(final List<TimesheetRow> tsRows) {
+	    for(TimesheetRow row : tsRows ) {
+	        em.persist(row);
+	    }
+	}
+	
 	public double getTotalManDays(final int wpId) {
 		double totalManDays = 0;
 		Query query = em.createNativeQuery("select * "

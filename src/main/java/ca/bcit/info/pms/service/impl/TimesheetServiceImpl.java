@@ -31,6 +31,9 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
    
     @Inject
     private TimesheetManager timesheetManager;
+    
+    @Inject
+    private TimesheetRowManager tsrManager;
 
     @Inject
     private WorkPackageManager wpManager;
@@ -85,7 +88,7 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
         
         // Persist timesheet (BEFORE adding temp-row)
         timesheetManager.persist(sheet);
-        
+    
         // add the timesheetRows list to the timesheet
         sheet.setTimesheetRows(rows);
         
@@ -99,6 +102,7 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
 
     @Override
     public void updateTimesheet(Timesheet timesheet) {
+        tsrManager.persist(timesheet.getTimesheetRows());
         timesheetManager.merge(timesheet);
     }
 

@@ -1,6 +1,7 @@
 package ca.bcit.info.pms.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
@@ -89,14 +90,11 @@ public class editTimesheetController implements Serializable {
     }
     
     public String saveTimesheet() {
-        logger.info("editTimesheetController.saveTimsheet()");
-        List<TimesheetRow> validRows = timesheet.getTimesheetRows();
-        logger.info("timesheet:"+timesheet.toString());
+        List<TimesheetRow> validRows = new ArrayList<TimesheetRow>();
         for(TimesheetRow row : timesheet.getTimesheetRows()) {
-            if (row.getTotalHours() == 0)
-                validRows.remove(row);
+            if (row.getTotalHours() > 0)
+                validRows.add(row);
         }
-        logger.info("validRows:"+validRows.toString());
         timesheet.setTimesheetRows(validRows);
         timeService.updateTimesheet(timesheet);
         return "currentTimesheet";
