@@ -1,9 +1,10 @@
 package ca.bcit.info.pms.access;
 
-import java.io.Serializable;
-import java.sql.Time;
-import java.util.Date;
-import java.util.List;
+import ca.bcit.info.pms.model.Employee;
+import ca.bcit.info.pms.model.Timesheet;
+import ca.bcit.info.pms.model.WorkPackage;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -11,14 +12,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
-import ca.bcit.info.pms.model.Employee;
-import ca.bcit.info.pms.model.Timesheet;
-import ca.bcit.info.pms.model.TimesheetRow;
-import ca.bcit.info.pms.model.WorkPackage;
-
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 @Stateless
 @LocalBean
@@ -109,6 +105,7 @@ public class TimesheetManager implements Serializable {
      * @return new timesheet after update
      */
     public void merge(final Timesheet timesheet) {
+        logger.info("merge:" + timesheet.toString());
         entityManager.merge(timesheet);
     }
     

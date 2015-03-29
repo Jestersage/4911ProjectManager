@@ -1,19 +1,5 @@
 package ca.bcit.info.pms.service.impl;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.sql.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-
-import ca.bcit.info.pms.access.ProjectManager;
 import ca.bcit.info.pms.access.TimesheetManager;
 import ca.bcit.info.pms.access.TimesheetRowManager;
 import ca.bcit.info.pms.model.Employee;
@@ -21,6 +7,17 @@ import ca.bcit.info.pms.model.Timesheet;
 import ca.bcit.info.pms.model.TimesheetRow;
 import ca.bcit.info.pms.model.WorkPackage;
 import ca.bcit.info.pms.service.TimesheetService;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 @Named( "TimesheetService" )
 public class TimesheetServiceImpl implements Serializable, TimesheetService{
@@ -30,7 +27,7 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
     
     @Inject
     private TimesheetRowManager tsrManager;
-    
+
     @Override
     public Timesheet getCurrentTimesheet(Employee emp) {
         // Get current week end date
@@ -47,7 +44,7 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
              
         return sheet;
     }
-    
+
     @Override
     public Timesheet createNewCurrentTimesheetForEmployee(Employee emp, Calendar c) {
         Timesheet sheet = new Timesheet();
@@ -74,7 +71,7 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
         //timesheetManager.persist(sheet);
         return sheet;
     }
-    
+
     @Override
     public void persistTimesheet(Timesheet newTimesheet) {
         timesheetManager.persist(newTimesheet);        
