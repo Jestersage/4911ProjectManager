@@ -347,7 +347,6 @@ public class WorkPackage implements Serializable
 
 	@Override
 	public String toString() {
-		return "WorkPackage [packageNum=" + packageNum + ", name=" + name
-				+ ", status=" + status + "]";
+		return ""+id;
 	}
 }
