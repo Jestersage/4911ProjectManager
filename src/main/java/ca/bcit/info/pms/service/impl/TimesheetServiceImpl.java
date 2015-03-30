@@ -102,7 +102,7 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
 
     @Override
     public void updateTimesheet(Timesheet timesheet) {
-        tsrManager.persist(timesheet.getTimesheetRows());
+//        tsrManager.persist(timesheet.getTimesheetRows());
         timesheetManager.merge(timesheet);
     }
 
