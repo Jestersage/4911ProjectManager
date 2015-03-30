@@ -35,7 +35,7 @@ public class EmployeeManager implements Serializable
 
 	/**
 	 * Find employee by Id.
-	 * 
+	 *
 	 * @param id
 	 *            employee id.
 	 * @return Employee
@@ -48,7 +48,7 @@ public class EmployeeManager implements Serializable
 
 	/**
 	 * Find employee by username
-	 * 
+	 *
 	 * @param username
 	 *            employee username
 	 * @return Employee
@@ -74,7 +74,7 @@ public class EmployeeManager implements Serializable
 
 	/**
 	 * Support updating Employee entities
-	 * 
+	 *
 	 * @param employee
 	 *            The employee to be updated
 	 * @return updated employee.
@@ -111,7 +111,7 @@ public class EmployeeManager implements Serializable
 			{
 			    // Hash the password
 			    employee.getCredential().setPassword(PasswordHash.createHash(employee.getCredential().getPassword()));
-			    
+
 				entityManager.persist( employee );
 				logger.info( "Employee added: " + employee.getCredential().getUsername() );
 
@@ -145,10 +145,54 @@ public class EmployeeManager implements Serializable
 		}
 	}
 
+    /**
+   * @param id
+   *            Primary Key of Employee to disableEmployee
+   * @return boolean Active success.
+   */
+  public boolean enableEmployee( final String id )
+  {
+
+      try
+      {
+          Employee activeEntity = findById( id );
+          activeEntity.setActiveStatus(true);
+
+          return true;
+      } catch ( Exception e )
+      {
+          FacesContext.getCurrentInstance().addMessage( null,
+                  new FacesMessage( e.getMessage() ) );
+          return false;
+      }
+  }
+
+	   /**
+     * @param id
+     *            Primary Key of Employee to disableEmployee
+     * @return boolean Active success.
+     */
+    public boolean disableEmployee( final String id )
+    {
+
+        try
+        {
+            Employee activeEntity = findById( id );
+            activeEntity.setActiveStatus(false);
+
+            return true;
+        } catch ( Exception e )
+        {
+            FacesContext.getCurrentInstance().addMessage( null,
+                    new FacesMessage( e.getMessage() ) );
+            return false;
+        }
+    }
+
 	/**
 	 * Support listing and POSTing back Employee entities (e.g. from inside an
 	 * HtmlSelectOneMenu)
-	 * 
+	 *
 	 * @return List of all Employee objects
 	 */
 	public List< Employee > getAllEmployee()
@@ -170,7 +214,7 @@ public class EmployeeManager implements Serializable
 	/**
 	 * Support listing and POSTing back Credential entities (e.g. from inside an
 	 * HtmlSelectOneMenu)
-	 * 
+	 *
 	 * @return List of all Credential objects
 	 */
 	public List< Credential > getAllCredentials()
@@ -205,7 +249,7 @@ public class EmployeeManager implements Serializable
 
 	/**
 	 * Update credential.
-	 * 
+	 *
 	 * @param credential
 	 *            entity to save.
 	 * @return updated credential.
