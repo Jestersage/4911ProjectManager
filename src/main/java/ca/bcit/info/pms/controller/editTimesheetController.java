@@ -104,6 +104,7 @@ public class editTimesheetController implements Serializable {
         return "currentTimesheet";
     }
     
+    // TODO Implement correct logic
     public double getTotalHours() {
         double total = 0;
         
@@ -116,6 +117,14 @@ public class editTimesheetController implements Serializable {
         }
         
         return total;
+    }
+    
+    public void removeRowFromTimesheet(TimesheetRow row) {
+        List<TimesheetRow> rows = timesheet.getTimesheetRows();
+        
+        rows.remove(row);
+        
+        timesheet.setTimesheetRows(rows);
     }
     
     public Date getWeekEnding() {
