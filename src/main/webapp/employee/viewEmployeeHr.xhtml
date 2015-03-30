@@ -15,7 +15,7 @@
 	<f:metadata>
 		<f:event type="preRenderView"
 			listener="#{userController.checkAuthorization}" />
-		<f:attribute name="requiredRoles" value="Supervisor" />
+		<f:attribute name="requiredRoles" value="HR" />
 	</f:metadata>
 
 	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
@@ -35,8 +35,8 @@
 								<h:form>
 									<ol class="breadcrumb">
 										<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
-                                            <li><h:commandLink action="viewManagedEmp"
-                                                               value="#{msgs.manageEmployees}" /></li>
+										<li><h:commandLink action="viewAllEmployees"
+												value="#{msgs.viewEmployees}" /></li>
 										<li class="active">#{msgs.viewEmployee}</li>
 									</ol>
 								</h:form>
@@ -54,6 +54,26 @@
                     <ui:insert name="disaplyTimesheet">
                         <ui:include src="_viewEmployeePartial.xhtml" />
                     </ui:insert>
+
+                    <ui:fragment rendered="#{userController.isAuthorized('HR')}">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-2">
+                                <div class="container">
+                                    <div class="row">
+                                        <h:form id="linkForm">
+                                            <h:inputHidden value="#{empController.employee.id}" />
+                                            <h:commandLink value="#{msgs.edit_emp}"
+                                                styleClass="btn btn-default col-sm-1 col-sm-offset-1 marginOneEm"
+                                                action="#{empController.editEmployee}" />
+                                            <h:commandLink value="#{msgs.emp_disable}"
+                                                styleClass="btn btn-danger col-sm-1 marginOneEm" />
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ui:fragment>
+
 				</div>
 			</div>
 		</ui:define>

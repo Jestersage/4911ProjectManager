@@ -63,7 +63,7 @@ public class EmployeeController implements Serializable
 		empService.persistEmployee( employee );
 		logger.info( "successfully create new employee: " + employee.toString() );
 
-		return "viewEmployee";
+		return "viewEmployeeHr";
 	}
 
 	public String updateEmployee()
@@ -84,7 +84,7 @@ public class EmployeeController implements Serializable
 		empService.updateEmployee( employee );
 		logger.info( "successfully updated employee: " + employee.toString() );
 
-		return "viewEmployee";
+		return "viewEmployeeHr";
 	}
 
 	private Employee initializeNewEmployee()
@@ -170,6 +170,12 @@ public class EmployeeController implements Serializable
 		return "viewEmployee";
 	}
 
+	public String viewEmployeeHr( final Employee emp )
+	{
+		employee = emp;
+		return "viewEmployeeHr";
+	}
+
 	/**
 	 * Edit an employee's profile
 	 * 
@@ -224,7 +230,7 @@ public class EmployeeController implements Serializable
 		if ( found )
 		{
 			empService.updateEmployee( employee );
-			returnUrl = "viewEmployee";
+			returnUrl = "viewEmployeeHr";
 		}
 
 		return returnUrl;
