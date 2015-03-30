@@ -44,7 +44,9 @@
 								<dd>//TODO </dd>
 
 								<dt>#{msgs.status}</dt>
-								<dd>#{timesheetController.timesheet.approved}</dd>
+								<dd class="#{(timesheetController.timesheet.approved == 'Rejected') ? 'text-danger' : ''}">
+									#{timesheetController.timesheet.approved}
+								</dd>
 							</dl>
 						</div>
 					</div>
