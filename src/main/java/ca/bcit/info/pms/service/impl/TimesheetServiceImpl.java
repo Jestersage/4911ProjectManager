@@ -49,9 +49,12 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
         
         if( sheet == null ) {
             sheet = createNewCurrentTimesheetForEmployee(emp, c);
+            logger.info("\n\tNEW timesheet [" + sheet + "] CREATED\n"
+                    + "for User [" + emp + "]");
+        } else {
+            logger.info("\n\tCURRENT timesheet [" + sheet + "] FOUND\n"
+                    + "for User [" + emp + "]");
         }
-        
-        //logger.info("getCurrentTimesheet().sheet:"+sheet);
         
         return sheet;
     }
