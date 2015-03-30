@@ -1,23 +1,16 @@
 package ca.bcit.info.pms.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-
-import java.io.Serializable;
-
-import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Column;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
-import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import java.lang.Override;
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
 
 /**
  * Timesheet row for each work package of a timesheet.
@@ -56,9 +49,6 @@ public class TimesheetRow implements Serializable {
 	
 	@Column(name = "friday")
 	private BigDecimal fridayHour;
-	
-	@Transient
-	private double totalHours;
 	
     public int getId() {
         return this.id;
@@ -140,6 +130,19 @@ public class TimesheetRow implements Serializable {
 		this.fridayHour = new BigDecimal(fridayHour);
 	}
 
+	@Transient
+	public double getTotalHours() {
+		double total;
+		try {
+			total = fridayHour.add(saturdayHour.add(sundayHour.add(
+					mondayHour.add(tuesdayHour.add(wednesdayHour.add(
+							thursdayHour)))))).doubleValue();
+		} catch (Exception ex) {
+			total = 0;
+		}
+		return total;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -167,9 +170,13 @@ public class TimesheetRow implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("TimesheetRow{");
+        final StringBuilder sb = new StringBuilder("TimesheetRow{");
         sb.append("id=").append(id);
-        sb.append(", workPackage=").append(workPackage.getPackageNum());
+		if (workPackage != null && workPackage.getProject() != null) {
+			sb.append(", workPackage=")
+					.append(workPackage.getProject().getId()).append("-")
+					.append(workPackage.getPackageNum());
+		}
         sb.append(", saturdayHour=").append(saturdayHour);
         sb.append(", sundayHour=").append(sundayHour);
         sb.append(", mondayHour=").append(mondayHour);
@@ -180,18 +187,5 @@ public class TimesheetRow implements Serializable {
         sb.append(", notes='").append(notes).append('\'');
         sb.append('}');
         return sb.toString();
-    }
-    
-    @Transient
-    public double getTotalHours() {
-        double total;
-        try {
-            total = fridayHour.add(saturdayHour.add(sundayHour.add(
-                    mondayHour.add(tuesdayHour.add(wednesdayHour.add(
-                            thursdayHour)))))).doubleValue();
-        } catch (Exception ex) {
-            total = 0;
-        }
-        return total;
     }
 }

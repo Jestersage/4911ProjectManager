@@ -148,9 +148,11 @@ public class StatusReport
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("StatusReport{");
-        sb.append("workPackage=").append(workPackage.getProject().getId())
-                .append("-")
-                .append(workPackage.getPackageNum());
+		if (workPackage != null && workPackage.getProject() != null) {
+			sb.append("workPackage=").append(workPackage.getProject().getId())
+					.append("-")
+					.append(workPackage.getPackageNum());
+		}
         sb.append('}');
         return sb.toString();
     }

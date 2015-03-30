@@ -123,9 +123,7 @@ public class Budget {
 
         Budget rateSheet = (Budget) o;
 
-        if (id != rateSheet.id) return false;
-
-        return true;
+        return id == rateSheet.id;
     }
 
     @Override
@@ -135,7 +133,7 @@ public class Budget {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("RateSheet{");
+        final StringBuilder sb = new StringBuilder("RateSheet{");
         sb.append("id=").append(id);
         sb.append(", JS=").append(JS);
         sb.append(", SS=").append(SS);

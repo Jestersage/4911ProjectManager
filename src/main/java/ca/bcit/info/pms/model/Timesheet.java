@@ -1,26 +1,20 @@
 package ca.bcit.info.pms.model;
 
-import javax.persistence.Entity;
-
-import java.io.Serializable;
-
 import javax.persistence.CascadeType;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-
-import java.lang.Override;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Calendar;
@@ -218,9 +212,13 @@ public class Timesheet implements Serializable
     public String toString() {
         final StringBuffer sb = new StringBuffer("Timesheet{");
         sb.append("id=").append(id);
-        sb.append(", employee=").append(owner.getCredential().getUsername());
+        if (owner != null && owner.getCredential() != null) {
+            sb.append(", employee=").append(owner.getCredential().getUsername());
+        }
         sb.append(", weekNumber=").append(weekNumber);
-        sb.append(", weekEnding=").append(weekEnding.toLocalDate());
+        if (weekEnding != null) {
+            sb.append(", weekEnding=").append(weekEnding.toLocalDate());
+        }
         sb.append(", timesheetRows=").append(timesheetRows);
         sb.append(", approved=").append(approved);
         sb.append(", signID=").append(signID);
