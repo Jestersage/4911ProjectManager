@@ -91,11 +91,14 @@ public class editTimesheetController implements Serializable {
     
     public String saveTimesheet() {
         List<TimesheetRow> validRows = new ArrayList<TimesheetRow>();
+        logger.info("timesheet.rows.size:"+timesheet.getTimesheetRows().size());
         for(TimesheetRow row : timesheet.getTimesheetRows()) {
             if (row.getTotalHours() > 0)
                 validRows.add(row);
         }
+        logger.info("validRows.size:"+validRows.size());
         timesheet.setTimesheetRows(validRows);
+        logger.info("timesheet.rows.size:"+timesheet.getTimesheetRows().size());
         timeService.updateTimesheet(timesheet);
         return "currentTimesheet";
     }

@@ -113,12 +113,19 @@
                     <div class="row table table-bordered">
                         <p:column headerText="#{msgs.workPackage}" class="col-md-1">
                             <h:outputText value="" />
-                            <p:selectOneMenu id="selectPackage" value="#{tsRow.workPackage}">
+                            <p:selectOneMenu id="packageSelect" value="#{tsRow.workPackage}">
                                 <f:selectItem itemLabel="#{msgs.selectWP}" itemValue="" noSelectOption="true"/>
-                                <f:selectItems value="#{workPackageController.myWorkPackages}" 
+                                <f:selectItems id="packageItem" value="#{workPackageController.myWorkPackages}" 
                                     var="package" itemValue="#{package}"
                                     itemLabel="#{package.project.id}:#{package.packageNum}"/>
-                            </p:selectOneMenu>
+                                <f:converter converterId="workPackageConverter" />
+                            </p:selectOneMenu>  
+                            <p:message showSummary="true" showDetail="true"
+				                style="color: red;
+				                 font-style: oblique;
+				                 text-decoration: overline"
+				                 id="errors1"
+				                 for="packageSelect"/>
                         </p:column>
                         <p:column headerText="#{msgs.total}" class="col-md-1">
                             <h:outputText value="" />
