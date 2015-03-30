@@ -56,7 +56,7 @@
 				<div id="timesheetTable">
 					<p:dataTable var="row" value="#{timesheetController.timesheet.timesheetRows}">
 						<p:column headerText="#{msgs.project}">
-							#{row.project.id}
+							#{row.workPackage.project.id}
 						</p:column>
 						<p:column headerText="#{msgs.workPackage}">
 							#{row.workPackage.packageNum}
