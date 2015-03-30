@@ -30,11 +30,6 @@ public class TimesheetRow implements Serializable {
 	private int id;
 
 	@ManyToOne
-	@JoinColumn(name = "projectID", nullable = false)
-    @NotNull(message = "timesheetRow must have a project ID")
-	private Project project;
-	
-	@ManyToOne
 	@JoinColumn(name = "packageID", nullable = false)
     @NotNull(message = "timesheetRow must have a package number")
     private WorkPackage workPackage;
@@ -72,14 +67,6 @@ public class TimesheetRow implements Serializable {
     public void setId(final int id) {
         this.id = id;
     }
-
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
 
 	public WorkPackage getWorkPackage() {
 		return workPackage;
@@ -182,7 +169,6 @@ public class TimesheetRow implements Serializable {
     public String toString() {
         final StringBuffer sb = new StringBuffer("TimesheetRow{");
         sb.append("id=").append(id);
-        sb.append(", project=").append(project.getId());
         sb.append(", workPackage=").append(workPackage.getPackageNum());
         sb.append(", saturdayHour=").append(saturdayHour);
         sb.append(", sundayHour=").append(sundayHour);
