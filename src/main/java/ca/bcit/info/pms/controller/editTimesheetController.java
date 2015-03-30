@@ -1,6 +1,7 @@
 package ca.bcit.info.pms.controller;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,15 +92,37 @@ public class editTimesheetController implements Serializable {
     
     public String saveTimesheet() {
         List<TimesheetRow> validRows = new ArrayList<TimesheetRow>();
-        logger.info("timesheet.rows.size:"+timesheet.getTimesheetRows().size());
+        
         for(TimesheetRow row : timesheet.getTimesheetRows()) {
-            if (row.getTotalHours() > 0)
+            if ( (row.getTotalHours() > 0) && (row.getWorkPackage().getId() != null) ) {
                 validRows.add(row);
+            }
         }
-        logger.info("validRows.size:"+validRows.size());
         timesheet.setTimesheetRows(validRows);
-        logger.info("timesheet.rows.size:"+timesheet.getTimesheetRows().size());
         timeService.updateTimesheet(timesheet);
+        
         return "currentTimesheet";
+    }
+    
+    public double getTotalHours() {
+        double total = 0;
+        
+        List<TimesheetRow> rows = timesheet.getTimesheetRows();
+        
+        if ( rows != null ) {
+            for (TimesheetRow tsr : rows) {
+                total += tsr.getTotalHours();
+            }
+        }
+        
+        return total;
+    }
+    
+    public Date getWeekEnding() {
+        return timesheet.getWeekEnding();
+    }
+    
+    public int getWeekNumber() {
+        return timesheet.getWeekNumber();
     }
 }

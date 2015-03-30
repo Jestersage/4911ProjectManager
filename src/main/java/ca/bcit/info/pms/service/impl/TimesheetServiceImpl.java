@@ -49,11 +49,6 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
         
         if( sheet == null ) {
             sheet = createNewCurrentTimesheetForEmployee(emp, c);
-            logger.info("\n\tNEW timesheet [" + sheet + "] CREATED\n"
-                    + "for User [" + emp + "]");
-        } else {
-            logger.info("\n\tCURRENT timesheet [" + sheet + "] FOUND\n"
-                    + "for User [" + emp + "]");
         }
         
         return sheet;
@@ -64,36 +59,17 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
         // Create a new timesheet
         Timesheet sheet = new Timesheet();
         Date wkEnding = new Date(c.getTime().getTime());
+        
         sheet.setOwner(emp);
         sheet.setWeekEnding(wkEnding);        
         sheet.setWeekNumber(c.get(Calendar.WEEK_OF_YEAR));
         sheet.setFlextime(new BigDecimal(0));
         sheet.setOvertime(new BigDecimal(0));
-        
-        //Create list of timesheetRows
+
         List<TimesheetRow> rows = new ArrayList<TimesheetRow>();
-        // Temp WorkPackage (avoids null pointer)
-        WorkPackage wp = new WorkPackage();
-        // Temp timesheetRow
-        TimesheetRow tsr = new TimesheetRow();
-        tsr.setWorkPackage(wp);
-        tsr.setMondayHour(0);
-        tsr.setTuesdayHour(0);
-        tsr.setWednesdayHour(0);
-        tsr.setThursdayHour(0);
-        tsr.setFridayHour(0);
-        tsr.setSaturdayHour(0);
-        tsr.setSundayHour(0);
-        tsr.setNotes("");
         
-        // Add the timesheetRow to the list
-        rows.add(tsr);
-        
-        // Persist timesheet (BEFORE adding temp-row)
-        timesheetManager.persist(sheet);
-    
-        // add the timesheetRows list to the timesheet
         sheet.setTimesheetRows(rows);
+        timesheetManager.persist(sheet);
         
         return sheet;
     }

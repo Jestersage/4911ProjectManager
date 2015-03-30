@@ -72,7 +72,7 @@
                                     </ui:fragment>
                                 </div>
                                 <!-- Table -->
-                <table class="table">
+                <table class="table" for="#editTimesheetController.timesheet}">
 
                     <tr class="row">
                         <td class="col-md-2"><h:outputLabel
@@ -88,11 +88,11 @@
                     </tr>
                     <tr class="row">
                         <td class="col-md-2"><h:outputText
-                            value="#{editTimesheetController.timesheet.weekNumber}"/></td>
+                            value="#{editTimesheetController.weekNumber}"/></td>
                         <td class="col-md-2"><h:outputText 
-                            value="#{editTimesheetController.timesheet.weekEnding}"/></td>
-                        <td class="col-md-2" id="sheetTotal">
-                            <h:outputText value="" /></td>
+                            value="#{editTimesheetController.weekEnding}"/></td>
+                        <td class="col-md-2">
+                            <h:outputText id="sheetTotal" value="#{editTimesheetController.totalHours}" /></td>
                         <td class="col-md-2" id="sheetOT">
                             <h:outputText value="" /></td>
                         <td class="col-md-3" id="sheetFLEX">
@@ -119,12 +119,6 @@
                                     var="package" itemValue="#{package.id}"
                                     itemLabel="#{package.project.id}:#{package.packageNum}" />
                             </p:selectOneMenu>  
-                            <p:message showSummary="true" showDetail="false"
-				                style="color: red;
-				                 font-style: oblique;
-				                 text-decoration: overline"
-				                 id="errors1"
-				                 for="packageSelect"/>
                         </p:column>
                         <p:column headerText="#{msgs.total}" class="col-md-1">
                             <h:outputText value="" />
