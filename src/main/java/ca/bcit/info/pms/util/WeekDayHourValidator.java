@@ -1,7 +1,5 @@
 package ca.bcit.info.pms.util;
 
-import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -14,7 +12,6 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import ca.bcit.info.pms.controller.EditTimesheetController;
-import ca.bcit.info.pms.model.TimesheetRow;
 
 @FacesValidator("ca.bcit.pms.util.WeekDayHourValidator")
 public class WeekDayHourValidator implements Validator {
