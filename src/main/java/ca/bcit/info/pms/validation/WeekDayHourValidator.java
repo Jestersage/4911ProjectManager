@@ -1,6 +1,4 @@
-package ca.bcit.info.pms.util;
-
-import java.util.List;
+package ca.bcit.info.pms.validation;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -14,13 +12,12 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import ca.bcit.info.pms.controller.EditTimesheetController;
-import ca.bcit.info.pms.model.TimesheetRow;
 
-@FacesValidator("ca.bcit.pms.util.WorkPackageValidator")
-public class WorkPackageValidator implements Validator {
+@FacesValidator("ca.bcit.pms.util.WeekDayHourValidator")
+public class WeekDayHourValidator implements Validator {
     @Inject
     EditTimesheetController editTsController;
-    
+
     private static final Logger logger = LogManager.getLogger(WorkPackageValidator.class);
 
     /**
@@ -32,22 +29,17 @@ public class WorkPackageValidator implements Validator {
             UIComponent component, Object value) {
         FacesMessage msg;
         
-        List<TimesheetRow> tsRows = editTsController.getTimesheet().getTimesheetRows();
-        
-        int count = 0;
-
-        // Count occurrences
-        for(TimesheetRow row : tsRows) {
-            if (row.getWorkPackage().getId() == value)
-                count++;
-        }
-
-        // If more than 'current row' present raise error
-        if(count > 0) {
-            msg = new FacesMessage("WorkPackage validation failed",
-                    "WorkPackage must be unique for each row");
+        try {
+            double hrs = (double) value;
+            if (hrs > 24.0) {
+                msg = new FacesMessage("Week-day hours invalid", "Must not be > 24");
+                msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+                throw new ValidatorException(msg);
+            }
+        } catch (Exception ex) {
+            msg = new FacesMessage("Week-day hours invalid","Not a valid decimal");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
-        }        
+        }
     }
 }
