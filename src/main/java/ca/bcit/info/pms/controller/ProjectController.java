@@ -1,13 +1,17 @@
 package ca.bcit.info.pms.controller;
 
+import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Project;
+import ca.bcit.info.pms.service.EmployeeService;
 import ca.bcit.info.pms.service.ProjectService;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -39,7 +43,10 @@ public class ProjectController implements Serializable{
 
     @Inject
     private UserController userController;
-    
+
+    @Inject
+    private EmployeeService empService;
+
     /*
      * holds the project information
      */
@@ -52,6 +59,11 @@ public class ProjectController implements Serializable{
      * @return the project
      */
     public Project getProject() {
+        if (project.getProjectManager() == null) {
+            final Employee manager = userController.getUser();
+            project.setProjectManager(manager);
+        }
+
         return project;
     }
 
@@ -64,13 +76,37 @@ public class ProjectController implements Serializable{
     
     
     public String addProject(){
+//        // if project manager not found, rerender page
+//        if (!updateProjectManager()) {
+//            return null;
+//        }
     	project.setStartDate(convertJavaDateToSqlDate(startDate));
     	project.setEndDate(convertJavaDateToSqlDate(endDate));
         projService.persistProject(project);
         logger.info("successfully create new project: " + project.toString());
         return "viewProjectDetails";
     }
-    
+
+    private boolean updateProjectManager() {
+        boolean updated = false;
+
+        final String username = project.getProjectManager().getCredential().getUsername();
+        final Employee manager = empService.findEmployeeByUsername(username);
+        if ( manager == null )
+        {
+            FacesContext.getCurrentInstance().addMessage(
+                    "newProjectForm:mnManager",
+                    new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "No employee found with username: "
+                            + username ) );
+        } else
+        {
+            project.setProjectManager(manager);
+            updated = true;
+        }
+
+        return updated;
+    }
+
     public java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
         return new java.sql.Date(date.getTime());
     }
