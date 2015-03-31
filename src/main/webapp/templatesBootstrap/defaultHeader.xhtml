@@ -33,10 +33,11 @@
 				id="bs-example-navbar-collapse-1">
 				<h:form>
 					<ul class="nav navbar-nav">
-						<li class="active"><h:commandLink action="mypage"
-								value="#{msgs.myPage}">
+						<li class="active">
+							<h:commandLink action="mypage" value="#{msgs.myPage}">
 								<span class="sr-only">(current)</span>
-							</h:commandLink></li>
+							</h:commandLink>
+						</li>
 
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -48,26 +49,29 @@
 								<li><h:commandLink action="previousTimesheet" value="#{msgs.previousTimesheet}" /></li>
 								<li><h:commandLink action="pendingTimesheet" value="#{msgs.pendingTimesheet}" /></li>
 							<ui:fragment rendered="#{userController.isAuthorized('Timesheet Approver')}">
+								<li class="divider"></li>
 								<li><h:commandLink action="pendingTimesheetTA" value="#{msgs.timesheetsToApprove}" /></li>
 							</ui:fragment>
 							</ul>
 						</li>
+
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false">#{msgs.project}
-								<span class="caret"></span>
-						</a>
+								<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><h:commandLink value="#{msgs.newProject}"
-										action="newProject" /></li>
-								<li><h:commandLink action="editProject"
-										value="#{msgs.editProject}" /></li>
+								<ui:fragment rendered="#{userController.isAuthorized('Supervisor,Project Manager')}">
+								<li><h:commandLink value="#{msgs.newProject}" action="newProject" /></li>
+								</ui:fragment>
+								<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
+								<li><h:commandLink action="editProject" value="#{msgs.editProject}" /></li>
+								<li><h:commandLink action="viewManagedProjects" value="#{msgs.viewAllProject}" /></li>
+								</ui:fragment>
 								<li class="divider"></li>
-								<li><h:commandLink value="#{msgs.newWorkPackage}"
-										action="newWorkPackage" /></li>
-								<li><h:commandLink action="editWorkPackage"
-										value="#{msgs.editWorkPackage}" /></li>
-							</ul></li>
-							
+								<li><h:commandLink value="#{msgs.newWorkPackage}" action="newWorkPackage" /></li>
+								<li><h:commandLink action="editWorkPackage" value="#{msgs.editWorkPackage}" /></li>
+							</ul>
+						</li>
+
                         <ui:fragment rendered="#{userController.isAuthorized('HR,Supervisor')}">
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown" role="button" aria-expanded="false">#{msgs.employees}<span
@@ -80,6 +84,7 @@
                                                        action="newEmployee" /></li>
                                     </ui:fragment>
                                     <ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">
+									<li class="divider"></li>
                                     <li><h:commandLink action="viewManagedEmp"
                                                        value="#{msgs.manageEmployees}" /></li>
                                     <li><h:commandLink action="viewAllProjects"

@@ -56,14 +56,18 @@
 
 							<div class="container-fluid" id="row1">
 								<div class="row">
+									<ui:fragment rendered="#{userController.isAuthorized('Supervisor,Project Manager,Project Assistant')}">
 									<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
 										<h2>#{msgs.project}</h2>
+										<ui:fragment rendered="#{userController.isAuthorized('Supervisor,Project Manager')}">
 										<h:commandLink action="newProject" value="#{msgs.newProject}" />
-										<h:commandLink action="editProject"
-											value="#{msgs.editProject}" />
-										<h:commandLink action="viewManagedProjects" value="#{msgs.viewAllProject}" />
-
+										</ui:fragment>
+										<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
+										<h:commandLink action="editProject" value="#{msgs.editProject}" />
+											<h:commandLink action="viewManagedProjects" value="#{msgs.viewAllProject}" />
+										</ui:fragment>
 									</div>
+									</ui:fragment>
 									<div class="col-xs-12 col-sm-12 col-md-4" id="middleSection">
 										<h2>#{msgs.workPackage}</h2>
 										<h:commandLink action="editWorkPackage"
@@ -77,12 +81,9 @@
 											value="#{msgs.currentTimesheet}" />
 										<h:commandLink action="previousTimesheet"
 											value="#{msgs.previousTimesheet}" />
-										<!-- timesheets not approved -->
 
-										<ui:fragment rendered="true">
-											<h:commandLink action="pendingTimesheet"
-												value="#{msgs.pendingTimesheet}" />
-										</ui:fragment>
+										<!-- timesheets not approved -->
+										<h:commandLink action="pendingTimesheet" value="#{msgs.pendingTimesheet}" />
 
 										<!-- for timesheet approver -->
 										<ui:fragment rendered="#{userController.isAuthorized('Timesheet Approver')}">
