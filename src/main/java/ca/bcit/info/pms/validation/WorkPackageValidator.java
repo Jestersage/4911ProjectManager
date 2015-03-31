@@ -45,6 +45,7 @@ public class WorkPackageValidator implements Validator {
         logger.info("\n\tCOUNT::"+count);
         // If more than 'current row' present raise error
         if(count > 1) {
+            logger.info("\n\tWorkPackage--ValidaitonException");
             msg = new FacesMessage("WorkPackage validation failed",
                     "WorkPackage must be unique for each row");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
