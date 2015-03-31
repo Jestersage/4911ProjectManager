@@ -106,18 +106,14 @@
 									<!-- /row of timesheet summary -->
 
 									<div class="row">
-										<div class="col-md-10">
-
+										<div class="col-md-12">
 											<p:dataTable var="tsRow"
 												value="#{editTimesheetController.timesheet.timesheetRows}"
 												cellpadding="0" cellspacing="0" editable="true"
 												editMode="cell">
 												<div class="row">
-
-
-
-													<p:column class="wpCol" headerText="#{msgs.selectWP}">
-														<p:cellEditor>
+													<p:column class="wpCol" headerText="#{msgs.selectWP}" style="width:8em;">
+														<p:cellEditor >
 															<f:facet name="output">
 																<h:outputText value="#{tsRow.workPackage.packageNum}" />
 															</f:facet>
@@ -125,11 +121,10 @@
 															<f:facet name="input">
 																<p:selectOneMenu id="packageSelect"
 																	value="#{tsRow.workPackage.id}">
-																	<f:selectItem style="width:100%"
+																	<f:selectItem 
 																		itemLabel="#{msgs.selectWP}" itemValue=""
 																		noSelectOption="true" />
-
-																	<f:selectItems style="width:100%" id="packageItem"
+																	<f:selectItems  id="packageItem"
 																		value="#{workPackageController.myWorkPackages}"
 																		var="package" itemValue="#{package.id}"
 																		itemLabel="#{package.project.id}:#{package.packageNum}" />
@@ -240,7 +235,7 @@
 														</p:cellEditor>
 													</p:column>
 
-													<p:column class="notesCol" headerText="#{msgs.notes}">
+													<p:column class="notesCol" headerText="#{msgs.notes}" style="width:8em;">
 														<p:cellEditor>
 															<f:facet name="output">
 																<h:outputText value="#{tsRow.notes}" />
@@ -253,7 +248,7 @@
 														</p:cellEditor>
 													</p:column>
 
-													<p:column class="editCol" headerText="" >
+													<p:column class="editCol" headerText="" style="width:4em;">
 														<h:commandButton class="btn btn-danger btn-sm removeBtn"
 															id="removeRow" value="#{msgs.removeRow}"
 															action="#{editTimesheetController.removeRowFromTimesheet(tsRow)}" />
@@ -278,7 +273,7 @@
 		</ui:define>
 		<!-- end of wrapper -->
 	</ui:composition>
->>>>>>> changed the input fields of timesheet
+
 </h:body>
 <!-- end of body -->
 </html>

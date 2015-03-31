@@ -257,3 +257,4 @@ ALTER TABLE WorkPackage ADD CONSTRAINT FKEBWork FOREIGN KEY (engBudgetID) REFERE
 ALTER TABLE Project ADD CONSTRAINT FKRSProj FOREIGN KEY (ratesheetID) REFERENCES Ratesheet (ratesheetID);
 --
 --
+UPDATE  `hibernate_sequence` SET  `next_val` =100 WHERE 1

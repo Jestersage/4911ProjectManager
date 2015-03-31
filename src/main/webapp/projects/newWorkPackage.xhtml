@@ -102,18 +102,18 @@
 
 											<div class="form-group">
 												<h:outputLabel for="itParentPackageNumber"
-													value="#{msgs.parentWpId}"
+											value="#{msgs.parentWpId}" rendered="#{workPackageController.workPackage.project.hasWorkPackage}"
 													class="col-sm-4 control-label" />
 
 												<div class="col-sm-8">
 
-												 	<h:outputText id="itParentPackageNumber"
-														rendered="#{ not empty workPackageController.workPackage.parentWP}"
-														value="#{workPackageController.workPackage.parentWP.id}"
+												 	<h:outputText id="itParentPackageNumber" 
+														rendered="#{workPackageController.workPackage.project.hasWorkPackage}"
+														value="#{workPackageController.parentWPId}"
 														required="true" label="#{msgs.parentWpId}"
 														class="form-control" />
 													<h:message errorClass="text-danger" for="itParentPackageNumber" />
-													<!-- <h:inputHidden value="#{workPackageController.workPackage.parentWP.id}" /> -->
+													<h:inputHidden value="#{workPackageController.parentWPId}" /> 
 												</div>
 											</div>
 

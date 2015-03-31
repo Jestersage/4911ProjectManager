@@ -77,4 +77,10 @@ public class WorkPackageServiceImpl implements WorkPackageService {
 	public int getNumOfChildWP(String projId) {
     	return WPManager.findNumOfChildWP(projId);
     }
+
+	@Override
+	public WorkPackage findWorkPackageById(Integer id) {
+	
+		return WPManager.find(id);
+	}
 }

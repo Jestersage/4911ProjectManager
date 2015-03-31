@@ -36,27 +36,7 @@ public class WorkPackageController implements Serializable {
 	
 	private Project[] projectList;
 	
-//	private boolean isNodes;
-//    @ManagedProperty("#{param.projId}")
-//    private String projectId;
-//
-//	public String getProjectId() {
-//		return projectId;
-//	}
-//
-//
-//	public void setProjectId(String projectId) {
-//		this.projectId = projectId;
-//	}
-
-//	public boolean isNodes() {
-//		return isNodes;
-//	}
-//
-//
-//	public void setNodes(boolean isNodes) {
-//		this.isNodes = isNodes;
-//	}
+	private Integer parentWPId;
 
 	private static final Logger logger = LogManager
 			.getLogger(WorkPackageController.class);
@@ -93,10 +73,12 @@ public class WorkPackageController implements Serializable {
 	
 	
 	public String addWorkPackage() {
-		System.out.println(workPackage.getProject().getId());
-		System.out.println(workPackage.getBudget().getP1());
+		WorkPackage parentWP = null;
+		logger.info(parentWPId);
+		if(parentWPId != null)
+			parentWP = workPackageService.findWorkPackageById(parentWPId);
+			workPackage.setParentWP(parentWP);
 		workPackageService.persistWorkPackage(workPackage);
-
 		//workPackageService.persistBudget(budget);
 		logger.info("successfully create new WorkPackage: "
 				+ workPackage.toString());
@@ -104,6 +86,8 @@ public class WorkPackageController implements Serializable {
 	}
 
 	public WorkPackage getworkPackage() {
+		if(workPackage.getParentWP() == null)
+			workPackage.setParentWP(new WorkPackage());
 		return workPackage;
 	}
 
@@ -127,7 +111,7 @@ public class WorkPackageController implements Serializable {
     public String goChildPackage(WorkPackage parentWorkPackage) {
     	Project project = projectService.getProject(parentWorkPackage.getProject().getId());    		
     	workPackage.setProject(project);
-    	workPackage.setParentWP(parentWorkPackage);
+    	parentWPId = parentWorkPackage.getId();
     	return "newWorkPackage";
     }
 
@@ -139,18 +123,15 @@ public class WorkPackageController implements Serializable {
 		return workPackageService.findAssignedWorkPackages(userId);
 	}
 
-//	public boolean findNumOfChildWP(ComponentSystemEvent event) {
-//	    String projId = (String) event.getComponent().getAttributes().get("projectid");
-//
-//		System.out.println("projId"+projId);
-//		if(workPackageService.getNumOfChildWP(projId) > 0)
-//			this.isNodes = true;
-//		else
-//			//this.workPackage.setIsNode(false);
-//			this.isNodes = false;
-//		System.out.println(this.isNodes);
-//		//int i = workPackageService.getNumOfChildWP(projId);
-//		//System.out.println(i);
-//		return workPackageService.getNumOfChildWP(projId) != 0;
-//	}
+
+	public Integer getParentWPId() {
+		return parentWPId;
+	}
+
+
+	public void setParentWPId(Integer parentWPId) {
+		this.parentWPId = parentWPId;
+	}
+
+
 }
