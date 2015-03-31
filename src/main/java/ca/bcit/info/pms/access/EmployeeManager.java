@@ -209,6 +209,7 @@ public class EmployeeManager implements Serializable
 
 		//return this.entityManager.createQuery( "select c from Credential c"
 		//        + ", Employee e where e.active=1",
+	    //select c.username from credentials c, employee e where c.username = e.username and e.active=true;
 	    return this.entityManager.createQuery( "select c from Credential c",
 		        Credential.class ).getResultList();
 	}
