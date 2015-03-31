@@ -54,21 +54,25 @@
 								<div class="container-fluid">
 									<div class="row">
 										<div class="col-md-7">
+											<div class="">
+												<h:messages errorClass="error" />
+											</div>
 
 											<div class="form-group">
 												<h:outputLabel for="itWorkPackageNumber"
 													value="#{msgs.workPackageNumber}"
 													class="col-sm-4 control-label" />
+												
 												<div class="col-sm-4">
 													<h:inputText pt:placeholder="type to search"
 														class="form-control" id="itWorkPackageNumber"
-														value="#{weekReport.id}">
-														<p:ajax event="blur" update="itWorkPackageName itProject summaryOfCost"
+														required="true" value="#{weekReport.id}">													
+														<p:ajax event="blur"
+															update="itWorkPackageName itProject summaryOfCost"
 															listener="#{weekReport.findWP}" />
 													</h:inputText>
-													<h:message errorClass="text-danger"
-														for="itWorkPackageNumber" />
 												</div>
+												
 											</div>
 
 
@@ -89,7 +93,6 @@
 
 												<h:outputLabel for="itProject" value="#{msgs.project}"
 													class="col-sm-4 control-label" />
-
 												<div class="col-sm-4">
 													<h:outputText id="itProject" class="form-control"
 														value="#{weekReport.wp.project}" />
@@ -101,80 +104,99 @@
 												<div class="panel-body">
 
 													<div class="form-group">
-														<h:outputLabel value="#{msgs.workPackageBudget}"
+														<h:outputLabel for="p1"
+															value="#{msgs.workPackageBudget}"
 															class="col-sm-4 control-label" />
 														<div class="col-sm-2">
-															<h:outputLabel value="#{msgs.p1}" />
+														
+															<h:outputLabel for="p1" value="#{msgs.p1}" />
 
-															<h:inputText pt:placeholder="P1" id="itWorkPackageBudget"
+															<h:inputText pt:placeholder="P1" id="p1"
 																value="#{weekReport.statusReport.p1}" required="true"
-																label="#{msgs.workPackageBudget}" class="form-control" />
-															<h:message errorClass="text-danger"
-																for="itWorkPackageBudget" />
+																label="#{msgs.p1}" class="form-control"
+																style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}">
+																<f:validateDoubleRange minimum="0.0" maximum="99.99" />
+															</h:inputText>
+
 														</div>
 														<div class="col-sm-2">
-															<h:outputLabel value="#{msgs.p2}" />
+															<h:outputLabel for="p2" value="#{msgs.p2}" />
 
-															<h:inputText pt:placeholder="P2"
+															<h:inputText pt:placeholder="P2" id="p2"
 																value="#{weekReport.statusReport.p2}" required="true"
-																label="#{msgs.workPackageBudget}" class="form-control" />
-															<h:message errorClass="text-danger" for="" />
+																label="#{msgs.p2}" class="form-control"
+																style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}">
+																<f:validateDoubleRange minimum="0.0" maximum="99.99" />
+															</h:inputText>
 														</div>
 
 														<div class="col-sm-2">
-															<h:outputLabel value="#{msgs.p3}" />
+															<h:outputLabel for="p3" value="#{msgs.p3}" />
 
 															<h:inputText pt:placeholder="P3"
 																value="#{weekReport.statusReport.p3}" required="true"
-																label="#{msgs.workPackageBudget}" class="form-control" />
-															<h:message errorClass="text-danger" for="" />
+																label="#{msgs.p3}" class="form-control"
+																style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}">
+																<f:validateDoubleRange minimum="0.0" maximum="99.99" />
+															</h:inputText>
 														</div>
 
 														<div class="col-sm-2">
-															<h:outputLabel value="#{msgs.p4}" />
+															<h:outputLabel for="p4" value="#{msgs.p4}" />
 
-															<h:inputText pt:placeholder="P4"
+															<h:inputText pt:placeholder="P4" 
 																value="#{weekReport.statusReport.p4}" required="true"
-																label="#{msgs.workPackageBudget}" class="form-control" />
-															<h:message errorClass="text-danger" for="" />
+																label="#{msgs.p4}" class="form-control"
+																style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}">
+																<f:validateDoubleRange minimum="0.0" maximum="99.99" />
+															</h:inputText>
 														</div>
 													</div>
 
 													<div class="form-group">
 
 														<div class="col-sm-2 col-sm-offset-4">
-															<h:outputLabel value="#{msgs.p5}" />
+															<h:outputLabel for="p5" value="#{msgs.p5}" />
 
-															<h:inputText pt:placeholder="P5"
+															<h:inputText pt:placeholder="P5" id="p5"
 																value="#{weekReport.statusReport.p5}" required="true"
-																label="#{msgs.workPackageBudget}" class="form-control" />
-															<h:message errorClass="text-danger" for="" />
+																label="#{msgs.p5}" class="form-control"
+																style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}">
+																<f:validateDoubleRange minimum="0.0" maximum="99.99" />
+															</h:inputText>
 														</div>
 														<div class="col-sm-2">
-															<h:outputLabel value="#{msgs.ss}" />
+															<h:outputLabel for="ss" value="#{msgs.ss}" />
 
-															<h:inputText pt:placeholder="SS"
+															<h:inputText pt:placeholder="SS" id="ss"
 																value="#{weekReport.statusReport.SS}" required="true"
-																label="#{msgs.workPackageBudget}" class="form-control" />
-															<h:message errorClass="text-danger" for="" />
+																label="#{msgs.ss}" class="form-control"
+																style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}">
+																<f:validateDoubleRange minimum="0.0" maximum="99.99" />
+															</h:inputText>
+
 														</div>
 
 														<div class="col-sm-2">
-															<h:outputLabel value="#{msgs.js}" />
+															<h:outputLabel for="js" value="#{msgs.js}" />
 
-															<h:inputText pt:placeholder="JS"
+															<h:inputText pt:placeholder="JS" id="js"
 																value="#{weekReport.statusReport.JS}" required="true"
-																label="#{msgs.workPackageBudget}" class="form-control" />
-															<h:message errorClass="text-danger" for="" />
+																label="#{msgs.js}" class="form-control"
+																style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}">
+																<f:validateDoubleRange minimum="0.0" maximum="99.99" />
+															</h:inputText>
 														</div>
 
 														<div class="col-sm-2">
-															<h:outputLabel value="#{msgs.ds}" />
+															<h:outputLabel for="ds" value="#{msgs.ds}" />
 
-															<h:inputText pt:placeholder="DS"
+															<h:inputText pt:placeholder="DS" id="ds"
 																value="#{weekReport.statusReport.DS}" required="true"
-																label="#{msgs.workPackageBudget}" class="form-control" />
-															<h:message errorClass="text-danger" for="" />
+																label="#{msgs.ds}" class="form-control"
+																style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}">
+																<f:validateDoubleRange minimum="0.0" maximum="99.99" />
+															</h:inputText>
 														</div>
 													</div>
 												</div>
@@ -184,18 +206,17 @@
 												<h:outputLabel for="itaComments" value="#{msgs.comments}"
 													class="col-sm-4 control-label" />
 												<div class="col-sm-8">
-													<h:inputTextarea id="itaComments"
+													<h:inputTextarea id="itaComments" required="true"
 														value="#{weekReport.statusReport.comments}"
-														required="true" label="#{msgs.comments}" cols="80"
+														label="#{msgs.comments}" cols="80"
 														rows="10" class="form-control" />
-													<h:message errorClass="text-danger" for="itaComments" />
 												</div>
 											</div>
 
 											<div class="form-group">
 												<div id="newWeekReport" class="col-md-offset-4">
 													<h:commandButton value="#{msgs.save}"
-														action="#{weekReport.save}"
+														action="#{weekReport.save}" 
 														class="marginOneEm btn btn-primary " />
 													<h:commandButton value="#{msgs.clear}"
 														class="marginOneEm btn btn-default" />
@@ -238,7 +259,7 @@
 													<p:column>#{weekReport.p3}</p:column>
 													<p:column>#{weekReport.p4}</p:column>
 													<p:column>#{weekReport.p5}</p:column>
-													<p:column>#{weekReport.p6}</p:column>													
+													<p:column>#{weekReport.p6}</p:column>
 													<p:column>#{weekReport.ss}</p:column>
 													<p:column>#{weekReport.ds}</p:column>
 													<p:column>#{weekReport.js}</p:column>
