@@ -139,6 +139,7 @@ public class TimesheetController implements Serializable {
 
     public String viewTimesheet(final Timesheet ts) {
         timesheet = ts;
+        reviewTimesheet(timesheet);
         return "viewTimesheet";
     }
 
