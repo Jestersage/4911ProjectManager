@@ -154,7 +154,7 @@ CREATE TABLE Timesheet (
   overtime    numeric(4, 2) NOT NULL DEFAULT 0, 
   flexTime    numeric(4, 2) NOT NULL DEFAULT 0, 
   approved    bool,
-  signID      int(10),
+  submitted   bool DEFAULT false,
   CONSTRAINT timesheetID 
     PRIMARY KEY (timesheetID));
 --
@@ -195,7 +195,7 @@ CREATE TABLE PayGrade(
     paygradeID int(10) NOT NULL AUTO_INCREMENT,
     name       varchar(2)   NOT NULL,
     year       int(4)       NOT NULL,
-    cost       numeric(4,2) NOT NULL,
+    cost       numeric(6,2) NOT NULL,
     PRIMARY KEY (paygradeID)
 );
 --

@@ -126,7 +126,6 @@ public class TimesheetController implements Serializable {
 			
 			isVerified = sig.verify(sigToVerify); //Verify whether signature is valid
 			
-			System.out.println("signature verifies: " + isVerified);//Set validity instead
 		} catch (Exception e) {
 			System.err.println("Caught exception " + e.toString());
 		}
@@ -155,6 +154,7 @@ public class TimesheetController implements Serializable {
     public String rejectTimesheet() {
         timesheet = timeService.findTimesheetById(timesheet.getId());
         timesheet.setApproved(false);
+        timesheet.setSubmitted(false);
 
         timeService.updateTimesheet(timesheet);
 
@@ -204,7 +204,8 @@ public class TimesheetController implements Serializable {
 	        
 	        timesheet = timeService.getCurrentTimesheet(user); 
 	        
-			System.out.println("Timesheet id: " + timesheet.getId());
+	        timesheet.setSubmitted(true); //Submits the timesheet
+	        
 			sigObject.setId(timesheet.getId());
 			signatureManager.persist(sigObject); //Persist the newly created model into the database
 			

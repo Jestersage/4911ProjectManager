@@ -2,7 +2,7 @@
 -- Sample Signature data
 --
 INSERT INTO Signature
-    (signId, signature, publicKey)
+    (signID, signature, publicKey)
 VALUES
     (01, 'SIGNATURE', 'PUBLICKEY');
 --
@@ -14,11 +14,11 @@ VALUES
 INSERT INTO Timesheet
   (timesheetID, employeeID, weeknumber, weekending,
     overtime, flexTime, approved,
-    signID)
+    submitted)
 VALUES
   (1, 1, 1, '2015-01-02',
   0, 0, true,
-  01);
+  true);
 INSERT INTO TimesheetRow
     (timesheetID, timesheetrowID, packageID,
      notes, sunday, monday, tuesday,
@@ -31,10 +31,10 @@ VALUES
 -- Week 2, Employee 4
 INSERT INTO Timesheet
   (timesheetID, employeeID, weeknumber, weekending,
-    overtime, flexTime, approved, signID)
+    overtime, flexTime, approved, submitted)
 VALUES
   (2, 2, 2, '2015-01-09',
-   0, 0, true, 01);
+   0, 0, true, true);
 INSERT INTO TimesheetRow
     (timesheetID, timesheetrowID, packageID,
      notes, sunday, monday, tuesday,
@@ -47,10 +47,10 @@ VALUES
 -- Week 3, Employee 4
 INSERT INTO Timesheet
   (timesheetID, employeeID, weeknumber, weekending,
-    overtime, flexTime, approved, signID)
+    overtime, flexTime, approved, submitted)
 VALUES
     (3, 3, 3,'2015-01-16',
-    3, 2, true, 01);
+    3, 2, true, true);
 INSERT INTO TimesheetRow
     (timesheetID, timesheetrowID, packageID,
      notes, sunday, monday, tuesday,
@@ -63,10 +63,10 @@ VALUES
 -- Week 4, Employee 4
 INSERT INTO Timesheet
   (timesheetID, employeeID, weeknumber, weekending,
-    overtime, flexTime, approved, signID)
+    overtime, flexTime, approved, submitted)
 VALUES
   (4, 123456, 4,'2015-01-23', 
-  8, 0, true, 01);
+  8, 0, true, true);
 INSERT INTO TimesheetRow
     (timesheetID, timesheetrowID, packageID,
     notes, sunday, monday, tuesday,
@@ -80,10 +80,10 @@ VALUES
 INSERT INTO Timesheet
   (timesheetID, employeeID, weeknumber, weekending,
     overtime, flexTime, approved,
-    signID)
+    submitted)
 VALUES
     (5, 124816, 5,'2015-01-23',
-    8, 0, true, 01);
+    8, 0, true, true);
 INSERT INTO TimesheetRow
     (timesheetID, timesheetrowID, packageID,
      notes, sunday, monday, tuesday,
@@ -97,10 +97,10 @@ VALUES
 -- Week 1, (empId 4)
 INSERT INTO Timesheet
 (timesheetID, employeeID, weeknumber, weekending,
- overtime, flexTime, approved, signID)
+ overtime, flexTime, approved, submitted)
 VALUES
   (6, 4, 1, '2015-01-02',
-   0, 0, NULL, 01);
+   0, 0, NULL, true);
 INSERT INTO TimesheetRow
 (timesheetID, timesheetrowID, packageID,
  notes, sunday, monday, tuesday,
@@ -113,10 +113,10 @@ VALUES
 -- Week 2, (empId 4)
 INSERT INTO Timesheet
 (timesheetID, employeeID, weeknumber, weekending,
- overtime, flexTime, approved, signID)
+ overtime, flexTime, approved, submitted)
 VALUES
   (7, 4, 1, '2015-01-09',
-   0, 0, NULL, 01);
+   0, 0, NULL, true);
 INSERT INTO TimesheetRow
 (timesheetID, timesheetrowID, packageID,
  notes, sunday, monday, tuesday,
@@ -129,10 +129,10 @@ VALUES
 -- Week 3, (empId 5)
 INSERT INTO Timesheet
 (timesheetID, employeeID, weeknumber, weekending,
- overtime, flexTime, approved, signID)
+ overtime, flexTime, approved, submitted)
 VALUES
   (8, 5, 1, '2015-01-16',
-   0, 0, NULL, 01);
+   0, 0, NULL, true);
 INSERT INTO TimesheetRow
 (timesheetID, timesheetrowID, packageID,
  notes, sunday, monday, tuesday,
@@ -145,10 +145,10 @@ VALUES
 -- Week 3, (empId 4)
 INSERT INTO Timesheet
 (timesheetID, employeeID, weeknumber, weekending,
- overtime, flexTime, approved, signID)
+ overtime, flexTime, approved, submitted)
 VALUES
   (9, 4, 1, '2015-01-16',
-   0, 0, NULL, 01);
+   0, 0, NULL, true);
 INSERT INTO TimesheetRow
 (timesheetID, timesheetrowID, packageID,
  notes, sunday, monday, tuesday,
@@ -161,10 +161,10 @@ VALUES
 -- Week 4, (empId 4)
 INSERT INTO Timesheet
 (timesheetID, employeeID, weeknumber, weekending,
- overtime, flexTime, approved, signID)
+ overtime, flexTime, approved, submitted)
 VALUES
   (10, 4, 1, '2015-01-23',
-   0, 0, NULL, 01);
+   0, 0, NULL, true);
 INSERT INTO TimesheetRow
 (timesheetID, timesheetrowID, packageID,
  notes, sunday, monday, tuesday,
@@ -177,10 +177,10 @@ VALUES
 -- Week 4, (empId 4)
 INSERT INTO Timesheet
 (timesheetID, employeeID, weeknumber, weekending,
- overtime, flexTime, approved, signID)
+ overtime, flexTime, approved, submitted)
 VALUES
   (11, 5, 1, '2015-01-23',
-   0, 0, NULL, 01);
+   0, 0, NULL, true);
 INSERT INTO TimesheetRow
 (timesheetID, timesheetrowID, packageID,
  notes, sunday, monday, tuesday,
@@ -193,10 +193,10 @@ VALUES
 -- SAMPLE DATA FOR root USER    --
 INSERT INTO Timesheet
 (timesheetID, employeeID, weeknumber, weekending,
- overtime, flexTime, approved, signID)
+ overtime, flexTime, approved, submitted)
 VALUES
   (666, 1, 14, '2015-04-03',
-   0, 0, NULL, 01);
+   0, 0, NULL, true);
 INSERT INTO TimesheetRow
 (timesheetID, timesheetrowID, packageID,
  notes, sunday, monday, tuesday,

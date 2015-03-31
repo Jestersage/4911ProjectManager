@@ -127,7 +127,7 @@ public class TimesheetManager implements Serializable {
                 .createQuery("SELECT t FROM Timesheet t, " +
                         "IN (t.owner) AS e " +
                         "WHERE e.timesheetApprover.id = :approverId " +
-                        "AND t.signID IS NOT NULL " +
+                        "AND t.submitted = true " +
                         "AND t.approved IS NULL " +
                         "ORDER BY t.owner.id, t.weekEnding", Timesheet.class);
         query.setParameter("approverId", empId);
@@ -143,7 +143,7 @@ public class TimesheetManager implements Serializable {
         TypedQuery<Timesheet> query = entityManager
                 .createQuery("SELECT t FROM Timesheet t " +
                         "WHERE t.owner.id = :empId " +
-                        "AND t.signID IS NOT NULL " +
+                        "AND t.submitted = true " +
                         "AND t.approved = true", Timesheet.class);
         query.setParameter("empId", empId);
         return query.getResultList();
@@ -154,7 +154,7 @@ public class TimesheetManager implements Serializable {
         TypedQuery<Timesheet> query = entityManager
                 .createQuery("SELECT t from Timesheet t " +
                         "WHERE t.owner.id = :empId " +
-                        "AND t.signID IS NOT NULL " +
+                        "AND t.submitted = true " +
                         "AND ( t.approved = false OR t.approved IS NULL )", Timesheet.class);
         query.setParameter("empId", empId);
 

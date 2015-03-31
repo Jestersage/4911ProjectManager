@@ -67,9 +67,7 @@ public class Timesheet implements Serializable
 
 	private Boolean approved;
 
-    @OneToOne
-    @JoinColumn(name = "signId")
-	private SignatureObject signID;
+    private Boolean submitted;
     
     public Timesheet() { super(); }
     
@@ -165,15 +163,15 @@ public class Timesheet implements Serializable
 		this.approved = approved;
 	}
 
-	public SignatureObject getSignID() {
-		return signID;
+    public Boolean getSubmitted() {
+		return submitted;
 	}
 
-	public void setSignID(SignatureObject signID) {
-		this.signID = signID;
+	public void setSubmitted(Boolean submitted) {
+		this.submitted = submitted;
 	}
 
-    private void checkFriday(final Date end) {
+	private void checkFriday(final Date end) {
         Calendar c = new GregorianCalendar();
         c.setTime(end);
         int currentDay = c.get(Calendar.DAY_OF_WEEK);
@@ -221,7 +219,7 @@ public class Timesheet implements Serializable
         }
         sb.append(", timesheetRows=").append(timesheetRows);
         sb.append(", approved=").append(approved);
-        sb.append(", signID=").append(signID);
+        sb.append(", submitted=").append(submitted);
         sb.append('}');
         return sb.toString();
     }
