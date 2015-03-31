@@ -60,7 +60,7 @@
                                     #{msgs.timesheet} #{msgs.data}</div>
                                 <div class="panel-body">
                                     <h:commandButton class="marginOneEm btn btn-success"
-                                        value="#{msgs.signTimesheet}" id="signTimesheet" />
+                                        value="#{msgs.signTimesheet}" id="signTimesheet" action="#{timesheetController.signTimesheet()}" />
                                     <h:commandButton class=" marginOneEm btn btn-success"
                                         value="#{msgs.save}" id="saveTimesheet"
                                         action="#{editTimesheetController.saveTimesheet}" />

@@ -69,7 +69,7 @@ public class Timesheet implements Serializable
 
     @OneToOne
     @JoinColumn(name = "signId")
-	private Signature signID;
+	private SignatureObject signID;
     
     public Timesheet() { super(); }
     
@@ -165,11 +165,11 @@ public class Timesheet implements Serializable
 		this.approved = approved;
 	}
 
-	public Signature getSignID() {
+	public SignatureObject getSignID() {
 		return signID;
 	}
 
-	public void setSignID(Signature signID) {
+	public void setSignID(SignatureObject signID) {
 		this.signID = signID;
 	}
 
