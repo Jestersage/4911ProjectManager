@@ -68,7 +68,7 @@ public class ProjectController implements Serializable{
     	project.setEndDate(convertJavaDateToSqlDate(endDate));
         projService.persistProject(project);
         logger.info("successfully create new project: " + project.toString());
-        return "newProject";
+        return "viewManagedProjects";
     }
     
     public java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {

@@ -28,9 +28,11 @@ public class WorkPackageManager implements Serializable
 	@PersistenceContext( unitName = "pms-persistence-unit" )
 	private EntityManager em;
 
-	public WorkPackage find( final int id )
+	public WorkPackage find( final Integer id )
 	{
+		if(id !=null)
 		return em.find( WorkPackage.class, id );
+		else return null;
 	}
 
 	public void remove( final WorkPackage workPackage )

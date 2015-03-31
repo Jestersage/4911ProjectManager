@@ -50,7 +50,12 @@ public class ProjectServiceImpl implements Serializable, ProjectService{
 
     @Override
     public Project getProject(String id) {
-        return projManager.findByProjectId(id);
+    	Project project = projManager.findByProjectId(id);
+    	int workPackageNum = WPManager.findNumOfChildWP(project.getId());
+    	if(workPackageNum != 0){
+			project.setHasWorkPackage(true);
+		}
+        return project;
     }
 
     @Override

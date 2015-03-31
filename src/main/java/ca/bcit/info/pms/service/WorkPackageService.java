@@ -26,4 +26,6 @@ public interface WorkPackageService {
     List<WorkPackage> findAssignedWorkPackages(final String empId);
     
     int getNumOfChildWP(String projId);
+
+	WorkPackage findWorkPackageById(Integer id);
 }
