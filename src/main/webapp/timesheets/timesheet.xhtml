@@ -115,7 +115,7 @@
 													<p:column class="wpCol" headerText="#{msgs.selectWP}" style="width:8em;">
 														<p:cellEditor >
 															<f:facet name="output">
-																<h:outputText value="#{tsRow.workPackage.packageNum}" />
+																<h:outputText value="#{tsRow.workPackage.packageNum}" id="packageOutput" />
 																<h:message for="packageSelect" errorClass="errorClass"/>
 															</f:facet>
 
@@ -129,6 +129,7 @@
 																		value="#{workPackageController.myWorkPackages}"
 																		var="package" itemValue="#{package.id}"
 																		itemLabel="#{package.project.id}:#{package.packageNum}" />
+																	<f:ajax render="packageOutput" />
 																	<f:validator validatorId="ca.bcit.pms.util.WorkPackageValidator" />
 																</p:selectOneMenu>
 															</f:facet>

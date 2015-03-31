@@ -39,7 +39,7 @@ public class WorkPackageValidator implements Validator {
         
         logger.info("Count::"+count);
         
-        if(count > 1) {
+        if(count > 0) {
             msg = new FacesMessage("WorkPackage validation failed",
                     "WorkPackage must be unique for each row");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
