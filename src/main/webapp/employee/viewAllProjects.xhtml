@@ -63,7 +63,7 @@
 										</p:column>
 
 										<p:column headerText="#{msgs.projectName}">
-											<h:outputText value="#{project.name}" />
+											<h:commandLink value="#{project.name}" action="#{projectController.viewProjectDetails(project)}" />
 										</p:column>
 
 										<p:column headerText="#{msgs.startDate}">
