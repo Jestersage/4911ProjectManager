@@ -347,11 +347,10 @@ public class EmployeeManager implements Serializable
      * @param id project manager's employee id.
      * @return if this employee is project manager.
      */
-    // TODO fix to manager.id when employeeID change to manager in Project
     public boolean hasProjectManagerRole(final String id) {
         final TypedQuery<Project> query = entityManager
                 .createQuery("SELECT p FROM Project p " +
-                        "WHERE p.employeeID = :managerId", Project.class);
+                        "WHERE p.projectManager.id = :managerId", Project.class);
         query.setParameter("managerId", id);
 
         final int numOfManagedProjects = query.getResultList().size();

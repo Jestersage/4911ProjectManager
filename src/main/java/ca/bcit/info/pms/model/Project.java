@@ -27,8 +27,13 @@ public class Project implements Serializable {
 	@NotNull(message = "Project description can not be null")
 	private String description;
 
-	@NotNull(message = "Manager Id can not be null")
-	private String employeeID;
+//	@NotNull(message = "Manager Id can not be null")
+//	private String employeeID;
+
+	@NotNull(message = "Project manager can not be null")
+	@ManyToOne
+	@JoinColumn(name="EmployeeID")
+	private Employee projectManager;
 
 	@ManyToOne
 	@JoinColumn(name = "assistantID")
@@ -123,13 +128,21 @@ public class Project implements Serializable {
 		this.status = status;
 	}
 
-	public String getEmployeeID() {
-		return employeeID;
+	public Employee getProjectManager() {
+		return projectManager;
 	}
 
-	public void setEmployeeID(String employeeID) {
-		this.employeeID = employeeID;
+	public void setProjectManager(Employee projectManager) {
+		this.projectManager = projectManager;
 	}
+
+	//	public String getEmployeeID() {
+//		return employeeID;
+//	}
+//
+//	public void setEmployeeID(String employeeID) {
+//		this.employeeID = employeeID;
+//	}
 
 	public Set<Employee> getEmployees() {
 		return employees;
