@@ -159,9 +159,9 @@ CREATE TABLE Timesheet (
     PRIMARY KEY (timesheetID));
 --
 CREATE TABLE Signature(
-	signId    int(10) NOT NULL PRIMARY KEY ,
-	signature LONGBLOB NOT NULL, 
-	publicKey LONGBLOB NOT NULL
+	signId    int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	signature TINYBLOB NOT NULL, 
+	publicKey BLOB NOT NULL
 );
 -- salt need to be as long as hashed password
 CREATE TABLE Credentials (

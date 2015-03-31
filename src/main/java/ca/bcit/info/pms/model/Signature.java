@@ -1,9 +1,13 @@
 package ca.bcit.info.pms.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
@@ -11,16 +15,26 @@ import javax.persistence.Lob;
  * Timesheet electronic signature.
  */
 @Entity
-public class Signature {
+public class Signature implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "signId", updatable = false, nullable = false)
     private int id;
-    @Lob @Basic(fetch=FetchType.EAGER)
+
     private byte[] signature;
 
-    @Lob @Basic(fetch=FetchType.EAGER)
+    @Lob
+	@Column(name = "publicKey", nullable = false, columnDefinition = "blob")
     private byte[] publicKey;
+    
+    public Signature() {}
+    
+    public Signature(byte[] sig, byte[] pubKey)
+	{
+		signature = sig;
+		publicKey = pubKey;
+	} 
 
     public int getId() {
         return id;
