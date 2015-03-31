@@ -1,12 +1,14 @@
 package ca.bcit.info.pms.controller;
 
 import java.io.Serializable;
+import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.Signature;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,6 +101,35 @@ public class TimesheetController implements Serializable {
 
     public String reviewTimesheet(final Timesheet ts) {
         timesheet = ts;
+        
+        try {
+			
+			String data = timesheet.toString();
+			
+			sigObject = signatureManager.find(timesheet.getId()); //Retrieve signature model
+
+			byte[] encKey = sigObject.getPublicKey(); //Retrieve public key
+			
+			//Decode the public key
+			X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
+			KeyFactory keyFactory = KeyFactory.getInstance("DSA", "SUN");
+			PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
+			
+			byte[] sigToVerify = sigObject.getSignature(); //Retrieve signature
+			
+			Signature sig = Signature.getInstance("SHA1withDSA", "SUN");
+			sig.initVerify(pubKey); //Initialize verification with decoded public key
+			
+
+			byte[] dataBytes = data.getBytes(); //Retrieve data
+			sig.update(dataBytes); //Update signature with data
+			
+			isVerified = sig.verify(sigToVerify); //Verify whether signature is valid
+			
+			System.out.println("signature verifies: " + isVerified);//Set validity instead
+		} catch (Exception e) {
+			System.err.println("Caught exception " + e.toString());
+		}
         return "reviewTimesheet";
     }
 
