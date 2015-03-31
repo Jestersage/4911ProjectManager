@@ -206,11 +206,10 @@ public class EmployeeManager implements Serializable
 	@SuppressWarnings( "unchecked" )
 	public List< Credential > getCredentials()
 	{
+	  //select c.username from credentials c, employee e where c.username = e.username and e.active=true;
 
-		//return this.entityManager.createQuery( "select c from Credential c"
-		//        + ", Employee e where e.active=1",
-	    //select c.username from credentials c, employee e where c.username = e.username and e.active=true;
-	    return this.entityManager.createQuery( "select c from Credential c",
+		return this.entityManager.createQuery( "select c from credentials c, employee e where c.username = e.username and e.active=true",
+	    //return this.entityManager.createQuery( "select c from Credential c",
 		        Credential.class ).getResultList();
 	}
 
