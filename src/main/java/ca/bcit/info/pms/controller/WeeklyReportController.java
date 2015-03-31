@@ -11,6 +11,7 @@ import ca.bcit.info.pms.access.EngineerBudgetManager;
 import ca.bcit.info.pms.access.StatusReportManager;
 import ca.bcit.info.pms.access.TimesheetRowManager;
 import ca.bcit.info.pms.access.WorkPackageManager;
+import ca.bcit.info.pms.model.Budget;
 import ca.bcit.info.pms.model.EngineerBudget;
 import ca.bcit.info.pms.model.StatusReport;
 import ca.bcit.info.pms.model.WorkPackage;
@@ -62,6 +63,9 @@ public class WeeklyReportController implements Serializable
 	private int id;
 	private String name;
 
+	@Inject
+	private Budget budget;
+
 	public WeeklyReportController()
 	{
 
@@ -69,8 +73,8 @@ public class WeeklyReportController implements Serializable
 
 	public String save()
 	{
-		statusReport.setId( wp.getId() );
-		statusReport.setWorkPackage( wp );
+		WorkPackage w = workPackageMngr.find( id );
+		statusReport.setWorkPackage( w );
 		statusReportMngr.persist( statusReport );
 
 		return "mypage";
@@ -85,30 +89,37 @@ public class WeeklyReportController implements Serializable
 		{
 			setName( wp.getName() );
 
-			EngineerBudget budget = new EngineerBudget();
-			int num = workPackageMngr.getEngBudgetID( id );
-			budget = engineerBudgetMngr.find( num );
-			engineerBudget.setP1( budget.getP1() );
-			engineerBudget.setP2( budget.getP2() );
-			engineerBudget.setP3( budget.getP3() );
-			engineerBudget.setP4( budget.getP4() );
-			engineerBudget.setP5( budget.getP5() );
-			engineerBudget.setDS( budget.getDS() );
-			engineerBudget.setJS( budget.getJS() );
-			engineerBudget.setSS( budget.getSS() );
+			// get allocated budget from engineer estimations
+			EngineerBudget engBudget = new EngineerBudget();
+			int engBudgetNum = workPackageMngr.getEngBudgetID( id );
+			engBudget = engineerBudgetMngr.find( engBudgetNum );
 
+			// set up values to display
+			engineerBudget.setP1( engBudget.getP1() );
+			engineerBudget.setP2( engBudget.getP2() );
+			engineerBudget.setP3( engBudget.getP3() );
+			engineerBudget.setP4( engBudget.getP4() );
+			engineerBudget.setP5( engBudget.getP5() );
+			engineerBudget.setP6( engBudget.getP6() );
+			engineerBudget.setDS( engBudget.getDS() );
+			engineerBudget.setJS( engBudget.getJS() );
+			engineerBudget.setSS( engBudget.getSS() );
+
+			// get remaining budget based on estimation made my the engineer
 			cost = timeSheetRowMngr.getManHoursPerPayLevel( id );
-
-			setP1( cost.get( "P1" ).doubleValue() );
-			setP2( cost.get( "P2" ).doubleValue() );
-			setP3( cost.get( "P3" ).doubleValue() );
-			setP4( cost.get( "P4" ).doubleValue() );
-			setP5( cost.get( "P5" ).doubleValue() );
-			setP6( cost.get( "P6" ).doubleValue() );
-			setSs( cost.get( "SS" ).doubleValue() );
-			setJs( cost.get( "JS" ).doubleValue() );
-			setDs( cost.get( "DS" ).doubleValue() );
 			System.out.println( "cost = " + cost.toString() );
+
+			// calculate remaining budget
+			// allocated - cost
+			setP1( engBudget.getP1() - ( cost.get( "P1" ) / 8 ) );
+			setP2( engBudget.getP2() - cost.get( "P2" ) );
+			setP3( engBudget.getP3() - cost.get( "P3" ) );
+			setP4( engBudget.getP4() - cost.get( "P4" ) );
+			setP5( engBudget.getP5() - cost.get( "P5" ) );
+			setP6( engBudget.getP6() - cost.get( "P6" ) );
+			setDs( engBudget.getDS() - cost.get( "DS" ) );
+			setJs( engBudget.getJS() - cost.get( "JS" ) );
+			setSs( engBudget.getSS() - cost.get( "SS" ) );
 
 		} else
 		{
@@ -272,6 +283,16 @@ public class WeeklyReportController implements Serializable
 	public void setDs( Double ds )
 	{
 		this.ds = ds;
+	}
+
+	public Budget getBudget()
+	{
+		return budget;
+	}
+
+	public void setBudget( Budget budget )
+	{
+		this.budget = budget;
 	}
 
 }

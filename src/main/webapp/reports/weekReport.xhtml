@@ -62,17 +62,17 @@
 												<h:outputLabel for="itWorkPackageNumber"
 													value="#{msgs.workPackageNumber}"
 													class="col-sm-4 control-label" />
-												
+
 												<div class="col-sm-4">
 													<h:inputText pt:placeholder="type to search"
 														class="form-control" id="itWorkPackageNumber"
-														required="true" value="#{weekReport.id}">													
+														required="true" value="#{weekReport.id}">
 														<p:ajax event="blur"
 															update="itWorkPackageName itProject summaryOfCost"
 															listener="#{weekReport.findWP}" />
 													</h:inputText>
 												</div>
-												
+
 											</div>
 
 
@@ -104,11 +104,10 @@
 												<div class="panel-body">
 
 													<div class="form-group">
-														<h:outputLabel for="p1"
-															value="#{msgs.workPackageBudget}"
+														<h:outputLabel for="p1" value="#{msgs.workPackageBudget}"
 															class="col-sm-4 control-label" />
 														<div class="col-sm-2">
-														
+
 															<h:outputLabel for="p1" value="#{msgs.p1}" />
 
 															<h:inputText pt:placeholder="P1" id="p1"
@@ -144,7 +143,7 @@
 														<div class="col-sm-2">
 															<h:outputLabel for="p4" value="#{msgs.p4}" />
 
-															<h:inputText pt:placeholder="P4" 
+															<h:inputText pt:placeholder="P4"
 																value="#{weekReport.statusReport.p4}" required="true"
 																label="#{msgs.p4}" class="form-control"
 																style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}">
@@ -208,15 +207,15 @@
 												<div class="col-sm-8">
 													<h:inputTextarea id="itaComments" required="true"
 														value="#{weekReport.statusReport.comments}"
-														label="#{msgs.comments}" cols="80"
-														rows="10" class="form-control" />
+														label="#{msgs.comments}" cols="80" rows="10"
+														class="form-control" />
 												</div>
 											</div>
 
 											<div class="form-group">
 												<div id="newWeekReport" class="col-md-offset-4">
 													<h:commandButton value="#{msgs.save}"
-														action="#{weekReport.save}" 
+														action="#{weekReport.save}"
 														class="marginOneEm btn btn-primary " />
 													<h:commandButton value="#{msgs.clear}"
 														class="marginOneEm btn btn-default" />
@@ -234,7 +233,7 @@
 														<p:column>#{msgs.p3}</p:column>
 														<p:column>#{msgs.p4}</p:column>
 														<p:column>#{msgs.p5}</p:column>
-														<p:column>#{msgs.p5}</p:column>
+														<p:column>#{msgs.p6}</p:column>
 														<p:column>#{msgs.js}</p:column>
 														<p:column>#{msgs.ss}</p:column>
 														<p:column>#{msgs.ds}</p:column>
@@ -248,9 +247,10 @@
 													<p:column>#{weekReport.engineerBudget.p3}</p:column>
 													<p:column>#{weekReport.engineerBudget.p4}</p:column>
 													<p:column>#{weekReport.engineerBudget.p5}</p:column>
-													<p:column>#{weekReport.engineerBudget.DS}</p:column>
+													<p:column>#{weekReport.engineerBudget.p6}</p:column>
 													<p:column>#{weekReport.engineerBudget.JS}</p:column>
 													<p:column>#{weekReport.engineerBudget.SS}</p:column>
+													<p:column>#{weekReport.engineerBudget.DS}</p:column>
 												</p:row>
 												<p:row>
 													<p:column>#{msgs.remaining}</p:column>
@@ -260,9 +260,9 @@
 													<p:column>#{weekReport.p4}</p:column>
 													<p:column>#{weekReport.p5}</p:column>
 													<p:column>#{weekReport.p6}</p:column>
+													<p:column>#{weekReport.js}</p:column>
 													<p:column>#{weekReport.ss}</p:column>
 													<p:column>#{weekReport.ds}</p:column>
-													<p:column>#{weekReport.js}</p:column>
 												</p:row>
 											</p:panelGrid>
 										</div>
