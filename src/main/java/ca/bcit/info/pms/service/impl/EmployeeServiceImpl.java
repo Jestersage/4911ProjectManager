@@ -29,6 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable
 	public boolean checkCredentials( final Credential credential )
 	{
 		credentialList = empManager.getCredentials();
+
 		// Ensure list is not null
         if ( credentialList != null ) {
             for (Credential c : credentialList) {
