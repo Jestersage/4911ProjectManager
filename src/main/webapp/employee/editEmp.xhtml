@@ -149,6 +149,16 @@
 										<h:message errorClass="text-danger" for="mnTimesheetApprover" />
 									</div>
 								</div>
+								
+								<div class="form-group">
+									<h:outputLabel for="mnActiveStatus"
+										value="Active Status"
+										class="col-sm-4 control-label" />
+									<div class="col-sm-8">
+										<h:selectBooleanCheckbox id="mnActiveStatus"
+											value="#{empController.employee.activeStatus}" />
+									</div>
+								</div>
 
 								<div id="hiddenInputs">
 									<h:inputHidden id="hdUserId"
