@@ -122,9 +122,6 @@
                                                                 value="#{workPackageController.myWorkPackages}"
                                                                 var="package" itemValue="#{package.id}"
                                                                 itemLabel="#{package.project.id}:#{package.packageNum}" />
-                                                            <f:ajax render="packageOutput" />
-                                                            <f:validator
-                                                                validatorId="ca.bcit.pms.validation.WorkPackageValidator" />
                                                         </p:selectOneMenu>
                                                     </p:column>
                                                     <p:column headerText="#{msgs.total}" class="col-md-1">

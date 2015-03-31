@@ -29,6 +29,10 @@ public class WeekDayHourValidator implements Validator {
             UIComponent component, Object value) {
         FacesMessage msg;
         
+        logger.info("component::"+component);
+        logger.info("component.ClientId::"+component.getClientId());
+        logger.info("component.id::"+component.getId());
+        
         try {
             double hrs = (double) value;
             if (hrs > 24.0) {
