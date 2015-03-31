@@ -116,18 +116,20 @@
 														<p:cellEditor >
 															<f:facet name="output">
 																<h:outputText value="#{tsRow.workPackage.packageNum}" />
+																<h:message for="packageSelect" errorClass="errorClass"/>
 															</f:facet>
 
 															<f:facet name="input">
 																<p:selectOneMenu id="packageSelect"
-																	value="#{tsRow.workPackage.id}">
+																	value="#{tsRow.workPackage.id}" required="true">
 																	<f:selectItem 
-																		itemLabel="#{msgs.selectWP}" itemValue=""
+																		itemLabel="#{msgs.selectWP}"
 																		noSelectOption="true" />
 																	<f:selectItems  id="packageItem"
 																		value="#{workPackageController.myWorkPackages}"
 																		var="package" itemValue="#{package.id}"
 																		itemLabel="#{package.project.id}:#{package.packageNum}" />
+																	<f:validator validatorId="ca.bcit.pms.util.WorkPackageValidator" />
 																</p:selectOneMenu>
 															</f:facet>
 														</p:cellEditor>
@@ -249,7 +251,7 @@
 													</p:column>
 
 													<p:column class="editCol" headerText="" style="width:4em;">
-														<h:commandButton class="btn btn-danger btn-sm removeBtn"
+														<h:commandButton class="btn btn-danger removeBtn"
 															id="removeRow" value="#{msgs.removeRow}"
 															action="#{editTimesheetController.removeRowFromTimesheet(tsRow)}" />
 													</p:column>
