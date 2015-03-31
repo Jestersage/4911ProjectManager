@@ -15,7 +15,10 @@ import ca.bcit.info.pms.controller.EditTimesheetController;
 
 @FacesValidator("ca.bcit.pms.validation.WeekDayHourValidator")
 public class WeekDayHourValidator implements Validator {
-    private static final Logger logger = LogManager.getLogger(WorkPackageValidator.class);
+    @Inject
+    EditTimesheetController editTsController;
+
+    private static final Logger logger = LogManager.getLogger(WeekDayHourValidator.class);
 
     /**
      * validates uniqueness of WorkPackage
@@ -26,13 +29,18 @@ public class WeekDayHourValidator implements Validator {
             UIComponent component, Object value) {
         FacesMessage msg;
         
-        logger.info("\t\nWeekDayHourValidator.value::"+value);
-            if ((double) value > 24.0) {
-                logger.info("\t\nIf [value] > 24::value="+((double)value));
+        try {
+            double hrs = (double) value;
+            if (hrs > 24.0) {
+                logger.info("\n\t[IN-IF]::Value::"+value);
                 msg = new FacesMessage("Week-day hours invalid", "Must not be > 24");
                 msg.setSeverity(FacesMessage.SEVERITY_ERROR);
                 throw new ValidatorException(msg);
             }
-        
+        } catch (Exception ex) {
+            msg = new FacesMessage("Week-day hours invalid","Not a valid decimal");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            throw new ValidatorException(msg);
+        }
     }
 }
