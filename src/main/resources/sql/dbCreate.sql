@@ -159,7 +159,7 @@ CREATE TABLE Timesheet (
     PRIMARY KEY (timesheetID));
 --
 CREATE TABLE Signature(
-	signId    int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	signId    int(10) NOT NULL PRIMARY KEY,
 	signature TINYBLOB NOT NULL, 
 	publicKey BLOB NOT NULL
 );

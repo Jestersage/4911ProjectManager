@@ -10,16 +10,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.Table;
 
 /**
  * Timesheet electronic signature.
  */
 @Entity
-public class Signature implements Serializable {
+@Table(name = "signature")
+public class SignatureObject implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "signId", updatable = false, nullable = false)
+    @Column(name = "signId")
     private int id;
 
     private byte[] signature;
@@ -28,9 +29,9 @@ public class Signature implements Serializable {
 	@Column(name = "publicKey", nullable = false, columnDefinition = "blob")
     private byte[] publicKey;
     
-    public Signature() {}
+    public SignatureObject() {}
     
-    public Signature(byte[] sig, byte[] pubKey)
+    public SignatureObject(byte[] sig, byte[] pubKey)
 	{
 		signature = sig;
 		publicKey = pubKey;
@@ -63,9 +64,9 @@ public class Signature implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Signature)) return false;
+        if (!(o instanceof SignatureObject)) return false;
 
-        Signature signature = (Signature) o;
+        SignatureObject signature = (SignatureObject) o;
 
         if (id != signature.id) return false;
 

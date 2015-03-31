@@ -22,7 +22,7 @@
 }
 
 #timesheetTable {
-<<<<<<< HEAD
+
 	background-color: white;
 	margin: 1em;
 	padding-bottom: 2em;
@@ -37,7 +37,7 @@
 	display: inline-block;
 	width: 20px;
 	height: 20px;
-=======
+
 
 	font-size: 12px;
 	background-color: white;
@@ -45,8 +45,62 @@
 	padding-bottom: 5em;
 }
 
-#timesheetTable .hour-col {
-	width: 80px;
+
+.headerCol {
+	width: 100px;
 	text-align: center;
->>>>>>> master
+}
+/* whole dropdown of wp */
+.ui-selectonemenu.ui-widget.ui-state-default.ui-corner-all{
+	width: 90%;
+	margin: 0 auto;
+}
+
+
+/* box with the arrow in dropdown */
+.ui-selectonemenu-trigger.ui-state-default.ui-corner-right{	
+	width: 30px;
+}
+.ui-icon.ui-icon-triangle-1-s.ui-c {
+	margin: 16px 2px;
+}
+
+.wpCol {
+	width: 200px;
+}
+.notesCol {
+	width: 300px;
+}
+.editCol {
+	width: 150px;
+}
+.ui-editable-column.notesCol.ui-state-highlight.ui-cell-editing{
+	background-color: #fff;
+	width: 90%;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.ui-editable-column.notesCol.ui-state-highlight.ui-cell-editing.ui-cell-editor-input{
+	background-color: #fff;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+	
+}
+
+.ui-inputfield.ui-inputtextarea.ui-widget.ui-state-default.ui-corner-all.ui-inputtextarea-resizable{
+	width: 100%;
+	max-height: 200px;
+	overflow: auto;	
+	padding: .5em;
+}
+
+/* hides notes when they're bigger than the box */ 
+.ui-cell-editor-output {
+	overflow: hidden;
+}
+
+#removeBtn {
+	margin: .3em; 
 }
