@@ -94,6 +94,7 @@ public class EditTimesheetController implements Serializable {
         List<TimesheetRow> validRows = new ArrayList<TimesheetRow>();
         
         for(TimesheetRow row : timesheet.getTimesheetRows()) {
+            logger.info("\n\tsaveTimesheet.row::"+row);
             if ( (row.getTotalHours() > 0) && (row.getWorkPackage().getId() != null) ) {
                 validRows.add(row);
             }

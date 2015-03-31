@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 import ca.bcit.info.pms.controller.EditTimesheetController;
 import ca.bcit.info.pms.model.TimesheetRow;
 
-@FacesValidator("ca.bcit.pms.util.WorkPackageValidator")
+@FacesValidator("ca.bcit.pms.validation.WorkPackageValidator")
 public class WorkPackageValidator implements Validator {
     @Inject
     EditTimesheetController editTsController;
@@ -42,8 +42,9 @@ public class WorkPackageValidator implements Validator {
                 count++;
         }
 
+        logger.info("\n\tCOUNT::"+count);
         // If more than 'current row' present raise error
-        if(count > 0) {
+        if(count > 1) {
             msg = new FacesMessage("WorkPackage validation failed",
                     "WorkPackage must be unique for each row");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
