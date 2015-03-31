@@ -1,35 +1,49 @@
 package ca.bcit.info.pms.util;
 
+import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
+import javax.inject.Inject;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import ca.bcit.info.pms.controller.EditTimesheetController;
+import ca.bcit.info.pms.model.TimesheetRow;
+
 @FacesValidator("ca.bcit.pms.util.WorkPackageValidator")
 public class WorkPackageValidator implements Validator {
+    @Inject
+    EditTimesheetController editTsController;
+    
     private static final Logger logger = LogManager.getLogger(WorkPackageValidator.class);
 
     @Override
     public void validate(FacesContext facesContext,
             UIComponent component, Object value) {
         FacesMessage msg;
-        logger.error("value::"+value);
-        if (value == null) { 
-            msg = new FacesMessage("selectPackage",
-                    "Select");
-            logger.error("value::"+value);
-        } else {
-            logger.error("value::"+value);
-            msg = new FacesMessage("WorkPackage validation failed",
-                    "Value is not a WorkPackage");
+        
+        List<TimesheetRow> tsRows = editTsController.getTimesheet().getTimesheetRows();
+        
+        int count = 0;
+        
+        for(TimesheetRow row : tsRows) {
+            if (row.getWorkPackage().getId() == value)
+                count++;
         }
         
-        msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-        throw new ValidatorException(msg);        
+        logger.info("Count::"+count);
+        
+        if(count > 1) {
+            msg = new FacesMessage("WorkPackage validation failed",
+                    "WorkPackage must be unique for each row");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            throw new ValidatorException(msg);
+        }        
     }
 }

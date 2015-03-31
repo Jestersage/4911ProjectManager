@@ -20,9 +20,9 @@ import ca.bcit.info.pms.service.TimesheetService;
 
 @Named( "editTimesheetController" )
 @SessionScoped
-public class editTimesheetController implements Serializable {
+public class EditTimesheetController implements Serializable {
     
-    private static final Logger logger = LogManager.getLogger(editTimesheetController.class);
+    private static final Logger logger = LogManager.getLogger(EditTimesheetController.class);
 
     @Inject
     private Timesheet timesheet;

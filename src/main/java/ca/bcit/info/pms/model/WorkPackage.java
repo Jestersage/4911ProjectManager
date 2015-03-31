@@ -227,10 +227,7 @@ public class WorkPackage implements Serializable
 
 	public String getPackageNum()
 	{
-	    if (packageNum == null) 
-	        return "Select";
-	    else
-	        return packageNum;
+	    return packageNum;
 	}
 
 	public void setPackageNum( String packageNum )
