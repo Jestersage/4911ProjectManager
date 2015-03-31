@@ -207,10 +207,12 @@ public class EmployeeManager implements Serializable
 	public List< Credential > getCredentials()
 	{
 	  //select c.username from credentials c, employee e where c.username = e.username and e.active=true;
+		TypedQuery<Credential> query = entityManager
+				.createQuery("SELECT c FROM Credential c, Employee e " +
+						"WHERE c.username = e.credential.username " +
+						"AND e.activeStatus = true ", Credential.class);
 
-		return this.entityManager.createQuery( "select c from credentials c, employee e where c.username = e.username and e.active=true",
-	    //return this.entityManager.createQuery( "select c from Credential c",
-		        Credential.class ).getResultList();
+		return query.getResultList();
 	}
 
 	/**
