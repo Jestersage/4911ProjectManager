@@ -23,6 +23,8 @@ import java.util.List;
 @RequestScoped
 public class ProjectController implements Serializable{
     private java.util.Date startDate, endDate;
+    private String assistantUsername;
+
     public java.util.Date getStartDate() {
 		return startDate;
 	}
@@ -95,7 +97,7 @@ public class ProjectController implements Serializable{
     }
 
     /**
-     *
+     * Update a project's manager.
      * @return
      */
     public String updateProjectManager() {
@@ -105,29 +107,28 @@ public class ProjectController implements Serializable{
         project.setProjectManager(newManager);
 
         projService.updateProject(project);
-        return null;
-//        return "viewProjectDetails";
+        return "viewProjectDetails";
     }
-//
-//    private boolean updateProjectManager() {
-//        boolean updated = false;
-//
-//        final String username = project.getProjectManager().getCredential().getUsername();
-//        final Employee manager = empService.findEmployeeByUsername(username);
-//        if ( manager == null )
-//        {
-//            FacesContext.getCurrentInstance().addMessage(
-//                    "newProjectForm:mnManager",
-//                    new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "No employee found with username: "
-//                            + username ) );
-//        } else
-//        {
-//            project.setProjectManager(manager);
-//            updated = true;
-//        }
-//
-//        return updated;
-//    }
+
+    public String updateAssistant() {
+        project = projService.getProject(project.getId());
+
+        final Employee assistant = empService.findEmployeeByUsername(assistantUsername);
+        if ( assistant == null )
+        {
+            FacesContext.getCurrentInstance().addMessage(
+                    "projectForm:mnAssistant",
+                    new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "No employee found with username: "
+                            + assistantUsername ) );
+
+            return null;
+        }
+
+        project.setAssistant(assistant);
+        projService.updateProject(project);
+
+        return "viewProjectDetails";
+    }
 
     public java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
         return new java.sql.Date(date.getTime());
@@ -237,5 +238,18 @@ public class ProjectController implements Serializable{
     public String changeManager() {
         project = projService.getProject(project.getId());
         return "changeProjectManager";
+    }
+
+    public String changeAssistant() {
+        project = projService.getProject(project.getId());
+        return "changeAssistant";
+    }
+
+    public void setAssistantUsername(String assistantUsername) {
+        this.assistantUsername = assistantUsername;
+    }
+
+    public String getAssistantUsername() {
+        return assistantUsername;
     }
 }

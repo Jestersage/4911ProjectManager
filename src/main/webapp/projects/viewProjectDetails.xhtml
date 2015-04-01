@@ -50,7 +50,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-12 ">
+						<div class="col-xs-12 col-sm-12 col-md-6 ">
 							<h:form id="projectForm" styleClass="form-inline">
 								<h:inputHidden value="#{projectController.project.id}" />
 
@@ -61,40 +61,47 @@
 									<dt>#{msgs.projectName}</dt>
 									<dd>#{projectController.project.name}</dd>
 
-									<dt>#{msgs.projectDescription}</dt>
-									<dd>#{projectController.project.description}</dd>
-
 									<dt>#{msgs.projectManager}</dt>
 									<dd>#{projectController.project.projectManager.firstName}
 										#{projectController.project.projectManager.lastName}</dd>
 
-									<!-- <dt>#{msgs.projectAssistant}</dt>
+									<dt>#{msgs.projectAssistant}</dt>
 									<dd>#{projectController.project.assistant.firstName}
-										#{projectController.project.assistant.lastName}</dd> -->
+										#{projectController.project.assistant.lastName}</dd>
 
 									<dt>#{msgs.startDate}</dt>
 									<dd>#{projectController.project.startDate}</dd>
 
-
 									<dt>#{msgs.endDate}</dt>
 									<dd>#{projectController.project.endDate}</dd>
 
-
-
 									<dt>#{msgs.status}</dt>
 									<dd>#{projectController.project.status}</dd>
+
 									<dt>#{msgs.contractor}</dt>
 									<dd>#{projectController.project.contractorName}</dd>
+
 									<dt>#{msgs.markup}</dt>
 									<dd>#{projectController.project.markupValue}</dd>
 
+									<dt>#{msgs.projectDescription}</dt>
+									<dd>#{projectController.project.description}</dd>
+
 									<dt>#{msgs.genReport}</dt>
 									<dd>#{projectController.project.genReport}</dd>
+
+									<dt>#{msgs.assignToProject}</dt>
+									<dd>
+										<ol>
+											<ui:repeat var="assigned" value="#{projectController.project.employees.toArray()}">
+												<li>#{assigned.firstName} #{assigned.lastName}</li>
+											</ui:repeat>
+										</ol>
+									</dd>
 								</dl>
 							</h:form>
 						</div>
-					</div>
-					<div class="row">
+
 						<div class="col-md-6">
 							<div class="panel panel-default">
 								<div class="panel-body">
@@ -179,20 +186,31 @@
 							</div>
 						</div>
 					</div>
+					<div class="row">
+					</div>
 
 						<div class="row">
 							<div class="col-xs-12 col-sm-12">
 								<h:form id="linkForm">
 									<h:inputHidden value="#{projectController.project.id}" />
+									<div class="button-groups">
 									<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
-									<h:commandLink value="#{msgs.edit_emp}"
+									<h:commandButton value="#{msgs.edit_emp}"
 												   styleClass="btn btn-primary"
 												   action="#{projectController.goEditProject}" />
 									</ui:fragment>
+									<ui:fragment rendered="#{userController.isAuthorized('Project Manager')}">
+										<h:commandButton value="#{(projectController.project.assistant == null) ? msgs.assignAssistant : msgs.changeAssistant}"
+													   styleClass="btn btn-primary"
+													   action="#{projectController.changeAssistant}" />
+									</ui:fragment>
+									</div>
+									<div class="button-groups">
 									<ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">
 										<h:commandButton value="#{msgs.changeManager}" styleClass="btn btn-default"
 														 action="#{projectController.changeManager}" />
 									</ui:fragment>
+									</div>
 								</h:form>
 							</div>
 						</div>

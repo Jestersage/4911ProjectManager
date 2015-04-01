@@ -13,10 +13,10 @@
 <h:body>
 	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
 
-		<ui:define name="windowTitle">#{msgs.changeManager}</ui:define>
+		<ui:define name="windowTitle">#{msgs.changeAssistant}</ui:define>
 
 		<ui:define name="additionalStyleSheets">
-			<h:outputStylesheet library="css" name="project.css" />
+			<h:outputStylesheet library="css" name="employee.css" />
 		</ui:define>
 
 		<ui:define name="content">
@@ -29,14 +29,13 @@
 							<h:form>
 								<ol class="breadcrumb">
                                     <li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
-									<li><h:commandLink action="viewAllProjects" value="#{msgs.viewAllProject}" /></li>
-									<li class="active">#{msgs.changeManager}</li>
+									<li class="active">#{msgs.changeAssistant}</li>
 								</ol>
 							</h:form>
 						</div>
 
 						<div id="pageTitle">
-							<h1>#{msgs.changeManager}</h1>
+							<h1>#{msgs.changeAssistant}</h1>
 						</div>
 						<ui:insert name="notificationArea">
 							<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
@@ -52,19 +51,18 @@
                             </div>
                             <div class="panel-body">
                                 <h:form id="projectForm">
-                                    <h:inputHidden value="#{projectController.project.id}" />
-                                    <div class="form-group">
-                                        <h:selectOneMenu id="projectManager" styleClass="form-control" required="true"
-														 value="#{projectController.managerId}" >
-											<f:selectItems value="#{projectController.projectManagerCandidates}"
-														   var="employee" itemValue="#{employee.id}"
-														   itemLabel="#{employee.firstName} #{employee.lastName}" />
-										</h:selectOneMenu>
-									</div>
-									<h:commandLink styleClass="btn btn-default" value="#{msgs.save}"
-                                                           action="#{projectController.updateProjectManager}" />
-
-                                    <h:message errorClass="text-danger" for=""/>
+									<h:inputHidden value="#{projectController.project.id}" />
+                                    <div class="input-group">
+                                        <h:inputText id="mnAssistant" required="true"
+                                                     value="#{projectController.assistantUsername}"
+                                                     pt:placeholder="Assistant's Username" styleClass="form-control"
+                                                     label="#{msgs.assistant}"/>
+                                        <span class="input-group-btn">
+                                            <h:commandLink styleClass="btn btn-default" value="#{msgs.save}"
+                                                           action="#{projectController.updateAssistant}" />
+                                        </span>
+                                    </div>
+                                    <h:message errorClass="text-danger" for="mnAssistant"/>
                                 </h:form>
                             </div>
                         </div>
