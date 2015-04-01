@@ -74,6 +74,7 @@ public class WorkPackageController implements Serializable {
 	
 	
 	public String addWorkPackage() {
+		//System.out.println("budget=" + workPackage.getBudget().getP1());
 		WorkPackage parentWP = null;
 		logger.info(parentWPId);
 		if(parentWPId != null)
@@ -83,7 +84,7 @@ public class WorkPackageController implements Serializable {
 		//workPackageService.persistBudget(budget);
 		logger.info("successfully create new WorkPackage: "
 				+ workPackage.toString());
-		System.out.println(workPackage.isLeaf());
+		//System.out.println(workPackage.isLeaf());
 		return "viewAllPackages";
 	}
 
