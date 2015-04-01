@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -76,61 +78,84 @@ public class WeeklyReportController implements Serializable
 	{
 		WorkPackage w = workPackageMngr.find( id );
 		statusReport.setWorkPackage( w );
+		statusReport.setId( w.getId() + 1 );
 		statusReportMngr.persist( statusReport );
 
 		return "mypage";
 	}
 
-	public void findWP()
+	public String findWP()
 	{
+		int engBudgetNum;
+		EngineerBudget engBudget = null;
 
+		FacesContext context = FacesContext.getCurrentInstance();
+
+		// get wp
 		wp = workPackageMngr.find( id );
-		System.out.println( "id= " + id + "\n wp = " + wp );
 
-		if ( wp != null && prev != id )
+		// wp doesn't exist
+		if ( wp == null )
 		{
-			prev = id;
+			id = 0;
+
+			FacesContext.getCurrentInstance().addMessage( "weekReportForm:itWorkPackageNumber",
+			        new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "Work Package not found." ) );
+
+			return "weekReport";
+		}
+
+		// get engineer budget of wp
+		engBudgetNum = workPackageMngr.getEngBudgetID( id );
+
+		// there is a engineer budget
+		if ( engBudgetNum != 0 )
+		{
+			engBudget = engineerBudgetMngr.find( engBudgetNum );
+
+		} else
+		{
+			// error message
+			FacesContext.getCurrentInstance().addMessage( "weekReportForm:itWorkPackageNumber",
+			        new FacesMessage( FacesMessage.SEVERITY_WARN, "", "Work Package not found." ) );
+		}
+
+		// there are all values in the db
+		if ( wp != null && engBudget != null )
+		{
 			setName( wp.getName() );
 
-			// get allocated budget from engineer estimations
-			EngineerBudget engBudget = new EngineerBudget();
-			int engBudgetNum = workPackageMngr.getEngBudgetID( id );
+			// set up values to display
+			// allocated budget
+			engineerBudget.setP1( engBudget.getP1() );
+			engineerBudget.setP2( engBudget.getP2() );
+			engineerBudget.setP3( engBudget.getP3() );
+			engineerBudget.setP4( engBudget.getP4() );
+			engineerBudget.setP5( engBudget.getP5() );
+			engineerBudget.setP6( engBudget.getP6() );
+			engineerBudget.setDS( engBudget.getDS() );
+			engineerBudget.setJS( engBudget.getJS() );
+			engineerBudget.setSS( engBudget.getSS() );
 
-			if ( ( engBudget = engineerBudgetMngr.find( engBudgetNum ) ) != null )
-			{
+			// get remaining budget based on estimation made my the engineer
+			cost = timeSheetRowMngr.getManHoursPerPayLevel( id );
+			System.out.println( "cost = " + cost.toString() );
 
-				// set up values to display
-				engineerBudget.setP1( engBudget.getP1() );
-				engineerBudget.setP2( engBudget.getP2() );
-				engineerBudget.setP3( engBudget.getP3() );
-				engineerBudget.setP4( engBudget.getP4() );
-				engineerBudget.setP5( engBudget.getP5() );
-				engineerBudget.setP6( engBudget.getP6() );
-				engineerBudget.setDS( engBudget.getDS() );
-				engineerBudget.setJS( engBudget.getJS() );
-				engineerBudget.setSS( engBudget.getSS() );
-
-				// get remaining budget based on estimation made my the engineer
-				cost = timeSheetRowMngr.getManHoursPerPayLevel( id );
-				System.out.println( "cost = " + cost.toString() );
-
-				// calculate remaining budget
-				// allocated - cost
-				setP1( engBudget.getP1() - ( cost.get( "P1" ) / 8 ) );
-				setP2( engBudget.getP2() - cost.get( "P2" ) );
-				setP3( engBudget.getP3() - cost.get( "P3" ) );
-				setP4( engBudget.getP4() - cost.get( "P4" ) );
-				setP5( engBudget.getP5() - cost.get( "P5" ) );
-				setP6( engBudget.getP6() - cost.get( "P6" ) );
-				setDs( engBudget.getDS() - cost.get( "DS" ) );
-				setJs( engBudget.getJS() - cost.get( "JS" ) );
-				setSs( engBudget.getSS() - cost.get( "SS" ) );
-			} else
-			{
-				p1 = 0.0;
-				engineerBudget = null;
-			}
+			// calculate remaining budget
+			// allocated - cost. Cost has the total number of hours. Divide by 8
+			// to get the total number of man-days
+			setP1( engBudget.getP1() - ( cost.get( "P1" ) / 8 ) );
+			setP2( engBudget.getP2() - ( cost.get( "P2" ) / 8 ) );
+			setP3( engBudget.getP3() - ( cost.get( "P3" ) / 8 ) );
+			setP4( engBudget.getP4() - ( cost.get( "P4" ) / 8 ) );
+			setP5( engBudget.getP5() - ( cost.get( "P5" ) / 8 ) );
+			setP6( engBudget.getP6() - ( cost.get( "P6" ) / 8 ) );
+			setDs( engBudget.getDS() - ( cost.get( "DS" ) / 8 ) );
+			setJs( engBudget.getJS() - ( cost.get( "JS" ) / 8 ) );
+			setSs( engBudget.getSS() - ( cost.get( "SS" ) / 8 ) );
 		}
+
+		return "weekReport";
 
 	}
 

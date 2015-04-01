@@ -30,9 +30,10 @@ public class WorkPackageManager implements Serializable
 
 	public WorkPackage find( final Integer id )
 	{
-		if(id !=null)
-		return em.find( WorkPackage.class, id );
-		else return null;
+		if ( id != null )
+			return em.find( WorkPackage.class, id );
+		else
+			return null;
 	}
 
 	public void remove( final WorkPackage workPackage )
@@ -43,7 +44,7 @@ public class WorkPackageManager implements Serializable
 
 	public void merge( final WorkPackage workPackage )
 	{
-		em.merge(workPackage);
+		em.merge( workPackage );
 	}
 
 	public void persist( final WorkPackage newWorkPackage )
@@ -55,8 +56,8 @@ public class WorkPackageManager implements Serializable
 			logger.warn( "Record(WorkPackage) already exist! " );
 		} else
 		{
-			if(!newWorkPackage.isLeaf())
-				newWorkPackage.setBudget(null);
+			if ( !newWorkPackage.isLeaf() )
+				newWorkPackage.setBudget( null );
 			em.persist( newWorkPackage );
 			logger.info( "Workpackage added: " + newWorkPackage.getId() + ", " + newWorkPackage.getName() );
 		}
@@ -67,7 +68,7 @@ public class WorkPackageManager implements Serializable
 	{
 		Query query = em.createNativeQuery(
 		        "select * " + "from workpackage " + "where projectId LIKE :projectId", WorkPackage.class )
-		        .setParameter("projectId", projectId);
+		        .setParameter( "projectId", projectId );
 		List< WorkPackage > workPackages = query.getResultList();
 		return workPackages;
 	}
@@ -113,15 +114,15 @@ public class WorkPackageManager implements Serializable
 	// TODO fix to engineer.id when employeeID change to manager in WorkPackage
 	public List< WorkPackage > getManagedWorkPackage( final String empId )
 	{
-		TypedQuery< WorkPackage > query = em.createQuery("SELECT w FROM WorkPackage w "
-				+ "WHERE w.employeeID = :assistantId", WorkPackage.class);
+		TypedQuery< WorkPackage > query = em.createQuery( "SELECT w FROM WorkPackage w "
+		        + "WHERE w.employeeID = :assistantId", WorkPackage.class );
 		query.setParameter( "assistantId", empId );
 		return query.getResultList();
 	}
 
 	public int findNumOfChildWP( String projId )
 	{
-		Query query = em.createNativeQuery("select COUNT(*) from WorkPackage  where projectID = :projectId");
+		Query query = em.createNativeQuery( "select COUNT(*) from WorkPackage  where projectID = :projectId" );
 		query.setParameter( "projectId", projId );
 		int workPackages = ( ( Number ) query.getSingleResult() ).intValue();
 		return workPackages;
@@ -130,23 +131,33 @@ public class WorkPackageManager implements Serializable
 	public int getEngBudgetID( int id )
 	{
 		Query query = em
-		        .createNativeQuery("SELECT engBudgetID from WorkPackage WHERE packageID = :packageID");
+		        .createNativeQuery( "SELECT engBudgetID from WorkPackage WHERE packageID = :packageID" );
 		query.setParameter( "packageID", id );
 
-		int num = ( int ) query.getSingleResult();
-		return num;
+		try
+		{
+
+			int num = ( int ) query.getSingleResult();
+			return num;
+
+		} catch ( Exception e )
+		{
+
+			return 0;
+		}
+
 	}
 
 	/**
-	 * @param empId id of employees assigned to work package
+	 * @param empId
+	 *            id of employees assigned to work package
 	 * @return a list of all work packages an employee is assigned to.
 	 */
-	public List<WorkPackage> getWorkPackagesByAssignee(final String empId) {
-		TypedQuery<WorkPackage> query = em
-				.createQuery("SELECT wp FROM WorkPackage wp, " +
-						"IN (wp.employees) AS e " +
-						"WHERE e.id = :empId", WorkPackage.class);
-		query.setParameter("empId", empId);
+	public List< WorkPackage > getWorkPackagesByAssignee( final String empId )
+	{
+		TypedQuery< WorkPackage > query = em.createQuery( "SELECT wp FROM WorkPackage wp, "
+		        + "IN (wp.employees) AS e " + "WHERE e.id = :empId", WorkPackage.class );
+		query.setParameter( "empId", empId );
 
 		return query.getResultList();
 	}

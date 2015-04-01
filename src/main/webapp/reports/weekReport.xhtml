@@ -50,14 +50,17 @@
 					<div class="row">
 
 						<div class="col-xs-12 col-sm-12 col-md-12" id="data">
-							<h:form id="newProjectForm" class="form-horizontal">
+							<h:form id="weekReportForm" class="form-horizontal">
 								<div class="container-fluid">
 									<div class="row">
 										<div class="col-md-7">
 											<div class="">
 												<h:messages errorClass="error" />
 											</div>
-
+											
+											
+											<span id="helpBlock" class="help-block">Enter work package number to search and press tab.</span>
+											
 											<div class="form-group">
 												<h:outputLabel for="itWorkPackageNumber"
 													value="#{msgs.workPackageNumber}"
@@ -66,13 +69,12 @@
 												<div class="col-sm-4">
 													<h:inputText pt:placeholder="type to search"
 														class="form-control" id="itWorkPackageNumber"
-														required="true" value="#{weekReport.id}">
+														required="true" value="#{weekReport.id}" label="#{msgs.workPackageNumber}">
 														<p:ajax event="blur"
 															update="itWorkPackageName itProject summaryOfCost"
 															listener="#{weekReport.findWP}" />
 													</h:inputText>
 												</div>
-
 											</div>
 
 
@@ -223,7 +225,7 @@
 											</div>
 										</div>
 										<!-- /col -->
-										<div class="col-md-4">
+										<div class="col-md-5">
 											<p:panelGrid id="summaryOfCost" styleClass="table-bordered">
 												<f:facet name="header">
 													<p:row>
@@ -242,27 +244,102 @@
 												<p:row></p:row>
 												<p:row>
 													<p:column>#{msgs.allocated}</p:column>
-													<p:column>#{weekReport.engineerBudget.p1}</p:column>
-													<p:column>#{weekReport.engineerBudget.p2}</p:column>
-													<p:column>#{weekReport.engineerBudget.p3}</p:column>
-													<p:column>#{weekReport.engineerBudget.p4}</p:column>
-													<p:column>#{weekReport.engineerBudget.p5}</p:column>
-													<p:column>#{weekReport.engineerBudget.p6}</p:column>
-													<p:column>#{weekReport.engineerBudget.JS}</p:column>
-													<p:column>#{weekReport.engineerBudget.SS}</p:column>
-													<p:column>#{weekReport.engineerBudget.DS}</p:column>
+													<p:column>
+														<h:outputText value="#{weekReport.engineerBudget.p1}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
+
+
+													<p:column>
+														<h:outputText value="#{weekReport.engineerBudget.p2}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
+													<p:column>
+														<h:outputText value="#{weekReport.engineerBudget.p3}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
+													<p:column>
+														<h:outputText value="#{weekReport.engineerBudget.p4}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
+													<p:column>
+														<h:outputText value="#{weekReport.engineerBudget.p5}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
+													<p:column>
+														<h:outputText value="#{weekReport.engineerBudget.p6}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
+													<p:column>
+														<h:outputText value="#{weekReport.engineerBudget.JS}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
+													<p:column>
+														<h:outputText value="#{weekReport.engineerBudget.SS}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
+													<p:column>
+														<h:outputText value="#{weekReport.engineerBudget.DS}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
 												</p:row>
 												<p:row>
 													<p:column>#{msgs.remaining}</p:column>
-													<p:column>#{weekReport.p1}</p:column>
-													<p:column>#{weekReport.p2}</p:column>
-													<p:column>#{weekReport.p3}</p:column>
-													<p:column>#{weekReport.p4}</p:column>
-													<p:column>#{weekReport.p5}</p:column>
-													<p:column>#{weekReport.p6}</p:column>
-													<p:column>#{weekReport.js}</p:column>
-													<p:column>#{weekReport.ss}</p:column>
-													<p:column>#{weekReport.ds}</p:column>
+													<p:column>
+														<h:outputText value="#{weekReport.p1}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
+													<p:column>
+														<h:outputText value="#{weekReport.p2}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
+
+													<p:column>
+														<h:outputText value="#{weekReport.p3}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
+													<p:column>
+														<h:outputText value="#{weekReport.p4}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
+													<p:column>
+														<h:outputText value="#{weekReport.p5}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
+													<p:column>
+														<h:outputText value="#{weekReport.p6}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
+													<p:column>
+														<h:outputText value="#{weekReport.js}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
+													<p:column>
+														<h:outputText value="#{weekReport.ss}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
+													<p:column>
+														<h:outputText value="#{weekReport.ds}">
+															<f:convertNumber maxFractionDigits="2" />
+														</h:outputText>
+													</p:column>
 												</p:row>
 											</p:panelGrid>
 										</div>
