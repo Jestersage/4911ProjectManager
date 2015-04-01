@@ -153,10 +153,16 @@ public class ProjectController implements Serializable{
         List<Project> managedProjects;
         final String userId = userController.getUser().getId();
 
-        if (userController.isAuthorized(Employee.ROLE_PROJECT_MANAGER)) {
+        final boolean isManager = userController.isAuthorized(Employee.ROLE_PROJECT_MANAGER);
+        final boolean isAssistant = userController.isAuthorized(Employee.ROLE_ASSISTANT);
+        if (isManager && isAssistant) {
+            final List<Project> assistantList = projService.getAssistedProjectsFor(userId);
             managedProjects = projService.getManagedProjectsFor(userId);
-        }
-        else {
+            managedProjects.addAll(assistantList);
+        } else if (isManager) {
+            managedProjects = projService.getManagedProjectsFor(userId);
+
+        } else {
             managedProjects = projService.getAssistedProjectsFor(userId);
         }
 
