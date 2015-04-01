@@ -73,7 +73,7 @@
                                                 </ui:fragment>
                                             </div>
                                             <!-- Table -->
-                                            <table class="table">
+                                            <table class="table" id="timesheetTotals">
 
                                                 <tr class="row">
                                                     <td class="col-md-2"><h:outputLabel
@@ -94,10 +94,10 @@
                                                             value="#{editTimesheetController.weekEnding}" /></td>
                                                     <td class="col-md-2"><h:outputText id="sheetTotal"
                                                             value="#{editTimesheetController.totalHours}" /></td>
-                                                    <td class="col-md-2" id="sheetOT"><h:outputText
-                                                            value="" /></td>
-                                                    <td class="col-md-3" id="sheetFLEX"><h:outputText
-                                                            value="" /></td>
+                                                    <td class="col-md-2"><h:outputText
+                                                            value="#{editTimesheetController.overtime}" /></td>
+                                                    <td class="col-md-3"><h:outputText
+                                                            value="#{editTimesheetController.flextime}" /></td>
                                                 </tr>
 
                                             </table>

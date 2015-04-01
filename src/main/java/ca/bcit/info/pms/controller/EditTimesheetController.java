@@ -110,7 +110,7 @@ public class EditTimesheetController implements Serializable {
         
         if(!noWorkPackagesAreNull(rows) && isValid) {
             isValid = false;
-            msg = new FacesMessage("Must select a Work Package for each row");
+            msg = new FacesMessage("Each row must be associated with a work package");
         }
         
         if (!dayTotalsAreValid(rows) && isValid){
@@ -123,7 +123,7 @@ public class EditTimesheetController implements Serializable {
             msg = new FacesMessage("Work Packages must be unique among rows");
         }
         
-        if (!rowTotalsAreValid(rows) && isValid) {
+        if (!sheetTotalsAreValid() && isValid) {
             isValid = false;
             msg = new FacesMessage("Total man-hours in week cannot be > 40.0\n"
                     + "Where man-hours = Total - (FLEX + OT)");
@@ -145,10 +145,16 @@ public class EditTimesheetController implements Serializable {
      * @param rows      The timesheetRows to inspect
      * @return          true if the total is valid
      */
-    private boolean rowTotalsAreValid(List<TimesheetRow> rows) {
-        // TODO : rowTotal Logic
-        // TODO : Add FLEX input on timesheet.xhtml
-        // TODO : Add OT input on timesheet.xhtml
+    private boolean sheetTotalsAreValid() {
+        double netTotal = getTotalHours();
+        double grossTotal = netTotal - (timesheet.getFlextime().doubleValue() 
+                                        + timesheet.getOvertime().doubleValue());
+        
+        logger.info("grossTotal::"+grossTotal);
+        if (grossTotal > 40.0) {
+            return false;
+        }
+        
         return true;
     }
     
@@ -278,5 +284,13 @@ public class EditTimesheetController implements Serializable {
     
     public int getWeekNumber() {
         return timesheet.getWeekNumber();
+    }
+    
+    public double getOvertime() {
+        return timesheet.getOvertime().doubleValue();
+    }
+    
+    public double getFlextime() {
+        return timesheet.getFlextime().doubleValue();
     }
 }
