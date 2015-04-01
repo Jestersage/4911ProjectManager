@@ -63,7 +63,6 @@
 										<h:commandLink action="newProject" value="#{msgs.newProject}" />
 										</ui:fragment>
 										<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
-										<h:commandLink action="editProject" value="#{msgs.editProject}" />
 											<h:commandLink action="viewManagedProjects" value="#{msgs.viewAllProject}" />
 										</ui:fragment>
 									</div>
