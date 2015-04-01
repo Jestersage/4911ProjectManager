@@ -171,6 +171,15 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	<!-- Go Work Package Detail-->
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>viewWorkPackageDetails</from-outcome>
+			<to-view-id>/projects/viewWorkPackageDetails.xhtml</to-view-id>
+
+		</navigation-case>
+	</navigation-rule>
 	<!-- timesheet rules new timesheet -->
 	<navigation-rule>
 		<from-view-id>*</from-view-id>

@@ -98,6 +98,7 @@
 									</p:column>															
 
 									<p:column>
+									<h:commandLink value="#{msgs.package_details}" action="#{workPackageController.viewPackageDetails(package)}" /> |
                                         <h:commandLink value="#{msgs.edit_emp}" action="#{workPackageController.goEditPackage(package)}" /> |      
                                                   <h:commandLink value="#{msgs.newWorkPackage}"
                                      		action="#{workPackageController.goChildPackage(package)}" 

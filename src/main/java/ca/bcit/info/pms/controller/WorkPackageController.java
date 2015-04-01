@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -82,6 +83,7 @@ public class WorkPackageController implements Serializable {
 		//workPackageService.persistBudget(budget);
 		logger.info("successfully create new WorkPackage: "
 				+ workPackage.toString());
+		System.out.println(workPackage.isLeaf());
 		return "viewAllPackages";
 	}
 
@@ -133,5 +135,16 @@ public class WorkPackageController implements Serializable {
 		this.parentWPId = parentWPId;
 	}
 
-
+    public void setBooleanLeaf (AjaxBehaviorEvent event) {   	
+    	workPackage.setLeaf(workPackage.isLeaf());
+    }
+    
+    /**
+     * 
+     * @return
+     */
+    public String viewPackageDetails(final WorkPackage workPackage){
+    	this.workPackage = workPackage;
+    	return "viewWorkPackageDetails";
+    }
 }

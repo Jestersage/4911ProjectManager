@@ -177,7 +177,8 @@
 													<h:selectBooleanCheckbox id="isLeafOrNot"
 														value="#{workPackageController.workPackage.leaf}"
 														label="#{msgs.isLeafOrNot}" class="form-control">
-														<f:ajax event="click" render="budgetSection" />
+														<f:ajax event="click" render="budgetSection" 
+																listener="#{workPackageController.setBooleanLeaf}"/>
 													</h:selectBooleanCheckbox>
 													<h:message errorClass="text-danger" for="isLeafOrNot" />
 												</div>
