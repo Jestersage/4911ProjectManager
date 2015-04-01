@@ -192,12 +192,15 @@
 						<div class="row">
 							<div class="col-xs-12 col-sm-12">
 								<h:form id="linkForm">
-									<h:inputHidden value="#{projectController.project.id}" />
+									<h:inputHidden binding="#{projectId}" value="#{projectController.project.id}" />
 									<div class="button-groups">
 									<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
 									<h:commandButton value="#{msgs.edit_emp}"
 												   styleClass="btn btn-primary"
 												   action="#{projectController.goEditProject}" />
+									<h:commandButton value="#{msgs.viewMonthlyReport}"
+														 styleClass="btn btn-primary"
+														 action="#{monthlyReport.viewMonthlyReport(projectId.value)}" />
 									</ui:fragment>
 									<ui:fragment rendered="#{userController.isAuthorized('Project Manager')}">
 										<h:commandButton value="#{(projectController.project.assistant == null) ? msgs.assignAssistant : msgs.changeAssistant}"

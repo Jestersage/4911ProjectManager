@@ -267,4 +267,10 @@ public class MonthlyReportController implements Serializable {
 		
 		return "viewMonthlyReport";
 	}
+
+	public String viewMonthlyReport(final String pId) {
+		project = reportManager.find(pId);
+		return "viewMonthlyReport";
+	}
+
 }
