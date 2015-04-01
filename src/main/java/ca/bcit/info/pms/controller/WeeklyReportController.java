@@ -62,6 +62,7 @@ public class WeeklyReportController implements Serializable
 
 	private int id;
 	private String name;
+	private int prev;
 
 	@Inject
 	private Budget budget;
@@ -84,47 +85,53 @@ public class WeeklyReportController implements Serializable
 	{
 
 		wp = workPackageMngr.find( id );
+		System.out.println( "id= " + id + "\n wp = " + wp );
 
-		if ( wp != null )
+		if ( wp != null && prev != id )
 		{
+			prev = id;
 			setName( wp.getName() );
 
 			// get allocated budget from engineer estimations
 			EngineerBudget engBudget = new EngineerBudget();
 			int engBudgetNum = workPackageMngr.getEngBudgetID( id );
-			engBudget = engineerBudgetMngr.find( engBudgetNum );
 
-			// set up values to display
-			engineerBudget.setP1( engBudget.getP1() );
-			engineerBudget.setP2( engBudget.getP2() );
-			engineerBudget.setP3( engBudget.getP3() );
-			engineerBudget.setP4( engBudget.getP4() );
-			engineerBudget.setP5( engBudget.getP5() );
-			engineerBudget.setP6( engBudget.getP6() );
-			engineerBudget.setDS( engBudget.getDS() );
-			engineerBudget.setJS( engBudget.getJS() );
-			engineerBudget.setSS( engBudget.getSS() );
+			if ( ( engBudget = engineerBudgetMngr.find( engBudgetNum ) ) != null )
+			{
 
-			// get remaining budget based on estimation made my the engineer
-			cost = timeSheetRowMngr.getManHoursPerPayLevel( id );
-			System.out.println( "cost = " + cost.toString() );
+				// set up values to display
+				engineerBudget.setP1( engBudget.getP1() );
+				engineerBudget.setP2( engBudget.getP2() );
+				engineerBudget.setP3( engBudget.getP3() );
+				engineerBudget.setP4( engBudget.getP4() );
+				engineerBudget.setP5( engBudget.getP5() );
+				engineerBudget.setP6( engBudget.getP6() );
+				engineerBudget.setDS( engBudget.getDS() );
+				engineerBudget.setJS( engBudget.getJS() );
+				engineerBudget.setSS( engBudget.getSS() );
 
-			// calculate remaining budget
-			// allocated - cost
-			setP1( engBudget.getP1() - ( cost.get( "P1" ) / 8 ) );
-			setP2( engBudget.getP2() - cost.get( "P2" ) );
-			setP3( engBudget.getP3() - cost.get( "P3" ) );
-			setP4( engBudget.getP4() - cost.get( "P4" ) );
-			setP5( engBudget.getP5() - cost.get( "P5" ) );
-			setP6( engBudget.getP6() - cost.get( "P6" ) );
-			setDs( engBudget.getDS() - cost.get( "DS" ) );
-			setJs( engBudget.getJS() - cost.get( "JS" ) );
-			setSs( engBudget.getSS() - cost.get( "SS" ) );
+				// get remaining budget based on estimation made my the engineer
+				cost = timeSheetRowMngr.getManHoursPerPayLevel( id );
+				System.out.println( "cost = " + cost.toString() );
 
-		} else
-		{
-			setName( "" );
+				// calculate remaining budget
+				// allocated - cost
+				setP1( engBudget.getP1() - ( cost.get( "P1" ) / 8 ) );
+				setP2( engBudget.getP2() - cost.get( "P2" ) );
+				setP3( engBudget.getP3() - cost.get( "P3" ) );
+				setP4( engBudget.getP4() - cost.get( "P4" ) );
+				setP5( engBudget.getP5() - cost.get( "P5" ) );
+				setP6( engBudget.getP6() - cost.get( "P6" ) );
+				setDs( engBudget.getDS() - cost.get( "DS" ) );
+				setJs( engBudget.getJS() - cost.get( "JS" ) );
+				setSs( engBudget.getSS() - cost.get( "SS" ) );
+			} else
+			{
+				p1 = 0.0;
+				engineerBudget = null;
+			}
 		}
+
 	}
 
 	public EngineerBudget getBudgetForWP( int id )
