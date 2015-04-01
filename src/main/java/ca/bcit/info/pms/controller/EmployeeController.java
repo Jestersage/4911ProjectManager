@@ -246,6 +246,9 @@ public class EmployeeController implements Serializable
 		return empService.getAllEmployee();
 	}
 
+	/**
+	 * @return a list of employees managed by this supervisor
+	 */
 	public List< Employee > getManagedEmployees()
 	{
 		final String currUserId = userController.getUser().getId();

@@ -16,6 +16,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.List;
 
 @Named("projectController")
@@ -45,6 +46,9 @@ public class ProjectController implements Serializable{
     private UserController userController;
 
     @Inject
+    private EmployeeController employeeController;
+
+    @Inject
     private EmployeeService empService;
 
     /*
@@ -52,6 +56,9 @@ public class ProjectController implements Serializable{
      */
     @Inject
     private Project project;
+
+    /** keeps track of new project manager's id.*/
+    private String managerId;
     
     private static final Logger logger = LogManager.getLogger(ProjectController.class);
 
@@ -87,25 +94,40 @@ public class ProjectController implements Serializable{
         return "viewProjectDetails";
     }
 
-    private boolean updateProjectManager() {
-        boolean updated = false;
+    /**
+     *
+     * @return
+     */
+    public String updateProjectManager() {
+        project = projService.getProject(project.getId());
 
-        final String username = project.getProjectManager().getCredential().getUsername();
-        final Employee manager = empService.findEmployeeByUsername(username);
-        if ( manager == null )
-        {
-            FacesContext.getCurrentInstance().addMessage(
-                    "newProjectForm:mnManager",
-                    new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "No employee found with username: "
-                            + username ) );
-        } else
-        {
-            project.setProjectManager(manager);
-            updated = true;
-        }
+        final Employee newManager = empService.findEmployeeById(managerId);
+        project.setProjectManager(newManager);
 
-        return updated;
+        projService.updateProject(project);
+        return null;
+//        return "viewProjectDetails";
     }
+//
+//    private boolean updateProjectManager() {
+//        boolean updated = false;
+//
+//        final String username = project.getProjectManager().getCredential().getUsername();
+//        final Employee manager = empService.findEmployeeByUsername(username);
+//        if ( manager == null )
+//        {
+//            FacesContext.getCurrentInstance().addMessage(
+//                    "newProjectForm:mnManager",
+//                    new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "No employee found with username: "
+//                            + username ) );
+//        } else
+//        {
+//            project.setProjectManager(manager);
+//            updated = true;
+//        }
+//
+//        return updated;
+//    }
 
     public java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
         return new java.sql.Date(date.getTime());
@@ -113,6 +135,14 @@ public class ProjectController implements Serializable{
     
     public List<Project> getProjects() {
         return projService.getAllProjects();
+    }
+
+    public String getManagerId() {
+        return managerId;
+    }
+
+    public void setManagerId(String managerId) {
+        this.managerId = managerId;
     }
 
     /**
@@ -131,7 +161,20 @@ public class ProjectController implements Serializable{
 
         return managedProjects;
     }
-    
+
+    public List<Employee> getProjectManagerCandidates() {
+        List<Employee> candidates = employeeController.getManagedEmployees();
+        final Employee currentManager = project.getProjectManager();
+
+        if (!candidates.contains(currentManager)) {
+            candidates.add(currentManager);
+        }
+
+        candidates.sort((o1, o2) -> o1.getLastName().compareTo(o2.getLastName()));
+
+        return candidates;
+    }
+
     /**
      * 
      * @return
@@ -189,5 +232,10 @@ public class ProjectController implements Serializable{
     	project.setEndDate(convertJavaDateToSqlDate(endDate));
     	projService.updateProject(project);
     	return "viewProjectDetails";
+    }
+
+    public String changeManager() {
+        project = projService.getProject(project.getId());
+        return "changeProjectManager";
     }
 }

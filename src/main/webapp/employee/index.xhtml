@@ -63,7 +63,10 @@
 										<h:commandLink action="newProject" value="#{msgs.newProject}" />
 										</ui:fragment>
 										<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
-											<h:commandLink action="viewManagedProjects" value="#{msgs.viewAllProject}" />
+											<h:commandLink action="viewManagedProjects" value="#{msgs.viewManagedProjects}" />
+										</ui:fragment>
+										<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
+											<h:commandLink action="viewAllProjects" value="#{msgs.viewAllProject}" />
 										</ui:fragment>
 									</div>
 									</ui:fragment>
@@ -112,8 +115,6 @@
                                             <ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">
                                                 <h:commandLink action="viewManagedEmp"
                                                                value="#{msgs.manageEmployees}" />
-                                                <h:commandLink action="viewAllProjects"
-                                                               value="#{msgs.assignToProject}" />
                                             </ui:fragment>
 										</div>
 									</ui:fragment>

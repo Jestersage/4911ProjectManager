@@ -60,10 +60,14 @@
 								<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<ui:fragment rendered="#{userController.isAuthorized('Supervisor,Project Manager')}">
-								<li><h:commandLink value="#{msgs.newProject}" action="newProject" /></li>
+									<li><h:commandLink value="#{msgs.newProject}" action="newProject" /></li>
 								</ui:fragment>
 								<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
-								<li><h:commandLink action="viewManagedProjects" value="#{msgs.viewAllProject}" /></li>
+									<li><h:commandLink action="viewManagedProjects" value="#{msgs.viewManagedProjects}" /></li>
+								</ui:fragment>
+								<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
+									<li class="divider"></li>
+									<li><h:commandLink action="viewAllProjects" value="#{msgs.viewAllProject}" /></li>
 								</ui:fragment>
 								<li class="divider"></li>
 								<li><h:commandLink value="#{msgs.newWorkPackage}" action="newWorkPackage" /></li>
@@ -84,10 +88,7 @@
                                     </ui:fragment>
                                     <ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">
 									<li class="divider"></li>
-                                    <li><h:commandLink action="viewManagedEmp"
-                                                       value="#{msgs.manageEmployees}" /></li>
-                                    <li><h:commandLink action="viewAllProjects"
-                                                       value="#{msgs.assignToProject}" /></li>
+                                    <li><h:commandLink action="viewManagedEmp" value="#{msgs.manageEmployees}" /></li>
                                     </ui:fragment>
 								</ul></li>
 						</ui:fragment>
