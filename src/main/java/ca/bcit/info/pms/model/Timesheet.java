@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -179,6 +180,19 @@ public class Timesheet implements Serializable
             throw new IllegalArgumentException("EndWeek must be a Friday");
         }
 
+    }
+
+    @Transient
+    public double getTotal() {
+        double total = 0;
+
+        if ( timesheetRows != null ) {
+            for (TimesheetRow tsr : timesheetRows) {
+                total += tsr.getTotalHours();
+            }
+        }
+
+        return total;
     }
 
     @Override

@@ -142,11 +142,10 @@ public class EditTimesheetController implements Serializable {
     /**
      * Returns false if the 'Row Total - (FLEX + OT) > 40'
      * 
-     * @param rows      The timesheetRows to inspect
      * @return          true if the total is valid
      */
     private boolean sheetTotalsAreValid() {
-        double netTotal = getTotalHours();
+        double netTotal = timesheet.getTotal();
         double grossTotal = netTotal - (timesheet.getFlextime().doubleValue() 
                                         + timesheet.getOvertime().doubleValue());
         
@@ -251,25 +250,7 @@ public class EditTimesheetController implements Serializable {
         
         return true;
     }
-    
-    /**
-     * Gets the total work hours for the time sheet.
-     * @return
-     */
-    public double getTotalHours() {
-        double total = 0;
-        
-        List<TimesheetRow> rows = timesheet.getTimesheetRows();
-        
-        if ( rows != null ) {
-            for (TimesheetRow tsr : rows) {
-                total += tsr.getTotalHours();
-            }
-        }
-        
-        return total;
-    }
-    
+
     public void removeRowFromTimesheet(TimesheetRow row) {
         List<TimesheetRow> rows = timesheet.getTimesheetRows();
         
@@ -284,13 +265,5 @@ public class EditTimesheetController implements Serializable {
     
     public int getWeekNumber() {
         return timesheet.getWeekNumber();
-    }
-    
-    public double getOvertime() {
-        return timesheet.getOvertime().doubleValue();
-    }
-    
-    public double getFlextime() {
-        return timesheet.getFlextime().doubleValue();
     }
 }
