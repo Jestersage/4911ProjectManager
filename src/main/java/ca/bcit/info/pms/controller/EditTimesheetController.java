@@ -131,8 +131,8 @@ public class EditTimesheetController implements Serializable {
         
         if (!sheetTotalsAreValid() && isValid) {
             isValid = false;
-            msg = new FacesMessage("Total man-hours in week cannot be > 40.0\n"
-                    + "Where man-hours = Total - (FLEX + OT)");
+            msg = new FacesMessage("Total person-hours in week must be exactly equal to 40.00\n"
+                    + "Where person-hours = Total - (FLEX + OT)");
         }
 
         if(isValid){
@@ -156,7 +156,7 @@ public class EditTimesheetController implements Serializable {
                                         + timesheet.getOvertime().doubleValue());
         
         logger.info("grossTotal::"+grossTotal);
-        if (grossTotal > 40.0) {
+        if (grossTotal != 40.0) {
             return false;
         }
         
