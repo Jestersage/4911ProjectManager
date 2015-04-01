@@ -45,7 +45,7 @@
 							   #{msgs.timesheet} <span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu" role="menu">
-								<li><h:commandLink action="currentTimesheet" value="#{msgs.currentTimesheet}" /> </li>
+								<li><h:commandLink action="#{editTimesheetController.fillThisWeek()}" value="#{msgs.currentTimesheet}" /> </li>
 								<li><h:commandLink action="previousTimesheet" value="#{msgs.previousTimesheet}" /></li>
 								<li><h:commandLink action="pendingTimesheet" value="#{msgs.pendingTimesheet}" /></li>
 							<ui:fragment rendered="#{userController.isAuthorized('Timesheet Approver')}">
