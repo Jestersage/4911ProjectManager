@@ -41,7 +41,7 @@
 								<dd>#{timesheetController.timesheet.overtime}</dd>
 
 								<dt>#{msgs.tsValid}</dt>
-								<dd>#{timesheetController.isVerified} </dd>
+								<dd>#{timesheetController.verifyTimesheet()} </dd>
 
 								<dt>#{msgs.status}</dt>
 								<dd class="#{(timesheetController.timesheet.approved == 'Rejected') ? 'text-danger' : ''}">

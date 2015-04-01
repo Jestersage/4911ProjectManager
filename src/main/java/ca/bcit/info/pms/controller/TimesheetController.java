@@ -102,33 +102,6 @@ public class TimesheetController implements Serializable {
     public String reviewTimesheet(final Timesheet ts) {
         timesheet = ts;
         
-        try {
-			
-			String data = timesheet.toString();
-			
-			sigObject = signatureManager.find(timesheet.getId()); //Retrieve signature model
-
-			byte[] encKey = sigObject.getPublicKey(); //Retrieve public key
-			
-			//Decode the public key
-			X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
-			KeyFactory keyFactory = KeyFactory.getInstance("DSA", "SUN");
-			PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
-			
-			byte[] sigToVerify = sigObject.getSignature(); //Retrieve signature
-			
-			Signature sig = Signature.getInstance("SHA1withDSA", "SUN");
-			sig.initVerify(pubKey); //Initialize verification with decoded public key
-			
-
-			byte[] dataBytes = data.getBytes(); //Retrieve data
-			sig.update(dataBytes); //Update signature with data
-			
-			isVerified = sig.verify(sigToVerify); //Verify whether signature is valid
-			
-		} catch (Exception e) {
-			System.err.println("Caught exception " + e.toString());
-		}
         return "reviewTimesheet";
     }
 
@@ -139,7 +112,6 @@ public class TimesheetController implements Serializable {
 
     public String viewTimesheet(final Timesheet ts) {
         timesheet = ts;
-        reviewTimesheet(timesheet);
         return "viewTimesheet";
     }
 
@@ -176,6 +148,14 @@ public class TimesheetController implements Serializable {
     
     public String signTimesheet() {
     	try {
+    		Employee user = userController.getUser();
+	        
+	        timesheet = timeService.getCurrentTimesheet(user); 
+	        
+	        timesheet.setSubmitted(true); //Submits the timesheet
+	        timesheet.setApproved(null); //reset approved status (in case timesheet as rejected)
+	        timeService.updateTimesheet(timesheet);
+    		
 			//Setting up key generator
 			KeyPairGenerator keyGen = KeyPairGenerator.getInstance("DSA", "SUN");
 			SecureRandom random = SecureRandom.getInstance("SHA1PRNG", "SUN");
@@ -190,6 +170,8 @@ public class TimesheetController implements Serializable {
 			dsa.initSign(priv); //signing signature with private key
 			
 			String data = timesheet.toString();
+			System.out.println(data);
+
 			byte[] dataBytes = new byte[1024]; //Creating a byte array to store the data
 			dataBytes = data.getBytes(); //Convert the data from string to bytes
 			
@@ -200,18 +182,9 @@ public class TimesheetController implements Serializable {
 			byte[] key = pub.getEncoded(); //Convert the public key into a byte array
 			
 			sigObject = new SignatureObject(realSig, key); //Create the signature object model
-			
-			Employee user = userController.getUser();
-	        
-	        timesheet = timeService.getCurrentTimesheet(user); 
-	        
-	        timesheet.setSubmitted(true); //Submits the timesheet
-	        timesheet.setApproved(null); //reset approved status (in case timesheet as rejected)
 
 			sigObject.setId(timesheet.getId());
 			signatureManager.persist(sigObject); //Persist the newly created model into the database
-			
-			//id = sigObject.getId(); //Grab the id for testing purposes. This should match timesheet id?
 			
 			
 		} catch(Exception e) {
@@ -220,5 +193,37 @@ public class TimesheetController implements Serializable {
 		}
     	
     	return "mypage";
+    }
+    
+    public boolean verifyTimesheet() {
+    	try {
+			
+			String data = timesheet.toString();
+			System.out.println(data);
+			
+			SignatureObject sigObject = signatureManager.find(timesheet.getId()); //Retrieve signature model
+
+			byte[] encKey = sigObject.getPublicKey(); //Retrieve public key
+			
+			//Decode the public key
+			X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
+			KeyFactory keyFactory = KeyFactory.getInstance("DSA", "SUN");
+			PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
+			
+			byte[] sigToVerify = sigObject.getSignature(); //Retrieve signature
+			
+			Signature sig = Signature.getInstance("SHA1withDSA", "SUN");
+			sig.initVerify(pubKey); //Initialize verification with decoded public key			
+
+			byte[] dataBytes = data.getBytes(); //Retrieve data
+			sig.update(dataBytes); //Update signature with data
+
+			return sig.verify(sigToVerify); //Verify whether signature is valid
+			
+		} catch (Exception e) {
+			System.err.println("Caught exception " + e.toString());
+		}
+    	
+    	return false;
     }
 }

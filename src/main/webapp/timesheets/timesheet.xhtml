@@ -11,6 +11,7 @@
     <title></title>
 </h:head>
 <h:body>
+
     <ui:composition template="/templatesBootstrap/masterLayout.xhtml">
 
         <ui:define name="windowTitle">#{msgs.timesheet}</ui:define>
@@ -61,7 +62,8 @@
                                             <div class="panel-body">
                                                 <h:commandButton class="marginOneEm btn btn-success"
                                                     value="#{msgs.signTimesheet}" id="signTimesheet"
-                                                    action="#{timesheetController.signTimesheet()}" />
+                                                    action="#{timesheetController.signTimesheet()}" 
+                                                    onclick="return confirm('#{msgs.confirmSign}');" />
                                                 <h:commandButton class=" marginOneEm btn btn-success"
                                                     value="#{msgs.save}" id="saveTimesheet"
                                                     action="#{editTimesheetController.saveTimesheet}" />

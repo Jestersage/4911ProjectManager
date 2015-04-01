@@ -1,5 +1,6 @@
 package ca.bcit.info.pms.model;
 
+import javax.inject.Inject;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +16,15 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+
+import ca.bcit.info.pms.access.SignatureManager;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.security.KeyFactory;
+import java.security.PublicKey;
+import java.security.Signature;
+import java.security.spec.X509EncodedKeySpec;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
