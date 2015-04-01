@@ -23,15 +23,15 @@ import ca.bcit.info.pms.service.TimesheetService;
 @Named( "editTimesheetController" )
 @SessionScoped
 public class EditTimesheetController implements Serializable {
-    
+
     private static final Logger logger = LogManager.getLogger(EditTimesheetController.class);
 
     @Inject
     private Timesheet timesheet;
-    
+
     @Inject
     private TimesheetService timeService;
-    
+
     @Inject
     private UserController userController;
 
@@ -41,13 +41,13 @@ public class EditTimesheetController implements Serializable {
     public Timesheet getTimesheet(){
         return timesheet;
     }
-    
+
     public void addTimesheetRow() {
         List<TimesheetRow> tsRows = timesheet.getTimesheetRows();
         tsRows.add(newTimesheetRow());
         timesheet.setTimesheetRows(tsRows);
     }
-    
+
     public TimesheetRow newTimesheetRow() {
         TimesheetRow tsr = new TimesheetRow();
         WorkPackage wp = new WorkPackage();
@@ -68,9 +68,9 @@ public class EditTimesheetController implements Serializable {
      */
     public String fillThisWeek() {
         Employee user = userController.getUser();
-        
+
         timesheet = timeService.getCurrentTimesheet(user);
-                
+
         return "currentTimesheet";
     }
 
@@ -97,7 +97,7 @@ public class EditTimesheetController implements Serializable {
         final String currUserid = userController.getUser().getId();
         return timeService.getApproverPendingTimesheets(currUserid);
     }
-    
+
     /**
      * Persists the timesheet, or sets error message
      * if the timesheet is not valid.
@@ -108,32 +108,33 @@ public class EditTimesheetController implements Serializable {
         FacesMessage msg = null;
         List<TimesheetRow> rows = removeEmptyRows(timesheet.getTimesheetRows());
         timesheet.setTimesheetRows(rows);
-        
+
+        // A user CAN save an empty timesheet
         if(rows.size() == 0) {
-            isValid = false;
-            msg = new FacesMessage("Can not save a timesheet with 0 hours");
+            timeService.updateTimesheet(timesheet);
+            return null;
         }
-        
+
         if(!noWorkPackagesAreNull(rows) && isValid) {
             isValid = false;
             msg = new FacesMessage("Each row must be associated with a work package");
         }
-        
+
         if (!dayTotalsAreValid(rows) && isValid){
             isValid = false;
             msg = new FacesMessage("Total hours on individual day cannot exceed 24.00 hours");
         }
-        
+
         if (!rowWorkPackagesAreUnique(rows) && isValid) {
             isValid = false;
             msg = new FacesMessage("Work Packages must be unique among rows");
         }
+
         
-        if (!sheetTotalsAreValid() && isValid) {
-            isValid = false;
-            msg = new FacesMessage("Total person-hours in week must be exactly equal to 40.00\n"
-                    + "Where person-hours = Total - (FLEX + OT)");
+        if( !sheetTotalsAreValid() ) {
+            return null;
         }
+        
 
         if(isValid){
             timeService.updateTimesheet(timesheet);
@@ -141,28 +142,38 @@ public class EditTimesheetController implements Serializable {
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
-        
+
         return null;
     }
-    
+
     /**
      * Returns false if the 'Row Total - (FLEX + OT) > 40'
      * 
      * @return          true if the total is valid
      */
-    private boolean sheetTotalsAreValid() {
-        double netTotal = timesheet.getTotal();
-        double grossTotal = netTotal - (timesheet.getFlextime().doubleValue() 
-                                        + timesheet.getOvertime().doubleValue());
-        
-        logger.info("grossTotal::"+grossTotal);
-        if (grossTotal != 40.0) {
+    public boolean sheetTotalsAreValid() {
+        // Ensure timesheet is not null
+        if (timesheet != null) {
+            double netTotal = timesheet.getTotal();
+            double grossTotal = netTotal - (timesheet.getFlextime().doubleValue() 
+                    + timesheet.getOvertime().doubleValue());
+
+            if (grossTotal != 40.0) {
+                FacesMessage msg = new FacesMessage(
+                        "Total person-hours in week must be exactly equal to 40.00\n"
+                                + "Where person-hours = Total - (FLEX + OT)");
+                msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+                return false;
+            }
+            return true;
+        } else {
+            // Return false if timesheet is null
+            logger.info("sheetTotalsAreVald()::Timesheet is null");
             return false;
         }
-        
-        return true;
     }
-    
+
     /**
      * Returns true if the total of every day (across rows)
      * is less than or equal to 24.0
@@ -171,7 +182,7 @@ public class EditTimesheetController implements Serializable {
      */
     private boolean dayTotalsAreValid(List<TimesheetRow> rows) {
         double[] dayTotals = new double[7];
-        
+
         for(TimesheetRow row : rows) {
             dayTotals[0] += row.getSundayHour();
             dayTotals[1] += row.getMondayHour();
@@ -181,16 +192,16 @@ public class EditTimesheetController implements Serializable {
             dayTotals[5] += row.getFridayHour();
             dayTotals[6] += row.getSaturdayHour();
         }
-        
+
         for(int i = 0; i < dayTotals.length; i++) {
             if (dayTotals[i] > 24.0) {
                 return false;
             }
         }
-        
+
         return true;
     }
-    
+
     /**
      * Removes rows that do not have any hours entered.
      * 
@@ -221,7 +232,7 @@ public class EditTimesheetController implements Serializable {
         }  
         return true;
     }
-    
+
     /**
      * Returns true if the Work Packages are unique for the timesheet rows
      * Checks
@@ -236,7 +247,7 @@ public class EditTimesheetController implements Serializable {
         } else {
             TimesheetRow rowOne, rowTwo;
             final int size = rows.size();
-            
+
             for(int i = 0; i < (size - 1 ); i++) {
                 rowOne = rows.get(i);
                 if(rowOne.getWorkPackage() == null)  {
@@ -253,22 +264,22 @@ public class EditTimesheetController implements Serializable {
                 }
             }
         }
-        
+
         return true;
     }
 
     public void removeRowFromTimesheet(TimesheetRow row) {
         List<TimesheetRow> rows = timesheet.getTimesheetRows();
-        
+
         rows.remove(row);
-        
+
         timesheet.setTimesheetRows(rows);
     }
-    
+
     public Date getWeekEnding() {
         return timesheet.getWeekEnding();
     }
-    
+
     public int getWeekNumber() {
         return timesheet.getWeekNumber();
     }
