@@ -60,7 +60,7 @@
 											
 											
 											<span id="helpBlock" class="help-block">Enter work package number to search and press tab.</span>
-											
+											<p:messages id="displayMsg" />
 											<div class="form-group">
 												<h:outputLabel for="itWorkPackageNumber"
 													value="#{msgs.workPackageNumber}"
@@ -71,7 +71,7 @@
 														class="form-control" id="itWorkPackageNumber"
 														required="true" value="#{weekReport.id}" label="#{msgs.workPackageNumber}">
 														<p:ajax event="blur"
-															update="itWorkPackageName itProject summaryOfCost"
+															update="itWorkPackageName itProject summaryOfCost displayMsg"
 															listener="#{weekReport.findWP}" />
 													</h:inputText>
 												</div>

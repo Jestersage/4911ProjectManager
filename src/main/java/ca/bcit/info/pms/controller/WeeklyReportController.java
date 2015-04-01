@@ -99,8 +99,7 @@ public class WeeklyReportController implements Serializable
 		{
 			id = 0;
 
-			FacesContext.getCurrentInstance().addMessage( "weekReportForm:itWorkPackageNumber",
-			        new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "Work Package not found." ) );
+			FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "WP not found" ) );
 
 			return "weekReport";
 		}
@@ -116,8 +115,9 @@ public class WeeklyReportController implements Serializable
 		} else
 		{
 			// error message
-			FacesContext.getCurrentInstance().addMessage( "weekReportForm:itWorkPackageNumber",
-			        new FacesMessage( FacesMessage.SEVERITY_WARN, "", "Work Package not found." ) );
+			FacesContext.getCurrentInstance().addMessage( null,
+			        new FacesMessage( "Work package has no engineer budget estimated." ) );
+
 		}
 
 		// there are all values in the db
