@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -90,22 +92,164 @@ public class EditTimesheetController implements Serializable {
         return timeService.getApproverPendingTimesheets(currUserid);
     }
     
+    /**
+     * Persists the timesheet, or sets error message
+     * if the timesheet is not valid.
+     * @return
+     */
     public String saveTimesheet() {
-        List<TimesheetRow> validRows = new ArrayList<TimesheetRow>();
+        boolean isValid = true;
+        FacesMessage msg = null;
+        List<TimesheetRow> rows = removeEmptyRows(timesheet.getTimesheetRows());
+        timesheet.setTimesheetRows(rows);
         
-        for(TimesheetRow row : timesheet.getTimesheetRows()) {
-            logger.info("\n\tsaveTimesheet.row::"+row);
-            if ( (row.getTotalHours() > 0) && (row.getWorkPackage().getId() != null) ) {
-                validRows.add(row);
-            }
+        if(rows.size() == 0) {
+            isValid = false;
+            msg = new FacesMessage("Can not save a timesheet with 0 hours");
         }
-        timesheet.setTimesheetRows(validRows);
-        timeService.updateTimesheet(timesheet);
         
-        return "currentTimesheet";
+        if(!noWorkPackagesAreNull(rows) && isValid) {
+            isValid = false;
+            msg = new FacesMessage("Must select a Work Package for each row");
+        }
+        
+        if (!dayTotalsAreValid(rows) && isValid){
+            isValid = false;
+            msg = new FacesMessage("Total hours on individual day cannot exceed 24.00 hours");
+        }
+        
+        if (!rowWorkPackagesAreUnique(rows) && isValid) {
+            isValid = false;
+            msg = new FacesMessage("Work Packages must be unique among rows");
+        }
+        
+        if (!rowTotalsAreValid(rows) && isValid) {
+            isValid = false;
+            msg = new FacesMessage("Total man-hours in week cannot be > 40.0\n"
+                    + "Where man-hours = Total - (FLEX + OT)");
+        }
+
+        if(isValid){
+            timeService.updateTimesheet(timesheet);
+        } else {
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+        
+        return null;
     }
     
-    // TODO Implement correct logic
+    /**
+     * Returns false if the 'Row Total - (FLEX + OT) > 40'
+     * 
+     * @param rows      The timesheetRows to inspect
+     * @return          true if the total is valid
+     */
+    private boolean rowTotalsAreValid(List<TimesheetRow> rows) {
+        // TODO : rowTotal Logic
+        // TODO : Add FLEX input on timesheet.xhtml
+        // TODO : Add OT input on timesheet.xhtml
+        return true;
+    }
+    
+    /**
+     * Returns true if the total of every day (across rows)
+     * is less than or equal to 24.0
+     * @param rows      The rows the check the total for each day.
+     * @return
+     */
+    private boolean dayTotalsAreValid(List<TimesheetRow> rows) {
+        double[] dayTotals = new double[7];
+        
+        for(TimesheetRow row : rows) {
+            dayTotals[0] += row.getSundayHour();
+            dayTotals[1] += row.getMondayHour();
+            dayTotals[2] += row.getTuesdayHour();
+            dayTotals[3] += row.getWednesdayHour();
+            dayTotals[4] += row.getThursdayHour();
+            dayTotals[5] += row.getFridayHour();
+            dayTotals[6] += row.getSaturdayHour();
+        }
+        
+        for(int i = 0; i < dayTotals.length; i++) {
+            if (dayTotals[i] > 24.0) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    /**
+     * Removes rows that do not have any hours entered.
+     * 
+     * @param rows  List of timesheetRows (not-trimmed)
+     * @return      List of timesheetRows with hours > 0
+     */
+    private List<TimesheetRow> removeEmptyRows(List<TimesheetRow> rows) {
+        List<TimesheetRow> trimmed = new ArrayList<TimesheetRow>();  
+        for(TimesheetRow row : rows) {
+            if(row.getTotalHours() > 0.0) {
+                trimmed.add(row);
+            }
+        }
+        return trimmed;
+    }
+
+    /**
+     * Returns true if no work package id's are null.
+     * 
+     * @param rows      List of TimesheetRows for current user timesheet
+     * @return          True if NO work package id's are null
+     */
+    private boolean noWorkPackagesAreNull(List<TimesheetRow> rows) {
+        for(TimesheetRow row : rows) {
+            if(row.getWorkPackage().getId() == null) {
+                return false;
+            }
+        }  
+        return true;
+    }
+    
+    /**
+     * Returns true if the Work Packages are unique for the timesheet rows
+     * Checks
+     * @param rows      The timesheet rows to be checked
+     * @return
+     */
+    private boolean rowWorkPackagesAreUnique(List<TimesheetRow> rows) {
+        if(rows.size() == 1) {
+            if( rows.get(0).getWorkPackage().getId() == null ) {
+                return false;
+            }
+        } else {
+            TimesheetRow rowOne, rowTwo;
+            final int size = rows.size();
+            
+            for(int i = 0; i < (size - 1 ); i++) {
+                rowOne = rows.get(i);
+                if(rowOne.getWorkPackage() == null)  {
+                    return false;
+                }
+                for(int j = i + 1; j < size; j++) {
+                    rowTwo = rows.get(j);
+                    if(rowTwo.getWorkPackage().getId() == null) {
+                        return false;
+                    }
+                    if(rowOne.getWorkPackage().getId() == rowTwo.getWorkPackage().getId()) {
+                        return false;
+                    }
+                }
+            }
+        }
+        
+        return true;
+    }
+    
+    /**
+     * Gets the total work hours for the time sheet.
+     * @return
+     */
     public double getTotalHours() {
         double total = 0;
         

@@ -134,8 +134,6 @@
                                                         <p:inputText class="input" id="sundayHour" value="#{tsRow.sundayHour}"
                                                             size="10">
                                                             <f:ajax render="rowTotal" />
-                                                            <f:validator
-                                                                validatorId="ca.bcit.pms.validation.WeekDayHourValidator" />
                                                         </p:inputText>
                                                     </p:column>
                                                     <p:column headerText="#{msgs.mon}" class="col-md-1">
@@ -143,8 +141,6 @@
                                                         <p:inputText class="input" value="#{tsRow.mondayHour}"
                                                             size="10">
                                                             <f:ajax render="rowTotal" />
-                                                            <f:validator
-                                                                validatorId="ca.bcit.pms.validation.WeekDayHourValidator" />
                                                         </p:inputText>
                                                     </p:column>
                                                     <p:column headerText="#{msgs.tue}" class="col-md-1">
@@ -152,8 +148,6 @@
                                                         <p:inputText class="input" value="#{tsRow.tuesdayHour}"
                                                             size="10">
                                                             <f:ajax render="rowTotal" />
-                                                            <f:validator
-                                                                validatorId="ca.bcit.pms.validation.WeekDayHourValidator" />
                                                         </p:inputText>
                                                     </p:column>
                                                     <p:column headerText="#{msgs.wed}" class="col-md-1">
@@ -161,8 +155,6 @@
                                                         <p:inputText class="input" value="#{tsRow.wednesdayHour}"
                                                             size="10">
                                                             <f:ajax render="rowTotal" />
-                                                            <f:validator
-                                                                validatorId="ca.bcit.pms.validation.WeekDayHourValidator" />
                                                         </p:inputText>
                                                     </p:column>
                                                     <p:column headerText="#{msgs.thu}" class="col-md-1">
@@ -170,8 +162,6 @@
                                                         <p:inputText class="input" value="#{tsRow.thursdayHour}"
                                                             size="10">
                                                             <f:ajax render="rowTotal" />
-                                                            <f:validator
-                                                                validatorId="ca.bcit.pms.validation.WeekDayHourValidator" />
                                                         </p:inputText>
                                                     </p:column>
                                                     <p:column headerText="#{msgs.fri}" class="col-md-1">
@@ -179,14 +169,12 @@
                                                         <p:inputText class="input" value="#{tsRow.fridayHour}"
                                                             size="10">
                                                             <f:ajax render="rowTotal" />
-                                                            <f:validator
-                                                                validatorId="ca.bcit.pms.validation.WeekDayHourValidator" />
                                                         </p:inputText>
                                                     </p:column>
                                                     <p:column headerText="#{msgs.sat}" class="col-md-1">
                                                         <h:outputText value="" />
                                                         <p:inputText class="input" value="#{tsRow.saturdayHour}"
-                                                            size="10" validator="ca.bcit.pms.validation.WeekDayHourValidator">
+                                                            size="10" >
                                                             <f:ajax render="rowTotal" />
                                                         </p:inputText>
                                                     </p:column>
