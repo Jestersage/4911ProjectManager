@@ -154,8 +154,8 @@ public class TimesheetManager implements Serializable {
         TypedQuery<Timesheet> query = entityManager
                 .createQuery("SELECT t from Timesheet t " +
                         "WHERE t.owner.id = :empId " +
-                        "AND t.submitted = true " +
-                        "AND ( t.approved = false OR t.approved IS NULL )", Timesheet.class);
+                        "AND ( (t.submitted = true AND t.approved IS NULL) " +
+                        "OR (t.submitted = false AND t.approved = false) )", Timesheet.class);
         query.setParameter("empId", empId);
 
         return query.getResultList();

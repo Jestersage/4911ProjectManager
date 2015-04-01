@@ -74,6 +74,12 @@ public class EditTimesheetController implements Serializable {
         return "currentTimesheet";
     }
 
+    public String fillSheetToCorrect(final Timesheet ts) {
+        timesheet = ts;
+
+        return "currentTimesheet";
+    }
+
     /**
      * @param timesheet the timesheet to set
      */

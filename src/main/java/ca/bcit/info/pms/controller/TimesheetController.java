@@ -206,7 +206,8 @@ public class TimesheetController implements Serializable {
 	        timesheet = timeService.getCurrentTimesheet(user); 
 	        
 	        timesheet.setSubmitted(true); //Submits the timesheet
-	        
+	        timesheet.setApproved(null); //reset approved status (in case timesheet as rejected)
+
 			sigObject.setId(timesheet.getId());
 			signatureManager.persist(sigObject); //Persist the newly created model into the database
 			

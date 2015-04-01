@@ -65,7 +65,8 @@
 									<p:column>
 										[ <h:commandLink value="#{msgs.view}" action="#{timesheetController.viewPendingTimesheet(timesheet)}" /> ]
 										<ui:fragment rendered="#{timesheet.approved == 'Rejected'}">
-											| [ <h:commandLink value="#{msgs.correct}" /> ]
+											| [ <h:commandLink value="#{msgs.correct}"
+															   action="#{editTimesheetController.fillSheetToCorrect(timesheet)}" /> ]
 										</ui:fragment>
 									</p:column>
 								</p:dataTable>
