@@ -198,6 +198,28 @@
                                         <!-- /col timesheet -->
                                     </div>
                                     <!-- /row timesheet -->
+                                    <!-- Flex-Ot input row  -->
+                                    <div class="row">
+                                        <!--  Flex/ot col -->
+                                        <div class="col-md-12">
+                                         <table class="table">
+                                                <tr class="row">
+                                                    <td class="col-md-2"><h:outputLabel
+                                                            value="#{msgs.flextime}" /></td>
+                                                    <td class="col-md-2"><p:inputText
+                                                            value="#{editTimesheetController.timesheet.flextime}" size="4"/></td>
+                                                </tr>
+                                                <tr class="row">
+                                                    <td class="col-md-2"><h:outputLabel
+                                                            value="#{msgs.overtime}" /></td>
+                                                    <td class="col-md-2"><p:inputText
+                                                            value="#{editTimesheetController.timesheet.overtime}" size="4" /></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <!-- /Flex-ot input col -->
+                                    </div>
+                                    <!--  /Flex-Ot input row -->
 
 
                                 </h:form>
