@@ -61,7 +61,7 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-6 ">
 							<h:form id="projectForm" styleClass="form-inline">
-								<h:inputHidden value="#{projectController.project.id}" />
+								<h:inputHidden binding="#{projId}" value="#{projectController.project.id}" />
 
 								<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
 									<h:commandButton value="#{msgs.edit_emp}"
@@ -117,7 +117,7 @@
 										#{projectController.project.genReport}
 										<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
 										[ <h:commandLink value="#{msgs.viewMonthlyReport}"
-														 action="#{monthlyReport.viewMonthlyReport(projectId.value)}" /> ]
+														 action="#{monthlyReport.viewMonthlyReport(projId.value)}" /> ]
 										</ui:fragment>
 									</dd>
 								</dl>
@@ -209,6 +209,9 @@
 						</div>
 					</div>
 					<div class="row">
+						<h:form>
+						<h:inputHidden binding="#{projectId}" value="#{projectController.project.id}" />
+
 						<div class="col-xs-12 col-sm-12 col-md-6 ">
 							<div class="panel panel-default">
 								<div class="panel-heading"><strong>#{msgs.workPackage}</strong></div>
@@ -242,6 +245,7 @@
 							</div>
 						</div>
 						<!-- employees -->
+						</h:form>
 					</div>
 				</div>
 			</div>
