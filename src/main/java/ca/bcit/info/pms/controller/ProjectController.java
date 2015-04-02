@@ -223,7 +223,7 @@ public class ProjectController implements Serializable{
      */
     public String assignToProject(final Project proj) {
         project = proj;
-        return "assignEmpToProject";
+        return "addEmpToProject";
     }
 
     /**

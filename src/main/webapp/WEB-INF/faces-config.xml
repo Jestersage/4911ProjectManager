@@ -294,7 +294,7 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>assignEmpToProject</from-outcome>
-			<to-view-id>/employee/assignEmpToProject.xhtml</to-view-id>
+			<to-view-id>/employee/addEmpToProject.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
