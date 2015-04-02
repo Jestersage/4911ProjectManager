@@ -13,7 +13,6 @@ import ca.bcit.info.pms.access.EngineerBudgetManager;
 import ca.bcit.info.pms.access.StatusReportManager;
 import ca.bcit.info.pms.access.TimesheetRowManager;
 import ca.bcit.info.pms.access.WorkPackageManager;
-import ca.bcit.info.pms.model.Budget;
 import ca.bcit.info.pms.model.EngineerBudget;
 import ca.bcit.info.pms.model.StatusReport;
 import ca.bcit.info.pms.model.WorkPackage;
@@ -41,16 +40,19 @@ public class WeeklyReportController implements Serializable
 	@Inject
 	private TimesheetRowManager timeSheetRowMngr;
 
-	@Inject
 	private WorkPackage wp;
 
-	@Inject
 	private EngineerBudget engineerBudget;
 
-	@Inject
 	private StatusReport statusReport;
 
 	Map< String, Double > cost;
+
+	private Integer id;
+
+	private String name;
+
+	private String packageNum;
 
 	private Double p1;
 	private Double p2;
@@ -62,23 +64,15 @@ public class WeeklyReportController implements Serializable
 	private Double js;
 	private Double ds;
 
-	private int id;
-	private String name;
-	private int prev;
-
-	@Inject
-	private Budget budget;
-
 	public WeeklyReportController()
 	{
-
+		statusReport = new StatusReport();
 	}
 
 	public String save()
 	{
-		WorkPackage w = workPackageMngr.find( id );
+		WorkPackage w = workPackageMngr.find( id.intValue() );
 		statusReport.setWorkPackage( w );
-		statusReport.setId( w.getId() + 1 );
 		statusReportMngr.persist( statusReport );
 
 		return "mypage";
@@ -89,23 +83,22 @@ public class WeeklyReportController implements Serializable
 		int engBudgetNum;
 		EngineerBudget engBudget = null;
 
-		FacesContext context = FacesContext.getCurrentInstance();
-
 		// get wp
-		wp = workPackageMngr.find( id );
+		wp = new WorkPackage();
+		wp = workPackageMngr.find( id.intValue() );
+		System.out.println( "WP = " + wp );
 
 		// wp doesn't exist
 		if ( wp == null )
 		{
-			id = 0;
-
+			id = null;
 			FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "WP not found" ) );
 
 			return "weekReport";
 		}
 
 		// get engineer budget of wp
-		engBudgetNum = workPackageMngr.getEngBudgetID( id );
+		engBudgetNum = workPackageMngr.getEngBudgetID( id.intValue() );
 
 		// there is a engineer budget
 		if ( engBudgetNum != 0 )
@@ -124,6 +117,8 @@ public class WeeklyReportController implements Serializable
 		if ( wp != null && engBudget != null )
 		{
 			setName( wp.getName() );
+			System.out.println( "wp num" + wp.getPackageNum() );
+			engineerBudget = new EngineerBudget();
 
 			// set up values to display
 			// allocated budget
@@ -138,7 +133,7 @@ public class WeeklyReportController implements Serializable
 			engineerBudget.setSS( engBudget.getSS() );
 
 			// get remaining budget based on estimation made my the engineer
-			cost = timeSheetRowMngr.getManHoursPerPayLevel( id );
+			cost = timeSheetRowMngr.getManHoursPerPayLevel( id.intValue() );
 			System.out.println( "cost = " + cost.toString() );
 
 			// calculate remaining budget
@@ -186,12 +181,12 @@ public class WeeklyReportController implements Serializable
 		this.statusReport = statusReport;
 	}
 
-	public int getId()
+	public Integer getId()
 	{
 		return id;
 	}
 
-	public void setId( int id )
+	public void setId( Integer id )
 	{
 		this.id = id;
 	}
@@ -317,14 +312,14 @@ public class WeeklyReportController implements Serializable
 		this.ds = ds;
 	}
 
-	public Budget getBudget()
+	public String getPackageNum()
 	{
-		return budget;
+		return packageNum;
 	}
 
-	public void setBudget( Budget budget )
+	public void setPackageNum( String packageNum )
 	{
-		this.budget = budget;
+		this.packageNum = packageNum;
 	}
 
 }
