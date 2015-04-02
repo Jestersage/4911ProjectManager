@@ -70,10 +70,11 @@ public class WorkPackageController implements Serializable
 	{
 		WorkPackage parentWP = null;
 		//logger.info( parentWPId );
-		if ( parentWPId != null ){
+		if ( parentWPId != null )
 			parentWP = workPackageService.findWorkPackageById( parentWPId );
-			workPackage.setParentWP( parentWP );
-		}
+			
+		
+		workPackage.setParentWP( parentWP );
 		workPackageService.persistWorkPackage( workPackage );
 		// workPackageService.persistBudget(budget);
 		logger.info( "successfully create new WorkPackage: " + workPackage.toString() );

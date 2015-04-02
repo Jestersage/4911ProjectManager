@@ -42,7 +42,7 @@ public class WorkPackage implements Serializable
 //	@Size( max = 10, message = "Employee ID cannot be longer than 10" )
 	private Set< Employee > employees;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne
     @JoinColumn(name = "parentwpID", nullable=true)
 	private WorkPackage parentWP;
 
