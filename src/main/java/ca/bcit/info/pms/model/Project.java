@@ -49,8 +49,6 @@ public class Project implements Serializable {
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "ProjectAssignment", joinColumns = { @JoinColumn(name = "projectID") }, inverseJoinColumns = { @JoinColumn(name = "employeeID") })
-	// @NotNull(message = "Employee ID can not be null")
-	@Size(max = 10, message = "Employee ID cannot be longer than 10")
 	private Set<Employee> employees;
 
     @OneToOne(cascade = {CascadeType.ALL},orphanRemoval = true)

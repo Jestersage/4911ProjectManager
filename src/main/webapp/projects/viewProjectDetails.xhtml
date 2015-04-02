@@ -39,10 +39,19 @@
 									</ol>
 								</h:form>
 							</div>
+						</div>
+					</div>
 
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-6">
 							<div id="pageTitle">
 								<h1>#{msgs.viewProjectDetails}</h1>
 							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12">
 							<ui:insert name="notificationArea">
 								<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
 							</ui:insert>
@@ -54,6 +63,12 @@
 							<h:form id="projectForm" styleClass="form-inline">
 								<h:inputHidden value="#{projectController.project.id}" />
 
+								<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
+									<h:commandButton value="#{msgs.edit_emp}"
+													 styleClass="btn btn-primary pull-right"
+													 action="#{projectController.goEditProject}"/>
+								</ui:fragment>
+
 								<dl class="dl-horizontal">
 									<dt>#{msgs.projectNumber}</dt>
 									<dd>#{projectController.project.id}</dd>
@@ -63,11 +78,21 @@
 
 									<dt>#{msgs.projectManager}</dt>
 									<dd>#{projectController.project.projectManager.firstName}
-										#{projectController.project.projectManager.lastName}</dd>
+										#{projectController.project.projectManager.lastName}
+										<ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">
+											[ <h:commandLink value="#{msgs.changeManager}"
+															 action="#{projectController.changeManager}" /> ]
+										</ui:fragment>
+									</dd>
 
 									<dt>#{msgs.projectAssistant}</dt>
 									<dd>#{projectController.project.assistant.firstName}
-										#{projectController.project.assistant.lastName}</dd>
+										#{projectController.project.assistant.lastName}
+										<ui:fragment rendered="#{userController.isAuthorized('Project Manager')}">
+											[ <h:commandLink value="#{(projectController.project.assistant == null) ? msgs.assignAssistant : msgs.changeAssistant}"
+															 action="#{projectController.changeAssistant}" /> ]
+										</ui:fragment>
+									</dd>
 
 									<dt>#{msgs.startDate}</dt>
 									<dd>#{projectController.project.startDate}</dd>
@@ -88,15 +113,12 @@
 									<dd>#{projectController.project.description}</dd>
 
 									<dt>#{msgs.genReport}</dt>
-									<dd>#{projectController.project.genReport}</dd>
-
-									<dt>#{msgs.assignToProject}</dt>
 									<dd>
-										<ol>
-											<ui:repeat var="assigned" value="#{projectController.project.employees.toArray()}">
-												<li>#{assigned.firstName} #{assigned.lastName}</li>
-											</ui:repeat>
-										</ol>
+										#{projectController.project.genReport}
+										<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
+										[ <h:commandLink value="#{msgs.viewMonthlyReport}"
+														 action="#{monthlyReport.viewMonthlyReport(projectId.value)}" /> ]
+										</ui:fragment>
 									</dd>
 								</dl>
 							</h:form>
@@ -187,39 +209,37 @@
 						</div>
 					</div>
 					<div class="row">
-					</div>
-
-						<div class="row">
-							<div class="col-xs-12 col-sm-12">
-								<h:form id="linkForm">
-									<h:inputHidden binding="#{projectId}" value="#{projectController.project.id}" />
-									<div class="button-groups">
+						<div class="col-xs-12 col-sm-12 col-md-6 ">
+							<div class="panel panel-default">
+								<div class="panel-heading"><strong>#{msgs.workPackage}</strong></div>
+								<div class="panel-body">
+									<!-- controll buttons -->
 									<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
-									<h:commandButton value="#{msgs.edit_emp}"
-												   styleClass="btn btn-primary"
-												   action="#{projectController.goEditProject}" />
-									<h:commandButton value="#{msgs.newWorkPackage}"
+										<h:commandButton value="#{msgs.newWorkPackage}"
 														 styleClass="btn btn-primary"
 														 action="#{workPackageController.goCreatePackage(projectId.value)}" />
-									<h:commandButton value="#{msgs.viewMonthlyReport}"
-														 styleClass="btn btn-primary"
-														 action="#{monthlyReport.viewMonthlyReport(projectId.value)}" />
 									</ui:fragment>
-									<ui:fragment rendered="#{userController.isAuthorized('Project Manager')}">
-										<h:commandButton value="#{(projectController.project.assistant == null) ? msgs.assignAssistant : msgs.changeAssistant}"
-													   styleClass="btn btn-primary"
-													   action="#{projectController.changeAssistant}" />
-									</ui:fragment>
-									</div>
-									<div class="button-groups">
-									<ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">
-										<h:commandButton value="#{msgs.changeManager}" styleClass="btn btn-default"
-														 action="#{projectController.changeManager}" />
-									</ui:fragment>
-									</div>
-								</h:form>
+								</div>
+								<ul class="list-group">
+								</ul>
 							</div>
 						</div>
+						<!-- / workpackages -->
+						<div class="col-xs-12 col-sm-12 col-md-6 ">
+							<div class="panel panel-default">
+								<div class="panel-heading"><strong>#{msgs.assignToProject}</strong></div>
+								<div class="panel-body">
+									<!-- controll buttons -->
+								</div>
+								<ul class="list-group">
+									<ui:repeat var="assigned" value="#{projectController.project.employees.toArray()}">
+										<li class="list-group-item">#{assigned.firstName} #{assigned.lastName}</li>
+									</ui:repeat>
+								</ul>
+							</div>
+						</div>
+						<!-- employees -->
+					</div>
 				</div>
 			</div>
 		</ui:define>

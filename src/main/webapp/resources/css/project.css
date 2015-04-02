@@ -45,13 +45,3 @@
 #mainArea {
 	height: 100%;
 }
-
-input[type="submit"] {
-	margin-left: 10px;
-	margin-right: 10px;
-}
-
-.button-groups {
-	margin-top: 1em;
-	margin-bottom: 1em;
-}
