@@ -30,4 +30,10 @@ public interface WorkPackageService {
 	WorkPackage findWorkPackageById(Integer id);
 
 	int getEngBudgetID(Integer id);
+
+    /**
+     * @param parentWp parent work pacakge
+     * @return list of immediate child work package of specified wp.
+     */
+    List<WorkPackage> getChildWorkPackages(final WorkPackage parentWp);
 }

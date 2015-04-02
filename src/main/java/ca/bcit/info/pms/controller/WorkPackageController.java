@@ -98,14 +98,14 @@ public class WorkPackageController implements Serializable
 		return "viewWorkPackageDetails";
 	}
 
-	public WorkPackage getworkPackage()
+	public WorkPackage getWorkPackage()
 	{
 		if (workPackage != null && workPackage.getParentWP() == null )
 			workPackage.setParentWP( new WorkPackage() );
 		return workPackage;
 	}
 
-	public void setworkPackage( WorkPackage workPackage )
+	public void setWorkPackage( WorkPackage workPackage )
 	{
 		this.workPackage = workPackage;
 	}
@@ -152,6 +152,7 @@ public class WorkPackageController implements Serializable
 
 	public String goChildPackage( WorkPackage parentWorkPackage )
 	{
+		workPackage = new WorkPackage();
 		Project project = projectService.getProject(parentWorkPackage.getProject().getId());
 		workPackage.setProject( project );
 		parentWPId = parentWorkPackage.getId();
@@ -165,6 +166,10 @@ public class WorkPackageController implements Serializable
 	{
 		final String userId = userController.getUser().getId();
 		return workPackageService.findAssignedWorkPackages( userId );
+	}
+
+	public List<WorkPackage> getChildWorkPackages() {
+		return workPackageService.getChildWorkPackages(workPackage);
 	}
 
 	public Integer getParentWPId()

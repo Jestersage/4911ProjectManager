@@ -90,4 +90,11 @@ public class WorkPackageServiceImpl implements Serializable, WorkPackageService 
 		// TODO Auto-generated method stub
 		return WPManager.getEngBudgetID(id);
 	}
+
+	@Override
+	public List<WorkPackage> getChildWorkPackages(final WorkPackage parentWp) {
+		return WPManager.getChildWorkPackages(parentWp);
+	}
+
+
 }

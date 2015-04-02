@@ -49,7 +49,7 @@ public class WorkPackageManager implements Serializable
 
 	public void persist( final WorkPackage newWorkPackage )
 	{
-		WorkPackage match = em.find( WorkPackage.class, newWorkPackage.getId() );
+		WorkPackage match = em.find(WorkPackage.class, newWorkPackage.getId());
 
 		if ( match != null )
 		{
@@ -101,7 +101,7 @@ public class WorkPackageManager implements Serializable
 	 */
 	public List< WorkPackage > getAllWorkPackages()
 	{
-		CriteriaQuery< WorkPackage > criteria = this.em.getCriteriaBuilder().createQuery( WorkPackage.class );
+		CriteriaQuery< WorkPackage > criteria = this.em.getCriteriaBuilder().createQuery(WorkPackage.class);
 		return this.em.createQuery( criteria.select( criteria.from( WorkPackage.class ) ) ).getResultList();
 	}
 
@@ -163,16 +163,15 @@ public class WorkPackageManager implements Serializable
 	}
 
 	/**
-	 * @param projId project id
-	 * @param parentId	the parent work package's id
-	 * @return a list of child work packages with specified project and parent work package.
+	 * @param parentWp parent work package
+	 * @return a list of immediate child work packages with specified project and parent work package.
 	 */
-	public List<WorkPackage> getChildWorkPackages(final String projId, final String parentId) {
+	public List<WorkPackage> getChildWorkPackages(final WorkPackage parentWp) {
 		TypedQuery<WorkPackage> query = em.createQuery("SELECT wp FROM WorkPackage wp " +
 				"WHERE wp.project.id = :projId " +
 				"AND  wp.parentWP.id = :parentId", WorkPackage.class);
-		query.setParameter("projId", projId);
-		query.setParameter("parentId", parentId);
+		query.setParameter("projId", parentWp.getProject().getId());
+		query.setParameter("parentId", parentWp.getId());
 
 		return query.getResultList();
 	}

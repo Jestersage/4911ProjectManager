@@ -37,7 +37,7 @@
 								<h:form>
 									<ol class="breadcrumb">
 										<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
-										<li class="active">#{msgs.viewEmployee}</li>
+										<li class="active">#{msgs.viewPackageDetails}</li>
 									</ol>
 								</h:form>
 							</div>
@@ -165,6 +165,29 @@
 						</div>
 					</div>
 					<div class="row">
+						<h:form>
+						<div class="col-xs-12 col-sm-12 col-md-6 ">
+							<div class="panel panel-default">
+								<div class="panel-heading"><strong>#{msgs.childWorkPackage}</strong></div>
+								<div class="panel-body">
+									<!-- controll buttons -->
+									<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
+										<h:commandButton value="#{msgs.createChildPackage}"
+														 styleClass="btn btn-primary"
+														 action="#{workPackageController.goChildPackage(workPackageController.workPackage)}" />
+									</ui:fragment>
+								</div>
+								<ul class="list-group">
+									<ui:repeat var="package" value="#{workPackageController.childWorkPackages}">
+										<li class="list-group-item">
+											<h:commandLink value="#{package.name} (#{package.packageNum})"
+														   action="#{workPackageController.viewWorkPackageDetails(package)}" />
+										</li>
+									</ui:repeat>
+								</ul>
+							</div>
+						</div>
+						</h:form>
 					</div>
 
 						<div class="row">
@@ -173,8 +196,8 @@
 									<h:inputHidden binding="#{packageID}"  value="#{workPackageController.workPackage.id}" />
 	
 									<div class="button-groups">
-									<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
-									<h:commandButton value="#{msgs.edit_emp}"
+									<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant,Responsible Engineer')}">
+										<h:commandButton value="#{msgs.edit_emp}"
 												   styleClass="btn btn-primary"
 												   action="#{workPackageController.goEditPackage(packageID.value)}" />
 									</ui:fragment>
