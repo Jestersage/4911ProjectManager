@@ -201,10 +201,10 @@ public class WorkPackageController implements Serializable
 	public String updateWorkpackage(){		
 		WorkPackage parentWP = null;
 		//logger.info( parentWPId );
-		if ( parentWPId != null ){
+		if ( parentWPId != null )
 			parentWP = workPackageService.findWorkPackageById( parentWPId );
-			workPackage.setParentWP( parentWP );
-		}
+			
+		workPackage.setParentWP( parentWP );
 		workPackageService.updateWorkPackage(workPackage);
 		workPackage = workPackageService.findWorkPackageById(workPackage.getId());
 		//engineerBudgetMngr.merge(engBudget);
