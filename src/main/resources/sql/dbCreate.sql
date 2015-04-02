@@ -28,7 +28,7 @@ DROP TABLE IF EXISTS Signatures;
 DROP TABLE IF EXISTS HR;
 --
 CREATE TABLE StatusReport (
-  reportID  int(20) NOT NULL,
+  reportID  int(20) NOT NULL AUTO_INCREMENT,
   packageID int(10) NOT NULL,
   JS int(10),
   SS int(10),
