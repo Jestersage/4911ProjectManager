@@ -198,6 +198,9 @@
 									<h:commandButton value="#{msgs.edit_emp}"
 												   styleClass="btn btn-primary"
 												   action="#{projectController.goEditProject}" />
+									<h:commandButton value="#{msgs.newWorkPackage}"
+														 styleClass="btn btn-primary"
+														 action="#{workPackageController.goCreatePackage(projectId.value)}" />
 									<h:commandButton value="#{msgs.viewMonthlyReport}"
 														 styleClass="btn btn-primary"
 														 action="#{monthlyReport.viewMonthlyReport(projectId.value)}" />

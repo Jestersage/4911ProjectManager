@@ -148,4 +148,11 @@ public class WorkPackageController implements Serializable {
     	this.workPackage = workPackage;
     	return "viewWorkPackageDetails";
     }
+
+	public String goCreatePackage(final String projId) {
+		final Project project = projectService.getProject(projId);
+		workPackage.setProject(project);
+
+		return "newWorkPackage";
+	}
 }
