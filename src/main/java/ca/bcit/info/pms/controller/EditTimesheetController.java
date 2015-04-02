@@ -23,8 +23,8 @@ import ca.bcit.info.pms.service.TimesheetService;
 @Named( "editTimesheetController" )
 @SessionScoped
 public class EditTimesheetController implements Serializable {
-
-    private static final Logger logger = LogManager.getLogger(EditTimesheetController.class);
+    private static final Logger logger 
+        = LogManager.getLogger(EditTimesheetController.class);
 
     @Inject
     private Timesheet timesheet;
@@ -235,7 +235,7 @@ public class EditTimesheetController implements Serializable {
 
     /**
      * Returns true if the Work Packages are unique for the timesheet rows
-     * Checks
+     * 
      * @param rows      The timesheet rows to be checked
      * @return
      */
