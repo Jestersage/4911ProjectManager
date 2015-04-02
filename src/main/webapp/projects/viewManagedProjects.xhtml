@@ -62,11 +62,7 @@
 									</p:column>
 
 									<p:column headerText="#{msgs.projectName}">
-										<h:outputText value="#{project.name}" />
-									</p:column>
-
-									<p:column headerText="#{msgs.projectDescription}">
-										<h:outputText value="#{project.description}" />
+										<h:commandLink value="#{project.name}" action="#{projectController.viewProjectDetails(project)}" />
 									</p:column>
 
 									<p:column headerText="#{msgs.startDate}">
@@ -83,13 +79,11 @@
 
 									<p:column headerText="#{msgs.projectManager}">
 										<h:outputText value="#{project.projectManager.firstName}
-											#{project.projectManager.lastName}" />
+												#{project.projectManager.lastName}" />
 									</p:column>
-									
 									<p:column headerText="#{msgs.genReport}">
 										<h:outputText value="#{project.genReport}" />
 									</p:column>
-
 									<p:column>
                                         <h:commandLink value="#{msgs.project_details}" action="#{projectController.viewProjectDetails(project)}" /> |
                                         <h:commandLink value="#{msgs.viewMonthlyReport}" action="#{monthlyReport.viewMonthlyReport(project)}" /> |    
