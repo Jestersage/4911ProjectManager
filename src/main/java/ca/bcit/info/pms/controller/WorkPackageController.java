@@ -3,24 +3,20 @@
  */
 package ca.bcit.info.pms.controller;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.enterprise.context.RequestScoped;
-import javax.faces.event.AjaxBehaviorEvent;
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-
-import ca.bcit.info.pms.access.EngineerBudgetManager;
-import ca.bcit.info.pms.access.WorkPackageManager;
-import ca.bcit.info.pms.model.EngineerBudget;
 import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.WorkPackage;
 import ca.bcit.info.pms.service.ProjectService;
 import ca.bcit.info.pms.service.WorkPackageService;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+import javax.enterprise.context.Conversation;
+import javax.enterprise.context.ConversationScoped;
+import javax.faces.event.AjaxBehaviorEvent;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * 
@@ -28,7 +24,7 @@ import ca.bcit.info.pms.service.WorkPackageService;
  */
 
 @Named( "workPackageController" )
-@RequestScoped
+@ConversationScoped
 public class WorkPackageController implements Serializable
 {
 
@@ -40,6 +36,12 @@ public class WorkPackageController implements Serializable
 
 	@Inject
 	private ProjectService projectService;
+
+	@Inject
+	private UserController userController;
+
+	@Inject
+	private Conversation conversation;
 
 //	@Inject
 //	private EngineerBudget engBudget;
@@ -54,8 +56,20 @@ public class WorkPackageController implements Serializable
 
 	private static final Logger logger = LogManager.getLogger( WorkPackageController.class );
 
-	@Inject
-	private UserController userController;
+
+	private void beginConversation() {
+		if (conversation.isTransient()) {
+			logger.info("Work Package, begin conversation.");
+			conversation.begin();
+		}
+	}
+
+	private void endConversation() {
+		if(!conversation.isTransient()){
+			logger.info("Work Package, end conversation.");
+			conversation.end();
+		}
+	}
 
 
 	public Project [] getProjectList()
@@ -156,6 +170,7 @@ public class WorkPackageController implements Serializable
 	 */
 	public String viewWorkPackageDetails( final WorkPackage workPackage )
 	{
+		beginConversation();
 		this.workPackage = workPackage;
 		return "viewWorkPackageDetails";
 	}

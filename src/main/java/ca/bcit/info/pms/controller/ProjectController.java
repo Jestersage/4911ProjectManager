@@ -68,7 +68,6 @@ public class ProjectController implements Serializable{
     private static final Logger logger = LogManager.getLogger(ProjectController.class);
 
     private void beginConversation() {
-        logger.info("Project, attampt begin conversation....");
         if (conversation.isTransient()) {
             logger.info("Project, begin conversation.");
             conversation.begin();

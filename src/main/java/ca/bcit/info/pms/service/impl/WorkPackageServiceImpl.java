@@ -21,7 +21,7 @@ import ca.bcit.info.pms.service.WorkPackageService;
 
 @Named( "WorkPackageService" )
 public class WorkPackageServiceImpl implements Serializable, WorkPackageService {
-	
+
 	
 	@Inject
     private WorkPackageManager WPManager;
