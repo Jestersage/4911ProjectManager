@@ -110,6 +110,8 @@ public class ProjectController implements Serializable{
     	project.setEndDate(convertJavaDateToSqlDate(endDate));
         projService.persistProject(project);
         logger.info("successfully create new project: " + project.toString());
+
+        beginConversation();
         return "viewProjectDetails";
     }
 
@@ -284,6 +286,11 @@ public class ProjectController implements Serializable{
     public String changeAssistant() {
         project = projService.getProject(project.getId());
         return "changeAssistant";
+    }
+
+    public String goCreateProject() {
+        endConversation();
+        return "newProject";
     }
 
     public void setAssistantUsername(String assistantUsername) {

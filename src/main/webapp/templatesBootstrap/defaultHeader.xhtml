@@ -60,7 +60,7 @@
 								<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<ui:fragment rendered="#{userController.isAuthorized('Supervisor,Project Manager')}">
-									<li><h:commandLink value="#{msgs.newProject}" action="newProject" /></li>
+									<li><h:commandLink value="#{msgs.newProject}" action="#{projectController.goCreateProject}" /></li>
 								</ui:fragment>
 								<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
 									<li><h:commandLink action="viewManagedProjects" value="#{msgs.viewManagedProjects}" /></li>

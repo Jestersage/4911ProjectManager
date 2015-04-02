@@ -60,7 +60,7 @@
 									<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
 										<h2>#{msgs.project}</h2>
 										<ui:fragment rendered="#{userController.isAuthorized('Supervisor,Project Manager')}">
-										<h:commandLink action="newProject" value="#{msgs.newProject}" />
+										<h:commandLink action="#{projectController.goCreateProject}" value="#{msgs.newProject}" />
 										</ui:fragment>
 										<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
 											<h:commandLink action="viewManagedProjects" value="#{msgs.viewManagedProjects}" />
