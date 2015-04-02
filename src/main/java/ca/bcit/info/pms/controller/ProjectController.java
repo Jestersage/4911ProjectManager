@@ -169,12 +169,22 @@ public class ProjectController implements Serializable{
         return managedProjects;
     }
 
+    /**
+     * @return a list of possible employee to be assigned as project manager.
+     */
     public List<Employee> getProjectManagerCandidates() {
-        List<Employee> candidates = employeeController.getManagedEmployees();
+        final List<Employee> candidates = employeeController.getManagedEmployees();
         final Employee currentManager = project.getProjectManager();
+        final Employee currentUser = userController.getUser();
 
+        // allow current manager as a choice
         if (!candidates.contains(currentManager)) {
             candidates.add(currentManager);
+        }
+
+        // allow supervisor to assign himself as manager
+        if (!candidates.contains(currentUser)) {
+            candidates.add(currentUser);
         }
 
         candidates.sort((o1, o2) -> o1.getLastName().compareTo(o2.getLastName()));
