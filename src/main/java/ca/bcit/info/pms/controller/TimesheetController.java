@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -22,6 +24,7 @@ import ca.bcit.info.pms.model.SignatureObject;
 import ca.bcit.info.pms.model.Timesheet;
 import ca.bcit.info.pms.service.TimesheetService;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -146,84 +149,4 @@ public class TimesheetController implements Serializable {
 		return isVerified;
 	}
     
-    public String signTimesheet() {
-    	try {
-    		Employee user = userController.getUser();
-	        
-	        timesheet = timeService.getCurrentTimesheet(user); 
-	        
-	        timesheet.setSubmitted(true); //Submits the timesheet
-	        timesheet.setApproved(null); //reset approved status (in case timesheet as rejected)
-	        timeService.updateTimesheet(timesheet);
-    		
-			//Setting up key generator
-			KeyPairGenerator keyGen = KeyPairGenerator.getInstance("DSA", "SUN");
-			SecureRandom random = SecureRandom.getInstance("SHA1PRNG", "SUN");
-			keyGen.initialize(1024, random);
-			
-			//Generating a keypair
-			KeyPair pair = keyGen.generateKeyPair();
-			PrivateKey priv = pair.getPrivate();
-			PublicKey pub = pair.getPublic();
-			
-			Signature dsa = Signature.getInstance("SHA1withDSA", "SUN"); //signature object to generate signature
-			dsa.initSign(priv); //signing signature with private key
-			
-			String data = timesheet.toString();
-			System.out.println(data);
-
-			byte[] dataBytes = new byte[1024]; //Creating a byte array to store the data
-			dataBytes = data.getBytes(); //Convert the data from string to bytes
-			
-			dsa.update(dataBytes); //Update the signature object with the data
-			
-			byte[] realSig = dsa.sign(); //Create signature
-
-			byte[] key = pub.getEncoded(); //Convert the public key into a byte array
-			
-			sigObject = new SignatureObject(realSig, key); //Create the signature object model
-
-			sigObject.setId(timesheet.getId());
-			signatureManager.persist(sigObject); //Persist the newly created model into the database
-			
-			
-		} catch(Exception e) {
-			System.err.println("Caught exception " + e.toString());
-			return "currentTimesheet";
-		}
-    	
-    	return "mypage";
-    }
-    
-    public boolean verifyTimesheet() {
-    	try {
-			
-			String data = timesheet.toString();
-			System.out.println(data);
-			
-			SignatureObject sigObject = signatureManager.find(timesheet.getId()); //Retrieve signature model
-
-			byte[] encKey = sigObject.getPublicKey(); //Retrieve public key
-			
-			//Decode the public key
-			X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
-			KeyFactory keyFactory = KeyFactory.getInstance("DSA", "SUN");
-			PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
-			
-			byte[] sigToVerify = sigObject.getSignature(); //Retrieve signature
-			
-			Signature sig = Signature.getInstance("SHA1withDSA", "SUN");
-			sig.initVerify(pubKey); //Initialize verification with decoded public key			
-
-			byte[] dataBytes = data.getBytes(); //Retrieve data
-			sig.update(dataBytes); //Update signature with data
-
-			return sig.verify(sigToVerify); //Verify whether signature is valid
-			
-		} catch (Exception e) {
-			System.err.println("Caught exception " + e.toString());
-		}
-    	
-    	return false;
-    }
 }

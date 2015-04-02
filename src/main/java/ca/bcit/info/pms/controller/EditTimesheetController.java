@@ -1,20 +1,32 @@
 package ca.bcit.info.pms.controller;
 
 import java.io.Serializable;
+import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.SecureRandom;
+import java.security.Signature;
+import java.security.spec.X509EncodedKeySpec;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.FacesException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import ca.bcit.info.pms.access.SignatureManager;
 import ca.bcit.info.pms.model.Employee;
+import ca.bcit.info.pms.model.SignatureObject;
 import ca.bcit.info.pms.model.Timesheet;
 import ca.bcit.info.pms.model.TimesheetRow;
 import ca.bcit.info.pms.model.WorkPackage;
@@ -38,6 +50,13 @@ public class EditTimesheetController implements Serializable {
     
     @Inject
     private WorkPackageService wpService;
+
+    @Inject
+    private SignatureManager signatureManager;
+    
+    @Inject private SignatureObject sigObject;
+    
+    boolean isValid = true;
 
     /**
      * @return Return timesheet
@@ -113,8 +132,9 @@ public class EditTimesheetController implements Serializable {
      * @return
      */
     public String saveTimesheet() {
-        boolean isValid = true;
+    	isValid = true;
         FacesMessage msg = null;
+        System.out.println("Saving timesheet: " + timesheet);
         List<TimesheetRow> rows = removeEmptyRows(timesheet.getTimesheetRows());
         timesheet.setTimesheetRows(rows);
         
@@ -128,6 +148,15 @@ public class EditTimesheetController implements Serializable {
         if(rows.size() == 0) {
             timeService.updateTimesheet(timesheet);
             return null;
+        }
+        
+        try {
+        	if((timesheet.getSubmitted()) == true && (signatureManager.find(timesheet.getId()) != null)) {
+                isValid = false;
+                msg = new FacesMessage("Already signed and submitted timesheet. Cannot edit");
+            }
+        } catch (NullPointerException e) {
+        	
         }
 
         if(!noWorkPackagesAreNull(rows) && isValid) {
@@ -160,7 +189,89 @@ public class EditTimesheetController implements Serializable {
 
         return null;
     }
+    
+    public String signTimesheet() { 	
+    	try {
+	        timesheet.setSubmitted(true); //Submits the timesheet
+	        timesheet.setApproved(null); //reset approved status (in case timesheet as rejected)
+	        
+	        saveTimesheet();
+	        
+	        if(isValid == false) {
+	        	return null;
+	        }
+    		
+			//Setting up key generator
+			KeyPairGenerator keyGen = KeyPairGenerator.getInstance("DSA", "SUN");
+			SecureRandom random = SecureRandom.getInstance("SHA1PRNG", "SUN");
+			keyGen.initialize(1024, random);
+			
+			//Generating a keypair
+			KeyPair pair = keyGen.generateKeyPair();
+			PrivateKey priv = pair.getPrivate();
+			PublicKey pub = pair.getPublic();
+			
+			Signature dsa = Signature.getInstance("SHA1withDSA", "SUN"); //signature object to generate signature
+			dsa.initSign(priv); //signing signature with private key
+			
+			String data = timesheet.toString();
+			System.out.println("Signing: " + data);
 
+			byte[] dataBytes = new byte[1024]; //Creating a byte array to store the data
+			dataBytes = data.getBytes(); //Convert the data from string to bytes
+			
+			dsa.update(dataBytes); //Update the signature object with the data
+			
+			byte[] realSig = dsa.sign(); //Create signature
+
+			byte[] key = pub.getEncoded(); //Convert the public key into a byte array
+			
+			sigObject = new SignatureObject(realSig, key); //Create the signature object model
+
+			sigObject.setId(timesheet.getId());
+			signatureManager.persist(sigObject); //Persist the newly created model into the database
+			
+			
+		} catch(Exception e) {
+			logger.log(Level.ERROR, e.getMessage(), e);
+			return null;
+		} 
+
+    	return null;
+    }
+    
+    public boolean verifyTimesheet() {
+    	try {
+			
+			String data = timesheet.toString();
+			System.out.println("Verifying: " + data);
+			
+			SignatureObject sigObject = signatureManager.find(timesheet.getId()); //Retrieve signature model
+
+			byte[] encKey = sigObject.getPublicKey(); //Retrieve public key
+			
+			//Decode the public key
+			X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
+			KeyFactory keyFactory = KeyFactory.getInstance("DSA", "SUN");
+			PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
+			
+			byte[] sigToVerify = sigObject.getSignature(); //Retrieve signature
+			
+			Signature sig = Signature.getInstance("SHA1withDSA", "SUN");
+			sig.initVerify(pubKey); //Initialize verification with decoded public key			
+
+			byte[] dataBytes = data.getBytes(); //Retrieve data
+			sig.update(dataBytes); //Update signature with data
+
+			return sig.verify(sigToVerify); //Verify whether signature is valid
+			
+		} catch (Exception e) {
+			System.err.println("Caught exception " + e.toString());
+		}
+    	
+    	return false;
+    }
+    
     /**
      * Returns false if the 'Row Total - (FLEX + OT) > 40'
      * 
