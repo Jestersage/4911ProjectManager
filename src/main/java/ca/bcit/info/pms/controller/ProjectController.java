@@ -3,6 +3,7 @@ package ca.bcit.info.pms.controller;
 import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Project;
+import ca.bcit.info.pms.model.WorkPackage;
 import ca.bcit.info.pms.service.EmployeeService;
 import ca.bcit.info.pms.service.ProjectService;
 
@@ -190,6 +191,13 @@ public class ProjectController implements Serializable{
         candidates.sort((o1, o2) -> o1.getLastName().compareTo(o2.getLastName()));
 
         return candidates;
+    }
+
+    /**
+     * @return a list of the top level work packages for this project
+     */
+    public List<WorkPackage> getTopLevelPackages() {
+        return projService.getTopLevelPackages(project.getId());
     }
 
     /**

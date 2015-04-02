@@ -3,6 +3,7 @@ package ca.bcit.info.pms.service;
 import java.util.List;
 
 import ca.bcit.info.pms.model.Project;
+import ca.bcit.info.pms.model.WorkPackage;
 
 public interface ProjectService {
 
@@ -31,4 +32,10 @@ public interface ProjectService {
      * @return list of projects managed by this assistant.
      */
     public List<Project> getAssistedProjectsFor(final String empId);
+
+    /**
+     * @param id project id.
+     * @return a list of top level work packages belongs to this project.
+     */
+    List<WorkPackage> getTopLevelPackages(final String id);
 }

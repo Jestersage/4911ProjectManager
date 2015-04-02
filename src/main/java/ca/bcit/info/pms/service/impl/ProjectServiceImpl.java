@@ -9,6 +9,7 @@ import javax.inject.Named;
 import ca.bcit.info.pms.access.ProjectManager;
 import ca.bcit.info.pms.access.WorkPackageManager;
 import ca.bcit.info.pms.model.Project;
+import ca.bcit.info.pms.model.WorkPackage;
 import ca.bcit.info.pms.service.ProjectService;
 
 
@@ -80,6 +81,11 @@ public class ProjectServiceImpl implements Serializable, ProjectService{
     		}
 		}
         return projectList;
+    }
+
+    @Override
+    public List<WorkPackage> getTopLevelPackages(final String id) {
+        return WPManager.getTopLevelWorkPackages(id);
     }
 
 }
