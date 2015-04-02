@@ -94,7 +94,7 @@ public class WorkPackageController implements Serializable
 		// workPackageService.persistBudget(budget);
 		logger.info( "successfully create new WorkPackage: " + workPackage.toString() );
 
-		endConversation();
+		beginConversation();
 		return "viewWorkPackageDetails";
 	}
 
