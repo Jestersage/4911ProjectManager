@@ -8,7 +8,7 @@
 {
 	border: none;
 	margin: 0;
-	padding: 0 .4em;
+	padding: .4em;
 	height: 100%;
 	width: 100%;
 	font-size: 1.5em;
@@ -98,6 +98,8 @@
 	padding: .5em;
 }
 
+
+
 /* hides notes when they're bigger than the box */ 
 .ui-cell-editor-output {
 	overflow: hidden;
@@ -112,4 +114,11 @@
 	height: 100%;
 	border: none;
 	background-color: none;
+}
+.table.col-md-1.ui-inputfield {
+	padding: 0;
+}
+
+.marginHalfEm {
+	margin: .5em;
 }
