@@ -55,7 +55,7 @@
 						<h:form id="newProjectForm" class="form-horizontal">
 
 							<div class="col-xs-12 col-sm-12 col-md-6" id="data">
-										<h:inputHidden value="#{workPackageController.workPackage.id}" />
+								<h:inputHidden value="#{workPackageController.workPackage.id}" />
 
 								<div class="form-group">
 									<h:outputLabel for="itProjectNumber"
@@ -79,22 +79,20 @@
 
 
 								<div class="form-group">
-												<h:outputLabel for="itParentPackageNumber"
-											value="#{msgs.parentWpId}"
-													class="col-sm-4 control-label" />
+									<h:outputLabel for="itParentPackageNumber"
+										value="#{msgs.parentWpId}" class="col-sm-4 control-label" />
 
-												<div class="col-sm-8">
+									<div class="col-sm-8">
 
-												 	<h:outputText id="itParentPackageNumber" 
-													
-														value="#{workPackageController.parentWPId}"
-														required="true" label="#{msgs.parentWpId}"
-														class="form-control" />
-													<h:message errorClass="text-danger" for="itParentPackageNumber" />
-													<h:inputHidden value="#{workPackageController.parentWPId}" /> 
-												</div>
+										<h:outputText id="itParentPackageNumber"
+											value="#{workPackageController.parentWPId}" required="true"
+											label="#{msgs.parentWpId}" class="form-control" />
+										<h:message errorClass="text-danger"
+											for="itParentPackageNumber" />
+										<h:inputHidden value="#{workPackageController.parentWPId}" />
+									</div>
 								</div>
-								
+
 								<div class="form-group">
 									<h:outputLabel for="itWorkPackageNumber"
 										value="#{msgs.workPackageNumber}"
@@ -103,11 +101,12 @@
 										<h:inputText id="itWorkPackageNumber"
 											value="#{workPackageController.workPackage.packageNum}"
 											class="form-control" readonly="true" />
-										<h:inputHidden value="#{workPackageController.workPackage.packageNum}" /> 
-											
+										<h:inputHidden
+											value="#{workPackageController.workPackage.packageNum}" />
+
 									</div>
 								</div>
-								
+
 
 								<div class="form-group">
 									<h:outputLabel for="itWorkPackageName"
@@ -146,19 +145,20 @@
 										<h:message errorClass="text-danger" for="mnSupervisor" />
 									</div>
 								</div>
-								
-	 							
+
+
 								<div class="form-group">
 									<h:outputLabel for="itStatus" value="#{msgs.status}"
 										class="col-sm-4 control-label" />
 									<div class="col-sm-8">
-										<h:inputText id="itStatus"
-											value="#{workPackageController.workPackage.status}"
-											required="true" pt:placeholder="Status"
-											label="#{msgs.status}" class="form-control" />
+		
+										<h:selectOneMenu value="#{workPackageController.workPackage.status}" id="itStatus"									
+										class="form-control">
+											<f:selectItems value="#{workPackageController.statuses}" />
+										</h:selectOneMenu>
 										<h:message errorClass="text-danger" for="itStatus" />
 									</div>
-								</div> 
+								</div>
 
 								<div class="form-group">
 									<div id="newWorkPackageButtons" class="col-md-offset-4">
@@ -171,185 +171,187 @@
 
 								<!-- end of employee form -->
 							</div>
-							
-							<h:panelGroup rendered="#{workPackageController.workPackage.leaf}">
-							<div class="col-md-6">
-								
-								<div class="panel panel-default">
-									<div class="panel-body">
-										<span id="helpBlock" class="help-block">Project Manager</span>
-										<div class="form-group">
-											<h:outputLabel value="#{msgs.workPackageBudget}"
-												class="col-sm-2 control-label" />
-											<div class="col-sm-2">
-												<h:outputLabel value="#{msgs.p1}" />
 
-												<h:inputText pt:placeholder="P1" id="itWorkPackageBudget"
-													value="#{workPackageController.workPackage.budget.p1}"
-													required="true" label="#{msgs.workPackageBudget}"
-													class="form-control" />
-												<h:message errorClass="text-danger"
-													for="itWorkPackageBudget" />
+							<h:panelGroup
+								rendered="#{workPackageController.workPackage.leaf}">
+								<div class="col-md-6">
+
+									<div class="panel panel-default">
+										<div class="panel-body">
+											<span id="helpBlock" class="help-block">Project
+												Manager</span>
+											<div class="form-group">
+												<h:outputLabel value="#{msgs.workPackageBudget}"
+													class="col-sm-2 control-label" />
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.p1}" />
+
+													<h:inputText pt:placeholder="P1" id="itWorkPackageBudget"
+														value="#{workPackageController.workPackage.budget.p1}"
+														required="true" label="#{msgs.workPackageBudget}"
+														class="form-control" />
+													<h:message errorClass="text-danger"
+														for="itWorkPackageBudget" />
+												</div>
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.p2}" />
+
+													<h:inputText pt:placeholder="P2"
+														value="#{workPackageController.workPackage.budget.p2}"
+														required="true" label="#{msgs.workPackageBudget}"
+														class="form-control" />
+													<h:message errorClass="text-danger" for="" />
+												</div>
+
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.p3}" />
+
+													<h:inputText pt:placeholder="P3"
+														value="#{workPackageController.workPackage.budget.p3}"
+														required="true" label="#{msgs.workPackageBudget}"
+														class="form-control" />
+													<h:message errorClass="text-danger" for="" />
+												</div>
+
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.p4}" />
+
+													<h:inputText pt:placeholder="P4"
+														value="#{workPackageController.workPackage.budget.p4}"
+														required="true" label="#{msgs.workPackageBudget}"
+														class="form-control" />
+													<h:message errorClass="text-danger" for="" />
+												</div>
 											</div>
-											<div class="col-sm-2">
-												<h:outputLabel value="#{msgs.p2}" />
 
-												<h:inputText pt:placeholder="P2"
-													value="#{workPackageController.workPackage.budget.p2}"
-													required="true" label="#{msgs.workPackageBudget}"
-													class="form-control" />
-												<h:message errorClass="text-danger" for="" />
-											</div>
+											<div class="form-group">
 
-											<div class="col-sm-2">
-												<h:outputLabel value="#{msgs.p3}" />
+												<div class="col-sm-2 col-sm-offset-2">
+													<h:outputLabel value="#{msgs.p5}" />
 
-												<h:inputText pt:placeholder="P3"
-													value="#{workPackageController.workPackage.budget.p3}"
-													required="true" label="#{msgs.workPackageBudget}"
-													class="form-control" />
-												<h:message errorClass="text-danger" for="" />
-											</div>
+													<h:inputText pt:placeholder="P5"
+														value="#{workPackageController.workPackage.budget.p5}"
+														required="true" label="#{msgs.workPackageBudget}"
+														class="form-control" />
+													<h:message errorClass="text-danger" for="" />
+												</div>
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.ss}" />
 
-											<div class="col-sm-2">
-												<h:outputLabel value="#{msgs.p4}" />
+													<h:inputText pt:placeholder="SS"
+														value="#{workPackageController.workPackage.budget.SS}"
+														required="true" label="#{msgs.workPackageBudget}"
+														class="form-control" />
+													<h:message errorClass="text-danger" for="" />
+												</div>
 
-												<h:inputText pt:placeholder="P4"
-													value="#{workPackageController.workPackage.budget.p4}"
-													required="true" label="#{msgs.workPackageBudget}"
-													class="form-control" />
-												<h:message errorClass="text-danger" for="" />
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.js}" />
+
+													<h:inputText pt:placeholder="JS"
+														value="#{workPackageController.workPackage.budget.JS}"
+														required="true" label="#{msgs.workPackageBudget}"
+														class="form-control" />
+													<h:message errorClass="text-danger" for="" />
+												</div>
+
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.ds}" />
+
+													<h:inputText pt:placeholder="DS"
+														value="#{workPackageController.workPackage.budget.DS}"
+														required="true" label="#{msgs.workPackageBudget}"
+														class="form-control" />
+													<h:message errorClass="text-danger" for="" />
+												</div>
 											</div>
 										</div>
+									</div>
 
-										<div class="form-group">
 
-											<div class="col-sm-2 col-sm-offset-2">
-												<h:outputLabel value="#{msgs.p5}" />
+									<div class="panel panel-default">
+										<div class="panel-body">
 
-												<h:inputText pt:placeholder="P5"
-													value="#{workPackageController.workPackage.budget.p5}"
-													required="true" label="#{msgs.workPackageBudget}"
-													class="form-control" />
-												<h:message errorClass="text-danger" for="" />
+											<span id="helpBlock" class="help-block">Engineer</span>
+
+											<div class="form-group">
+												<h:outputLabel value="#{msgs.workPackageBudget}"
+													class="col-sm-2 control-label" />
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.p1}" />
+													<h:inputText pt:placeholder="P1" id="P1"
+														value="#{workPackageController.workPackage.engineerBudget.p1}"
+														required="true" label="#{msgs.p1}" class="form-control" />
+													<h:message errorClass="text-danger" for="P1" />
+												</div>
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.p2}" />
+
+													<h:inputText pt:placeholder="P2" id="P2"
+														value="#{workPackageController.workPackage.engineerBudget.p2}"
+														required="true" label="#{msgs.p2}" class="form-control" />
+													<h:message errorClass="text-danger" for="P2" />
+												</div>
+
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.p3}" />
+
+													<h:inputText pt:placeholder="P3" id="P3"
+														value="#{workPackageController.workPackage.engineerBudget.p3}"
+														required="true" label="#{msgs.p3}" class="form-control" />
+													<h:message errorClass="text-danger" for="P3" />
+												</div>
+
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.p4}" />
+
+													<h:inputText pt:placeholder="P4" id="P4"
+														value="#{workPackageController.workPackage.engineerBudget.p4}"
+														required="true" label="#{msgs.p4}" class="form-control" />
+													<h:message errorClass="text-danger" for="P4" />
+												</div>
 											</div>
-											<div class="col-sm-2">
-												<h:outputLabel value="#{msgs.ss}" />
 
-												<h:inputText pt:placeholder="SS"
-													value="#{workPackageController.workPackage.budget.SS}"
-													required="true" label="#{msgs.workPackageBudget}"
-													class="form-control" />
-												<h:message errorClass="text-danger" for="" />
-											</div>
+											<div class="form-group">
 
-											<div class="col-sm-2">
-												<h:outputLabel value="#{msgs.js}" />
+												<div class="col-sm-2 col-sm-offset-2">
+													<h:outputLabel value="#{msgs.p5}" />
 
-												<h:inputText pt:placeholder="JS"
-													value="#{workPackageController.workPackage.budget.JS}"
-													required="true" label="#{msgs.workPackageBudget}"
-													class="form-control" />
-												<h:message errorClass="text-danger" for="" />
-											</div>
+													<h:inputText pt:placeholder="P5" id="P5"
+														value="#{workPackageController.workPackage.engineerBudget.p5}"
+														required="true" label="#{msgs.p5}" class="form-control" />
+													<h:message errorClass="text-danger" for="P5" />
+												</div>
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.ss}" />
 
-											<div class="col-sm-2">
-												<h:outputLabel value="#{msgs.ds}" />
+													<h:inputText pt:placeholder="SS" id="SS"
+														value="#{workPackageController.workPackage.engineerBudget.SS}"
+														required="true" label="#{msgs.ss}" class="form-control" />
+													<h:message errorClass="text-danger" for="SS" />
+												</div>
 
-												<h:inputText pt:placeholder="DS"
-													value="#{workPackageController.workPackage.budget.DS}"
-													required="true" label="#{msgs.workPackageBudget}"
-													class="form-control" />
-												<h:message errorClass="text-danger" for="" />
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.js}" />
+
+													<h:inputText pt:placeholder="JS" id="JS"
+														value="#{workPackageController.workPackage.engineerBudget.JS}"
+														required="true" label="#{msgs.js}" class="form-control" />
+													<h:message errorClass="text-danger" for="JS" />
+												</div>
+
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.ds}" />
+													<h:inputText pt:placeholder="DS" id="DS"
+														value="#{workPackageController.workPackage.engineerBudget.DS}"
+														required="true" label="#{msgs.ds}" class="form-control" />
+													<h:message errorClass="text-danger" for="DS" />
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 
-
-								<div class="panel panel-default">
-									<div class="panel-body">
-
-										<span id="helpBlock" class="help-block">Engineer</span>
-
-										<div class="form-group">
-											<h:outputLabel value="#{msgs.workPackageBudget}"
-												class="col-sm-2 control-label" />
-											<div class="col-sm-2">
-												<h:outputLabel value="#{msgs.p1}" />
-												<h:inputText pt:placeholder="P1" id="P1"
-													value="#{workPackageController.workPackage.engineerBudget.p1}"
-													required="true" label="#{msgs.p1}" class="form-control" />
-												<h:message errorClass="text-danger" for="P1" />
-											</div>
-											<div class="col-sm-2">
-												<h:outputLabel value="#{msgs.p2}" />
-
-												<h:inputText pt:placeholder="P2" id="P2"
-													value="#{workPackageController.workPackage.engineerBudget.p2}"
-													required="true" label="#{msgs.p2}" class="form-control" />
-												<h:message errorClass="text-danger" for="P2" />
-											</div>
-
-											<div class="col-sm-2">
-												<h:outputLabel value="#{msgs.p3}" />
-
-												<h:inputText pt:placeholder="P3" id="P3"
-													value="#{workPackageController.workPackage.engineerBudget.p3}"
-													required="true" label="#{msgs.p3}" class="form-control" />
-												<h:message errorClass="text-danger" for="P3" />
-											</div>
-
-											<div class="col-sm-2">
-												<h:outputLabel value="#{msgs.p4}" />
-
-												<h:inputText pt:placeholder="P4" id="P4"
-													value="#{workPackageController.workPackage.engineerBudget.p4}"
-													required="true" label="#{msgs.p4}" class="form-control" />
-												<h:message errorClass="text-danger" for="P4" />
-											</div>
-										</div>
-
-										<div class="form-group">
-
-											<div class="col-sm-2 col-sm-offset-2">
-												<h:outputLabel value="#{msgs.p5}" />
-
-												<h:inputText pt:placeholder="P5" id="P5"
-													value="#{workPackageController.workPackage.engineerBudget.p5}"
-													required="true" label="#{msgs.p5}" class="form-control" />
-												<h:message errorClass="text-danger" for="P5" />
-											</div>
-											<div class="col-sm-2">
-												<h:outputLabel value="#{msgs.ss}" />
-
-												<h:inputText pt:placeholder="SS" id="SS"
-													value="#{workPackageController.workPackage.engineerBudget.SS}"
-													required="true" label="#{msgs.ss}" class="form-control" />
-												<h:message errorClass="text-danger" for="SS" />
-											</div>
-
-											<div class="col-sm-2">
-												<h:outputLabel value="#{msgs.js}" />
-
-												<h:inputText pt:placeholder="JS" id="JS"
-													value="#{workPackageController.workPackage.engineerBudget.JS}"
-													required="true" label="#{msgs.js}" class="form-control" />
-												<h:message errorClass="text-danger" for="JS" />
-											</div>
-
-											<div class="col-sm-2">
-												<h:outputLabel value="#{msgs.ds}" />
-												<h:inputText pt:placeholder="DS" id="DS"
-													value="#{workPackageController.workPackage.engineerBudget.DS}"
-													required="true" label="#{msgs.ds}" class="form-control" />
-												<h:message errorClass="text-danger" for="DS" />
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							
 							</h:panelGroup>
 						</h:form>
 						<!-- end of data div. Employee information -->

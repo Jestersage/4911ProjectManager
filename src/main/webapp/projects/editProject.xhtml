@@ -112,7 +112,7 @@
 										class="col-sm-4 control-label" />
 									<div class="col-sm-8">
 										
-										<p:calendar id="popupStartDate" 
+										<p:calendar id="popupStartDate" pattern="yyyy-MM-dd"
 											value="#{projectController.startDate}" required="true"
 											label="#{msgs.startDate}" >
 											<f:convertDateTime pattern="M/d/yy"/>
@@ -127,12 +127,25 @@
 									<div class="col-sm-8">
 										<p:calendar id="popupEndDate" pattern="yyyy-MM-dd"
 											value="#{projectController.endDate}" required="true"
-											label="#{msgs.endDate}" />
+											label="#{msgs.endDate}"  />
 										<h:message errorClass="text-danger" for="popupEndDate" />
 									</div>
 								</div>
 
-
+								
+								<div class="form-group">
+									<h:outputLabel for="itStatus" value="#{msgs.status}"
+										class="col-sm-4 control-label" />
+									<div class="col-sm-8">
+		
+										<h:selectOneMenu value="#{projectController.project.status}" id="itStatus"									
+										class="form-control">
+											<f:selectItems value="#{projectController.statuses}" />
+										</h:selectOneMenu>
+										<h:message errorClass="text-danger" for="itStatus" />
+									</div>
+								</div>
+								
 								<div class="panel panel-default">
 									<div class="panel-body">
 

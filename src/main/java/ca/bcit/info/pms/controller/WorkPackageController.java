@@ -4,9 +4,11 @@
 package ca.bcit.info.pms.controller;
 
 import ca.bcit.info.pms.model.Project;
+import ca.bcit.info.pms.model.ProjectStatus;
 import ca.bcit.info.pms.model.WorkPackage;
 import ca.bcit.info.pms.service.ProjectService;
 import ca.bcit.info.pms.service.WorkPackageService;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -15,6 +17,7 @@ import javax.enterprise.context.ConversationScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -50,7 +53,6 @@ public class WorkPackageController implements Serializable
 //	private EngineerBudgetManager engineerBudgetMngr;
 
 
-	private Project [] projectList;
 
 	private Integer parentWPId;
 
@@ -72,13 +74,11 @@ public class WorkPackageController implements Serializable
 		}
 	}
 
+	
 
-	public Project [] getProjectList()
-	{
-		projectList = new Project [ workPackageService.getAllProjects().size() ];
-		projectList = workPackageService.getAllProjects().toArray( projectList );
-		return projectList;
-
+	public  ProjectStatus[] getStatuses()
+	{			
+		return ProjectStatus.values();
 	}
 
 	public String addWorkPackage()
