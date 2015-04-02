@@ -172,9 +172,12 @@
 								<!-- end of employee form -->
 							</div>
 
-							<h:panelGroup
-								rendered="#{workPackageController.workPackage.leaf}">
-								<div class="col-md-6">
+						<h:panelGroup rendered="#{workPackageController.workPackage.leaf}">
+
+							<div class="col-md-6">
+
+								<h:panelGroup
+									rendered="#{userController.isAuthorized('Project Manager')}">
 
 									<div class="panel panel-default">
 										<div class="panel-body">
@@ -268,7 +271,10 @@
 										</div>
 									</div>
 
-
+								</h:panelGroup>
+								
+								<h:panelGroup
+									rendered="#{userController.isAuthorized('Project Manager,Responsible Engineer')}">
 									<div class="panel panel-default">
 										<div class="panel-body">
 
@@ -350,6 +356,7 @@
 											</div>
 										</div>
 									</div>
+									</h:panelGroup>
 								</div>
 
 							</h:panelGroup>

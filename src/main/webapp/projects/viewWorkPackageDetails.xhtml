@@ -17,7 +17,8 @@
 	<f:metadata>
 		<f:event type="preRenderView"
 			listener="#{userController.checkAuthorization}" />
-		<f:attribute name="requiredRoles" value="Supervisor,Project Manager,Project Assistant" />
+		<f:attribute name="requiredRoles"
+			value="Supervisor,Project Manager,Project Assistant" />
 	</f:metadata>
 
 	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
@@ -54,8 +55,19 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-6 ">
 							<h:form id="workPackageForm" styleClass="form-inline">
-				
-							<h:inputHidden  value="#{workPackageController.workPackage.id}" />
+
+								<h:inputHidden value="#{workPackageController.workPackage.id}" />
+
+								<h:inputHidden binding="#{packageID}"
+									value="#{workPackageController.workPackage.id}" />
+
+
+								<ui:fragment
+									rendered="#{userController.isAuthorized('Project Manager,Project Assistant,Responsible Engineer')}">
+									<h:commandButton value="#{msgs.edit_emp}"
+										styleClass="btn btn-primary pull-right"
+										action="#{workPackageController.goEditPackage(packageID.value)}" />
+								</ui:fragment>
 
 								<dl class="dl-horizontal">
 									<dt>#{msgs.workPackageNumber}</dt>
@@ -79,136 +91,217 @@
 								</dl>
 							</h:form>
 						</div>
-							
-							
-					<h:panelGroup rendered="#{workPackageController.workPackage.leaf}">
-
-						<div class="col-md-6">
-							<div class="panel panel-default">
-								<div class="panel-body">
 
 
-									<div class="form-group">
-										<h:outputLabel value="#{msgs.workPackageBudget}"
-													   class="col-sm-2 control-label" />
-										<div class="col-sm-2">
-											<h:outputLabel value="#{msgs.p1}" />
-											<h:outputText pt:placeholder="P1"  id="P1"
-														  value="#{workPackageController.workPackage.budget.p1}"
-														  required="true" label="#{msgs.p1}" class="form-control" />
-											<h:message errorClass="text-danger" for="P1" />
-										</div>
-										<div class="col-sm-2">
-											<h:outputLabel value="#{msgs.p2}" />
+						<h:panelGroup rendered="#{workPackageController.workPackage.leaf}">
 
-											<h:outputText pt:placeholder="P2"  id="P2"
-														  value="#{workPackageController.workPackage.budget.p2}"
-														  required="true" label="#{msgs.p2}" class="form-control" />
-											<h:message errorClass="text-danger" for="P2" />
-										</div>
+							<div class="col-md-6">
 
-										<div class="col-sm-2">
-											<h:outputLabel value="#{msgs.p3}" />
+								<h:panelGroup
+									rendered="#{userController.isAuthorized('Project Manager')}">
 
-											<h:outputText pt:placeholder="P3"  id="P3"
-														  value="#{workPackageController.workPackage.budget.p3}"
-														  required="true" label="#{msgs.p3}" class="form-control" />
-											<h:message errorClass="text-danger" for="P3" />
-										</div>
+								<div class="panel panel-default">
+										<div class="panel-body">
 
-										<div class="col-sm-2">
-											<h:outputLabel value="#{msgs.p4}" />
 
-											<h:outputText pt:placeholder="P4"  id="P4"
-														  value="#{workPackageController.workPackage.budget.p4}"
-														  required="true" label="#{msgs.p4}" class="form-control" />
-											<h:message errorClass="text-danger" for="P4" />
+											<div class="form-group">
+												<h:outputLabel value="#{msgs.workPackageBudget}"
+													class="col-sm-2 control-label" />
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.p1}" />
+													<h:outputText pt:placeholder="P1" id="P1"
+														value="#{workPackageController.workPackage.budget.p1}"
+														required="true" label="#{msgs.p1}" class="form-control" />
+													<h:message errorClass="text-danger" for="P1" />
+												</div>
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.p2}" />
+
+													<h:outputText pt:placeholder="P2" id="P2"
+														value="#{workPackageController.workPackage.budget.p2}"
+														required="true" label="#{msgs.p2}" class="form-control" />
+													<h:message errorClass="text-danger" for="P2" />
+												</div>
+
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.p3}" />
+
+													<h:outputText pt:placeholder="P3" id="P3"
+														value="#{workPackageController.workPackage.budget.p3}"
+														required="true" label="#{msgs.p3}" class="form-control" />
+													<h:message errorClass="text-danger" for="P3" />
+												</div>
+
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.p4}" />
+
+													<h:outputText pt:placeholder="P4" id="P4"
+														value="#{workPackageController.workPackage.budget.p4}"
+														required="true" label="#{msgs.p4}" class="form-control" />
+													<h:message errorClass="text-danger" for="P4" />
+												</div>
+											</div>
+
+											<div class="form-group">
+
+												<div class="col-sm-2 col-sm-offset-2">
+													<h:outputLabel value="#{msgs.p5}" />
+
+													<h:outputText pt:placeholder="P5" id="P5"
+														value="#{workPackageController.workPackage.budget.p5}"
+														required="true" label="#{msgs.p5}" class="form-control" />
+													<h:message errorClass="text-danger" for="P5" />
+												</div>
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.ss}" />
+
+													<h:outputText pt:placeholder="SS" id="SS"
+														value="#{workPackageController.workPackage.budget.SS}"
+														required="true" label="#{msgs.ss}" class="form-control" />
+													<h:message errorClass="text-danger" for="SS" />
+												</div>
+
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.js}" />
+
+													<h:outputText pt:placeholder="JS" id="JS"
+														value="#{workPackageController.workPackage.budget.JS}"
+														required="true" label="#{msgs.js}" class="form-control" />
+													<h:message errorClass="text-danger" for="JS" />
+												</div>
+
+												<div class="col-sm-2">
+													<h:outputLabel value="#{msgs.ds}" />
+
+													<h:outputText pt:placeholder="DS" id="DS"
+														value="#{workPackageController.workPackage.budget.DS}"
+														required="true" label="#{msgs.ds}" class="form-control" />
+													<h:message errorClass="text-danger" for="DS" />
+												</div>
+											</div>
 										</div>
 									</div>
 
-									<div class="form-group">
+								</h:panelGroup>
+								
+								<h:panelGroup
+									rendered="#{userController.isAuthorized('Project Manager,Responsible Engineer')}">
+								<div class="panel panel-default">
+									<div class="panel-body">
 
-										<div class="col-sm-2 col-sm-offset-2">
-											<h:outputLabel value="#{msgs.p5}" />
+										<span id="helpBlock" class="help-block">Engineer</span>
 
-											<h:outputText pt:placeholder="P5"  id="P5"
-														  value="#{workPackageController.workPackage.budget.p5}"
-														  required="true" label="#{msgs.p5}" class="form-control" />
-											<h:message errorClass="text-danger" for="P5" />
+										<div class="form-group">
+											<h:outputLabel value="#{msgs.workPackageBudget}"
+												class="col-sm-2 control-label" />
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p1}" />
+												<h:outputText pt:placeholder="P1" id="eP1"
+													value="#{workPackageController.workPackage.engineerBudget.p1}"
+													required="true" label="#{msgs.p1}" class="form-control" />
+												<h:message errorClass="text-danger" for="eP1" />
+											</div>
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p2}" />
+
+												<h:outputText pt:placeholder="P2" id="eP2"
+													value="#{workPackageController.workPackage.engineerBudget.p2}"
+													required="true" label="#{msgs.p2}" class="form-control" />
+												<h:message errorClass="text-danger" for="eP2" />
+											</div>
+
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p3}" />
+
+												<h:outputText pt:placeholder="P3" id="eP3"
+													value="#{workPackageController.workPackage.engineerBudget.p3}"
+													required="true" label="#{msgs.p3}" class="form-control" />
+												<h:message errorClass="text-danger" for="eP3" />
+											</div>
+
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p4}" />
+
+												<h:outputText pt:placeholder="P4" id="eP4"
+													value="#{workPackageController.workPackage.engineerBudget.p4}"
+													required="true" label="#{msgs.p4}" class="form-control" />
+												<h:message errorClass="text-danger" for="eP4" />
+											</div>
 										</div>
-										<div class="col-sm-2">
-											<h:outputLabel value="#{msgs.ss}" />
 
-											<h:outputText pt:placeholder="SS"  id="SS"
-														  value="#{workPackageController.workPackage.budget.SS}"
-														  required="true" label="#{msgs.ss}" class="form-control" />
-											<h:message errorClass="text-danger" for="SS" />
-										</div>
+										<div class="form-group">
 
-										<div class="col-sm-2">
-											<h:outputLabel value="#{msgs.js}" />
+											<div class="col-sm-2 col-sm-offset-2">
+												<h:outputLabel value="#{msgs.p5}" />
 
-											<h:outputText pt:placeholder="JS"  id="JS"
-														  value="#{workPackageController.workPackage.budget.JS}"
-														  required="true" label="#{msgs.js}" class="form-control" />
-											<h:message errorClass="text-danger" for="JS" />
-										</div>
+												<h:outputText pt:placeholder="P5" id="eP5"
+													value="#{workPackageController.workPackage.engineerBudget.p5}"
+													required="true" label="#{msgs.p5}" class="form-control" />
+												<h:message errorClass="text-danger" for="eP5" />
+											</div>
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.ss}" />
 
-										<div class="col-sm-2">
-											<h:outputLabel value="#{msgs.ds}" />
+												<h:outputText pt:placeholder="SS" id="eSS"
+													value="#{workPackageController.workPackage.engineerBudget.SS}"
+													required="true" label="#{msgs.ss}" class="form-control" />
+												<h:message errorClass="text-danger" for="eSS" />
+											</div>
 
-											<h:outputText pt:placeholder="DS"  id="DS"
-														  value="#{workPackageController.workPackage.budget.DS}"
-														  required="true" label="#{msgs.ds}" class="form-control" />
-											<h:message errorClass="text-danger" for="DS" />
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.js}" />
+
+												<h:outputText pt:placeholder="JS" id="eJS"
+													value="#{workPackageController.workPackage.engineerBudget.JS}"
+													required="true" label="#{msgs.js}" class="form-control" />
+												<h:message errorClass="text-danger" for="eJS" />
+											</div>
+
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.ds}" />
+												<h:outputText pt:placeholder="DS" id="eDS"
+													value="#{workPackageController.workPackage.engineerBudget.DS}"
+													required="true" label="#{msgs.ds}" class="form-control" />
+												<h:message errorClass="text-danger" for="eDS" />
+											</div>
 										</div>
 									</div>
 								</div>
+								</h:panelGroup>
 							</div>
-						</div>
 						</h:panelGroup>
 					</div>
 					<div class="row">
 						<h:form>
-						<div class="col-xs-12 col-sm-12 col-md-6 ">
-							<div class="panel panel-default">
-								<div class="panel-heading"><strong>#{msgs.childWorkPackage}</strong></div>
-								<div class="panel-body">
-									<!-- controll buttons -->
-									<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
-										<h:commandButton value="#{msgs.createChildPackage}"
-														 styleClass="btn btn-primary"
-														 action="#{workPackageController.goChildPackage(workPackageController.workPackage)}" />
-									</ui:fragment>
+							<div class="col-xs-12 col-sm-12 col-md-6 ">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<strong>#{msgs.childWorkPackage}</strong>
+									</div>
+									<div class="panel-body">
+										<!-- controll buttons -->
+										<ui:fragment
+											rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
+											<h:commandButton value="#{msgs.createChildPackage}"
+												styleClass="btn btn-primary"
+												action="#{workPackageController.goChildPackage(workPackageController.workPackage)}" />
+										</ui:fragment>
+									</div>
+									<ul class="list-group">
+										<ui:repeat var="package"
+											value="#{workPackageController.childWorkPackages}">
+											<li class="list-group-item"><h:commandLink
+													value="#{package.name} (#{package.packageNum})"
+													action="#{workPackageController.viewWorkPackageDetails(package)}" />
+											</li>
+										</ui:repeat>
+									</ul>
 								</div>
-								<ul class="list-group">
-									<ui:repeat var="package" value="#{workPackageController.childWorkPackages}">
-										<li class="list-group-item">
-											<h:commandLink value="#{package.name} (#{package.packageNum})"
-														   action="#{workPackageController.viewWorkPackageDetails(package)}" />
-										</li>
-									</ui:repeat>
-								</ul>
 							</div>
-						</div>
 						</h:form>
 					</div>
 
-						<div class="row">
-							<div class="col-xs-12 col-sm-12">
-								<h:form id="linkForm">
-									<h:inputHidden binding="#{packageID}"  value="#{workPackageController.workPackage.id}" />
-	
-									<div class="button-groups">
-									<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant,Responsible Engineer')}">
-										<h:commandButton value="#{msgs.edit_emp}"
-												   styleClass="btn btn-primary"
-												   action="#{workPackageController.goEditPackage(packageID.value)}" />
-									</ui:fragment>
-									</div>
-								</h:form>
-							</div>
-						</div>
+
 				</div>
 			</div>
 		</ui:define>
