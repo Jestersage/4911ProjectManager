@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
-import javax.faces.FacesException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -93,6 +92,12 @@ public class EditTimesheetController implements Serializable {
         Employee user = userController.getUser();
 
         timesheet = timeService.getCurrentTimesheet(user);
+        
+        logger.info("\n\ttimesheet.submitted::"+timesheet.getSubmitted());
+        
+        if ((timesheet.getSubmitted() != null) && (timesheet.getSubmitted() == true)) {
+            return "viewTimesheet";
+        }
 
         return "currentTimesheet";
     }
@@ -137,12 +142,6 @@ public class EditTimesheetController implements Serializable {
         List<TimesheetRow> rows = removeEmptyRows(timesheet.getTimesheetRows());
         timesheet.setTimesheetRows(rows);
         
-        // TODO Remove : Debug info
-        for (TimesheetRow row : timesheet.getTimesheetRows()) {
-            logger.info("\n\tTimesheet.TSR.WorkPackage::"+row.getWorkPackage());
-            logger.info("\n\tTimesheet.TSR.WorkPackage.ID::"+row.getWorkPackage().getId());
-        }
-
         // A user CAN save an empty timesheet
         if(rows.size() == 0) {
             timeService.updateTimesheet(timesheet);
@@ -235,8 +234,6 @@ public class EditTimesheetController implements Serializable {
 
 			sigObject.setId(timesheet.getId());
 			signatureManager.persist(sigObject); //Persist the newly created model into the database
-			
-			
 		} catch(Exception e) {
 			logger.log(Level.ERROR, e.getMessage(), e);
 			return null;
