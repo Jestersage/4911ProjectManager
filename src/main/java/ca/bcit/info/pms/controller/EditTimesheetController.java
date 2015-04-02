@@ -134,7 +134,6 @@ public class EditTimesheetController implements Serializable {
     public String saveTimesheet() {
     	isValid = true;
         FacesMessage msg = null;
-        System.out.println("Saving timesheet: " + timesheet);
         List<TimesheetRow> rows = removeEmptyRows(timesheet.getTimesheetRows());
         timesheet.setTimesheetRows(rows);
         
@@ -181,6 +180,7 @@ public class EditTimesheetController implements Serializable {
         
 
         if(isValid){
+        	System.out.println("Saving timesheet: " + timesheet);
             timeService.updateTimesheet(timesheet);
         } else {
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
