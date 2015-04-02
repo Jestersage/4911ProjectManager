@@ -1,5 +1,6 @@
 package ca.bcit.info.pms.service.impl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -19,7 +20,7 @@ import ca.bcit.info.pms.service.WorkPackageService;
  */
 
 @Named( "WorkPackageService" )
-public class WorkPackageServiceImpl implements WorkPackageService {
+public class WorkPackageServiceImpl implements Serializable, WorkPackageService {
 	
 	
 	@Inject

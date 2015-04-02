@@ -19,6 +19,7 @@ import ca.bcit.info.pms.model.Timesheet;
 import ca.bcit.info.pms.model.TimesheetRow;
 import ca.bcit.info.pms.model.WorkPackage;
 import ca.bcit.info.pms.service.TimesheetService;
+import ca.bcit.info.pms.service.WorkPackageService;
 
 @Named( "editTimesheetController" )
 @SessionScoped
@@ -34,6 +35,9 @@ public class EditTimesheetController implements Serializable {
 
     @Inject
     private UserController userController;
+    
+    @Inject
+    private WorkPackageService wpService;
 
     /**
      * @return Return timesheet
@@ -97,6 +101,18 @@ public class EditTimesheetController implements Serializable {
         final String currUserid = userController.getUser().getId();
         return timeService.getApproverPendingTimesheets(currUserid);
     }
+    
+    public void populateWorkPackage(TimesheetRow tsr) {
+        logger.info("\n\tPRE-populateWorkPackage.tsr::"+tsr);
+        logger.info("\n\tPRE-populateWorkPackage.tsr.wp::"+tsr.getWorkPackage());
+        
+        WorkPackage wp = wpService.findWorkPackageById(tsr.getWorkPackage().getId());
+        tsr.setWorkPackage(wp);
+        
+
+        logger.info("\n\tPOST-populateWorkPackage.tsr::"+tsr);
+        logger.info("\n\tPOST-populateWorkPackage.tsr.wp::"+tsr.getWorkPackage());  
+    }
 
     /**
      * Persists the timesheet, or sets error message
@@ -108,6 +124,12 @@ public class EditTimesheetController implements Serializable {
         FacesMessage msg = null;
         List<TimesheetRow> rows = removeEmptyRows(timesheet.getTimesheetRows());
         timesheet.setTimesheetRows(rows);
+        
+        // TODO Remove : Debug info
+        for (TimesheetRow row : timesheet.getTimesheetRows()) {
+            logger.info("\n\tTimesheet.TSR.WorkPackage::"+row.getWorkPackage());
+            logger.info("\n\tTimesheet.TSR.WorkPackage.ID::"+row.getWorkPackage().getId());
+        }
 
         // A user CAN save an empty timesheet
         if(rows.size() == 0) {
@@ -269,6 +291,10 @@ public class EditTimesheetController implements Serializable {
     }
 
     public void removeRowFromTimesheet(TimesheetRow row) {
+        logger.info("\t\nremoveRowFromTimesheet.row::"+row);
+        logger.info("\t\nremoveRowFromTimesheet.row.workPackage::"+row.getWorkPackage());
+        logger.info("\t\nremoveRowFromTimesheet.row.workPackage.id::"+row.getWorkPackage().getId());
+        
         List<TimesheetRow> rows = timesheet.getTimesheetRows();
 
         rows.remove(row);

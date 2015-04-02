@@ -116,6 +116,7 @@
                                                                 value="#{workPackageController.myWorkPackages}"
                                                                 var="package" itemValue="#{package.id}"
                                                                 itemLabel="#{package.project.id}:#{package.packageNum}" />
+                                                                <f:ajax listener="#{editTimesheetController.populateWorkPackage(tsRow)}" />
                                                         </p:selectOneMenu>
                                                     </p:column>
                                                     <p:column headerText="#{msgs.total}" class="col-md-1">
