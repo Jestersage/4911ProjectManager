@@ -14,6 +14,8 @@ import org.apache.log4j.Logger;
 
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -83,12 +85,24 @@ public class WorkPackageController implements Serializable
 
 	public String addWorkPackage()
 	{
+		if(workPackage == null) 
+			return null;
+		System.out.println(workPackage.getProject().getId());
+		System.out.println(workPackage.getPackageNum());
+		WorkPackage workPackages = workPackageService.getUniquePackage(workPackage.getProject().getId(), workPackage.getPackageNum());
+
+    	if(workPackages != null){
+    		FacesContext.getCurrentInstance().addMessage( "newWorkPackageForm:itWorkPackageNumber",
+                    new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "Work Package is not unique with combinition of Project ID and Package Number!: "
+                            + workPackage.getPackageNum() ) );
+    		return null;
+    	}
+		
 		WorkPackage parentWP = null;
 		//logger.info( parentWPId );
 		if ( parentWPId != null ) {
 			parentWP = workPackageService.findWorkPackageById(parentWPId);
-		}
-		
+		}		
 		workPackage.setParentWP( parentWP );
 		workPackageService.persistWorkPackage( workPackage );
 		// workPackageService.persistBudget(budget);

@@ -96,5 +96,7 @@ public class WorkPackageServiceImpl implements Serializable, WorkPackageService 
 		return WPManager.getChildWorkPackages(parentWp);
 	}
 
-
+	public WorkPackage getUniquePackage(final String projId, final String packageNo) {
+		return WPManager.getUniqueWP(projId, packageNo);
+	}
 }

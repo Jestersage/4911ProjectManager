@@ -36,4 +36,6 @@ public interface WorkPackageService {
      * @return list of immediate child work package of specified wp.
      */
     List<WorkPackage> getChildWorkPackages(final WorkPackage parentWp);
+    
+    WorkPackage getUniquePackage(final String projId, final String packageNo);
 }

@@ -8,6 +8,7 @@ import javax.enterprise.context.Dependent;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -73,6 +74,21 @@ public class WorkPackageManager implements Serializable
 		return workPackages;
 	}
 
+	public WorkPackage getUniqueWP( final String projectId, final String packageId )
+	{
+		Query query = em.createNativeQuery(
+		        "select * from workpackage where projectID = ? and packageNum = ?", WorkPackage.class )
+		        .setParameter(1, projectId)
+		        .setParameter(2, packageId);
+		WorkPackage workPackage = null;
+		try{
+			workPackage = (WorkPackage) query.getSingleResult();
+			} catch (NoResultException nre) {
+			 // Code for handling NoResultException
+			} 
+		return workPackage;
+	}
+	
 	/*
 	 * updates a WorkPackage in the database
 	 */

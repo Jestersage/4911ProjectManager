@@ -60,19 +60,19 @@
 
 
 											<div class="form-group">
-												<h:outputLabel for="itProjectNumber"
+												<h:outputLabel for="itPackageNumber"
 													value="#{msgs.projectNumber}"
 													class="col-sm-4 control-label" />
 
 												<div class="col-sm-8">
 
 
-												 	<h:outputText id="itProjectNumber"
+												 	<h:outputText id="itPackageNumber"
 														rendered="#{ not empty workPackageController.workPackage.project}"
 														value="#{workPackageController.workPackage.project.id}"
 														required="true" label="#{msgs.projectNumber}"
 														class="form-control" />
-													<h:message errorClass="text-danger" for="itProjectNumber" />
+													<h:message errorClass="text-danger" for="itPackageNumber" />
 													<h:inputHidden value="#{workPackageController.workPackage.project.id}" />
 
 													<!--<h:selectOneMenu id="smProjectNumber"
@@ -194,7 +194,7 @@
 															class="col-sm-4 control-label" />
 														<div class="col-sm-2">
 															<h:outputLabel value="#{msgs.p1}" />
-															<h:inputText id="itWorkPackageBudget"
+															<h:inputText pt:placeholder="P1"
 																value="#{workPackageController.workPackage.budget.p1}"
 																label="#{msgs.workPackageBudget}"
 																class="form-control" />
