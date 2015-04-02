@@ -58,6 +58,7 @@ public class WorkPackageController implements Serializable
 
 
 	private void beginConversation() {
+		logger.info("attempt start wp conversation...");
 		if (conversation.isTransient()) {
 			logger.info("Work Package, begin conversation.");
 			conversation.begin();
@@ -84,15 +85,17 @@ public class WorkPackageController implements Serializable
 	{
 		WorkPackage parentWP = null;
 		//logger.info( parentWPId );
-		if ( parentWPId != null )
-			parentWP = workPackageService.findWorkPackageById( parentWPId );
-			
+		if ( parentWPId != null ) {
+			parentWP = workPackageService.findWorkPackageById(parentWPId);
+		}
 		
 		workPackage.setParentWP( parentWP );
 		workPackageService.persistWorkPackage( workPackage );
 		// workPackageService.persistBudget(budget);
 		logger.info( "successfully create new WorkPackage: " + workPackage.toString() );
-		return "viewAllPackages";
+
+		beginConversation();
+		return "viewWorkPackageDetails";
 	}
 
 	public WorkPackage getworkPackage()
@@ -132,9 +135,24 @@ public class WorkPackageController implements Serializable
 		return "newWorkPackage";
 	}
 
+	/**
+	 * Go to create new work package. Similar to goNewTopLevelPackage
+	 * but takes project id rather than the project object.
+	 * @param projId project id
+	 * @return navigation view id
+	 */
+	public String goCreatePackage( final String projId )
+	{
+		workPackage = new WorkPackage();
+		final Project project = projectService.getProject( projId );
+		workPackage.setProject( project );
+
+		return "newWorkPackage";
+	}
+
 	public String goChildPackage( WorkPackage parentWorkPackage )
 	{
-		Project project = projectService.getProject( parentWorkPackage.getProject().getId() );
+		Project project = projectService.getProject(parentWorkPackage.getProject().getId());
 		workPackage.setProject( project );
 		parentWPId = parentWorkPackage.getId();
 		return "newWorkPackage";
@@ -175,15 +193,6 @@ public class WorkPackageController implements Serializable
 		return "viewWorkPackageDetails";
 	}
 
-	public String goCreatePackage( final String projId )
-	{
-		final Project project = projectService.getProject( projId );
-		workPackage.setProject( project );
-
-		return "newWorkPackage";
-	}
-	
-	
 	public String updateWorkpackage(){		
 		WorkPackage parentWP = null;
 		//logger.info( parentWPId );
