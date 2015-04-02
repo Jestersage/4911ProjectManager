@@ -1,6 +1,5 @@
 package ca.bcit.info.pms.controller;
 
-import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.WorkPackage;
@@ -10,18 +9,18 @@ import ca.bcit.info.pms.service.ProjectService;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.Conversation;
+import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import java.io.Serializable;
-import java.util.Comparator;
 import java.util.List;
 
 @Named("projectController")
-@RequestScoped
+@ConversationScoped
 public class ProjectController implements Serializable{
     private java.util.Date startDate, endDate;
     private String assistantUsername;
@@ -54,6 +53,9 @@ public class ProjectController implements Serializable{
     @Inject
     private EmployeeService empService;
 
+    @Inject
+    private Conversation conversation;
+
     /*
      * holds the project information
      */
@@ -64,6 +66,21 @@ public class ProjectController implements Serializable{
     private String managerId;
     
     private static final Logger logger = LogManager.getLogger(ProjectController.class);
+
+    private void beginConversation() {
+        logger.info("Project, attampt begin conversation....");
+        if (conversation.isTransient()) {
+            logger.info("Project, begin conversation.");
+            conversation.begin();
+        }
+    }
+
+    private void endConversation() {
+        if(!conversation.isTransient()){
+            logger.info("Project, end conversation.");
+            conversation.end();
+        }
+    }
 
     /**
      * @return the project
@@ -238,12 +255,13 @@ public class ProjectController implements Serializable{
         projService.updateProject(project);
         return null;
     }
-    
+
     /**
      * 
      * @return
      */
     public String viewProjectDetails(final Project project){
+        beginConversation();
     	this.project = project;
     	return "viewProjectDetails";
     }

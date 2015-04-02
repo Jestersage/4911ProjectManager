@@ -225,7 +225,10 @@
 								</div>
 								<ul class="list-group">
 									<ui:repeat var="package" value="#{projectController.topLevelPackages}">
-										<li class="list-group-item">#{package.name} (#{package.packageNum})</li>
+										<li class="list-group-item">
+										<h:commandLink value="#{package.name} (#{package.packageNum})"
+													   action="#{workPackageController.viewPackageDetails(package)}" />
+										</li>
 									</ui:repeat>
 								</ul>
 							</div>
