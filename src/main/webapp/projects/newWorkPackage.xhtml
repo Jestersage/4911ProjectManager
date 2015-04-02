@@ -177,8 +177,7 @@
 													<h:selectBooleanCheckbox id="isLeafOrNot"
 														value="#{workPackageController.workPackage.leaf}"
 														label="#{msgs.isLeafOrNot}" class="form-control">
-														<f:ajax event="click" render="budgetSection" 
-																listener="#{workPackageController.setBooleanLeaf}"/>
+														<p:ajax event="click" update="@form"/>
 													</h:selectBooleanCheckbox>
 													<h:message errorClass="text-danger" for="isLeafOrNot" />
 												</div>
@@ -198,8 +197,7 @@
 															<h:inputText id="itWorkPackageBudget"
 																value="#{workPackageController.workPackage.budget.p1}"
 																label="#{msgs.workPackageBudget}"
-																class="form-control"
-																required="true" />
+																class="form-control" />
 															<h:message errorClass="text-danger"
 																for="itWorkPackageBudget" />
 														</div>
@@ -209,8 +207,7 @@
 															<h:inputText pt:placeholder="P2"
 																value="#{workPackageController.workPackage.budget.p2}"
 																label="#{msgs.workPackageBudget}"
-																class="form-control" 
-																required="true" />
+																class="form-control" />
 															<h:message errorClass="text-danger" for="" />
 														</div>
 
@@ -220,8 +217,7 @@
 															<h:inputText pt:placeholder="P3"
 																value="#{workPackageController.workPackage.budget.p3}"
 																label="#{msgs.workPackageBudget}"
-																class="form-control" 
-																required="true" />
+																class="form-control" />
 															<h:message errorClass="text-danger" for="" />
 														</div>
 
@@ -231,8 +227,7 @@
 															<h:inputText pt:placeholder="P4"
 																value="#{workPackageController.workPackage.budget.p4}"
 																label="#{msgs.workPackageBudget}"
-																class="form-control" 
-																required="true" />
+																class="form-control" />
 															<h:message errorClass="text-danger" for="" />
 														</div>
 													</div>
@@ -245,8 +240,7 @@
 															<h:inputText pt:placeholder="P5"
 																value="#{workPackageController.workPackage.budget.p5}"
 																label="#{msgs.workPackageBudget}"
-																class="form-control"
-																required="true" />
+																class="form-control" />
 															<h:message errorClass="text-danger" for="" />
 														</div>
 														<div class="col-sm-2">
@@ -255,8 +249,7 @@
 															<h:inputText pt:placeholder="SS"
 																value="#{workPackageController.workPackage.budget.SS}"
 																label="#{msgs.workPackageBudget}"
-																class="form-control"
-																required="true" />
+																class="form-control" />
 															<h:message errorClass="text-danger" for="" />
 														</div>
 
@@ -266,8 +259,7 @@
 															<h:inputText pt:placeholder="JS"
 																value="#{workPackageController.workPackage.budget.JS}"
 																label="#{msgs.workPackageBudget}"
-																class="form-control"
-																required="true" />
+																class="form-control" />
 															<h:message errorClass="text-danger" for="" />
 														</div>
 
@@ -277,8 +269,7 @@
 															<h:inputText pt:placeholder="DS"
 																value="#{workPackageController.workPackage.budget.DS}"
 																label="#{msgs.workPackageBudget}"
-																class="form-control"
-																required="true" />
+																class="form-control" />
 															<h:message errorClass="text-danger" for="" />
 														</div>
 													</div>

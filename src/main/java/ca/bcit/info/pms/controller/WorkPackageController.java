@@ -94,7 +94,7 @@ public class WorkPackageController implements Serializable
 		// workPackageService.persistBudget(budget);
 		logger.info( "successfully create new WorkPackage: " + workPackage.toString() );
 
-		beginConversation();
+		endConversation();
 		return "viewWorkPackageDetails";
 	}
 
@@ -152,6 +152,7 @@ public class WorkPackageController implements Serializable
 
 	public String goChildPackage( WorkPackage parentWorkPackage )
 	{
+		beginConversation();
 		workPackage = new WorkPackage();
 		Project project = projectService.getProject(parentWorkPackage.getProject().getId());
 		workPackage.setProject( project );
