@@ -103,15 +103,8 @@ public class EditTimesheetController implements Serializable {
     }
     
     public void populateWorkPackage(TimesheetRow tsr) {
-        logger.info("\n\tPRE-populateWorkPackage.tsr::"+tsr);
-        logger.info("\n\tPRE-populateWorkPackage.tsr.wp::"+tsr.getWorkPackage());
-        
         WorkPackage wp = wpService.findWorkPackageById(tsr.getWorkPackage().getId());
         tsr.setWorkPackage(wp);
-        
-
-        logger.info("\n\tPOST-populateWorkPackage.tsr::"+tsr);
-        logger.info("\n\tPOST-populateWorkPackage.tsr.wp::"+tsr.getWorkPackage());  
     }
 
     /**
