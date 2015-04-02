@@ -132,9 +132,11 @@
   PATH="/employee/viewAllEmployees.xhtml" SHAPE="240,1297,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:*:15" PATH="*" SHAPE="32,1841,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:15" NAME="item" PATH="*" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="editWorkPackage::#projects#editWP.xhtml"
-    NAME="output" PATH="/projects/editWP.xhtml"
-    TARGET="rules:#projects#editWP.xhtml" TITLE="editWorkPackage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="editWorkPackage::#projects#editWorkPackage.xhtml" NAME="output"
+    PATH="/projects/editWorkPackage.xhtml"
+    TARGET="rules:#projects#editWorkPackage.xhtml"
+    TITLE="editWorkPackage" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#employee#settings.xhtml"
@@ -213,8 +215,8 @@
   PATH="/projects/newProject.xhtml" SHAPE="240,2081,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#employee#profile.xhtml"
   PATH="/employee/profile.xhtml" SHAPE="240,1969,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#projects#editWP.xhtml"
-  PATH="/projects/editWP.xhtml" SHAPE="240,2641,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#projects#editWorkPackage.xhtml"
+  PATH="/projects/editWorkPackage.xhtml" SHAPE="240,2641,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#projects#findWorkPackage.xhtml"
   PATH="/projects/findWorkPackage.xhtml" SHAPE="240,2753,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#reports#weekReport.xhtml"
@@ -301,8 +303,8 @@
     TITLE="assignEmpToProject" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#employee#assignEmpToProject.xhtml"
-  PATH="/employee/assignEmpToProject.xhtml" SHAPE="240,4097,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#projects#viewWorkPackageDetails.xhtml"
   PATH="/projects/viewWorkPackageDetails.xhtml" SHAPE="240,3873,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#employee#assignEmpToProject.xhtml"
+  PATH="/employee/assignEmpToProject.xhtml" SHAPE="240,4097,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

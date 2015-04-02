@@ -28,4 +28,6 @@ public interface WorkPackageService {
     int getNumOfChildWP(String projId);
 
 	WorkPackage findWorkPackageById(Integer id);
+
+	int getEngBudgetID(Integer id);
 }

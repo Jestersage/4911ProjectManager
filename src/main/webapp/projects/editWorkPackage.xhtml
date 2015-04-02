@@ -55,20 +55,59 @@
 						<h:form id="newProjectForm" class="form-horizontal">
 
 							<div class="col-xs-12 col-sm-12 col-md-6" id="data">
-
-
-								<h:inputHidden value="#{projectController.project.id}" />
+										<h:inputHidden value="#{workPackageController.workPackage.id}" />
 
 								<div class="form-group">
+									<h:outputLabel for="itProjectNumber"
+										value="#{msgs.projectNumber}" class="col-sm-4 control-label" />
+
+									<div class="col-sm-8">
+
+
+										<h:outputText id="itProjectNumber"
+											rendered="#{ not empty workPackageController.workPackage.project}"
+											value="#{workPackageController.workPackage.project.id}"
+											required="true" label="#{msgs.projectNumber}"
+											class="form-control" />
+										<h:message errorClass="text-danger" for="itProjectNumber" />
+										<h:inputHidden
+											value="#{workPackageController.workPackage.project.id}" />
+
+									</div>
+								</div>
+
+
+
+								<div class="form-group">
+												<h:outputLabel for="itParentPackageNumber"
+											value="#{msgs.parentWpId}"
+													class="col-sm-4 control-label" />
+
+												<div class="col-sm-8">
+
+												 	<h:outputText id="itParentPackageNumber" 
+													
+														value="#{workPackageController.parentWPId}"
+														required="true" label="#{msgs.parentWpId}"
+														class="form-control" />
+													<h:message errorClass="text-danger" for="itParentPackageNumber" />
+													<h:inputHidden value="#{workPackageController.parentWPId}" /> 
+												</div>
+								</div>
+								
+								<div class="form-group">
 									<h:outputLabel for="itWorkPackageNumber"
-										value="#{msgs.workPackageNumber}" class="col-sm-4 control-label" />
+										value="#{msgs.workPackageNumber}"
+										class="col-sm-4 control-label" />
 									<div class="col-sm-8">
 										<h:inputText id="itWorkPackageNumber"
 											value="#{workPackageController.workPackage.packageNum}"
 											class="form-control" readonly="true" />
+										<h:inputHidden value="#{workPackageController.workPackage.packageNum}" /> 
+											
 									</div>
 								</div>
-
+								
 
 								<div class="form-group">
 									<h:outputLabel for="itWorkPackageName"
@@ -101,17 +140,30 @@
 										class="col-sm-4 control-label" />
 									<div class="col-sm-8">
 										<h:inputText id="mnSupervisor"
-											value="#{empController.supervisorUsername}" required="true"
-											pt:placeholder="Supervisor Username"
+											value="#{workPackageController.workPackage.employeeID}"
+											required="true" pt:placeholder="Supervisor ID"
 											label="#{msgs.supervisor}" class="form-control" />
 										<h:message errorClass="text-danger" for="mnSupervisor" />
 									</div>
 								</div>
-
+								
+	 							
+								<div class="form-group">
+									<h:outputLabel for="itStatus" value="#{msgs.status}"
+										class="col-sm-4 control-label" />
+									<div class="col-sm-8">
+										<h:inputText id="itStatus"
+											value="#{workPackageController.workPackage.status}"
+											required="true" pt:placeholder="Status"
+											label="#{msgs.status}" class="form-control" />
+										<h:message errorClass="text-danger" for="itStatus" />
+									</div>
+								</div> 
 
 								<div class="form-group">
 									<div id="newWorkPackageButtons" class="col-md-offset-4">
-										<h:commandButton value="#{msgs.save}" class="btn btn-primary " />
+										<h:commandButton value="#{msgs.save}" class="btn btn-primary "
+											action="#{workPackageController.updateWorkpackage}" />
 										<h:commandButton value="#{msgs.clear}" class="btn btn-default" />
 									</div>
 								</div>
@@ -224,7 +276,7 @@
 											<div class="col-sm-2">
 												<h:outputLabel value="#{msgs.p1}" />
 												<h:inputText pt:placeholder="P1" id="P1"
-													value="#{workPackageController.engBudget.p1}"
+													value="#{workPackageController.workPackage.engineerBudget.p1}"
 													required="true" label="#{msgs.p1}" class="form-control" />
 												<h:message errorClass="text-danger" for="P1" />
 											</div>
@@ -232,7 +284,7 @@
 												<h:outputLabel value="#{msgs.p2}" />
 
 												<h:inputText pt:placeholder="P2" id="P2"
-													value="#{workPackageController.engBudget.p2}"
+													value="#{workPackageController.workPackage.engineerBudget.p2}"
 													required="true" label="#{msgs.p2}" class="form-control" />
 												<h:message errorClass="text-danger" for="P2" />
 											</div>
@@ -241,7 +293,7 @@
 												<h:outputLabel value="#{msgs.p3}" />
 
 												<h:inputText pt:placeholder="P3" id="P3"
-													value="#{workPackageController.engBudget.p3}"
+													value="#{workPackageController.workPackage.engineerBudget.p3}"
 													required="true" label="#{msgs.p3}" class="form-control" />
 												<h:message errorClass="text-danger" for="P3" />
 											</div>
@@ -250,7 +302,7 @@
 												<h:outputLabel value="#{msgs.p4}" />
 
 												<h:inputText pt:placeholder="P4" id="P4"
-													value="#{workPackageController.engBudget.p4}"
+													value="#{workPackageController.workPackage.engineerBudget.p4}"
 													required="true" label="#{msgs.p4}" class="form-control" />
 												<h:message errorClass="text-danger" for="P4" />
 											</div>
@@ -262,7 +314,7 @@
 												<h:outputLabel value="#{msgs.p5}" />
 
 												<h:inputText pt:placeholder="P5" id="P5"
-													value="#{workPackageController.engBudget.p5}"
+													value="#{workPackageController.workPackage.engineerBudget.p5}"
 													required="true" label="#{msgs.p5}" class="form-control" />
 												<h:message errorClass="text-danger" for="P5" />
 											</div>
@@ -270,7 +322,7 @@
 												<h:outputLabel value="#{msgs.ss}" />
 
 												<h:inputText pt:placeholder="SS" id="SS"
-													value="#{workPackageController.engBudget.SS}"
+													value="#{workPackageController.workPackage.engineerBudget.SS}"
 													required="true" label="#{msgs.ss}" class="form-control" />
 												<h:message errorClass="text-danger" for="SS" />
 											</div>
@@ -279,7 +331,7 @@
 												<h:outputLabel value="#{msgs.js}" />
 
 												<h:inputText pt:placeholder="JS" id="JS"
-													value="#{workPackageController.engBudget.JS}"
+													value="#{workPackageController.workPackage.engineerBudget.JS}"
 													required="true" label="#{msgs.js}" class="form-control" />
 												<h:message errorClass="text-danger" for="JS" />
 											</div>
@@ -287,7 +339,7 @@
 											<div class="col-sm-2">
 												<h:outputLabel value="#{msgs.ds}" />
 												<h:inputText pt:placeholder="DS" id="DS"
-													value="#{workPackageController.engBudget.DS}"
+													value="#{workPackageController.workPackage.engineerBudget.DS}"
 													required="true" label="#{msgs.ds}" class="form-control" />
 												<h:message errorClass="text-danger" for="DS" />
 											</div>

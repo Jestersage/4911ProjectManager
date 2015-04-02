@@ -98,11 +98,10 @@
 									</p:column>															
 
 									<p:column>
-									<h:commandLink value="#{msgs.package_details}" action="#{workPackageController.viewPackageDetails(package)}" /> |
-                                        <h:commandLink value="#{msgs.edit_emp}" action="#{workPackageController.goEditPackage(package)}" /> |      
-                                                  <h:commandLink value="#{msgs.newWorkPackage}"
+									<h:commandLink value="#{msgs.package_details}" action="#{workPackageController.viewWorkPackageDetails(package)}" /> |
+                                    <h:commandLink value="#{msgs.newWorkPackage}"
                                      		action="#{workPackageController.goChildPackage(package)}" 
-                                     		rendered="#{!package.leaf}" />                          
+                                     		rendered="#{!package.leaf}" />                  
 									</p:column>
 									
 								</p:dataTable>

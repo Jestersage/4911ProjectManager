@@ -42,7 +42,7 @@ public class WorkPackage implements Serializable
 //	@Size( max = 10, message = "Employee ID cannot be longer than 10" )
 	private Set< Employee > employees;
 
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "parentwpID", nullable=true)
 	private WorkPackage parentWP;
 
@@ -64,6 +64,10 @@ public class WorkPackage implements Serializable
     @OneToOne(cascade = {CascadeType.ALL},orphanRemoval = true)
     @JoinColumn(name = "budgetID", nullable=true)
     private Budget budget;
+    
+    @OneToOne(cascade = {CascadeType.ALL},orphanRemoval = true)
+    @JoinColumn(name = "engBudgetID", nullable=true)
+    private EngineerBudget engineerBudget;
     
     @Column( name = "isLead" )
 	private Boolean leaf = false;
@@ -137,6 +141,7 @@ public class WorkPackage implements Serializable
 	public WorkPackage() {
 		this.budget = new Budget();
 		this.project = new Project();
+		this.engineerBudget = new EngineerBudget();
 		
 	}
 
@@ -350,4 +355,13 @@ public class WorkPackage implements Serializable
         return "WorkPackage [packageNum=" + packageNum + ", name=" + name
                 + ", status=" + status + "]";
     }
+
+	public EngineerBudget getEngineerBudget() {
+		return engineerBudget;
+	}
+
+	public void setEngineerBudget(EngineerBudget engineerBudget) {
+		this.engineerBudget = engineerBudget;
+	}
+
 }

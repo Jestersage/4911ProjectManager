@@ -41,14 +41,12 @@ public class WorkPackageController implements Serializable
 	@Inject
 	private ProjectService projectService;
 
-	@Inject
-	private EngineerBudget engBudget;
+//	@Inject
+//	private EngineerBudget engBudget;
+//
+//	@Inject
+//	private EngineerBudgetManager engineerBudgetMngr;
 
-	@Inject
-	private EngineerBudgetManager engineerBudgetMngr;
-
-	@Inject
-	private WorkPackageManager wpMngr;
 
 	private Project [] projectList;
 
@@ -59,24 +57,6 @@ public class WorkPackageController implements Serializable
 	@Inject
 	private UserController userController;
 
-	// public String index() {
-	// if (workPackage == null)
-	// workPackage = new WorkPackage();
-	// if (workPackage.getProject() == null) {
-	// // FacesContext context = FacesContext.getCurrentInstance();
-	// // context.addMessage(null,
-	// // new FacesMessage(FacesMessage.SEVERITY_ERROR,
-	// // "You haven't select a Project", null));
-	// // return "";
-	// workPackage.setProject(new Project());
-	// projectList = getProjectList();
-	//
-	// }
-	//
-	// logger.info("index new WorkPackage: ");
-	// return "newWorkPackage";
-	//
-	// }
 
 	public Project [] getProjectList()
 	{
@@ -88,22 +68,21 @@ public class WorkPackageController implements Serializable
 
 	public String addWorkPackage()
 	{
-		// System.out.println("budget=" + workPackage.getBudget().getP1());
 		WorkPackage parentWP = null;
-		logger.info( parentWPId );
-		if ( parentWPId != null )
+		//logger.info( parentWPId );
+		if ( parentWPId != null ){
 			parentWP = workPackageService.findWorkPackageById( parentWPId );
-		workPackage.setParentWP( parentWP );
+			workPackage.setParentWP( parentWP );
+		}
 		workPackageService.persistWorkPackage( workPackage );
 		// workPackageService.persistBudget(budget);
 		logger.info( "successfully create new WorkPackage: " + workPackage.toString() );
-		// System.out.println(workPackage.isLeaf());
 		return "viewAllPackages";
 	}
 
 	public WorkPackage getworkPackage()
 	{
-		if ( workPackage.getParentWP() == null )
+		if (workPackage != null && workPackage.getParentWP() == null )
 			workPackage.setParentWP( new WorkPackage() );
 		return workPackage;
 	}
@@ -118,15 +97,18 @@ public class WorkPackageController implements Serializable
 		return workPackageService.getAllWorkPackages();
 	}
 
-	public String goEditPackage( final WorkPackage wp )
+	public String goEditPackage(String id)
 	{
-		workPackage = wp;
+		workPackage = workPackageService.findWorkPackageById(Integer.valueOf(id));
 
 		// get engineer budget and assign to property
-		int engBudgetID = wpMngr.getEngBudgetID( wp.getId() );
-		engBudget = engineerBudgetMngr.find( engBudgetID );
-
-		return "editWP";
+//		if(workPackage != null){
+//			int engBudgetID = workPackageService.getEngBudgetID( workPackage.getId() );
+//			engBudget = engineerBudgetMngr.find( engBudgetID );
+//		}
+		if(workPackage!=null && workPackage.getParentWP() != null)
+			parentWPId = workPackage.getParentWP().getId();
+		return "editWorkPackage";
 	}
 
 	public String goNewTopLevelPackage( Project project )
@@ -171,7 +153,7 @@ public class WorkPackageController implements Serializable
 	 * 
 	 * @return
 	 */
-	public String viewPackageDetails( final WorkPackage workPackage )
+	public String viewWorkPackageDetails( final WorkPackage workPackage )
 	{
 		this.workPackage = workPackage;
 		return "viewWorkPackageDetails";
@@ -184,15 +166,29 @@ public class WorkPackageController implements Serializable
 
 		return "newWorkPackage";
 	}
-
-	public EngineerBudget getEngBudget()
-	{
-		return engBudget;
+	
+	
+	public String updateWorkpackage(){		
+		WorkPackage parentWP = null;
+		//logger.info( parentWPId );
+		if ( parentWPId != null ){
+			parentWP = workPackageService.findWorkPackageById( parentWPId );
+			workPackage.setParentWP( parentWP );
+		}
+		workPackageService.updateWorkPackage(workPackage);
+		workPackage = workPackageService.findWorkPackageById(workPackage.getId());
+		//engineerBudgetMngr.merge(engBudget);
+		return "viewWorkPackageDetails";
 	}
 
-	public void setEngBudget( EngineerBudget engBudget )
-	{
-		this.engBudget = engBudget;
-	}
+//	public EngineerBudget getEngBudget()
+//	{
+//		return engBudget;
+//	}
+//
+//	public void setEngBudget( EngineerBudget engBudget )
+//	{
+//		this.engBudget = engBudget;
+//	}
 
 }

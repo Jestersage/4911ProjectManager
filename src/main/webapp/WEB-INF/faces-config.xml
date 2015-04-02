@@ -150,7 +150,6 @@
 		<navigation-case>
 			<from-outcome>editWorkPackage</from-outcome>
 			<to-view-id>/projects/editWorkPackage.xhtml</to-view-id>
-			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<!-- View All Work Packages -->

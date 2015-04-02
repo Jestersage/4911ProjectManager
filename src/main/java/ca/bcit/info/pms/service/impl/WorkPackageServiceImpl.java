@@ -83,4 +83,10 @@ public class WorkPackageServiceImpl implements WorkPackageService {
 	
 		return WPManager.find(id);
 	}
+
+	@Override
+	public int getEngBudgetID(Integer id) {
+		// TODO Auto-generated method stub
+		return WPManager.getEngBudgetID(id);
+	}
 }
