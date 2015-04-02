@@ -102,10 +102,17 @@ public class ProjectController implements Serializable{
     
     
     public String addProject(){
-//        // if project manager not found, rerender page
-//        if (!updateProjectManager()) {
-//            return null;
-//        }
+
+    	if(project == null) return null;
+    	
+    	Project backProject = projService.getProject(project.getId());
+    	if(backProject != null){
+    		FacesContext.getCurrentInstance().addMessage( "newProjectForm:itProjectNumber",
+                    new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "Project already exist!: "
+                            + project.getId() ) );
+    		return null;
+    	}
+    	
     	project.setStartDate(convertJavaDateToSqlDate(startDate));
     	project.setEndDate(convertJavaDateToSqlDate(endDate));
         projService.persistProject(project);
