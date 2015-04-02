@@ -274,6 +274,12 @@ public class ProjectController implements Serializable{
     	this.project = project;
     	return "viewProjectDetails";
     }
+
+    public String goViewProject(final String id) {
+        beginConversation();
+        this.project = projService.getProject(id);
+        return "viewProjectDetails";
+    }
     
     /**
      * 
@@ -281,7 +287,7 @@ public class ProjectController implements Serializable{
      */
     public String updateProject(){
     	project.setStartDate(convertJavaDateToSqlDate(startDate));
-    	project.setEndDate(convertJavaDateToSqlDate(endDate));
+        project.setEndDate(convertJavaDateToSqlDate(endDate));
     	projService.updateProject(project);
     	return "viewProjectDetails";
     }

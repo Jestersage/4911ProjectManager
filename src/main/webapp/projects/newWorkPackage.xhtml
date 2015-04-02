@@ -282,8 +282,9 @@
 													<h:commandButton value="#{msgs.save}"
 														class="btn btn-primary "
 														action="#{workPackageController.addWorkPackage}" />
-													<h:commandButton value="#{msgs.clear}"
-														class="btn btn-default" />
+													<h:commandButton value="#{msgs.cancel}" immediate="true"
+														class="btn btn-default"
+														action="#{projectController.goViewProject(workPackageController.workPackage.project.id)}" />
 												</div>
 											</div>
 										</div>
