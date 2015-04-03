@@ -413,7 +413,7 @@ public class EmployeeManager implements Serializable
 		final TypedQuery<WorkPackage> query = entityManager
 				.createQuery("SELECT wp FROM WorkPackage wp " +
 						"WHERE wp.id = :wpId " +
-						"AND wp.employeeID = :empId", WorkPackage.class);
+						"AND wp.employee.id = :empId", WorkPackage.class);
 		query.setParameter("wpId", wpId);
 		query.setParameter("empId", userId);
 

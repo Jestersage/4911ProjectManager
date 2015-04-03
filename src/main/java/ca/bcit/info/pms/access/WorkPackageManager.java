@@ -129,13 +129,13 @@ public class WorkPackageManager implements Serializable
 	 *         which project.
 	 */
 	// TODO fix to engineer.id when employeeID change to manager in WorkPackage
-	public List< WorkPackage > getManagedWorkPackage( final String empId )
-	{
-		TypedQuery< WorkPackage > query = em.createQuery("SELECT w FROM WorkPackage w "
-				+ "WHERE w.employeeID = :assistantId", WorkPackage.class);
-		query.setParameter( "assistantId", empId );
-		return query.getResultList();
-	}
+//	public List< WorkPackage > getManagedWorkPackage( final String empId )
+//	{
+//		TypedQuery< WorkPackage > query = em.createQuery("SELECT w FROM WorkPackage w "
+//				+ "WHERE w.employeeID = :assistantId", WorkPackage.class);
+//		query.setParameter( "assistantId", empId );
+//		return query.getResultList();
+//	}
 
 	public int findNumOfChildWP( String projId )
 	{

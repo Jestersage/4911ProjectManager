@@ -306,51 +306,23 @@
 								</div>
 							</div>
 							</ui:fragment>
-
-							<ui:fragment rendered="#{workPackageController.workPackage.leaf}">
-								<div class="col-xs-12 col-sm-12 col-md-6 ">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<strong>#{msgs.statusReport}</strong>
-										</div>
-										<div class="panel-body">
-											<!-- controll buttons -->
-											<!--<ui:fragment rendered="#{userController.isAuthorized('Responsible Engineer')}">-->
-											<ui:fragment rendered="#{userController.isEngineerFor(wpId.value)}">
-												<h:commandButton value="#{msgs.newWeekReport}"
-																 styleClass="btn btn-primary"/>
-											</ui:fragment>
-										</div>
-										<ul class="list-group">
-											<!--<ui:repeat var="package"-->
-													   <!--value="#{workPackageController.childWorkPackages}">-->
-												<!--<li class="list-group-item"><h:commandLink-->
-														<!--value="#{package.name} (#{package.packageNum})"-->
-														<!--action="#{workPackageController.viewWorkPackageDetails(package)}" />-->
-												<!--</li>-->
-											<!--</ui:repeat>-->
-										</ul>
-									</div>
-								</div>
-							</ui:fragment>
-							
 							<div class="col-xs-12 col-sm-12 col-md-6 ">
 							<div class="panel panel-default">
 								<div class="panel-heading"><strong>#{msgs.assignedEmployeesWp}</strong></div>
 								<div class="panel-body">
 									<!-- controll buttons -->
+									<ui:fragment rendered="#{userController.isProjectManagerFor(workPackageController.workPackage.project.id)
+									or userController.isAssistantFor(workPackageController.workPackage.project.id)}">
+										<h:commandButton value="#{msgs.assignToWp}"
+														 styleClass="btn btn-primary"
+														 action="#{workPackageController.assignToProject()}" />
+									</ui:fragment>
 								</div>
 								<ul class="list-group">
 									<ui:repeat var="assigned" value="#{workPackageController.employees}">
 										<li class="list-group-item">#{assigned.firstName} #{assigned.lastName}</li>
 									</ui:repeat>
 								</ul>
-								<ui:fragment
-									rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
-									<h:commandButton value="#{msgs.assignToWp}"
-										styleClass="btn btn-primary pull-right"
-										action="#{workPackageController.assignToProject()}" />
-								</ui:fragment>
 							</div>
 						</div>
 						</h:form>
