@@ -37,7 +37,7 @@ public class WorkPackage implements Serializable
 	@Size( max = 20, message = "Package Number cannot be longer than 20" )
 	private String packageNum;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "WorkAssignment",
             joinColumns = {@JoinColumn(name = "packageID")},
             inverseJoinColumns = {@JoinColumn(name = "employeeID")})
@@ -116,6 +116,17 @@ public class WorkPackage implements Serializable
     
     @Transient
     private String completionPercentage;
+    
+    /**
+	 * Assign employee to this project.
+	 * 
+	 * @param employee
+	 *            employee to be aded.
+	 * @return if insert success. False if employee already included.
+	 */
+	public boolean assignEmployee(final Employee employee) {
+		return employees.add(employee);
+	}
     
 	public String getCompletionPercentage() {
 		return completionPercentage;

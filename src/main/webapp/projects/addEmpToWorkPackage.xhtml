@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
+		<f:metadata>
+			<f:event type="preRenderView"
+				listener="#{userController.checkAuthorization}" />
+			<f:attribute name="requiredRoles" value="ProjectManager" />
+		</f:metadata>
+		<ui:define name="windowTitle">#{msgs.assignToWp}</ui:define>
+
+		<ui:define name="additionalStyleSheets">
+			<h:outputStylesheet library="css" name="employee.css" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+
+						<div id="breadcrumb">
+							<h:form>
+								<ol class="breadcrumb">
+									<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
+									<li><h:commandLink action="viewWorkPackageDetails"
+											value="#{msgs.viewPackageDetails}" /></li>
+									<li class="active">#{msgs.assignToWp}</li>
+								</ol>
+							</h:form>
+						</div>
+
+						<div id="pageTitle">
+							<h1>#{msgs.assignToWp}</h1>
+						</div>
+						<ui:insert name="notificationArea">
+							<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
+						</ui:insert>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="panel panel-default ">
+							<div class="panel-heading">
+								<h3 class="panel-title">For Work Package
+									#{workPackageController.workPackage.name}</h3>
+							</div>
+							<div class="panel-body">
+								<dl class="dl-horizontal">
+									<dt>ID</dt>
+									<dd>#{workPackageController.workPackage.id}</dd>
+									<dt>Name</dt>
+									<dd>#{workPackageController.workPackage.name}</dd>
+									<dt>Description</dt>
+									<dd>#{workPackageController.workPackage.description}</dd>
+									<dt>Responsible Engineer</dt>
+									<dd>#{workPackageController.workPackage.employee.firstName}
+										#{workPackageController.workPackage.employee.lastName}</dd>
+									<dt>Employees Assigned</dt>
+									<dd>
+										<ol>
+											<ui:repeat var="assigned"
+												value="#{workPackageController.employees}">
+												<li>#{assigned.firstName} #{assigned.lastName}</li>
+											</ui:repeat>
+										</ol>
+									</dd>
+								</dl>
+							</div>
+						</div>
+					</div>
+					<!-- /col -->
+				</div>
+				<!-- /outter row -->
+
+				<div class="row">
+					<div class="container">
+						<h3>Select Employees to Assign</h3>
+						<h:form>
+							<h:inputHidden value="#{workPackageController.workPackage.id}" />
+
+							<p:dataTable id="empTable" styleClass="bg-none table"
+								var="employee" value="#{workPackageController.availableEmployees}">
+								<!--c:if employee isn't already assigned-->
+								<p:column headerText="#{msgs.id}">
+									<h:outputText value="#{employee.id}" />
+								</p:column>
+
+								<p:column headerText="#{msgs.userName}">
+									<h:outputText value="#{employee.credential.username}" />
+								</p:column>
+
+								<p:column headerText="#{msgs.firstName}">
+									<h:outputText value="#{employee.firstName}" />
+								</p:column>
+
+								<p:column headerText="#{msgs.lastName}">
+									<h:outputText value="#{employee.lastName}" />
+								</p:column>
+
+								<p:column headerText="#{msgs.payLevel}">
+									<h:outputText value="#{employee.payGrade}" />
+								</p:column>
+								<p:column>
+									<h:commandLink value="Assign"
+										action="#{workPackageController.insertEmpToWp(employee)}" />
+								</p:column>
+							</p:dataTable>
+
+
+						</h:form>
+					</div>
+				</div>
+
+			</div>
+			<!-- /col -->
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

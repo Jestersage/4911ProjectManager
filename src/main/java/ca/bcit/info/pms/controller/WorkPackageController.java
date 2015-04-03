@@ -52,14 +52,21 @@ public class WorkPackageController implements Serializable
 
 	@Inject
 	private Conversation conversation;
+	
+	@Inject
+	private ProjectController projectController;
 
 	private List<Employee> employees;
+	
+	private List<Employee> availableEmployees;
 	
 	private Employee employee;
 
 	private String reId;
 
 	private Integer parentWPId;
+	
+	private Project project;
 
 	private static final Logger logger = LogManager.getLogger( WorkPackageController.class );
 
@@ -214,8 +221,15 @@ public class WorkPackageController implements Serializable
 	public List<Employee> getEmployees() {
 		return workPackageService.getAssignedEmployeesToWp(workPackage.getId());
 	}
-
 	
+	public List<Employee> getAvailableEmployees() {
+		return workPackageService.getAssignedEmployeesToProjectNotWp(workPackage.getId(), "1202"); //Hard coded-need to fix
+	}
+	
+	public String assignToProject() {
+		return "addEmpToWorkPackage";
+	}
+
 	
 	public List<WorkPackage> getChildWorkPackages() {
 		return workPackageService.getChildWorkPackages(workPackage);
@@ -258,6 +272,21 @@ public class WorkPackageController implements Serializable
 		workPackage = workPackageService.findWorkPackageById(workPackage.getId());
 		//engineerBudgetMngr.merge(engBudget);
 		return "viewWorkPackageDetails";
+	}
+	
+	/**
+	 * Assign employee to project and update project in database.
+	 * 
+	 * @param emp
+	 *            employee to assign.
+	 * @return navigating route.
+	 */
+	public String insertEmpToWp(final Employee emp) {
+		workPackage = workPackageService.findWorkPackageById(workPackage.getId());
+		workPackage.assignEmployee(emp);
+
+		workPackageService.updateWorkPackage(workPackage);
+		return null;
 	}
 
 	public Employee getEmployee() {

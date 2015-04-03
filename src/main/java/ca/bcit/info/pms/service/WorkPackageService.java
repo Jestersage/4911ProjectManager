@@ -41,4 +41,6 @@ public interface WorkPackageService {
     WorkPackage getUniquePackage(final String projId, final String packageNo);
     
     List<Employee> getAssignedEmployeesToWp(final Integer integer);
+    
+    List<Employee> getAssignedEmployeesToProjectNotWp(final Integer wpId, final String projId);
 }

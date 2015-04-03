@@ -215,4 +215,17 @@ public class WorkPackageManager implements Serializable
 		
 		return query.getResultList();
 	}
+	
+	public List<Employee> getEmployeesAssignedToProjectNotInWp(final String wpId, final String projId) {
+		Query query = em.createNativeQuery("select distinct e.* "
+				+ "from employee e "
+				+ "join workassignment wa on e.employeeID = wa.employeeID "
+				+ "join projectassignment pa on e.employeeID = pa.employeeID "
+				+ "where wa.packageID <> :wpId "
+				+ "and pa.projectID = :projId", Employee.class);
+		query.setParameter("wpId", wpId);
+		query.setParameter("projId", projId);
+		
+		return query.getResultList();
+	} 
 }

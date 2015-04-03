@@ -341,6 +341,12 @@
 										<li class="list-group-item">#{assigned.firstName} #{assigned.lastName}</li>
 									</ui:repeat>
 								</ul>
+								<ui:fragment
+									rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
+									<h:commandButton value="#{msgs.assignToWp}"
+										styleClass="btn btn-primary pull-right"
+										action="#{workPackageController.assignToProject()}" />
+								</ui:fragment>
 							</div>
 						</div>
 						</h:form>

@@ -104,4 +104,9 @@ public class WorkPackageServiceImpl implements Serializable, WorkPackageService 
 	public List<Employee> getAssignedEmployeesToWp(final Integer wpId) {
 		return WPManager.getEmployeesAssignedToWp(wpId.toString());
 	}
+	
+	public List<Employee> getAssignedEmployeesToProjectNotWp(final Integer wpId, final String projId) {
+		System.out.println("WP: " + wpId + " Proj: " + projId);
+		return WPManager.getEmployeesAssignedToProjectNotInWp(wpId.toString(), projId);
+	}
 }
