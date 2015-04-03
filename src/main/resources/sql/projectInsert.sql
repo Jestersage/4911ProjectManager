@@ -13,23 +13,23 @@
 INSERT INTO Project
   (projectID, projectName, description, startDate, status, employeeID, genReport)
 VALUES
-  (010, "Admin", "Administrative items.", "2015-01-01", 1, 000001, FALSE);
+  (10, "Admin", "Administrative items.", "2015-01-01", 1, 000001, FALSE);
 INSERT INTO WorkPackage
   (packageID, projectID, packageNum, employeeID, isLead)
 VALUES
-  (1, 010, "SICK", 000001, 0);
+  (1, 010, "SICK", 000001, 1);
 INSERT INTO WorkPackage
 (packageID, projectID, packageNum, employeeID, isLead)
 VALUES
-  (2, 010, "VACN", 000001, 0);
+  (2, 010, "VACN", 000001, 1);
 INSERT INTO WorkPackage
   (packageID, projectID, packageNum, employeeID, isLead)
 VALUES
-  (3, 010, "SHOL", 000001, 0);
+  (3, 010, "SHOL", 000001, 1);
 INSERT INTO WorkPackage
   (packageID, projectID, packageNum, employeeID, isLead)
 VALUES
-  (4, 010, "FLEX", 000001, 0);
+  (4, 010, "FLEX", 000001, 1);
 --
 INSERT INTO Project
   (projectID, projectName, description, startDate, endDate, status, employeeID, genReport)
