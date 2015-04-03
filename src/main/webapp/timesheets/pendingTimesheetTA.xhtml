@@ -58,16 +58,16 @@
 							<h:form>
 							<p:dataTable var="timesheet" value="#{timesheetController.tsApproverPendingList}">
 								<p:column headerText="#{msgs.employee}">
-									<h:outputText value="#{timesheet.owner.firstName} #{timesheet.owner.lastName}" />
+									<h:outputText class="paddingHalf" value="#{timesheet.owner.firstName} #{timesheet.owner.lastName}" />
 								</p:column>
 								<p:column headerText="#{msgs.weekNo}">
-									<h:outputText value="#{timesheet.weekNumber}" />
+									<h:outputText class="paddingHalf" value="#{timesheet.weekNumber}" />
 								</p:column>
 								<p:column headerText="#{msgs.weekEnding}">
-									<h:outputText value="#{timesheet.weekEnding}" />
+									<h:outputText  class="paddingHalf" value="#{timesheet.weekEnding}" />
 								</p:column>
 								<p:column>
-									<h:commandLink value="#{msgs.review}" action="#{timesheetController.reviewTimesheet(timesheet)}" />
+									<h:commandLink class="paddingHalf" value="#{msgs.review}" action="#{timesheetController.reviewTimesheet(timesheet)}" />
 								</p:column>
 							</p:dataTable>
 							</h:form>

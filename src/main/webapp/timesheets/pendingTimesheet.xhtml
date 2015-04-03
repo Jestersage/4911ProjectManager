@@ -60,7 +60,7 @@
 										<h:outputText class="paddingHalf" value="#{timesheet.weekEnding}" />
 									</p:column>
 									<p:column headerText="#{msgs.status}">
-										<h:outputText value="#{timesheet.approved}" styleClass="#{timesheet.approved == 'Rejected' ? 'text-danger' : ''}" />
+										<h:outputText value="#{timesheet.approved}" styleClass=" paddingHalf #{timesheet.approved == 'Rejected' ? 'text-danger' : ''}" />
 									</p:column>
 									<p:column>
 										[ <h:commandLink value="#{msgs.view}" action="#{timesheetController.viewPendingTimesheet(timesheet)}" /> ]
