@@ -51,12 +51,10 @@ public class Project implements Serializable {
 	@JoinTable(name = "ProjectAssignment", joinColumns = { @JoinColumn(name = "projectID") }, inverseJoinColumns = { @JoinColumn(name = "employeeID") })
 	private Set<Employee> employees;
 
-    @OneToOne(cascade = {CascadeType.ALL},orphanRemoval = true)
+    @OneToOne(fetch = FetchType.EAGER,cascade = {CascadeType.ALL},orphanRemoval = true)
     @JoinColumn(name = "ratesheetID")
     private RateSheet rateSheet;
 
-	// @OneToMany(mappedBy = "id", orphanRemoval = true)
-	// private List<WorkPackage> workPackages;
 
 	@Column(name = "markupValue")
 	private Double markupValue;
@@ -134,14 +132,6 @@ public class Project implements Serializable {
 		this.projectManager = projectManager;
 	}
 
-	//	public String getEmployeeID() {
-//		return employeeID;
-//	}
-//
-//	public void setEmployeeID(String employeeID) {
-//		this.employeeID = employeeID;
-//	}
-
 	public Set<Employee> getEmployees() {
 		return employees;
 	}
@@ -150,13 +140,6 @@ public class Project implements Serializable {
 		this.employees = employees;
 	}
 
-	// public List<WorkPackage> getWorkPackages() {
-	// return workPackages;
-	// }
-	//
-	// public void setWorkPackages(List<WorkPackage> workPackages) {
-	// this.workPackages = workPackages;
-	// }
 
 	public double getMarkupValue() {
 		if (markupValue == null)
@@ -177,8 +160,6 @@ public class Project implements Serializable {
 	}
 
     public RateSheet getRateSheet() {
-    	if(rateSheet == null )
-    		return new RateSheet();
         return rateSheet;
     }
 

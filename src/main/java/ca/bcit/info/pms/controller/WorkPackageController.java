@@ -138,11 +138,6 @@ public class WorkPackageController implements Serializable
 	{
 		workPackage = workPackageService.findWorkPackageById(Integer.valueOf(id));
 
-		// get engineer budget and assign to property
-//		if(workPackage != null){
-//			int engBudgetID = workPackageService.getEngBudgetID( workPackage.getId() );
-//			engBudget = engineerBudgetMngr.find( engBudgetID );
-//		}
 		if(workPackage!=null && workPackage.getParentWP() != null)
 			parentWPId = workPackage.getParentWP().getId();
 		return "editWorkPackage";

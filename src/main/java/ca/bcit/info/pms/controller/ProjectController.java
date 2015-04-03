@@ -3,6 +3,7 @@ package ca.bcit.info.pms.controller;
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.ProjectStatus;
+import ca.bcit.info.pms.model.RateSheet;
 import ca.bcit.info.pms.model.WorkPackage;
 import ca.bcit.info.pms.service.EmployeeService;
 import ca.bcit.info.pms.service.ProjectService;
@@ -250,10 +251,13 @@ public class ProjectController implements Serializable {
 	 */
 	public String goEditProject() {
 		this.project = projService.getProject(project.getId());
+		if(project == null) return null;
 		if (project.getStartDate() != null)
 			startDate = new java.util.Date(project.getStartDate().getTime());
 		if (project.getEndDate() != null)
 			endDate = new java.util.Date(project.getEndDate().getTime());
+		if(project.getRateSheet() == null)
+			project.setRateSheet(new RateSheet());
 		return "editProject";
 	}
 
