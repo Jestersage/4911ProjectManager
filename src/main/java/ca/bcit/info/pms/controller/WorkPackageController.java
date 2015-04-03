@@ -219,7 +219,7 @@ public class WorkPackageController implements Serializable
 	}
 	
 	public List<Employee> getAvailableEmployees() {
-		return workPackageService.getAssignedEmployeesToProjectNotWp(workPackage.getId(), "1202"); //Hard coded-need to fix
+		return workPackageService.getAssignedEmployeesToProjectNotWp(workPackage.getId(), workPackage.getProject().getId());
 	}
 	
 	public String assignToProject() {
