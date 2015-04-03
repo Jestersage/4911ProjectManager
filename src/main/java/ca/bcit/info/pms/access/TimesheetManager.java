@@ -2,9 +2,6 @@ package ca.bcit.info.pms.access;
 
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Timesheet;
-import ca.bcit.info.pms.model.TimesheetRow;
-import ca.bcit.info.pms.model.WorkPackage;
-import com.sun.tools.corba.se.idl.constExpr.Times;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -13,7 +10,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.math.BigDecimal;
