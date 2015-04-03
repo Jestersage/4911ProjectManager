@@ -3,9 +3,11 @@
  */
 package ca.bcit.info.pms.controller;
 
+import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.ProjectStatus;
 import ca.bcit.info.pms.model.WorkPackage;
+import ca.bcit.info.pms.service.EmployeeService;
 import ca.bcit.info.pms.service.ProjectService;
 import ca.bcit.info.pms.service.WorkPackageService;
 
@@ -43,6 +45,9 @@ public class WorkPackageController implements Serializable
 	private ProjectService projectService;
 
 	@Inject
+	private EmployeeService employeeService;
+	
+	@Inject
 	private UserController userController;
 
 	@Inject
@@ -53,8 +58,6 @@ public class WorkPackageController implements Serializable
 //
 //	@Inject
 //	private EngineerBudgetManager engineerBudgetMngr;
-
-
 
 	private Integer parentWPId;
 
@@ -87,10 +90,8 @@ public class WorkPackageController implements Serializable
 	{
 		if(workPackage == null) 
 			return null;
-		System.out.println(workPackage.getProject().getId());
-		System.out.println(workPackage.getPackageNum());
-		WorkPackage workPackages = workPackageService.getUniquePackage(workPackage.getProject().getId(), workPackage.getPackageNum());
 
+		WorkPackage workPackages = workPackageService.getUniquePackage(workPackage.getProject().getId(), workPackage.getPackageNum());
     	if(workPackages != null){
     		FacesContext.getCurrentInstance().addMessage( "newWorkPackageForm:itWorkPackageNumber",
                     new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "Work Package is not unique with combinition of Project ID and Package Number!: "
@@ -98,14 +99,22 @@ public class WorkPackageController implements Serializable
     		return null;
     	}
 		
+    	Employee employee = employeeService.findEmployeeById(workPackage.getEmployeeID());
+    	if(employee == null){
+    		FacesContext.getCurrentInstance().addMessage( "newWorkPackageForm:mnSupervisor",
+                    new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "Employee does not exist!: "
+                            + workPackage.getEmployeeID() ) );
+    		return null;
+    	}
+    	
 		WorkPackage parentWP = null;
-		//logger.info( parentWPId );
+		
 		if ( parentWPId != null ) {
 			parentWP = workPackageService.findWorkPackageById(parentWPId);
 		}		
 		workPackage.setParentWP( parentWP );
 		workPackageService.persistWorkPackage( workPackage );
-		// workPackageService.persistBudget(budget);
+		
 		logger.info( "successfully create new WorkPackage: " + workPackage.toString() );
 
 		beginConversation();
