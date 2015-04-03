@@ -64,6 +64,14 @@ public class TimesheetController implements Serializable {
         return timesheet;
     }
     
+    public void refreshTimesheet() {
+        Employee user = userController.getUser();
+        logger.info("\n\trefreshTimesheet::Timesheet::"+this.timesheet);
+        
+        this.timesheet = timeService.getCurrentTimesheet(user);
+        
+        logger.info("\n\trefreshTimesheet::Timesheet::"+this.timesheet);
+    }
 
     /**
      * @param timesheet the timesheet to set
