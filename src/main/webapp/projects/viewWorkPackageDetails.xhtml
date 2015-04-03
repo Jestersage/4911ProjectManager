@@ -82,7 +82,7 @@
 									</dd>
 
 									<dt>#{msgs.respEng}</dt>
-									<dd>#{workPackageController.workPackage.employee.credential.username}</dd>
+									<dd>#{workPackageController.workPackage.employee.firstName} #{workPackageController.workPackage.employee.lastName}</dd>
 
 									<dt>#{msgs.workPackageDescription}</dt>
 									<dd>#{workPackageController.workPackage.description}</dd>
@@ -329,6 +329,20 @@
 									</div>
 								</div>
 							</ui:fragment>
+							
+							<div class="col-xs-12 col-sm-12 col-md-6 ">
+							<div class="panel panel-default">
+								<div class="panel-heading"><strong>#{msgs.assignedEmployeesWp}</strong></div>
+								<div class="panel-body">
+									<!-- controll buttons -->
+								</div>
+								<ul class="list-group">
+									<ui:repeat var="assigned" value="#{workPackageController.employees}">
+										<li class="list-group-item">#{assigned.firstName} #{assigned.lastName}</li>
+									</ui:repeat>
+								</ul>
+							</div>
+						</div>
 						</h:form>
 					</div>
 

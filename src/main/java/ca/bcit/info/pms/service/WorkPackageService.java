@@ -4,6 +4,7 @@ package ca.bcit.info.pms.service;
 import java.util.List;
 
 import ca.bcit.info.pms.model.Budget;
+import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.WorkPackage;
 
@@ -38,4 +39,6 @@ public interface WorkPackageService {
     List<WorkPackage> getChildWorkPackages(final WorkPackage parentWp);
     
     WorkPackage getUniquePackage(final String projId, final String packageNo);
+    
+    List<Employee> getAssignedEmployeesToWp(final Integer integer);
 }

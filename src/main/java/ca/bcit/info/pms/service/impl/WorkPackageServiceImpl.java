@@ -9,6 +9,7 @@ import javax.inject.Named;
 import ca.bcit.info.pms.access.BudgetManager;
 import ca.bcit.info.pms.access.ProjectManager;
 import ca.bcit.info.pms.access.WorkPackageManager;
+import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.ProjectStatus;
 import ca.bcit.info.pms.model.WorkPackage;
@@ -98,5 +99,9 @@ public class WorkPackageServiceImpl implements Serializable, WorkPackageService 
 
 	public WorkPackage getUniquePackage(final String projId, final String packageNo) {
 		return WPManager.getUniqueWP(projId, packageNo);
+	}
+	
+	public List<Employee> getAssignedEmployeesToWp(final Integer wpId) {
+		return WPManager.getEmployeesAssignedToWp(wpId.toString());
 	}
 }

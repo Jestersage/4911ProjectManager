@@ -174,11 +174,12 @@
 												<h:outputLabel for="mnSupervisor" value="#{msgs.respEng}"
 														class="col-sm-4 control-label" />
                                         		<h:selectOneMenu id="mnSupervisor" styleClass="form-control" required="true"
-														 value="#{workPackageController.workPackage.employee}" >
+														 value="#{workPackageController.reId}" >
 													<f:selectItems value="#{projectController.projectEmployees}"
 														   var="employee" itemValue="#{employee.id}"
 														   itemLabel="#{employee.firstName} #{employee.lastName}" />
 												</h:selectOneMenu>
+												<h:message errorClass="text-danger" for="mnSupervisor" />
 											</div>
 
 											<div class="form-group">

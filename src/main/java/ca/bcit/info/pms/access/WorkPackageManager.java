@@ -17,6 +17,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.WorkPackage;
 
 @Dependent
@@ -202,6 +203,16 @@ public class WorkPackageManager implements Serializable
 				"AND  wp.parentWP.id IS NULL", WorkPackage.class);
 		query.setParameter("projId", projId);
 
+		return query.getResultList();
+	}
+	
+	public List<Employee> getEmployeesAssignedToWp(final String wpId) {
+		Query query = em.createNativeQuery("select e.* "
+				+ "from employee e "
+				+ "join workassignment wa on e.employeeID = wa.employeeID "
+				+ "where packageID = :wpId", Employee.class);
+		query.setParameter("wpId", wpId);
+		
 		return query.getResultList();
 	}
 }

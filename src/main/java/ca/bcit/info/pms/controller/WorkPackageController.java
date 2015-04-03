@@ -53,9 +53,11 @@ public class WorkPackageController implements Serializable
 	@Inject
 	private Conversation conversation;
 
-
+	private List<Employee> employees;
+	
 	private Employee employee;
 
+	private String reId;
 
 	private Integer parentWPId;
 
@@ -100,13 +102,13 @@ public class WorkPackageController implements Serializable
     		return null;
     	}
 		
-    	/*Employee employee = employeeService.findEmployeeById(workPackage.getEmployeeID());
+    	Employee employee = employeeService.findEmployeeById(reId);
     	if(employee == null){
     		FacesContext.getCurrentInstance().addMessage( "newWorkPackageForm:mnSupervisor",
                     new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "Employee does not exist!: "
-                            + workPackage.getEmployeeID() ) );
+                            + reId ) );
     		return null;
-    	}*/
+    	}
     	
 		WorkPackage parentWP = null;
 		
@@ -208,6 +210,10 @@ public class WorkPackageController implements Serializable
 
 		return workPackageList;
 	}
+	
+	public List<Employee> getEmployees() {
+		return workPackageService.getAssignedEmployeesToWp(workPackage.getId());
+	}
 
 	
 	
@@ -261,6 +267,15 @@ public class WorkPackageController implements Serializable
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
+
+	public String getReId() {
+		return reId;
+	}
+
+	public void setReId(String reId) {
+		this.reId = reId;
+	}
+	
 	
 
 //	public EngineerBudget getEngBudget()
