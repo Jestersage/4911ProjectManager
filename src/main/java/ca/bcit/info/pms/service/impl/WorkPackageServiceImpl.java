@@ -76,6 +76,11 @@ public class WorkPackageServiceImpl implements Serializable, WorkPackageService 
 		return WPManager.getWorkPackagesByAssignee(empId);
 	}
 
+	@Override
+	public List<WorkPackage> findResponsibleWorkPackages(String empId) {
+		return WPManager.getManagedWorkPackage(empId);
+	}
+
 	public int getNumOfChildWP(String projId) {
     	return WPManager.findNumOfChildWP(projId);
     }

@@ -25,7 +25,9 @@ public interface WorkPackageService {
      * @return a list of all work packages an employee is assigned to.
      */
     List<WorkPackage> findAssignedWorkPackages(final String empId);
-    
+
+    List<WorkPackage> findResponsibleWorkPackages(final String empId);
+
     int getNumOfChildWP(String projId);
 
 	WorkPackage findWorkPackageById(Integer id);

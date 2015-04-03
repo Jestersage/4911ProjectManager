@@ -209,7 +209,7 @@ public class WorkPackageController implements Serializable
 	public List<WorkPackage> getAssociatedWorkPackages() {
 		List<WorkPackage> workPackageList = null;
 		final String userId = userController.getUser().getId();
-		workPackageList = workPackageService.findAssignedWorkPackages(userId);
+		workPackageList = workPackageService.findResponsibleWorkPackages(userId);
 
 		return workPackageList;
 	}

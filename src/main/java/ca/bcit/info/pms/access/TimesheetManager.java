@@ -2,7 +2,9 @@ package ca.bcit.info.pms.access;
 
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Timesheet;
+import ca.bcit.info.pms.model.TimesheetRow;
 import ca.bcit.info.pms.model.WorkPackage;
+import com.sun.tools.corba.se.idl.constExpr.Times;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -11,8 +13,10 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -159,5 +163,49 @@ public class TimesheetManager implements Serializable {
         query.setParameter("empId", empId);
 
         return query.getResultList();
+    }
+
+    public BigDecimal getBankedFlexTime(final String id) {
+        TypedQuery<BigDecimal> query = entityManager
+                .createQuery("SELECT SUM(t.flextime) FROM Timesheet t " +
+                        "WHERE t.owner.id = :empId " +
+                        "AND t.approved = true", BigDecimal.class);
+        query.setParameter("empId", id);
+
+        try {
+            BigDecimal hours = query.getSingleResult();
+            logger.info("banked flextime: " + hours);
+            return hours;
+        } catch (NoResultException nre) {
+            logger.error("Error getting banked flextime for employee with id: " + id);
+            return null;
+        }
+    }
+
+    public BigDecimal getSpentFlexTime(final String id) {
+        TypedQuery<BigDecimal> query = entityManager
+                .createQuery("SELECT SUM(tsr.saturdayHour) + " +
+                            "SUM(tsr.sundayHour) + " +
+                            "SUM(tsr.mondayHour) + " +
+                            "SUM(tsr.tuesdayHour) + " +
+                            "SUM(tsr.wednesdayHour) + " +
+                            "SUM(tsr.thursdayHour) + " +
+                            "SUM(tsr.fridayHour) " +
+                        "FROM Timesheet t, " +
+                        "IN (t.timesheetRows) AS tsr " +
+                        "WHERE t.owner.id = :empId " +
+                        "AND t.approved = true " +
+                        "AND (tsr.workPackage.project.id = '10' " +
+                            "AND tsr.workPackage.packageNum = 'FLEX')", BigDecimal.class);
+        query.setParameter("empId", id);
+
+        try {
+            BigDecimal hours = query.getSingleResult();
+            logger.info("spent flextime: " + hours);
+            return hours;
+        } catch (NoResultException nre) {
+            logger.error("Error getting spent flextime for employee with id: " + id);
+            return null;
+        }
     }
 }

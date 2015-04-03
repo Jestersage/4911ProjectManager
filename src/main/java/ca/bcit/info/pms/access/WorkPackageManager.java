@@ -123,22 +123,6 @@ public class WorkPackageManager implements Serializable
 		return this.em.createQuery( criteria.select( criteria.from( WorkPackage.class ) ) ).getResultList();
 	}
 
-	/**
-	 * @param empId
-	 *            responsible engineer's employee id.
-	 * @return a list of all work package managed by this employee disregarding
-	 *         which project.
-	 */
-	// TODO fix to engineer.id when employeeID change to manager in WorkPackage
-	// public List< WorkPackage > getManagedWorkPackage( final String empId )
-	// {
-	// TypedQuery< WorkPackage > query =
-	// em.createQuery("SELECT w FROM WorkPackage w "
-	// + "WHERE w.employeeID = :assistantId", WorkPackage.class);
-	// query.setParameter( "assistantId", empId );
-	// return query.getResultList();
-	// }
-
 	public int findNumOfChildWP( String projId )
 	{
 		Query query = em.createNativeQuery( "select COUNT(*) from WorkPackage  where projectID = :projectId" );
@@ -174,12 +158,29 @@ public class WorkPackageManager implements Serializable
 	 */
 	public List< WorkPackage > getWorkPackagesByAssignee( final String empId )
 	{
-		TypedQuery< WorkPackage > query = em.createQuery( "SELECT wp FROM WorkPackage wp "
-		        + "WHERE wp.employee.id = :empId", WorkPackage.class );
+		TypedQuery< WorkPackage > query = em.createQuery("SELECT wp FROM WorkPackage wp, " +
+				"IN (wp.employees) AS e "
+				+ "WHERE e.id = :empId", WorkPackage.class);
 		query.setParameter( "empId", empId );
 
 		return query.getResultList();
 	}
+
+	/**
+	 * @param empId
+	 *            responsible engineer's employee id.
+	 * @return a list of all work package managed by this employee disregarding
+	 *         which project.
+	 */
+	public List< WorkPackage > getManagedWorkPackage( final String empId )
+	{
+		TypedQuery< WorkPackage > query = em.createQuery("SELECT wp FROM WorkPackage wp "
+				+ "WHERE wp.employee.id = :empId", WorkPackage.class);
+		query.setParameter( "empId", empId );
+
+		return query.getResultList();
+	}
+
 
 	/**
 	 * @param parentWp
