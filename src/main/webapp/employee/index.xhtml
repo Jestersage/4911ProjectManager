@@ -56,9 +56,29 @@
 
 							<div class="container-fluid" id="row1">
 								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
+										<h2>#{msgs.timesheet}</h2>
+										<h:commandLink
+												action="#{editTimesheetController.fillThisWeek()}"
+												value="#{msgs.currentTimesheet}" />
+										<h:commandLink action="previousTimesheet"
+													   value="#{msgs.previousTimesheet}" />
+
+										<!-- timesheets not approved -->
+										<h:commandLink action="pendingTimesheet"
+													   value="#{msgs.pendingTimesheet}" />
+
+										<!-- for timesheet approver -->
+										<ui:fragment
+												rendered="#{userController.isAuthorized('Timesheet Approver')}">
+											<h:commandLink action="pendingTimesheetTA"
+														   value="#{msgs.timesheetsToApprove}" />
+										</ui:fragment>
+
+									</div>
 									<ui:fragment
 										rendered="#{userController.isAuthorized('Supervisor,Project Manager,Project Assistant')}">
-										<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
+										<div class="col-xs-12 col-sm-12 col-md-4" id="middleSection">
 											<h2>#{msgs.project}</h2>
 											<ui:fragment
 												rendered="#{userController.isAuthorized('Supervisor,Project Manager')}">
@@ -78,39 +98,13 @@
 
 										</div>
 									</ui:fragment>
-									<div class="col-xs-12 col-sm-12 col-md-4" id="middleSection">
-										<h2>#{msgs.workPackage}</h2>
-										<!--<ui:fragment-->
-											<!--rendered="#{userController.isAuthorized('Supervisor')}">-->
-											<!--<h:commandLink action="viewAllPackages"-->
-													<!--value="#{msgs.viewAllPackage}" />-->
-										<!--</ui:fragment>-->
-										<ui:fragment
-											rendered="#{userController.isAuthorized('Responsible Engineer')}">
-											<h:commandLink action="viewAssociatedPackages"
-												value="#{msgs.viewAssociatedPackages}" />
-										</ui:fragment>
-									</div>
+									<ui:fragment rendered="#{userController.isAuthorized('Responsible Engineer')}">
 									<div class="col-xs-12 col-sm-12 col-md-4" id="rightSection">
-										<h2>#{msgs.timesheet}</h2>
-										<h:commandLink
-											action="#{editTimesheetController.fillThisWeek()}"
-											value="#{msgs.currentTimesheet}" />
-										<h:commandLink action="previousTimesheet"
-											value="#{msgs.previousTimesheet}" />
-
-										<!-- timesheets not approved -->
-										<h:commandLink action="pendingTimesheet"
-											value="#{msgs.pendingTimesheet}" />
-
-										<!-- for timesheet approver -->
-										<ui:fragment
-											rendered="#{userController.isAuthorized('Timesheet Approver')}">
-											<h:commandLink action="pendingTimesheetTA"
-												value="#{msgs.timesheetsToApprove}" />
-										</ui:fragment>
-
+										<h2>#{msgs.workPackage}</h2>
+										<h:commandLink action="viewAssociatedPackages" value="#{msgs.viewAssociatedPackages}" />
+										<h:commandLink action="weekReport" value="#{msgs.newWeekReport}" />
 									</div>
+									</ui:fragment>
 									<!-- /col -->
 								</div>
 								<!-- /row -->
@@ -125,29 +119,15 @@
 										<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
 											<h2>#{msgs.employees}</h2>
 											<ui:fragment rendered="#{userController.isAuthorized('HR')}">
-												<h:commandLink action="newEmployee"
-													value="#{msgs.newEmployee}" />
-												<h:commandLink action="viewAllEmployees"
-													value="#{msgs.viewEmployees}" />
+												<h:commandLink action="viewAllEmployees" value="#{msgs.viewEmployees}" />
+												<h:commandLink action="newEmployee" value="#{msgs.newEmployee}" />
+												<h:commandLink action="editPayLevels" value="#{msgs.editPayLevels}" />
 											</ui:fragment>
 											<ui:fragment
 												rendered="#{userController.isAuthorized('Supervisor')}">
 												<h:commandLink action="viewManagedEmp"
 													value="#{msgs.manageEmployees}" />
 											</ui:fragment>
-										</div>
-									</ui:fragment>
-									<div class="col-xs-12 col-sm-12 col-md-4" id="middleSection">
-										<h2>#{msgs.reports}</h2>
-
-										<h:commandLink action="weekReport"
-											value="#{msgs.newWeekReport}" />
-									</div>
-									<ui:fragment rendered="#{userController.isAuthorized('HR')}">
-										<div class="col-xs-12 col-sm-12 col-md-4" id="rightSection">
-											<h2>#{msgs.rates}</h2>
-											<h:commandLink action="editPayLevels"
-												value="#{msgs.editPayLevels}" />
 										</div>
 									</ui:fragment>
 								</div>

@@ -55,6 +55,7 @@
 							</ul>
 						</li>
 
+						<ui:fragment rendered="#{userController.isAuthorized('Supervisor,Project Manager,Project Assistant')}">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false">#{msgs.project}
 								<span class="caret"></span></a>
@@ -69,15 +70,20 @@
 									<li class="divider"></li>
 									<li><h:commandLink action="viewAllProjects" value="#{msgs.viewAllProject}" /></li>
 								</ui:fragment>
-								<li class="divider"></li>
-								<!--<ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">-->
-									<!--<li><h:commandLink action="viewAllPackages" value="#{msgs.viewAllPackage}" /></li>-->
-								<!--</ui:fragment>-->
-								<ui:fragment rendered="#{userController.isAuthorized('Responsible Engineer')}">
-									<li><h:commandLink action="viewAssociatedPackages" value="#{msgs.viewAssociatedPackages}" /></li>
-								</ui:fragment>
 							</ul>
 						</li>
+						</ui:fragment>
+
+						<ui:fragment rendered="#{userController.isAuthorized('Responsible Engineer')}">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-expanded="false">#{msgs.workPackage}
+								<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><h:commandLink action="viewAssociatedPackages" value="#{msgs.viewAssociatedPackages}" /></li>
+								<li><h:commandLink value="#{msgs.newWeekReport}" action="weekReport" /></li>
+							</ul>
+						</li>
+						</ui:fragment>
 
                         <ui:fragment rendered="#{userController.isAuthorized('HR,Supervisor')}">
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -85,10 +91,9 @@
 									class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
                                     <ui:fragment rendered="#{userController.isAuthorized('HR')}">
-									<li><h:commandLink value="#{msgs.viewEmployees}"
-											action="viewAllEmployees" /></li>
-                                    <li><h:commandLink value="#{msgs.newEmployee}"
-                                                       action="newEmployee" /></li>
+									<li><h:commandLink value="#{msgs.viewEmployees}" action="viewAllEmployees" /></li>
+                                    <li><h:commandLink value="#{msgs.newEmployee}" action="newEmployee" /></li>
+									<li><h:commandLink action="editPayLevels" value="#{msgs.editPayLevels}" /></li>
                                     </ui:fragment>
                                     <ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">
 									<li class="divider"></li>
@@ -96,16 +101,6 @@
                                     </ui:fragment>
 								</ul></li>
 						</ui:fragment>
-
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-expanded="false">#{msgs.reports}<span
-								class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><h:commandLink value="#{msgs.newWeekReport}"
-										action="weekReport" /></li>
-							</ul></li>
-							
-						
 					</ul>
 				</h:form>
 
