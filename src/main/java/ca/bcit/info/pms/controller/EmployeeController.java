@@ -267,7 +267,7 @@ public class EmployeeController implements Serializable
 	public List< Employee > getManagedEmployees()
 	{
 		final String currUserId = userController.getUser().getId();
-		return empService.getManagedEmployeeFor( currUserId );
+		return empService.getManagedEmployeeFor(currUserId);
 	}
 
 	public Employee getEmployee()
@@ -320,4 +320,10 @@ public class EmployeeController implements Serializable
 		final Map< String, Boolean > authMap = empService.checkAuthorization( employee.getId() );
 		return empService.getAvailableAuths( authMap );
 	}
+
+	public String getFlexTime() {
+		final BigDecimal timeBanked = empService.getBankedFlexTime(employee.getId());
+		return timeBanked + " hours";
+	}
+
 }
