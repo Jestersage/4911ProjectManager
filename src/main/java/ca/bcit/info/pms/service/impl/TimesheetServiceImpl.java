@@ -6,7 +6,6 @@ import ca.bcit.info.pms.access.WorkPackageManager;
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Timesheet;
 import ca.bcit.info.pms.model.TimesheetRow;
-import ca.bcit.info.pms.model.WorkPackage;
 import ca.bcit.info.pms.service.TimesheetService;
 
 import org.apache.log4j.LogManager;
@@ -37,13 +36,22 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
 
     @Inject
     private WorkPackageManager wpManager;
-    
+
+    @Override
+    public Date getCurrentWeekEnd() {
+        // Get current week end date
+        Calendar c = new GregorianCalendar();
+        c.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
+        Date wkEnding = new Date(c.getTime().getTime());
+        return wkEnding;
+    }
+
     @Override
     public Timesheet getCurrentTimesheet(Employee emp) {
         // Get current week end date
         Calendar c = new GregorianCalendar();
         c.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
-        Date wkEnding = new Date(c.getTime().getTime()); 
+        Date wkEnding = new Date(c.getTime().getTime());
 
         Timesheet sheet = timesheetManager.find(emp, wkEnding);
         
@@ -59,9 +67,9 @@ public class TimesheetServiceImpl implements Serializable, TimesheetService{
         // Create a new timesheet
         Timesheet sheet = new Timesheet();
         Date wkEnding = new Date(c.getTime().getTime());
-        
+
         sheet.setOwner(emp);
-        sheet.setWeekEnding(wkEnding);        
+        sheet.setWeekEnding(wkEnding);
         sheet.setWeekNumber(c.get(Calendar.WEEK_OF_YEAR));
         sheet.setFlextime(new BigDecimal(0));
         sheet.setOvertime(new BigDecimal(0));
