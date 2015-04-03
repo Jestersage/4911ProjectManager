@@ -161,6 +161,15 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>viewAssociatedPackages</from-outcome>
+			<to-view-id>/projects/viewAssociatedPackages.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 	<!-- find Work Package -->
 	<navigation-rule>
 		<from-view-id>*</from-view-id>

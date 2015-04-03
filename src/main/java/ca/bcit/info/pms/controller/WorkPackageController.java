@@ -53,11 +53,7 @@ public class WorkPackageController implements Serializable
 	@Inject
 	private Conversation conversation;
 
-//	@Inject
-//	private EngineerBudget engBudget;
-//
-//	@Inject
-//	private EngineerBudgetManager engineerBudgetMngr;
+
 
 	private Integer parentWPId;
 
@@ -192,6 +188,23 @@ public class WorkPackageController implements Serializable
 		return workPackageService.findAssignedWorkPackages( userId );
 	}
 
+	/**
+	 * @return a list of projects managed by current user.
+	 */
+	public List<WorkPackage> getAssociatedWorkPackages() {
+		List<WorkPackage> workPackageList = null;
+		final String userId = userController.getUser().getId();
+		final boolean isWPManager = userController
+				.isAuthorized(Employee.ROLE_WP_MANAGER);
+		if (isWPManager) {
+			workPackageList = workPackageService.findAssignedWorkPackages(userId);
+		}
+
+		return workPackageList;
+	}
+
+	
+	
 	public List<WorkPackage> getChildWorkPackages() {
 		return workPackageService.getChildWorkPackages(workPackage);
 	}
