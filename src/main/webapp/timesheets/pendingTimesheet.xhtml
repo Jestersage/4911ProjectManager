@@ -54,10 +54,10 @@
 							<h:form>
 								<p:dataTable var="timesheet" value="#{timesheetController.pendingsSheets}">
 									<p:column headerText="#{msgs.weekNo}">
-										<h:outputText value="#{timesheet.weekNumber}" />
+										<h:outputText  class="paddingHalf" value="#{timesheet.weekNumber}" />
 									</p:column>
 									<p:column headerText="#{msgs.weekEnding}">
-										<h:outputText value="#{timesheet.weekEnding}" />
+										<h:outputText class="paddingHalf" value="#{timesheet.weekEnding}" />
 									</p:column>
 									<p:column headerText="#{msgs.status}">
 										<h:outputText value="#{timesheet.approved}" styleClass="#{timesheet.approved == 'Rejected' ? 'text-danger' : ''}" />

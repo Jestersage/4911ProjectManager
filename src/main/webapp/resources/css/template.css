@@ -131,6 +131,9 @@ p {
 .paddingZero {
 	padding: 0;
 }
+.paddingHalf {
+	padding: 0.5em;
+}
 .error {
 	color: red;
 }
