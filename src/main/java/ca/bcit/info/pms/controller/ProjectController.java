@@ -237,6 +237,10 @@ public class ProjectController implements Serializable {
 
 		return candidates;
 	}
+	
+	public List<Employee> getProjectEmployees() {
+		   return employeeController.getManagedEmployees();
+	}
 
 	/**
 	 * @return a list of the top level work packages for this project
@@ -351,4 +355,5 @@ public class ProjectController implements Serializable {
 	public ProjectStatus[] getStatuses() {
 		return ProjectStatus.values();
 	}
+
 }

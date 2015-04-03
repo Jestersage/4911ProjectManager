@@ -22,7 +22,10 @@ public class WorkPackage implements Serializable
 	private Integer id=0;
 
     
-    private String employeeID;
+    //private String employeeID;
+    @OneToOne
+    @JoinColumn(name="employeeID")
+    private Employee employee;
     
 	@ManyToOne
 	@JoinColumn( name = "projectID", updatable = false )
@@ -342,12 +345,12 @@ public class WorkPackage implements Serializable
 
    
 
-	public String getEmployeeID() {
-		return employeeID;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setEmployeeID(String employeeID) {
-		this.employeeID = employeeID;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	@Override

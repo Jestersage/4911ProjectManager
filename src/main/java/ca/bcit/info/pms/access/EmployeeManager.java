@@ -378,7 +378,7 @@ public class EmployeeManager implements Serializable
     public boolean hasWpManagerRole(final String id) {
         final TypedQuery<WorkPackage> query = entityManager
                 .createQuery("SELECT w FROM WorkPackage w " +
-                        "WHERE w.employeeID = :assistantId", WorkPackage.class);
+                        "WHERE w.employee.id = :assistantId", WorkPackage.class);
         query.setParameter("assistantId", id);
 
         final int numOfWPs = query.getResultList().size();

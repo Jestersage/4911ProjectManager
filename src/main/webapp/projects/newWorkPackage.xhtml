@@ -158,16 +158,27 @@
 												</div>
 											</div>
 
-											<div class="form-group">
+											<!-- <div class="form-group">
 												<h:outputLabel for="mnSupervisor" value="#{msgs.respEng}"
 													class="col-sm-4 control-label" />
 												<div class="col-sm-8">
 													<h:inputText id="mnSupervisor"
-														value="#{workPackageController.workPackage.employeeID}"
+														value="#{workPackageController.workPackage.employee}"
 														required="true" pt:placeholder="Supervisor ID"
 														label="#{msgs.supervisor}" class="form-control" />
 													<h:message errorClass="text-danger" for="mnSupervisor" />
 												</div>
+											</div> -->
+											
+											<div class="form-group">
+												<h:outputLabel for="mnSupervisor" value="#{msgs.respEng}"
+														class="col-sm-4 control-label" />
+                                        		<h:selectOneMenu id="mnSupervisor" styleClass="form-control" required="true"
+														 value="#{workPackageController.workPackage.employee}" >
+													<f:selectItems value="#{projectController.projectEmployees}"
+														   var="employee" itemValue="#{employee.id}"
+														   itemLabel="#{employee.firstName} #{employee.lastName}" />
+												</h:selectOneMenu>
 											</div>
 
 											<div class="form-group">

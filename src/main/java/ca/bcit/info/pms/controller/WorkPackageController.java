@@ -54,6 +54,8 @@ public class WorkPackageController implements Serializable
 	private Conversation conversation;
 
 
+	private Employee employee;
+
 
 	private Integer parentWPId;
 
@@ -95,20 +97,24 @@ public class WorkPackageController implements Serializable
     		return null;
     	}
 		
-    	Employee employee = employeeService.findEmployeeById(workPackage.getEmployeeID());
+    	/*Employee employee = employeeService.findEmployeeById(workPackage.getEmployeeID());
     	if(employee == null){
     		FacesContext.getCurrentInstance().addMessage( "newWorkPackageForm:mnSupervisor",
                     new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "Employee does not exist!: "
                             + workPackage.getEmployeeID() ) );
     		return null;
-    	}
+    	}*/
     	
 		WorkPackage parentWP = null;
 		
 		if ( parentWPId != null ) {
 			parentWP = workPackageService.findWorkPackageById(parentWPId);
-		}		
+		}
+		
+		logger.info("Attempting to save workpackage");
+		
 		workPackage.setParentWP( parentWP );
+		workPackage.setEmployee(employee);
 		workPackageService.persistWorkPackage( workPackage );
 		
 		logger.info( "successfully create new WorkPackage: " + workPackage.toString() );
@@ -170,7 +176,9 @@ public class WorkPackageController implements Serializable
 		workPackage = new WorkPackage();
 		Project project = projectService.getProject(parentWorkPackage.getProject().getId());
 		workPackage.setProject( project );
+		workPackage.setEmployee(new Employee());
 		parentWPId = parentWorkPackage.getId();
+		
 		return "newWorkPackage";
 	}
 
@@ -242,6 +250,15 @@ public class WorkPackageController implements Serializable
 		//engineerBudgetMngr.merge(engBudget);
 		return "viewWorkPackageDetails";
 	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	
 
 //	public EngineerBudget getEngBudget()
 //	{
