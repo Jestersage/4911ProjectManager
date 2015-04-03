@@ -56,42 +56,58 @@
 
 							<div class="container-fluid" id="row1">
 								<div class="row">
-									<ui:fragment rendered="#{userController.isAuthorized('Supervisor,Project Manager,Project Assistant')}">
-									<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
-										<h2>#{msgs.project}</h2>
-										<ui:fragment rendered="#{userController.isAuthorized('Supervisor,Project Manager')}">
-										<h:commandLink action="#{projectController.goCreateProject}" value="#{msgs.newProject}" />
-										</ui:fragment>
-										<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
-											<h:commandLink action="viewManagedProjects" value="#{msgs.viewManagedProjects}" />
-										</ui:fragment>
-										<ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">
-											<h:commandLink action="viewAllProjects" value="#{msgs.viewAllProject}" />
-										</ui:fragment>
-										<ui:fragment rendered="#{userController.isAuthorized('Responsible Engineer')}">
-											<li><h:commandLink action="viewAssociatedPackages" value="#{msgs.viewAssociatedPackages}" /></li>
-										</ui:fragment>
-									</div>
+									<ui:fragment
+										rendered="#{userController.isAuthorized('Supervisor,Project Manager,Project Assistant')}">
+										<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
+											<h2>#{msgs.project}</h2>
+											<ui:fragment
+												rendered="#{userController.isAuthorized('Supervisor,Project Manager')}">
+												<h:commandLink action="#{projectController.goCreateProject}"
+													value="#{msgs.newProject}" />
+											</ui:fragment>
+											<ui:fragment
+												rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
+												<h:commandLink action="viewManagedProjects"
+													value="#{msgs.viewManagedProjects}" />
+											</ui:fragment>
+											<ui:fragment
+												rendered="#{userController.isAuthorized('Supervisor')}">
+												<h:commandLink action="viewAllProjects"
+													value="#{msgs.viewAllProject}" />
+											</ui:fragment>
+
+										</div>
 									</ui:fragment>
 									<div class="col-xs-12 col-sm-12 col-md-4" id="middleSection">
 										<h2>#{msgs.workPackage}</h2>
 										<!-- <h:commandLink action="editWorkPackage"
 											value="#{msgs.editWorkPackage}" /> -->
-										<h:commandLink action="viewAllPackages"
-											value="#{msgs.viewAllPackage}" />
+										<ui:fragment
+											rendered="#{userController.isAuthorized('Supervisor')}">
+											<h:commandLink action="viewAllPackages"
+													value="#{msgs.viewAllPackage}" />
+										</ui:fragment>
+										<ui:fragment
+											rendered="#{userController.isAuthorized('Responsible Engineer')}">
+											<h:commandLink action="viewAssociatedPackages"
+												value="#{msgs.viewAssociatedPackages}" />
+										</ui:fragment>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-4" id="rightSection">
 										<h2>#{msgs.timesheet}</h2>
-										<h:commandLink action="#{editTimesheetController.fillThisWeek()}"
+										<h:commandLink
+											action="#{editTimesheetController.fillThisWeek()}"
 											value="#{msgs.currentTimesheet}" />
 										<h:commandLink action="previousTimesheet"
 											value="#{msgs.previousTimesheet}" />
 
 										<!-- timesheets not approved -->
-										<h:commandLink action="pendingTimesheet" value="#{msgs.pendingTimesheet}" />
+										<h:commandLink action="pendingTimesheet"
+											value="#{msgs.pendingTimesheet}" />
 
 										<!-- for timesheet approver -->
-										<ui:fragment rendered="#{userController.isAuthorized('Timesheet Approver')}">
+										<ui:fragment
+											rendered="#{userController.isAuthorized('Timesheet Approver')}">
 											<h:commandLink action="pendingTimesheetTA"
 												value="#{msgs.timesheetsToApprove}" />
 										</ui:fragment>
@@ -106,24 +122,26 @@
 
 							<div class="container-fluid" id="row2">
 								<div class="row">
-									<ui:fragment rendered="#{userController.isAuthorized('HR,Supervisor')}">
+									<ui:fragment
+										rendered="#{userController.isAuthorized('HR,Supervisor')}">
 										<div class="col-xs-12 col-sm-12 col-md-4" id="leftSection">
 											<h2>#{msgs.employees}</h2>
-                                            <ui:fragment rendered="#{userController.isAuthorized('HR')}">
-                                                <h:commandLink action="newEmployee"
-                                                    value="#{msgs.newEmployee}" />
-                                                <h:commandLink action="viewAllEmployees"
-                                                    value="#{msgs.viewEmployees}" />
-                                            </ui:fragment>
-                                            <ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">
-                                                <h:commandLink action="viewManagedEmp"
-                                                               value="#{msgs.manageEmployees}" />
-                                            </ui:fragment>
+											<ui:fragment rendered="#{userController.isAuthorized('HR')}">
+												<h:commandLink action="newEmployee"
+													value="#{msgs.newEmployee}" />
+												<h:commandLink action="viewAllEmployees"
+													value="#{msgs.viewEmployees}" />
+											</ui:fragment>
+											<ui:fragment
+												rendered="#{userController.isAuthorized('Supervisor')}">
+												<h:commandLink action="viewManagedEmp"
+													value="#{msgs.manageEmployees}" />
+											</ui:fragment>
 										</div>
 									</ui:fragment>
 									<div class="col-xs-12 col-sm-12 col-md-4" id="middleSection">
 										<h2>#{msgs.reports}</h2>
-										
+
 										<h:commandLink action="weekReport"
 											value="#{msgs.newWeekReport}" />
 									</div>
@@ -138,12 +156,15 @@
 								<!-- /row -->
 								<div class="container-fluid" id="row3">
 									<div class="row">
-									
+
 										<div class="col-md-2">
-											<h2><a class="" data-toggle="collapse" id="myProjects"
-												href="#collapseExample" aria-expanded="false"
-												aria-controls="collapseExample">#{msgs.myProjects}<span class="caret"></span></a> </h2>
-												
+											<h2>
+												<a class="" data-toggle="collapse" id="myProjects"
+													href="#collapseExample" aria-expanded="false"
+													aria-controls="collapseExample">#{msgs.myProjects}<span
+													class="caret"></span></a>
+											</h2>
+
 										</div>
 									</div>
 
@@ -155,7 +176,8 @@
 												<div class="well container-fluid">
 													<div class="row">
 														<div class="col-xs-12 col-sm-12 col-md-5">
-															<p:dataTable var="package" value="#{workPackageController.myWorkPackages}">
+															<p:dataTable var="package"
+																value="#{workPackageController.myWorkPackages}">
 																<p:column headerText="#{msgs.project}">
 																	<h:outputText value="#{package.project.id}" />
 																</p:column>
