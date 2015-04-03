@@ -64,8 +64,17 @@
                                             <h:commandLink value="#{msgs.edit_emp}"
                                                 styleClass="btn btn-default col-sm-1 col-sm-offset-1 marginOneEm"
                                                 action="#{empController.editEmployee}" />
-                                            <h:commandLink value="#{msgs.emp_disable}"
-                                                styleClass="btn btn-danger col-sm-1 marginOneEm" />
+											<ui:fragment rendered="#{empController.employee.activeStatus == true}">
+												<h:commandLink value="#{msgs.emp_disable}"
+													styleClass="btn btn-danger col-sm-1 marginOneEm"
+													action="#{empController.disableEmployee}"
+													onclick="return confirm('#{msgs.confirmDisable}');"/>
+											</ui:fragment>
+											<ui:fragment rendered="#{empController.employee.activeStatus == false}">
+												<h:commandLink value="#{msgs.emp_enable}"
+													styleClass="btn btn-success col-sm-1 marginOneEm"
+													action="#{empController.enableEmployee}" />
+											</ui:fragment>
                                         </h:form>
                                     </div>
                                 </div>

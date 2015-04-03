@@ -81,7 +81,7 @@ public class EmployeeController implements Serializable
 			return null;
 		}
 
-		empService.updateEmployee( employee );
+		empService.updateEmployee(employee);
 		logger.info( "successfully updated employee: " + employee.toString() );
 
 		return "viewEmployeeHr";
@@ -91,8 +91,8 @@ public class EmployeeController implements Serializable
 	{
 		employee.setTimesheetApprover( employee.getSupervisor() );
 		employee.setActiveStatus( true );
-		employee.setFlexTimeBanked( new BigDecimal( 0 ) );
-		employee.setVacationBanked( new BigDecimal( 0 ) );
+		employee.setFlexTimeBanked(new BigDecimal(0));
+		employee.setVacationBanked(new BigDecimal(0));
 
 		return employee;
 	}
@@ -234,6 +234,21 @@ public class EmployeeController implements Serializable
 		}
 
 		return returnUrl;
+	}
+
+	public String disableEmployee() {
+		employee = empService.findEmployeeById(employee.getId());
+		employee.setActiveStatus(false);
+		empService.updateEmployee(employee);
+		return null;
+	}
+
+
+	public String enableEmployee() {
+		employee = empService.findEmployeeById(employee.getId());
+		employee.setActiveStatus(true);
+		empService.updateEmployee(employee);
+		return null;
 	}
 
 	public PayGrade [] getPayLevelItems()
