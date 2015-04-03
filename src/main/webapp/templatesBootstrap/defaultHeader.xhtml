@@ -70,11 +70,9 @@
 									<li><h:commandLink action="viewAllProjects" value="#{msgs.viewAllProject}" /></li>
 								</ui:fragment>
 								<li class="divider"></li>
-								<!-- <li><h:commandLink value="#{msgs.newWorkPackage}" action="newWorkPackage" /></li>
-								<li><h:commandLink action="editWorkPackage" value="#{msgs.editWorkPackage}" /></li> -->
-								<ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">
-									<li><h:commandLink action="viewAllPackages" value="#{msgs.viewAllPackage}" /></li>
-								</ui:fragment>
+								<!--<ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">-->
+									<!--<li><h:commandLink action="viewAllPackages" value="#{msgs.viewAllPackage}" /></li>-->
+								<!--</ui:fragment>-->
 								<ui:fragment rendered="#{userController.isAuthorized('Responsible Engineer')}">
 									<li><h:commandLink action="viewAssociatedPackages" value="#{msgs.viewAssociatedPackages}" /></li>
 								</ui:fragment>

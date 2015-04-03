@@ -80,13 +80,11 @@
 									</ui:fragment>
 									<div class="col-xs-12 col-sm-12 col-md-4" id="middleSection">
 										<h2>#{msgs.workPackage}</h2>
-										<!-- <h:commandLink action="editWorkPackage"
-											value="#{msgs.editWorkPackage}" /> -->
-										<ui:fragment
-											rendered="#{userController.isAuthorized('Supervisor')}">
-											<h:commandLink action="viewAllPackages"
-													value="#{msgs.viewAllPackage}" />
-										</ui:fragment>
+										<!--<ui:fragment-->
+											<!--rendered="#{userController.isAuthorized('Supervisor')}">-->
+											<!--<h:commandLink action="viewAllPackages"-->
+													<!--value="#{msgs.viewAllPackage}" />-->
+										<!--</ui:fragment>-->
 										<ui:fragment
 											rendered="#{userController.isAuthorized('Responsible Engineer')}">
 											<h:commandLink action="viewAssociatedPackages"
