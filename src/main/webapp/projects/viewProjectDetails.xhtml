@@ -112,14 +112,13 @@
 									<dt>#{msgs.projectDescription}</dt>
 									<dd>#{projectController.project.description}</dd>
 
+									<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
 									<dt>#{msgs.genReport}</dt>
 									<dd>
-										#{projectController.project.genReport}
-										<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
-										[ <h:commandLink value="#{msgs.viewMonthlyReport}"
-														 action="#{monthlyReport.viewMonthlyReport(projId.value)}" /> ]
-										</ui:fragment>
+										<h:commandLink value="#{msgs.viewMonthlyReport}"
+														 action="#{monthlyReport.viewMonthlyReport(projId.value)}" />
 									</dd>
+									</ui:fragment>
 								</dl>
 							</h:form>
 						</div>
