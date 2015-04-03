@@ -1,6 +1,7 @@
 package ca.bcit.info.pms.service.impl;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.bcit.info.pms.access.EmployeeManager;
+import ca.bcit.info.pms.access.TimesheetManager;
 import ca.bcit.info.pms.model.Credential;
 import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.service.EmployeeService;
@@ -21,6 +23,9 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable
 
 	@Inject
 	private EmployeeManager empManager;
+
+    @Inject
+    private TimesheetManager timesheetManager;
 
 	private List< Credential > credentialList;
 
@@ -146,5 +151,21 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public BigDecimal getBankedFlexTime(String id) {
+        BigDecimal timeRecorded= timesheetManager.getBankedFlexTime(id);
+        BigDecimal timeSpent = timesheetManager.getSpentFlexTime(id);
+
+        if (timeRecorded == null) {
+            timeRecorded  = new BigDecimal(0);
+        }
+
+        if (timeSpent == null) {
+            timeSpent = new BigDecimal(0);
+        }
+
+        return timeRecorded.subtract(timeSpent);
     }
 }

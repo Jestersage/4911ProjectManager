@@ -1,5 +1,6 @@
 package ca.bcit.info.pms.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -85,4 +86,10 @@ public interface EmployeeService {
      * @return string representation of available authorizations.
      */
     String getAvailableAuths(final Map<String, Boolean> authorizations);
+
+    /**
+     * @param id employee id.
+     * @return flex time banked by specified employee.
+     */
+    BigDecimal getBankedFlexTime(final String id);
 }

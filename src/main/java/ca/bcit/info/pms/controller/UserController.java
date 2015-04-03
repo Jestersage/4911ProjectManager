@@ -16,6 +16,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -282,4 +283,9 @@ public class UserController implements Serializable {
         this.credential = credential;
     }
 
+    public String getFlexTime() {
+        final BigDecimal timeBanked = empService.getBankedFlexTime(user.getId());
+
+        return timeBanked + " hours";
+    }
 }
