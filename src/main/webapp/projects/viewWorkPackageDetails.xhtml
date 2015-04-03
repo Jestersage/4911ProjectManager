@@ -3,6 +3,7 @@
 		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
@@ -54,12 +55,7 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-6 ">
 							<h:form id="workPackageForm" styleClass="form-inline">
-
-								<h:inputHidden value="#{workPackageController.workPackage.id}" />
-
-								<h:inputHidden binding="#{packageID}"
-									value="#{workPackageController.workPackage.id}" />
-
+								<h:inputHidden binding="#{packageID}" value="#{workPackageController.workPackage.id}" />
 
 								<ui:fragment
 									rendered="#{userController.isAuthorized('Project Manager,Project Assistant,Responsible Engineer')}">
@@ -73,13 +69,20 @@
 									<dd>#{workPackageController.workPackage.packageNum}</dd>
 
 									<dt>#{msgs.projectNumber}</dt>
-									<dd>#{workPackageController.workPackage.project.id}</dd>
+									<dd>
+									<h:commandLink value="#{workPackageController.workPackage.project.id}"
+											action="#{projectController.viewProjectDetails(workPackageController.workPackage.project)}" />
+									</dd>
+
+									<dt>#{msgs.parentWpId}</dt>
+									<dd>
+										<ui:fragment rendered="#{workPackageController.workPackage.parentWP != null}">
+											<h:commandLink value="#{workPackageController.workPackage.parentWP.packageNum}" />
+										</ui:fragment>
+									</dd>
 
 									<dt>#{msgs.packageManager}</dt>
 									<dd>#{workPackageController.workPackage.employeeID}</dd>
-
-									<dt>#{msgs.parentWpId}</dt>
-									<dd>#{workPackageController.workPackage.parentWP.packageNum}</dd>
 
 									<dt>#{msgs.workPackageDescription}</dt>
 									<dd>#{workPackageController.workPackage.description}</dd>
