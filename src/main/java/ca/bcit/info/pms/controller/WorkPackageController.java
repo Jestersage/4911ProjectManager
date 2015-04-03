@@ -114,7 +114,7 @@ public class WorkPackageController implements Serializable
 		logger.info( "successfully create new WorkPackage: " + workPackage.toString() );
 
 		beginConversation();
-		return "viewWorkPackageDetails";
+		return "viewAssociatedPackages";
 	}
 
 	public WorkPackage getWorkPackage()
