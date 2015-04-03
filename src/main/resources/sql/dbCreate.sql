@@ -52,7 +52,7 @@ CREATE TABLE WorkPackage (
   employeeID   varchar(10) NOT NULL,
   parentwpID   int(10),
   packageName  varchar(20),
-  packageDesc  varchar(20),
+  packageDesc  varchar(2000),
   status       int(1),
   isLead       tinyint(1),
   CONSTRAINT packageID

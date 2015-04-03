@@ -54,7 +54,7 @@ public class WorkPackage implements Serializable
 	private String name;
 
 	@Column( name = "packageDesc" )
-	@Size( max = 20, message = "Package description cannot be longer than 20" )
+	@Size( max = 2000, message = "Package description cannot be longer than 2000 characters" )
 	private String description;
 
     @Enumerated(EnumType.ORDINAL)
