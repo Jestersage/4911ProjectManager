@@ -172,8 +172,8 @@ public class WorkPackageManager implements Serializable
 	 */
 	public List< WorkPackage > getWorkPackagesByAssignee( final String empId )
 	{
-		TypedQuery< WorkPackage > query = em.createQuery("SELECT wp FROM WorkPackage wp, "
-				+ "IN (wp.employees) AS e " + "WHERE e.id = :empId", WorkPackage.class);
+		TypedQuery< WorkPackage > query = em.createQuery("SELECT wp FROM WorkPackage wp "
+				+ "WHERE wp.employee.id = :empId", WorkPackage.class);
 		query.setParameter( "empId", empId );
 
 		return query.getResultList();
