@@ -1,6 +1,7 @@
 package ca.bcit.info.pms.controller;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
@@ -9,6 +10,9 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import ca.bcit.info.pms.access.EngineerBudgetManager;
 import ca.bcit.info.pms.access.StatusReportManager;
 import ca.bcit.info.pms.access.TimesheetRowManager;
@@ -16,8 +20,6 @@ import ca.bcit.info.pms.access.WorkPackageManager;
 import ca.bcit.info.pms.model.EngineerBudget;
 import ca.bcit.info.pms.model.StatusReport;
 import ca.bcit.info.pms.model.WorkPackage;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 
 /**
  * 
@@ -42,11 +44,9 @@ public class WeeklyReportController implements Serializable
 	@Inject
 	private TimesheetRowManager timeSheetRowMngr;
 
-	@Inject
 	private WorkPackage wp;
 
-	private static final Logger logger = LogManager.getLogger(WeeklyReportController.class);
-
+	private static final Logger logger = LogManager.getLogger( WeeklyReportController.class );
 
 	private EngineerBudget engineerBudget;
 
@@ -54,7 +54,7 @@ public class WeeklyReportController implements Serializable
 
 	Map< String, Double > cost;
 
-	private Integer id;
+	private int id;
 
 	private String name;
 
@@ -72,12 +72,12 @@ public class WeeklyReportController implements Serializable
 
 	public WeeklyReportController()
 	{
-		statusReport = new StatusReport();
+
 	}
 
 	public String save()
 	{
-		WorkPackage w = workPackageMngr.find( id.intValue() );
+		WorkPackage w = workPackageMngr.find( id );
 		statusReport.setWorkPackage( w );
 		statusReportMngr.persist( statusReport );
 
@@ -86,30 +86,24 @@ public class WeeklyReportController implements Serializable
 
 	public String findWP()
 	{
-		int engBudgetNum;
-		EngineerBudget engBudget = null;
+
+		EngineerBudget engBudget = new EngineerBudget();
+		statusReport = new StatusReport();
 
 		// get wp
-		wp = new WorkPackage();
-		wp = workPackageMngr.find( id.intValue() );
-		System.out.println( "WP = " + wp );
-
-		// wp doesn't exist
-		if ( wp == null )
-		{
-			id = null;
-			FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "WP not found" ) );
-
-			return "weekReport";
-		}
+		// wp = workPackageMngr.find( id.intValue() );
+		// System.out.println( "WP = " + wp );
 
 		// get engineer budget of wp
-		engBudgetNum = workPackageMngr.getEngBudgetID( id.intValue() );
+		int engBudgetNum = workPackageMngr.getEngBudgetID( id );
+		logger.info( "engBudgetNum = " + engBudgetNum );
 
 		// there is a engineer budget
 		if ( engBudgetNum != 0 )
 		{
 			engBudget = engineerBudgetMngr.find( engBudgetNum );
+			logger.info( "engBudget = " + engBudget );
+			engBudget.setP1( 0 );
 
 		} else
 		{
@@ -125,6 +119,7 @@ public class WeeklyReportController implements Serializable
 			setName( wp.getName() );
 			System.out.println( "wp num" + wp.getPackageNum() );
 			engineerBudget = new EngineerBudget();
+			cost = new HashMap< String, Double >();
 
 			// set up values to display
 			// allocated budget
@@ -139,12 +134,16 @@ public class WeeklyReportController implements Serializable
 			engineerBudget.setSS( engBudget.getSS() );
 
 			// get remaining budget based on estimation made my the engineer
-			cost = timeSheetRowMngr.getManHoursPerPayLevel( id.intValue() );
+			cost = timeSheetRowMngr.getManHoursPerPayLevel( id );
 			System.out.println( "cost = " + cost.toString() );
+			System.out.println( "engBudget: " + engBudget );
 
 			// calculate remaining budget
 			// allocated - cost. Cost has the total number of hours. Divide by 8
 			// to get the total number of man-days
+			System.out.println( "engBudget.getP1() = " + engBudget.getP1() );
+			System.out.println( "cost.get( P1 )= " + cost.get( "P1" ) );
+
 			setP1( engBudget.getP1() - ( cost.get( "P1" ) / 8 ) );
 			setP2( engBudget.getP2() - ( cost.get( "P2" ) / 8 ) );
 			setP3( engBudget.getP3() - ( cost.get( "P3" ) / 8 ) );
@@ -328,10 +327,24 @@ public class WeeklyReportController implements Serializable
 		this.packageNum = packageNum;
 	}
 
-	public String goCreateWeeklyReport(final String id) {
-		int wpId = Integer.parseInt(id);
-		wp = workPackageMngr.find(wpId);
-		logger.info("wp with id " + id + ", found for status report: " + wp);
+	public String goCreateWeeklyReport( final String id )
+	{
+		int wpId = Integer.parseInt( id );
+		this.id = Integer.parseInt( id );
+		System.out.println( "ID = " + id );
+		wp = new WorkPackage();
+
+		wp = workPackageMngr.find( wpId );
+
+		// wp doesn't exist
+		if ( wp == null )
+		{
+			FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( "WP not found" ) );
+
+			return "weekReport";
+		}
+		findWP();
+		logger.info( "wp with id " + id + ", found for status report: " + wp );
 		return "weekReport";
 	}
 
