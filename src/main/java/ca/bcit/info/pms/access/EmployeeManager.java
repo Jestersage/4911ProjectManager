@@ -83,7 +83,7 @@ public class EmployeeManager implements Serializable
 	{
 		try
 		{
-			this.entityManager.merge( employee );
+			this.entityManager.merge(employee);
 			return employee;
 		} catch ( Exception e )
 		{
@@ -225,7 +225,7 @@ public class EmployeeManager implements Serializable
 	{
 
 		CriteriaQuery< Credential > criteria = this.entityManager.getCriteriaBuilder()
-		        .createQuery( Credential.class );
+		        .createQuery(Credential.class);
 		return this.entityManager.createQuery(
 		        criteria.select( criteria.from( Credential.class ) ) ).getResultList();
 	}
@@ -236,7 +236,7 @@ public class EmployeeManager implements Serializable
 	public boolean persistCredential( Credential credential )
 	{
 		Credential match = entityManager
-		        .find( Credential.class, credential.getUsername() );
+		        .find(Credential.class, credential.getUsername());
 
 		if ( match != null )
 		{
@@ -321,7 +321,7 @@ public class EmployeeManager implements Serializable
     public List<Employee> getManagedEmployees(final String id) {
         TypedQuery<Employee> query = entityManager
                 .createQuery("SELECT e FROM Employee  e " +
-                        "WHERE e.supervisor.id = :supId", Employee.class);
+						"WHERE e.supervisor.id = :supId", Employee.class);
         query.setParameter("supId", id);
         return query.getResultList();
     }
@@ -384,4 +384,52 @@ public class EmployeeManager implements Serializable
         final int numOfWPs = query.getResultList().size();
         return (numOfWPs != 0);
     }
+
+	public boolean isProjectManagerFor(final String userId, final String projectId) {
+		final TypedQuery<Project> query = entityManager
+				.createQuery("SELECT p FROM Project p " +
+						"WHERE p.id = :projectId " +
+						"AND p.projectManager.id = :empId", Project.class);
+		query.setParameter("projectId", projectId);
+		query.setParameter("empId", userId);
+
+
+		return query.getResultList().size() > 0;
+	}
+
+	public boolean isAssistantFor(final String userId, final String projectId) {
+		final TypedQuery<Project> query = entityManager
+				.createQuery("SELECT p FROM Project p " +
+						"WHERE p.id = :projectId " +
+						"AND p.assistant.id = :empId", Project.class);
+		query.setParameter("projectId", projectId);
+		query.setParameter("empId", userId);
+
+
+		return query.getResultList().size() > 0;
+	}
+
+	public boolean isEngineerFor(final String userId, final int wpId) {
+		final TypedQuery<WorkPackage> query = entityManager
+				.createQuery("SELECT wp FROM WorkPackage wp " +
+						"WHERE wp.id = :wpId " +
+						"AND wp.employeeID = :empId", WorkPackage.class);
+		query.setParameter("wpId", wpId);
+		query.setParameter("empId", userId);
+
+
+		return query.getResultList().size() > 0;
+	}
+
+	public boolean isSupervisorFor(final String supervisorId, final String empId) {
+		final TypedQuery<Employee> query = entityManager
+				.createQuery("SELECT e FROM Employee e " +
+						"WHERE e.id = :empId " +
+						"AND e.supervisor.id = :supervisorId", Employee.class);
+		query.setParameter("supervisorId", supervisorId);
+		query.setParameter("empId", empId);
+
+
+		return query.getResultList().size() > 0;
+	}
 }

@@ -33,6 +33,12 @@ public interface EmployeeService {
      */
     Map<String, Boolean> checkAuthorization( final String empId );
 
+
+    boolean isProjectManagerFor(final String userId, final String projectId);
+    boolean isAssistantFor(final String userId, final String projectId);
+    boolean isEngineerFor(final String userId, final int wpId);
+    boolean isSupervisorFor(final String supervisorId, final String empId);
+
     // ========= Employee CRUD ========
     /**
      * Add a new employee.

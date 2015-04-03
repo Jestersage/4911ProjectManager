@@ -72,6 +72,26 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable
         return authorization;
     }
 
+    @Override
+    public boolean isProjectManagerFor(final String userId, final String id) {
+        return empManager.isProjectManagerFor(userId, id);
+    }
+
+    @Override
+    public boolean isAssistantFor(String userId, String projectId) {
+        return empManager.isAssistantFor(userId, projectId);
+    }
+
+    @Override
+    public boolean isEngineerFor(String userId, int wpId) {
+        return empManager.isEngineerFor(userId, wpId);
+    }
+
+    @Override
+    public boolean isSupervisorFor(String supervisorId, String empId) {
+        return empManager.isSupervisorFor(supervisorId, empId);
+    }
+
     // ========= Employee CRUD ========
     @Override
 	public void persistEmployee(Employee newEmp) {

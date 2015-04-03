@@ -56,9 +56,11 @@
 						<div class="col-xs-12 col-sm-12 col-md-6 ">
 							<h:form id="workPackageForm" styleClass="form-inline">
 								<h:inputHidden binding="#{packageID}" value="#{workPackageController.workPackage.id}" />
+								<h:inputHidden binding="#{projId}" value="#{workPackageController.workPackage.project.id}" />
 
-								<ui:fragment
-									rendered="#{userController.isAuthorized('Project Manager,Project Assistant,Responsible Engineer')}">
+								<ui:fragment rendered="#{userController.isProjectManagerFor(projId.value)
+									or userController.isAssistantFor(projId.value)
+									or userController.isEngineerFor(packageID.value)}">
 									<h:commandButton value="#{msgs.edit_emp}"
 										styleClass="btn btn-primary pull-right"
 										action="#{workPackageController.goEditPackage(packageID.value)}" />
@@ -99,8 +101,8 @@
 
 							<div class="col-md-6">
 
-								<h:panelGroup
-									rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
+							<h:panelGroup rendered="#{userController.isProjectManagerFor(workPackageController.workPackage.project.id)
+									or userController.isAssistantFor(workPackageController.workPackage.project.id)}">
 
 								<div class="panel panel-default">
 										<div class="panel-body">
@@ -186,8 +188,9 @@
 
 								</h:panelGroup>
 								
-								<h:panelGroup
-									rendered="#{userController.isAuthorized('Project Manager,Project Assistant,Responsible Engineer')}">
+								<h:panelGroup rendered="#{userController.isProjectManagerFor(workPackageController.workPackage.project.id)
+									or userController.isAssistantFor(workPackageController.workPackage.project.id)
+									or userController.isEngineerFor(workPackageController.workPackage.id)}">
 								<div class="panel panel-default">
 									<div class="panel-body">
 
@@ -276,6 +279,7 @@
 					<div class="row">
 						<h:form>
 							<h:inputHidden binding="#{wpId}" value="#{workPackageController.workPackage.id}" />
+							<h:inputHidden binding="#{projectId}" value="#{workPackageController.workPackage.project.id}" />
 							<ui:fragment rendered="#{!workPackageController.workPackage.leaf}">
 							<div class="col-xs-12 col-sm-12 col-md-6 ">
 								<div class="panel panel-default">
@@ -284,8 +288,7 @@
 									</div>
 									<div class="panel-body">
 										<!-- controll buttons -->
-										<ui:fragment
-											rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
+										<ui:fragment rendered="#{userController.isProjectManagerFor(projectId.value) or userController.isAssistantFor(projectId.value)}">
 											<h:commandButton value="#{msgs.createChildPackage}"
 												styleClass="btn btn-primary"
 												action="#{workPackageController.goChildPackage(workPackageController.workPackage)}" />
@@ -312,7 +315,8 @@
 										</div>
 										<div class="panel-body">
 											<!-- controll buttons -->
-											<ui:fragment rendered="#{userController.isAuthorized('Responsible Engineer')}">
+											<!--<ui:fragment rendered="#{userController.isAuthorized('Responsible Engineer')}">-->
+											<ui:fragment rendered="#{userController.isEngineerFor(wpId.value)}">
 												<h:commandButton value="#{msgs.newWeekReport}"
 																 styleClass="btn btn-primary"/>
 											</ui:fragment>

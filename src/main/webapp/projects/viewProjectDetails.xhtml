@@ -63,7 +63,7 @@
 							<h:form id="projectForm" styleClass="form-inline">
 								<h:inputHidden binding="#{projId}" value="#{projectController.project.id}" />
 
-								<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
+								<ui:fragment rendered="#{userController.isProjectManagerFor(projectId.value) or userController.isAssistantFor(projectId.value)}">
 									<h:commandButton value="#{msgs.edit_emp}"
 													 styleClass="btn btn-primary pull-right"
 													 action="#{projectController.goEditProject}"/>
@@ -88,7 +88,7 @@
 									<dt>#{msgs.projectAssistant}</dt>
 									<dd>#{projectController.project.assistant.firstName}
 										#{projectController.project.assistant.lastName}
-										<ui:fragment rendered="#{userController.isAuthorized('Project Manager')}">
+										<ui:fragment rendered="#{userController.isProjectManagerFor(projectId.value)}">
 											[ <h:commandLink value="#{(projectController.project.assistant == null) ? msgs.assignAssistant : msgs.changeAssistant}"
 															 action="#{projectController.changeAssistant}" /> ]
 										</ui:fragment>
@@ -112,7 +112,7 @@
 									<dt>#{msgs.projectDescription}</dt>
 									<dd>#{projectController.project.description}</dd>
 
-									<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
+									<ui:fragment rendered="#{userController.isProjectManagerFor(projectId.value) or userController.isAssistantFor(projectId.value)}">
 									<dt>#{msgs.genReport}</dt>
 									<dd>
 										<h:commandLink value="#{msgs.viewMonthlyReport}"
@@ -123,10 +123,12 @@
 							</h:form>
 						</div>
 
+						<ui:fragment rendered="#{userController.isProjectManagerFor(projectId.value)
+							or userController.isAssistantFor(projectId.value)
+							or userController.isAuthorized('Supervisor')}">
 						<div class="col-md-6">
 							<div class="panel panel-default">
 								<div class="panel-body">
-
 
 									<div class="form-group">
 										<h:outputLabel value="#{msgs.workPackageBudget}"
@@ -206,6 +208,7 @@
 								</div>
 							</div>
 						</div>
+						</ui:fragment>
 					</div>
 					<div class="row">
 						<h:form>
@@ -216,7 +219,7 @@
 								<div class="panel-heading"><strong>#{msgs.workPackage}</strong></div>
 								<div class="panel-body">
 									<!-- controll buttons -->
-									<ui:fragment rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
+									<ui:fragment rendered="#{userController.isProjectManagerFor(projectId.value) or userController.isAssistantFor(projectId.value)}">
 										<h:commandButton value="#{msgs.newWorkPackage}"
 														 styleClass="btn btn-primary"
 														 action="#{workPackageController.goCreatePackage(projectId.value)}" />

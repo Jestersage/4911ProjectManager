@@ -125,6 +125,47 @@ public class UserController implements Serializable {
         }
     }
 
+    public boolean isProjectManagerFor(final String id) {
+        boolean isManager = false;
+
+        if (isAuthorized(Employee.ROLE_PROJECT_MANAGER)) {
+            isManager = empService.isProjectManagerFor(user.getId(), id);
+        }
+
+        return isManager;
+    }
+
+    public boolean isAssistantFor(final String id) {
+        boolean isAssistant = false;
+
+        if (isAuthorized(Employee.ROLE_ASSISTANT)) {
+            isAssistant = empService.isAssistantFor(user.getId(), id);
+        }
+
+        return isAssistant;
+    }
+
+    public boolean isEngineerFor(final int id) {
+        boolean isEngineer = false;
+
+        if (isAuthorized(Employee.ROLE_WP_MANAGER)) {
+            logger.info("is Engineer: " + user.getLastName());
+            isEngineer = empService.isEngineerFor(user.getId(), id);
+        }
+
+        return isEngineer;
+    }
+
+    public boolean isSupervisorFor(final String id) {
+        boolean isSupervisor = false;
+
+        if (isAuthorized(Employee.ROLE_SUPERVISOR)) {
+            isSupervisor=  empService.isSupervisorFor(user.getId(), id);
+        }
+
+        return isSupervisor;
+    }
+
     /**
      * @param roles string of roles required for authorization, delimited by comma(,) .
      *              Role name must match ones defined in Employee class

@@ -178,9 +178,8 @@
 
 							<div class="col-md-6">
 
-								<h:panelGroup
-									rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
-
+								<h:panelGroup rendered="#{userController.isProjectManagerFor(workPackageController.workPackage.project.id)
+									or userController.isAssistantFor(workPackageController.workPackage.project.id)}">
 									<div class="panel panel-default">
 										<div class="panel-body">
 											<span id="helpBlock" class="help-block">Project
@@ -274,9 +273,8 @@
 									</div>
 
 								</h:panelGroup>
-								
-								<h:panelGroup
-									rendered="#{userController.isAuthorized('Project Manager,Project Assistant,Responsible Engineer')}">
+
+								<h:panelGroup rendered="#{userController.isEngineerFor(workPackageController.workPackage.id)}">
 									<div class="panel panel-default">
 										<div class="panel-body">
 
