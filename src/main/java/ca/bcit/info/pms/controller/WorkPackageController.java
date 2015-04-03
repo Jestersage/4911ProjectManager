@@ -86,8 +86,11 @@ public class WorkPackageController implements Serializable
 
 	public String addWorkPackage()
 	{
+		logger.info("Entered add work package");
 		if(workPackage == null) 
 			return null;
+		
+		logger.info("Work Package is not null");
 
 		WorkPackage workPackages = workPackageService.getUniquePackage(workPackage.getProject().getId(), workPackage.getPackageNum());
     	if(workPackages != null){
