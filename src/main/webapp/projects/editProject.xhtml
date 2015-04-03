@@ -57,7 +57,7 @@
 					</div>
 
 					<div class="row">
-						<h:form id="newProjectForm" class="form-horizontal">
+						<h:form id="editProjectForm" class="form-horizontal">
 
 							<div class="col-xs-12 col-sm-12 col-md-6" id="data">
 
@@ -106,17 +106,15 @@
 									</div>
 								</div>
 					
-								<div class="form-group">
-
+							<div class="form-group">
 									<h:outputLabel for="popupStartDate" value="#{msgs.startDate}"
 										class="col-sm-4 control-label" />
 									<div class="col-sm-8">
-										
-										<p:calendar id="popupStartDate" pattern="yyyy-MM-dd"
+										<p:calendar id="popupStartDate"  pattern="yyyy-MM-dd"
 											value="#{projectController.startDate}" required="true"
 											label="#{msgs.startDate}" >
-											<f:convertDateTime pattern="M/d/yy"/>
-										</p:calendar>
+											<p:ajax event="dateSelect" update="popupEndDate" immediate="true"/>
+											</p:calendar>
 										<h:message errorClass="text-danger" for="popupStartDate" />
 									</div>
 								</div>
@@ -127,11 +125,12 @@
 									<div class="col-sm-8">
 										<p:calendar id="popupEndDate" pattern="yyyy-MM-dd"
 											value="#{projectController.endDate}" required="true"
-											label="#{msgs.endDate}"  />
+											label="#{msgs.endDate}"  mindate="#{projectController.startDate}">
+											</p:calendar>
+											<br/>
 										<h:message errorClass="text-danger" for="popupEndDate" />
 									</div>
 								</div>
-
 								
 								<div class="form-group">
 									<h:outputLabel for="itStatus" value="#{msgs.status}"
@@ -142,6 +141,7 @@
 										class="form-control">
 											<f:selectItems value="#{projectController.statuses}" />
 										</h:selectOneMenu>
+										
 										<h:message errorClass="text-danger" for="itStatus" />
 									</div>
 								</div>

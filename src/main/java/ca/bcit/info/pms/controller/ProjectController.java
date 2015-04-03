@@ -105,6 +105,13 @@ public class ProjectController implements Serializable{
     public String addProject(){
 
     	if(project == null) return null;
+
+    	if(this.startDate.after(this.endDate)){
+    		FacesContext.getCurrentInstance().addMessage("newProjectForm:popupEndDate",
+                    new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "EndDate must be after StartDate") );
+    		return null;
+    	}
+    	
     	
     	Project backProject = projService.getProject(project.getId());
     	if(backProject != null){
@@ -122,6 +129,8 @@ public class ProjectController implements Serializable{
         beginConversation();
         return "viewProjectDetails";
     }
+    
+
 
     /**
      * Update a project's manager.
@@ -173,6 +182,17 @@ public class ProjectController implements Serializable{
         this.managerId = managerId;
     }
 
+    
+    /**
+     * chech if endDate later than startDate
+     * @param startDate
+     * @param endDate
+     * @return
+     */
+    private boolean checkDates(java.util.Date startDate, java.util.Date endDate){
+    	
+    	return endDate.after(startDate);
+    }
     /**
      * @return a list of projects managed by current user.
      */
@@ -286,6 +306,12 @@ public class ProjectController implements Serializable{
      * @return
      */
     public String updateProject(){
+    	if(this.startDate.after(this.endDate)){
+    		FacesContext.getCurrentInstance().addMessage("editProjectForm:popupEndDate",
+                    new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "EndDate must be after StartDate") );
+    		return null;
+    	}
+    
     	project.setStartDate(convertJavaDateToSqlDate(startDate));
         project.setEndDate(convertJavaDateToSqlDate(endDate));
     	projService.updateProject(project);

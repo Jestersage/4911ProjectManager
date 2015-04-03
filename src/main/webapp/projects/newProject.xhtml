@@ -106,9 +106,11 @@
 									<h:outputLabel for="popupStartDate" value="#{msgs.startDate}"
 										class="col-sm-4 control-label" />
 									<div class="col-sm-8">
-										<p:calendar id="popupStartDate"
+										<p:calendar id="popupStartDate"  pattern="yyyy-MM-dd"
 											value="#{projectController.startDate}" required="true"
-											label="#{msgs.startDate}" />
+											label="#{msgs.startDate}" >
+											<p:ajax event="dateSelect" update="popupEndDate" immediate="true"/>
+											</p:calendar>
 										<h:message errorClass="text-danger" for="popupStartDate" />
 									</div>
 								</div>
@@ -117,9 +119,11 @@
 									<h:outputLabel for="popupEndDate" value="#{msgs.endDate}"
 										class="col-sm-4 control-label" />
 									<div class="col-sm-8">
-										<p:calendar id="popupEndDate"
+										<p:calendar id="popupEndDate" pattern="yyyy-MM-dd"
 											value="#{projectController.endDate}" required="true"
-											label="#{msgs.endDate}" />
+											label="#{msgs.endDate}"  mindate="#{projectController.startDate}">
+											</p:calendar>
+											<br/>
 										<h:message errorClass="text-danger" for="popupEndDate" />
 									</div>
 								</div>
