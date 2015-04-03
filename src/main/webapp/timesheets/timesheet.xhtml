@@ -108,7 +108,7 @@
                                                 value="#{editTimesheetController.timesheet.timesheetRows}"
                                                 cellpadding="0" cellspacing="0">
                                                 <div class="row table table-bordered">
-                                                    <p:column headerText="#{msgs.workPackage}" class="col-md-1">
+                                                    <p:column headerText="#{msgs.workPackage}" class="">
                                                         <h:outputText value="" />
                                                         <p:selectOneMenu id="packageSelect"
                                                             value="#{tsRow.workPackage.id}" styleClass="tmsDropdown">
@@ -121,61 +121,61 @@
                                                                 <f:ajax listener="#{editTimesheetController.populateWorkPackage(tsRow)}" />
                                                         </p:selectOneMenu>
                                                     </p:column>
-                                                    <p:column headerText="#{msgs.total}" class="col-md-1">
+                                                    <p:column headerText="#{msgs.total}" class="">
                                                         <h:outputText value="" />
                                                         <p:inputText class="input" id="rowTotal"
                                                             value="#{tsRow.totalHours}" size="10" readonly="true" />
                                                     </p:column>
-                                                    <p:column headerText="#{msgs.sun}" class="col-md-1">
+                                                    <p:column headerText="#{msgs.sun}" class="">
                                                         <h:outputText value="" />
                                                         <p:inputText class="input" id="sundayHour" value="#{tsRow.sundayHour}"
                                                             size="10">
                                                             <f:ajax render="rowTotal" />
                                                         </p:inputText>
                                                     </p:column>
-                                                    <p:column headerText="#{msgs.mon}" class="col-md-1">
+                                                    <p:column headerText="#{msgs.mon}" class="">
                                                         <h:outputText value="" />
                                                         <p:inputText class="input" value="#{tsRow.mondayHour}"
                                                             size="10">
                                                             <f:ajax render="rowTotal" />
                                                         </p:inputText>
                                                     </p:column>
-                                                    <p:column headerText="#{msgs.tue}" class="col-md-1">
+                                                    <p:column headerText="#{msgs.tue}" class="">
                                                         <h:outputText value="" />
                                                         <p:inputText class="input" value="#{tsRow.tuesdayHour}"
                                                             size="10">
                                                             <f:ajax render="rowTotal" />
                                                         </p:inputText>
                                                     </p:column>
-                                                    <p:column headerText="#{msgs.wed}" class="col-md-1">
+                                                    <p:column headerText="#{msgs.wed}" class="">
                                                         <h:outputText value="" />
                                                         <p:inputText class="input" value="#{tsRow.wednesdayHour}"
                                                             size="10">
                                                             <f:ajax render="rowTotal" />
                                                         </p:inputText>
                                                     </p:column>
-                                                    <p:column headerText="#{msgs.thu}" class="col-md-1">
+                                                    <p:column headerText="#{msgs.thu}" class="">
                                                         <h:outputText value="" />
                                                         <p:inputText class="input" value="#{tsRow.thursdayHour}"
                                                             size="10">
                                                             <f:ajax render="rowTotal" />
                                                         </p:inputText>
                                                     </p:column>
-                                                    <p:column headerText="#{msgs.fri}" class="col-md-1">
+                                                    <p:column headerText="#{msgs.fri}" class="">
                                                         <h:outputText value="" />
                                                         <p:inputText class="input" value="#{tsRow.fridayHour}"
                                                             size="10">
                                                             <f:ajax render="rowTotal" />
                                                         </p:inputText>
                                                     </p:column>
-                                                    <p:column headerText="#{msgs.sat}" class="col-md-1">
+                                                    <p:column headerText="#{msgs.sat}" class="">
                                                         <h:outputText value="" />
                                                         <p:inputText class="input" value="#{tsRow.saturdayHour}"
                                                             size="10" >
                                                             <f:ajax render="rowTotal" />
                                                         </p:inputText>
                                                     </p:column>
-                                                    <p:column headerText="#{msgs.notes}" class="col-md-1">
+                                                    <p:column headerText="#{msgs.notes}" class="">
                                                         <h:outputText value="" />
                                                         <p:inputText class="input" value="#{tsRow.notes}"
                                                             size="10" />

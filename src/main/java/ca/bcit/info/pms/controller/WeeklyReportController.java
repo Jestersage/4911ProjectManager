@@ -52,7 +52,7 @@ public class WeeklyReportController implements Serializable
 
 	List< StatusReport > reports;
 
-	private Integer id;
+	private String id;
 
 	private String name;
 
@@ -75,7 +75,9 @@ public class WeeklyReportController implements Serializable
 
 	public String save()
 	{
-		WorkPackage w = workPackageMngr.find( id.intValue() );
+		// WorkPackage w = workPackageMngr.find( id.intValue() );
+		WorkPackage w = workPackageMngr.findByPackageNum( id );
+
 		statusReport.setWorkPackage( w );
 		statusReportMngr.persist( statusReport );
 
@@ -89,7 +91,7 @@ public class WeeklyReportController implements Serializable
 
 		// get wp
 		wp = new WorkPackage();
-		wp = workPackageMngr.find( id.intValue() );
+		wp = workPackageMngr.findByPackageNum( id );
 		System.out.println( "WP = " + wp );
 
 		// wp doesn't exist
@@ -102,7 +104,7 @@ public class WeeklyReportController implements Serializable
 		}
 
 		// get engineer budget of wp
-		engBudgetNum = workPackageMngr.getEngBudgetID( id.intValue() );
+		engBudgetNum = workPackageMngr.getEngBudgetID( wp.getId().intValue() );
 
 		// there is a engineer budget
 		if ( engBudgetNum != 0 )
@@ -137,7 +139,7 @@ public class WeeklyReportController implements Serializable
 			engineerBudget.setSS( engBudget.getSS() );
 
 			// get remaining budget based on estimation made my the engineer
-			cost = timeSheetRowMngr.getManHoursPerPayLevel( id.intValue() );
+			cost = timeSheetRowMngr.getManHoursPerPayLevel( wp.getId().intValue() );
 			System.out.println( "cost = " + cost.toString() );
 
 			// calculate remaining budget
@@ -204,12 +206,12 @@ public class WeeklyReportController implements Serializable
 		this.statusReport = statusReport;
 	}
 
-	public Integer getId()
+	public String getId()
 	{
 		return id;
 	}
 
-	public void setId( Integer id )
+	public void setId( String id )
 	{
 		this.id = id;
 	}
