@@ -46,6 +46,9 @@ public class EditTimesheetController implements Serializable {
 
     @Inject
     private UserController userController;
+
+    @Inject
+    private TimesheetController timesheetController;
     
     @Inject
     private WorkPackageService wpService;
@@ -90,13 +93,13 @@ public class EditTimesheetController implements Serializable {
      */
     public String fillThisWeek() {
         Employee user = userController.getUser();
-
         timesheet = timeService.getCurrentTimesheet(user);
-        
-        logger.info("\n\ttimesheet.submitted::"+timesheet.getSubmitted());
-        
+
+        // if timeheet already submitted.
         if ((timesheet.getSubmitted() != null) && (timesheet.getSubmitted() == true)) {
-            return "viewTimesheet";
+
+            timesheetController.viewTimesheet(timesheet);
+            return "/timesheets/viewTimesheet";
         }
 
         return "currentTimesheet";

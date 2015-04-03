@@ -187,13 +187,8 @@
 			<to-view-id>/timesheets/timesheet.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
-		<navigation-case>
-            <from-outcome>viewTimesheet</from-outcome>
-            <to-view-id>/timesheets/viewTimesheet.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>
 	</navigation-rule>
-	<!-- current timesheet the only difference between new and current timesheet 
+	<!-- current timesheet the only difference between new and current timesheet
 		is that one is populated with data and the other isn't. Need to solve it. 
 		Or clear the data or make a different pages -->
 	<navigation-rule>

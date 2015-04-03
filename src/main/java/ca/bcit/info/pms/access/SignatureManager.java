@@ -7,9 +7,11 @@ import javax.persistence.PersistenceContext;
 
 import ca.bcit.info.pms.model.SignatureObject;
 
+import java.io.Serializable;
+
 @Dependent
 @Stateless
-public class SignatureManager {
+public class SignatureManager implements Serializable {
 	@PersistenceContext(unitName="pms-persistence-unit") private EntityManager em;
 	
 	public SignatureObject find(final int id) {
