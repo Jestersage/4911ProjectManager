@@ -173,7 +173,7 @@ public class EditTimesheetController implements Serializable {
         }
 
         
-        if( !sheetTotalsAreValid() ) {
+        if( !sheetTotalsLessThanForty() ) {
         	isValid = false;
             return null;
         }
@@ -196,6 +196,7 @@ public class EditTimesheetController implements Serializable {
 	        timesheet.setApproved(null); //reset approved status (in case timesheet as rejected)
 	        
 	        saveTimesheet();
+	        isValid = sheetTotalsEqualForty();
 	        
 	        if(isValid == false) {
 	        	return null;
@@ -282,7 +283,35 @@ public class EditTimesheetController implements Serializable {
      * 
      * @return          true if the total is valid
      */
-    public boolean sheetTotalsAreValid() {
+    public boolean sheetTotalsLessThanForty() {
+        // Ensure timesheet is not null
+        if (timesheet != null) {
+            double netTotal = timesheet.getTotal();
+            double grossTotal = netTotal - (timesheet.getFlextime().doubleValue() 
+                    + timesheet.getOvertime().doubleValue());
+
+            if (grossTotal > 40.0) {
+                FacesMessage msg = new FacesMessage(
+                        "Total person-hours in week must be exactly equal to 40.00\n"
+                                + "Where person-hours = Total - (FLEX + OT)");
+                msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+                return false;
+            }
+            return true;
+        } else {
+            // Return false if timesheet is null
+            logger.info("sheetTotalsAreVald()::Timesheet is null");
+            return false;
+        }
+    }
+    
+    /**
+     * Returns false if the 'Row Total - (FLEX + OT) != 40'
+     * 
+     * @return          true if the total is valid
+     */
+    public boolean sheetTotalsEqualForty() {
         // Ensure timesheet is not null
         if (timesheet != null) {
             double netTotal = timesheet.getTotal();
