@@ -11,14 +11,14 @@
 <h:head>
 	<title></title>
 </h:head>
-<h:body>
+<h:body>	
+	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
 	<f:metadata>
 		<f:event type="preRenderView"
 			listener="#{userController.checkAuthorization}" />
 		<f:attribute name="requiredRoles" value="Supervisor,Project Manager,Project Assistant" />
 	</f:metadata>
-
-	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
+	
 		<ui:define name="windowTitle">#{msgs.project}</ui:define>
 		<ui:define name="additionalStyleSheets">
 			<h:outputStylesheet library="css" name="project.css" />

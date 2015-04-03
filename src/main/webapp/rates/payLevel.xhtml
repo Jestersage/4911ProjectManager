@@ -12,14 +12,13 @@
 
 
 </h:head>
-<h:body>
- 	<f:metadata>
-        <f:event type="preRenderView"
-                 listener="#{userController.checkAuthorization}" />
-        <f:attribute name="requiredRoles" value="HR" />
-    </f:metadata>
+<h:body> 	
 	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
-
+		<f:metadata>
+	        <f:event type="preRenderView"
+	                 listener="#{userController.checkAuthorization}" />
+	        <f:attribute name="requiredRoles" value="HR" />
+	    </f:metadata>
 
 		<ui:define name="windowTitle">#{msgs.payLevel}</ui:define>
 

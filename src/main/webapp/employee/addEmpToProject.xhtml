@@ -5,20 +5,19 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 	<title></title>
 </h:head>
 <h:body>
-    <f:metadata>
-        <f:event type="preRenderView"
-                 listener="#{userController.checkAuthorization}" />
-        <f:attribute name="requiredRoles" value="Supervisor" />
-    </f:metadata>
 	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
-
+		<f:metadata>
+			<f:event type="preRenderView"
+				listener="#{userController.checkAuthorization}" />
+			<f:attribute name="requiredRoles" value="Supervisor" />
+		</f:metadata>
 		<ui:define name="windowTitle">#{msgs.assignToProject}</ui:define>
 
 		<ui:define name="additionalStyleSheets">
@@ -34,9 +33,9 @@
 						<div id="breadcrumb">
 							<h:form>
 								<ol class="breadcrumb">
-                                    <li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
-                                    <li><h:commandLink action="viewAllProjects"
-                                                           value="#{msgs.viewAllProject}" /></li>
+									<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
+									<li><h:commandLink action="viewAllProjects"
+											value="#{msgs.viewAllProject}" /></li>
 									<li class="active">#{msgs.assignToProject}</li>
 								</ol>
 							</h:form>
@@ -52,75 +51,81 @@
 				</div>
 
 				<div class="row">
-                    <div class="col-sm-4">
-                        <div class="panel panel-default ">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">For Project #{projectController.project.name}</h3>
-                            </div>
-                            <div class="panel-body">
-                                <dl class="dl-horizontal">
-                                    <dt>ID</dt>
-                                    <dd>#{projectController.project.id}</dd>
-                                    <dt>Name</dt>
-                                    <dd>#{projectController.project.name}</dd>
-                                    <dt>Description</dt>
-                                    <dd>#{projectController.project.description}</dd>
-                                    <dt>Project Manager</dt>
-                                    <dd>#{projectController.project.projectManager.firstName}
-                                        #{projectController.project.projectManager.lastName}</dd>
-                                    <dt>Employees Assigned</dt>
-                                    <dd>
-                                        <ol>
-                                            <ui:repeat var="assigned" value="#{projectController.project.employees.toArray()}">
-                                                <li>#{assigned.firstName} #{assigned.lastName}</li>
-                                            </ui:repeat>
-                                        </ol>
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </div><!-- /col -->
-				</div><!-- /outter row -->
+					<div class="col-sm-4">
+						<div class="panel panel-default ">
+							<div class="panel-heading">
+								<h3 class="panel-title">For Project
+									#{projectController.project.name}</h3>
+							</div>
+							<div class="panel-body">
+								<dl class="dl-horizontal">
+									<dt>ID</dt>
+									<dd>#{projectController.project.id}</dd>
+									<dt>Name</dt>
+									<dd>#{projectController.project.name}</dd>
+									<dt>Description</dt>
+									<dd>#{projectController.project.description}</dd>
+									<dt>Project Manager</dt>
+									<dd>#{projectController.project.projectManager.firstName}
+										#{projectController.project.projectManager.lastName}</dd>
+									<dt>Employees Assigned</dt>
+									<dd>
+										<ol>
+											<ui:repeat var="assigned"
+												value="#{projectController.project.employees.toArray()}">
+												<li>#{assigned.firstName} #{assigned.lastName}</li>
+											</ui:repeat>
+										</ol>
+									</dd>
+								</dl>
+							</div>
+						</div>
+					</div>
+					<!-- /col -->
+				</div>
+				<!-- /outter row -->
 
-                <div class="row">
-                    <div class="container">
-                        <h3>Select Employees to Assign</h3>
-                        <h:form>
-                            <h:inputHidden value="#{projectController.project.id}" />
+				<div class="row">
+					<div class="container">
+						<h3>Select Employees to Assign</h3>
+						<h:form>
+							<h:inputHidden value="#{projectController.project.id}" />
 
-                            <p:dataTable id="empTable" styleClass="bg-none table" var="employee"
-                                         value="#{empController.managedEmployees}">
-                                <!--c:if employee isn't already assigned-->
-                                <p:column headerText="#{msgs.id}">
-                                    <h:outputText value="#{employee.id}" />
-                                </p:column>
+							<p:dataTable id="empTable" styleClass="bg-none table"
+								var="employee" value="#{empController.managedEmployees}">
+								<!--c:if employee isn't already assigned-->
+								<p:column headerText="#{msgs.id}">
+									<h:outputText value="#{employee.id}" />
+								</p:column>
 
-                                <p:column headerText="#{msgs.userName}">
-                                    <h:outputText value="#{employee.credential.username}" />
-                                </p:column>
+								<p:column headerText="#{msgs.userName}">
+									<h:outputText value="#{employee.credential.username}" />
+								</p:column>
 
-                                <p:column headerText="#{msgs.firstName}">
-                                    <h:outputText value="#{employee.firstName}" />
-                                </p:column>
+								<p:column headerText="#{msgs.firstName}">
+									<h:outputText value="#{employee.firstName}" />
+								</p:column>
 
-                                <p:column headerText="#{msgs.lastName}">
-                                    <h:outputText value="#{employee.lastName}" />
-                                </p:column>
+								<p:column headerText="#{msgs.lastName}">
+									<h:outputText value="#{employee.lastName}" />
+								</p:column>
 
-                                <p:column headerText="#{msgs.payLevel}">
-                                    <h:outputText value="#{employee.payGrade}" />
-                                </p:column>
-                                <p:column>
-                                    <h:commandLink value="Assign" action="#{projectController.insertEmpToProject(employee)}"/>
-                                </p:column>
-                            </p:dataTable>
+								<p:column headerText="#{msgs.payLevel}">
+									<h:outputText value="#{employee.payGrade}" />
+								</p:column>
+								<p:column>
+									<h:commandLink value="Assign"
+										action="#{projectController.insertEmpToProject(employee)}" />
+								</p:column>
+							</p:dataTable>
 
 
-                        </h:form>
-                    </div>
-                </div>
+						</h:form>
+					</div>
+				</div>
 
-			</div><!-- /col -->
+			</div>
+			<!-- /col -->
 		</ui:define>
 	</ui:composition>
 </h:body>
