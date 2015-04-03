@@ -100,7 +100,7 @@
 							<div class="col-md-6">
 
 								<h:panelGroup
-									rendered="#{userController.isAuthorized('Project Manager')}">
+									rendered="#{userController.isAuthorized('Project Manager,Project Assistant')}">
 
 								<div class="panel panel-default">
 										<div class="panel-body">
@@ -187,7 +187,7 @@
 								</h:panelGroup>
 								
 								<h:panelGroup
-									rendered="#{userController.isAuthorized('Project Manager,Responsible Engineer')}">
+									rendered="#{userController.isAuthorized('Project Manager,Project Assistant,Responsible Engineer')}">
 								<div class="panel panel-default">
 									<div class="panel-body">
 
