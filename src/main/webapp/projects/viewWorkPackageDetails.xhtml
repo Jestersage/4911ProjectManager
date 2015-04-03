@@ -272,6 +272,7 @@
 					</div>
 					<div class="row">
 						<h:form>
+							<h:inputHidden binding="#{wpId}" value="#{workPackageController.workPackage.id}" />
 							<ui:fragment rendered="#{!workPackageController.workPackage.leaf}">
 							<div class="col-xs-12 col-sm-12 col-md-6 ">
 								<div class="panel panel-default">
@@ -310,7 +311,8 @@
 											<!-- controll buttons -->
 											<ui:fragment rendered="#{userController.isAuthorized('Responsible Engineer')}">
 												<h:commandButton value="#{msgs.newWeekReport}"
-																 styleClass="btn btn-primary" />
+																 styleClass="btn btn-primary"
+														action="#{weekReport.goCreateWeeklyReport(wpId.value)}"/>
 											</ui:fragment>
 										</div>
 										<ul class="list-group">

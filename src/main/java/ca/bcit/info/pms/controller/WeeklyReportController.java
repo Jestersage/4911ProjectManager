@@ -16,6 +16,8 @@ import ca.bcit.info.pms.access.WorkPackageManager;
 import ca.bcit.info.pms.model.EngineerBudget;
 import ca.bcit.info.pms.model.StatusReport;
 import ca.bcit.info.pms.model.WorkPackage;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 /**
  * 
@@ -40,7 +42,11 @@ public class WeeklyReportController implements Serializable
 	@Inject
 	private TimesheetRowManager timeSheetRowMngr;
 
+	@Inject
 	private WorkPackage wp;
+
+	private static final Logger logger = LogManager.getLogger(WeeklyReportController.class);
+
 
 	private EngineerBudget engineerBudget;
 
@@ -320,6 +326,13 @@ public class WeeklyReportController implements Serializable
 	public void setPackageNum( String packageNum )
 	{
 		this.packageNum = packageNum;
+	}
+
+	public String goCreateWeeklyReport(final String id) {
+		int wpId = Integer.parseInt(id);
+		wp = workPackageMngr.find(wpId);
+		logger.info("wp with id " + id + ", found for status report: " + wp);
+		return "weekReport";
 	}
 
 }
