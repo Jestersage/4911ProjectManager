@@ -428,15 +428,22 @@ public class EditTimesheetController implements Serializable {
         return true;
     }
 
+    /**
+     * Removes the row with the workpackage id corresponding
+     * to the parameter's work package id, from the timesheet.
+     * 
+     * @param row   The row whose workpackage id is checked against.
+     */
     public void removeRowFromTimesheet(TimesheetRow row) {
-        logger.info("\t\nremoveRowFromTimesheet.row::"+row);
-        logger.info("\t\nremoveRowFromTimesheet.row.workPackage::"+row.getWorkPackage());
-        logger.info("\t\nremoveRowFromTimesheet.row.workPackage.id::"+row.getWorkPackage().getId());
+        List<TimesheetRow> rows = new ArrayList<TimesheetRow>();
         
-        List<TimesheetRow> rows = timesheet.getTimesheetRows();
-
-        rows.remove(row);
-
+        for(TimesheetRow tsr : timesheet.getTimesheetRows()) {
+            if( tsr.getWorkPackage().getId() != row.getWorkPackage().getId()) {
+                logger.info("\n\tADDED:"+tsr);
+                rows.add(tsr);
+            }
+        }
+        
         timesheet.setTimesheetRows(rows);
     }
 
