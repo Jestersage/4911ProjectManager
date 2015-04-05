@@ -41,6 +41,9 @@ public class TimesheetController implements Serializable {
     @Inject
     private Timesheet timesheet;
     
+    @Inject
+    private EditTimesheetController editTimesheetController;
+    
     @Inject private SignatureManager signatureManager;
     
     @Inject private SignatureObject sigObject;
@@ -103,6 +106,7 @@ public class TimesheetController implements Serializable {
 
     public String reviewTimesheet(final Timesheet ts) {
         timesheet = ts;
+        editTimesheetController.setTimesheet(ts);
         
         return "reviewTimesheet";
     }
@@ -130,6 +134,7 @@ public class TimesheetController implements Serializable {
         timesheet = timeService.findTimesheetById(timesheet.getId());
         timesheet.setApproved(false);
         timesheet.setSubmitted(false);
+        signatureManager.remove(signatureManager.find(timesheet.getId()));
 
         timeService.updateTimesheet(timesheet);
 

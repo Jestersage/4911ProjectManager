@@ -218,10 +218,13 @@ public class EditTimesheetController implements Serializable {
 			Signature dsa = Signature.getInstance("SHA1withDSA", "SUN"); //signature object to generate signature
 			dsa.initSign(priv); //signing signature with private key
 
-            if (timeService.getCurrentWeekEnd().equals(timesheet.getWeekEnding())) {
+            /*if (timeService.getCurrentWeekEnd().equals(timesheet.getWeekEnding())) {
                 Employee user = userController.getUser();
                 timesheet = timeService.getCurrentTimesheet(user);
-            }
+            }*/
+			
+			Employee user = userController.getUser();
+            timesheet = timeService.getCurrentTimesheet(user);
 
 			String data = timesheet.toString();
 			System.out.println("Signing: " + data);
@@ -249,9 +252,6 @@ public class EditTimesheetController implements Serializable {
     
     public boolean verifyTimesheet() {
     	try {
-    		Employee user = userController.getUser();
-
-	        timesheet = timeService.getCurrentTimesheet(user);
 			
 			String data = timesheet.toString();
 			System.out.println("Verifying: " + data);

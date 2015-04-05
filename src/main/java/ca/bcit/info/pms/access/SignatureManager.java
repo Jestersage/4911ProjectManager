@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import ca.bcit.info.pms.model.SignatureObject;
+import ca.bcit.info.pms.model.TimesheetRow;
 
 import java.io.Serializable;
 
@@ -20,5 +21,13 @@ public class SignatureManager implements Serializable {
 	
 	public void persist(final SignatureObject newSignature) {
 		em.persist(newSignature);
+	}
+	
+	public void remove(final SignatureObject signatureToDelete) {
+		em.remove(em.merge(signatureToDelete));
+	}
+	
+	public void merge(final SignatureObject signature) {
+		em.merge(signature);
 	}
 }
