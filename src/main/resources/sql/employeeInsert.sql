@@ -197,7 +197,7 @@ VALUES
 INSERT INTO Credentials
   (username, password) 
 VALUES 
-  ("manager", "");
+  ("manager", "1000:26e1732d706c7f563bd49e80ffc27cc6dea0c1dd960f0ffd:b87bb414f5d658ec2d2304de2152950f9d304b418b3b2e13");
 INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
@@ -206,7 +206,7 @@ VALUES
 INSERT INTO Credentials
   (username, password) 
 VALUES 
-  ("assistant", "");
+  ("assistant", "1000:26e1732d706c7f563bd49e80ffc27cc6dea0c1dd960f0ffd:b87bb414f5d658ec2d2304de2152950f9d304b418b3b2e13");
 INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
@@ -215,7 +215,7 @@ VALUES
 INSERT INTO Credentials
   (username, password) 
 VALUES 
-  ("re", "");
+  ("re", "1000:26e1732d706c7f563bd49e80ffc27cc6dea0c1dd960f0ffd:b87bb414f5d658ec2d2304de2152950f9d304b418b3b2e13");
 INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
@@ -224,7 +224,7 @@ VALUES
 INSERT INTO Credentials
   (username, password) 
 VALUES 
-  ("hr", "");
+  ("hr", "1000:26e1732d706c7f563bd49e80ffc27cc6dea0c1dd960f0ffd:b87bb414f5d658ec2d2304de2152950f9d304b418b3b2e13");
 INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
@@ -237,7 +237,7 @@ VALUES
 INSERT INTO Credentials
   (username, password) 
 VALUES 
-  ("supervisor", "");
+  ("supervisor", "1000:26e1732d706c7f563bd49e80ffc27cc6dea0c1dd960f0ffd:b87bb414f5d658ec2d2304de2152950f9d304b418b3b2e13");
 INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
@@ -246,7 +246,7 @@ VALUES
 INSERT INTO Credentials
   (username, password) 
 VALUES 
-  ("approver", "");
+  ("approver", "1000:26e1732d706c7f563bd49e80ffc27cc6dea0c1dd960f0ffd:b87bb414f5d658ec2d2304de2152950f9d304b418b3b2e13");
 INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
@@ -255,7 +255,7 @@ VALUES
 INSERT INTO Credentials
   (username, password) 
 VALUES 
-  ("peon", "");
+  ("peon", "1000:26e1732d706c7f563bd49e80ffc27cc6dea0c1dd960f0ffd:b87bb414f5d658ec2d2304de2152950f9d304b418b3b2e13");
 INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
