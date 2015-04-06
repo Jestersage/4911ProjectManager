@@ -228,11 +228,11 @@ VALUES
 INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
-  (12347, "hr", "hr@default.com", "Angie", "Rele", 123456, 1, "P1");
+  (12348, "hr", "hr@default.com", "Angie", "Rele", 123456, 1, "P1");
 INSERT INTO HR
   (employeeID)
 VALUES
-  (12347);
+  (12348);
 --
 INSERT INTO Credentials
   (username, password) 
@@ -241,7 +241,7 @@ VALUES
 INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
-  (12348, "supervisor", "supervisor@default.com", "Lizhe", "Guan", 123456, 1, "P1");
+  (12349, "supervisor", "supervisor@default.com", "Lizhe", "Guan", 123456, 1, "P1");
 --
 INSERT INTO Credentials
   (username, password) 
@@ -250,7 +250,7 @@ VALUES
 INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
-  (12348, "approver", "approver@default.com", "Paul", "Apollo", 123456, 1, "P1");
+  (12350, "approver", "approver@default.com", "Paul", "Apollo", 123456, 1, "P1");
 --
 INSERT INTO Credentials
   (username, password) 
@@ -259,5 +259,5 @@ VALUES
 INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
-  (12349, "peon", "peon@default.com", "Madao", "Ren", 12348, 1, "P6");
+  (12351, "peon", "peon@default.com", "Madao", "Ren", 12348, 1, "P6");
 --
