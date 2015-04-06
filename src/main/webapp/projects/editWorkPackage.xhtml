@@ -197,7 +197,7 @@
 
 														<h:inputText pt:placeholder="P1" id="pp1"
 															value="#{workPackageController.workPackage.budget.p1}"
-															label="#{msgs.workPackageBudget}" class="form-control" />
+															label="#{msgs.p1}" class="form-control" />
 														<h:message errorClass="text-danger" for="pp1" />
 													</div>
 													<div class="col-sm-2">
@@ -205,7 +205,7 @@
 
 														<h:inputText pt:placeholder="P2" id="pp2"
 															value="#{workPackageController.workPackage.budget.p2}"
-															label="#{msgs.workPackageBudget}" class="form-control" />
+															label="#{msgs.p2}" class="form-control" />
 														<h:message errorClass="text-danger" for="pp2" />
 													</div>
 
@@ -214,7 +214,7 @@
 
 														<h:inputText pt:placeholder="P3" id="pp3"
 															value="#{workPackageController.workPackage.budget.p3}"
-															label="#{msgs.workPackageBudget}" class="form-control" />
+															label="#{msgs.p3}" class="form-control" />
 														<h:message errorClass="text-danger" for="pp3" />
 													</div>
 
@@ -223,27 +223,38 @@
 
 														<h:inputText pt:placeholder="P4" id="pp4"
 															value="#{workPackageController.workPackage.budget.p4}"
-															label="#{msgs.workPackageBudget}" class="form-control" />
+															label="#{msgs.p4}" class="form-control" />
 														<h:message errorClass="text-danger" for="pp4" />
 													</div>
+
+													<div class="col-sm-2">
+														<h:outputLabel value="#{msgs.p5}" />
+
+														<h:inputText pt:placeholder="P5" id="pp5"
+															value="#{workPackageController.workPackage.budget.p5}"
+															label="#{msgs.p5}" class="form-control" />
+														<h:message errorClass="text-danger" for="pp5" />
+													</div>
+
 												</div>
 
 												<div class="form-group">
 
 													<div class="col-sm-2 col-sm-offset-2">
-														<h:outputLabel value="#{msgs.p5}" />
+														<h:outputLabel value="#{msgs.p6}" />
 
-														<h:inputText pt:placeholder="P5" id="pp5"
-															value="#{workPackageController.workPackage.budget.p5}"
-															label="#{msgs.workPackageBudget}" class="form-control" />
-														<h:message errorClass="text-danger" for="pp5" />
+														<h:inputText pt:placeholder="P6" id="pp6"
+															value="#{workPackageController.workPackage.budget.p6}"
+															label="#{msgs.p6}" class="form-control" />
+														<h:message errorClass="text-danger" for="pp6" />
 													</div>
+
 													<div class="col-sm-2">
 														<h:outputLabel value="#{msgs.ss}" />
 
 														<h:inputText pt:placeholder="SS" id="pss"
 															value="#{workPackageController.workPackage.budget.SS}"
-															label="#{msgs.workPackageBudget}" class="form-control" />
+															label="#{msgs.ss}" class="form-control" />
 														<h:message errorClass="text-danger" for="pss" />
 													</div>
 
@@ -252,7 +263,7 @@
 
 														<h:inputText pt:placeholder="JS" id="pjs"
 															value="#{workPackageController.workPackage.budget.JS}"
-															label="#{msgs.workPackageBudget}" class="form-control" />
+															label="#{msgs.js}" class="form-control" />
 														<h:message errorClass="text-danger" for="pjs" />
 													</div>
 
@@ -261,9 +272,19 @@
 
 														<h:inputText pt:placeholder="DS" id="pds"
 															value="#{workPackageController.workPackage.budget.DS}"
-															label="#{msgs.workPackageBudget}" class="form-control" />
+															label="#{msgs.ds}" class="form-control" />
 														<h:message errorClass="text-danger" for="pds" />
 													</div>
+													
+													<div class="col-sm-2">
+                                                        <h:outputLabel value="#{msgs.other}" />
+
+                                                        <h:inputText pt:placeholder="other" id="other"
+                                                            value="#{workPackageController.workPackage.budget.other}"
+                                                            label="#{msgs.other}" class="form-control" />
+                                                        <h:message errorClass="text-danger" for="other" />
+                                                    </div>
+													
 												</div>
 											</div>
 										</div>
@@ -313,18 +334,32 @@
 															label="#{msgs.p4}" class="form-control" />
 														<h:message errorClass="text-danger" for="P4" />
 													</div>
+													
+													<div class="col-sm-2">
+                                                        <h:outputLabel value="#{msgs.p5}" />
+
+                                                        <h:inputText pt:placeholder="P5" id="P5"
+                                                            value="#{workPackageController.workPackage.engineerBudget.p5}"
+                                                            label="#{msgs.p5}" class="form-control" />
+                                                        <h:message errorClass="text-danger" for="P5" />
+                                                    </div>
+													
 												</div>
 
 												<div class="form-group">
 
-													<div class="col-sm-2 col-sm-offset-2">
-														<h:outputLabel value="#{msgs.p5}" />
 
-														<h:inputText pt:placeholder="P5" id="P5"
-															value="#{workPackageController.workPackage.engineerBudget.p5}"
-															label="#{msgs.p5}" class="form-control" />
-														<h:message errorClass="text-danger" for="P5" />
-													</div>
+        
+                                                    <div class="col-sm-2 col-sm-offset-2">
+                                                        <h:outputLabel value="#{msgs.p6}" />
+
+                                                        <h:inputText pt:placeholder="P6" id="P6Eng"
+                                                            value="#{workPackageController.workPackage.engineerBudget.p6}"
+                                                            label="#{msgs.p5}" class="form-control" />
+                                                        <h:message errorClass="text-danger" for="P6Eng" />
+                                                    </div>
+
+													
 													<div class="col-sm-2">
 														<h:outputLabel value="#{msgs.ss}" />
 
@@ -350,6 +385,15 @@
 															label="#{msgs.ds}" class="form-control" />
 														<h:message errorClass="text-danger" for="DS" />
 													</div>
+													
+													   <div class="col-sm-2">
+                                                        <h:outputLabel value="#{msgs.other}" />
+                                                        <h:inputText pt:placeholder="other" id="otherEng"
+                                                            value="#{workPackageController.workPackage.engineerBudget.other}"
+                                                            label="#{msgs.other}" class="form-control" />
+                                                        <h:message errorClass="text-danger" for="otherEng" />
+                                                    </div>
+													
 												</div>
 											</div>
 										</div>

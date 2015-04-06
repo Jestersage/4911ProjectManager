@@ -117,6 +117,135 @@
 													<h:inputHidden value="#{workPackageController.parentWPId}" />
 												</div>
 											</div>
+											
+											
+                                            <div class="form-group">
+                                                <h:outputLabel for="isLeafOrNot" value="#{msgs.isLeafOrNot}"
+                                                    class="col-sm-4 control-label" />
+                                                <div class="col-sm-8">
+                                                    <h:selectBooleanCheckbox id="isLeafOrNot"
+                                                        value="#{workPackageController.workPackage.leaf}"
+                                                        label="#{msgs.isLeafOrNot}" class="form-control">
+                                                        <p:ajax event="click" update="@form" />
+                                                    </h:selectBooleanCheckbox>
+                                                </div>
+                                            </div>
+
+                                            <h:panelGroup id="budgetSection">
+                                                <div class="panel panel-default">
+                                                    <h:panelGroup
+                                                        rendered="#{workPackageController.workPackage.leaf}">
+                                                        <div class="panel-body">
+
+                                                            <div class="form-group">
+                                                                <h:outputLabel value="#{msgs.workPackageBudget}"
+                                                                    class="col-sm-2 control-label" />
+                                                                <div class="col-sm-2">
+                                                                    <h:outputLabel value="#{msgs.p1}" for="p1" />
+                                                                    <h:inputText pt:placeholder="P1" id="p1"
+                                                                        required="true"
+                                                                        value="#{workPackageController.workPackage.budget.p1}"
+                                                                        label="#{msgs.p1}" class="form-control"
+                                                                        style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}" />
+
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <h:outputLabel value="#{msgs.p2}" />
+
+                                                                    <h:inputText pt:placeholder="P2" id="p2"
+                                                                        required="true"
+                                                                        value="#{workPackageController.workPackage.budget.p2}"
+                                                                        style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+                                                                        label="#{msgs.p2}" class="form-control" />
+                                                                </div>
+
+                                                                <div class="col-sm-2">
+                                                                    <h:outputLabel value="#{msgs.p3}" />
+
+                                                                    <h:inputText pt:placeholder="P3" id="p3"
+                                                                        required="true"
+                                                                        value="#{workPackageController.workPackage.budget.p3}"
+                                                                        style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+                                                                        label="#{msgs.p3}" class="form-control" />
+                                                                </div>
+
+                                                                <div class="col-sm-2">
+                                                                    <h:outputLabel value="#{msgs.p4}" />
+
+                                                                    <h:inputText pt:placeholder="P4" id="p4"
+                                                                        required="true"
+                                                                        value="#{workPackageController.workPackage.budget.p4}"
+                                                                        style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+                                                                        label="#{msgs.p4}" class="form-control" />
+                                                                </div>
+                                                                
+                                                                <div class="col-sm-2">
+                                                                    <h:outputLabel value="#{msgs.p5}" />
+
+                                                                    <h:inputText pt:placeholder="P5" id="p5"
+                                                                        required="true"
+                                                                        value="#{workPackageController.workPackage.budget.p5}"
+                                                                        style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+                                                                        label="#{msgs.p5}" class="form-control" />
+                                                                </div>
+                                                                
+                                                            </div>
+
+                                                            <div class="form-group">
+
+                                                                    <div class="col-sm-2 col-sm-offset-2">
+                                                                    <h:outputLabel value="#{msgs.p6}" />
+
+                                                                    <h:inputText pt:placeholder="P6" id="p6"
+                                                                        required="true"
+                                                                        value="#{workPackageController.workPackage.budget.p6}"
+                                                                        style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+                                                                        label="#{msgs.p6}" class="form-control" />
+                                                                </div>
+                                                                
+                                                                <div class="col-sm-2">
+                                                                    <h:outputLabel value="#{msgs.ss}" />
+
+                                                                    <h:inputText pt:placeholder="SS" id="SS"
+                                                                        required="true"
+                                                                        value="#{workPackageController.workPackage.budget.SS}"
+                                                                        style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+                                                                        label="#{msgs.ss}" class="form-control" />
+                                                                </div>
+
+                                                                <div class="col-sm-2">
+                                                                    <h:outputLabel value="#{msgs.js}" />
+
+                                                                    <h:inputText pt:placeholder="JS" id="JS"
+                                                                        required="true"
+                                                                        value="#{workPackageController.workPackage.budget.JS}"
+                                                                        style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+                                                                        label="#{msgs.js}" class="form-control" />
+                                                                </div>
+
+                                                                <div class="col-sm-2">
+                                                                    <h:outputLabel value="#{msgs.ds}" />
+
+                                                                    <h:inputText pt:placeholder="DS" id="DS"
+                                                                        required="true"
+                                                                        value="#{workPackageController.workPackage.budget.DS}"
+                                                                        style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+                                                                        label="#{msgs.ds}" class="form-control" />
+                                                                </div>
+                                                                
+                                                                <div class="col-sm-2">
+                                                                    <h:outputLabel value="#{msgs.other}" />
+
+                                                                    <h:inputText pt:placeholder="other" id="other"
+                                                                        required="true"
+                                                                        value="#{workPackageController.workPackage.budget.other}"
+                                                                        style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+                                                                        label="#{msgs.other}" class="form-control" />
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </h:panelGroup>
 
 											<div class="form-group">
 												<h:outputLabel for="itWorkPackageNumber"
@@ -190,110 +319,6 @@
 
 											</div>
 
-											<div class="form-group">
-												<h:outputLabel for="isLeafOrNot" value="#{msgs.isLeafOrNot}"
-													class="col-sm-4 control-label" />
-												<div class="col-sm-8">
-													<h:selectBooleanCheckbox id="isLeafOrNot"
-														value="#{workPackageController.workPackage.leaf}"
-														label="#{msgs.isLeafOrNot}" class="form-control">
-														<p:ajax event="click" update="@form" />
-													</h:selectBooleanCheckbox>
-												</div>
-											</div>
-
-											<h:panelGroup id="budgetSection">
-												<div class="panel panel-default">
-													<h:panelGroup
-														rendered="#{workPackageController.workPackage.leaf}">
-														<div class="panel-body">
-
-															<div class="form-group">
-																<h:outputLabel value="#{msgs.workPackageBudget}"
-																	class="col-sm-4 control-label" />
-																<div class="col-sm-2">
-																	<h:outputLabel value="#{msgs.p1}" for="p1" />
-																	<h:inputText pt:placeholder="P1" id="p1"
-																		required="true"
-																		value="#{workPackageController.workPackage.budget.p1}"
-																		label="#{msgs.p1}" class="form-control"
-																		style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}" />
-
-																</div>
-																<div class="col-sm-2">
-																	<h:outputLabel value="#{msgs.p2}" />
-
-																	<h:inputText pt:placeholder="P2" id="p2"
-																		required="true"
-																		value="#{workPackageController.workPackage.budget.p2}"
-																		style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
-																		label="#{msgs.p2}" class="form-control" />
-																</div>
-
-																<div class="col-sm-2">
-																	<h:outputLabel value="#{msgs.p3}" />
-
-																	<h:inputText pt:placeholder="P3" id="p3"
-																		required="true"
-																		value="#{workPackageController.workPackage.budget.p3}"
-																		style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
-																		label="#{msgs.p3}" class="form-control" />
-																</div>
-
-																<div class="col-sm-2">
-																	<h:outputLabel value="#{msgs.p4}" />
-
-																	<h:inputText pt:placeholder="P4" id="p4"
-																		required="true"
-																		value="#{workPackageController.workPackage.budget.p4}"
-																		style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
-																		label="#{msgs.p4}" class="form-control" />
-																</div>
-															</div>
-
-															<div class="form-group">
-
-																<div class="col-sm-2 col-sm-offset-4">
-																	<h:outputLabel value="#{msgs.p5}" />
-
-																	<h:inputText pt:placeholder="P5" id="p5"
-																		required="true"
-																		value="#{workPackageController.workPackage.budget.p5}"
-																		style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
-																		label="#{msgs.p5}" class="form-control" />
-																</div>
-																<div class="col-sm-2">
-																	<h:outputLabel value="#{msgs.ss}" />
-
-																	<h:inputText pt:placeholder="SS" id="SS"
-																		required="true"
-																		value="#{workPackageController.workPackage.budget.SS}"
-																		style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
-																		label="#{msgs.ss}" class="form-control" />
-																</div>
-
-																<div class="col-sm-2">
-																	<h:outputLabel value="#{msgs.js}" />
-
-																	<h:inputText pt:placeholder="JS" id="JS"
-																		required="true"
-																		value="#{workPackageController.workPackage.budget.JS}"
-																		style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
-																		label="#{msgs.js}" class="form-control" />
-																</div>
-
-																<div class="col-sm-2">
-																	<h:outputLabel value="#{msgs.ds}" />
-
-																	<h:inputText pt:placeholder="DS" id="DS"
-																		required="true"
-																		value="#{workPackageController.workPackage.budget.DS}"
-																		style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
-																		label="#{msgs.ds}" class="form-control" />
-																</div>
-															</div>
-														</div>
-													</h:panelGroup>
 												</div>
 											</h:panelGroup>
 											<div class="form-group">

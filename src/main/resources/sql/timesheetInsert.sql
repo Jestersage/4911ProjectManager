@@ -5,6 +5,50 @@ INSERT INTO Signature
     (signID, signature, publicKey)
 VALUES
     (01, 'SIGNATURE', 'PUBLICKEY');
+INSERT INTO Signature
+(signID, signature, publicKey)
+VALUES
+  (02, 'SIGNATURE', 'PUBLICKEY');
+INSERT INTO Signature
+(signID, signature, publicKey)
+VALUES
+  (03, 'SIGNATURE', 'PUBLICKEY');
+INSERT INTO Signature
+(signID, signature, publicKey)
+VALUES
+  (04, 'SIGNATURE', 'PUBLICKEY');
+INSERT INTO Signature
+(signID, signature, publicKey)
+VALUES
+  (05, 'SIGNATURE', 'PUBLICKEY');
+INSERT INTO Signature
+(signID, signature, publicKey)
+VALUES
+  (06, 'SIGNATURE', 'PUBLICKEY');
+INSERT INTO Signature
+(signID, signature, publicKey)
+VALUES
+  (07, 'SIGNATURE', 'PUBLICKEY');
+INSERT INTO Signature
+(signID, signature, publicKey)
+VALUES
+  (08, 'SIGNATURE', 'PUBLICKEY');
+INSERT INTO Signature
+(signID, signature, publicKey)
+VALUES
+  (09, 'SIGNATURE', 'PUBLICKEY');
+INSERT INTO Signature
+(signID, signature, publicKey)
+VALUES
+  (10, 'SIGNATURE', 'PUBLICKEY');
+INSERT INTO Signature
+(signID, signature, publicKey)
+VALUES
+  (11, 'SIGNATURE', 'PUBLICKEY');
+INSERT INTO Signature
+(signID, signature, publicKey)
+VALUES
+  (666, 'SIGNATURE', 'PUBLICKEY');
 --
 -- SAMPLE Timesheets, and TimesheetRows
 --

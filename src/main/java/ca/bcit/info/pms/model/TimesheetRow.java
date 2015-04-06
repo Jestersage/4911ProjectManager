@@ -78,56 +78,56 @@ public class TimesheetRow implements Serializable {
 		return saturdayHour.doubleValue();
 	}
 
-	public void setSaturdayHour(double saturdayHour) {
-		this.saturdayHour = new BigDecimal(saturdayHour);
+	public void setSaturdayHour(double sat) {
+		this.saturdayHour = new BigDecimal(sat).setScale(2, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public double getSundayHour() {
 		return sundayHour.doubleValue();
 	}
 
-	public void setSundayHour(double sundayHour) {
-		this.sundayHour = new BigDecimal(sundayHour);
+	public void setSundayHour(double sun) {
+		this.sundayHour = new BigDecimal(sun).setScale(2, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public double getMondayHour() {
 		return mondayHour.doubleValue();
 	}
 
-	public void setMondayHour(double mondayHour) {
-		this.mondayHour = new BigDecimal(mondayHour);
+	public void setMondayHour(double mon) {
+		this.mondayHour = new BigDecimal(mon).setScale(2, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public double getTuesdayHour() {
 		return tuesdayHour.doubleValue();
 	}
 
-	public void setTuesdayHour(double tuesdayHour) {
-		this.tuesdayHour = new BigDecimal(tuesdayHour);
+	public void setTuesdayHour(double tue) {
+		this.tuesdayHour = new BigDecimal(tue).setScale(2, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public double getWednesdayHour() {
 		return wednesdayHour.doubleValue();
 	}
 
-	public void setWednesdayHour(double wednesdayHour) {
-		this.wednesdayHour = new BigDecimal(wednesdayHour);
+	public void setWednesdayHour(double wed) {
+		this.wednesdayHour = new BigDecimal(wed).setScale(2, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public double getThursdayHour() {
 		return thursdayHour.doubleValue();
 	}
 
-	public void setThursdayHour(double thursdayHour) {
-		this.thursdayHour = new BigDecimal(thursdayHour);
+	public void setThursdayHour(double thur) {
+		this.thursdayHour = new BigDecimal(thur).setScale(2, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public double getFridayHour() {
 		return fridayHour.doubleValue();
 	}
 
-	public void setFridayHour(double fridayHour) {
-		this.fridayHour = new BigDecimal(fridayHour);
+	public void setFridayHour(double fri) {
+		this.fridayHour = new BigDecimal(fri).setScale(2, BigDecimal.ROUND_HALF_UP);
 	}
 
 	@Transient
