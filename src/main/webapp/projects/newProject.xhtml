@@ -211,19 +211,35 @@
 																class="form-control" />
 															<h:message errorClass="text-danger" for="P4" />
 														</div>
+														
+														<div class="col-sm-2 col-sm-2">
+                                                            <h:outputLabel value="#{msgs.p5}" />
+
+                                                            <h:inputText pt:placeholder="P5" id="P5"
+                                                                value="#{projectController.project.rateSheet.p5}"
+                                                                required="true" label="#{msgs.p5}"
+                                                                class="form-control" />
+                                                            <h:message errorClass="text-danger" for="P5" />
+                                                        </div>
+														
+														
 													</div>
 
 													<div class="form-group">
 
-														<div class="col-sm-2 col-sm-offset-2">
-															<h:outputLabel value="#{msgs.p5}" />
+														
+														
+														 <div class="col-sm-2 col-sm-offset-2">
+                                                            <h:outputLabel value="#{msgs.p6}" />
 
-															<h:inputText pt:placeholder="P5" id="P5"
-																value="#{projectController.project.rateSheet.p5}"
-																required="true" label="#{msgs.p5}"
-																class="form-control" />
-															<h:message errorClass="text-danger" for="P5" />
-														</div>
+                                                            <h:inputText pt:placeholder="P6" id="P6"
+                                                                value="#{projectController.project.rateSheet.p6}"
+                                                                required="true" label="#{msgs.p6}"
+                                                                class="form-control" />
+                                                            <h:message errorClass="text-danger" for="P6" />
+                                                        </div>
+                                                       
+                                                        
 														<div class="col-sm-2">
 															<h:outputLabel value="#{msgs.ss}" />
 
@@ -253,6 +269,18 @@
 																class="form-control" />
 															<h:message errorClass="text-danger" for="DS" />
 														</div>
+														
+														<div class="col-sm-2">
+                                                            <h:outputLabel value="#{msgs.other}" />
+
+                                                            <h:inputText pt:placeholder="Other" id="other"
+                                                                value="#{projectController.project.rateSheet.other}"
+                                                                required="true" label="#{msgs.other}"
+                                                                class="form-control" />
+                                                            <h:message errorClass="text-danger" for="other" />
+                                                        </div>
+														
+														
 													</div>
 												</div>
 											</div>
