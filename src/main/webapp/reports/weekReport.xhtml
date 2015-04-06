@@ -64,6 +64,21 @@
 
 
 											<p:messages id="displayMsg" />
+											<span id="helpBlock" class="help-block">Enter the number of the Work Package and Project to search and press tab.</span>
+											
+											<div class="form-group">
+                                                <h:outputLabel for="itProjectNumber"
+                                                    value="#{msgs.projectNumber}"
+                                                    class="col-sm-4 control-label" />
+
+                                                <div class="col-sm-4">
+                                                    <h:inputText pt:placeholder="project number"
+                                                        class="form-control" id="itProjectNumber"
+                                                        required="true" value="#{weekReport.projectNumber}" label="#{msgs.projectNumber}">
+                                                    </h:inputText>
+                                                </div>
+                                            </div>
+											
 											<div class="form-group">
 												<h:outputLabel for="itWorkPackageNumber"
 													value="#{msgs.workPackageNumber}"
@@ -100,7 +115,7 @@
 													class="col-sm-4 control-label" />
 												<div class="col-sm-4">
 													<h:outputText id="itProject" class="form-control"
-														value="#{weekReport.wp.project}" />
+														value="#{weekReport.wp.project.id}" />
 												</div>
 											</div>
 

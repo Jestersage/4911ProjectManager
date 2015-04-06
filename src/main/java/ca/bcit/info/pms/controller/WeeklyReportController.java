@@ -58,6 +58,8 @@ public class WeeklyReportController implements Serializable
 
 	private String packageNum;
 
+	private String projectNumber;
+
 	private Double p1;
 	private Double p2;
 	private Double p3;
@@ -76,7 +78,7 @@ public class WeeklyReportController implements Serializable
 	public String save()
 	{
 		// WorkPackage w = workPackageMngr.find( id.intValue() );
-		WorkPackage w = workPackageMngr.findByPackageNum( id );
+		WorkPackage w = workPackageMngr.findByPackageNum( id, projectNumber );
 
 		statusReport.setWorkPackage( w );
 		statusReportMngr.persist( statusReport );
@@ -91,7 +93,7 @@ public class WeeklyReportController implements Serializable
 
 		// get wp
 		wp = new WorkPackage();
-		wp = workPackageMngr.findByPackageNum( id );
+		wp = workPackageMngr.findByPackageNum( id, projectNumber );
 		System.out.println( "WP = " + wp );
 
 		// wp doesn't exist
@@ -355,6 +357,16 @@ public class WeeklyReportController implements Serializable
 	public void setReports( List< StatusReport > reports )
 	{
 		this.reports = reports;
+	}
+
+	public String getProjectNumber()
+	{
+		return projectNumber;
+	}
+
+	public void setProjectNumber( String projectNumber )
+	{
+		this.projectNumber = projectNumber;
 	}
 
 }

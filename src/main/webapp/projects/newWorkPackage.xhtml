@@ -72,7 +72,6 @@
 														value="#{workPackageController.workPackage.project.id}"
 														required="true" label="#{msgs.projectNumber}"
 														class="form-control" />
-													<h:message errorClass="text-danger" for="itPackageNumber" />
 													<h:inputHidden
 														value="#{workPackageController.workPackage.project.id}" />
 
@@ -114,8 +113,7 @@
 														value="#{workPackageController.parentWPId}"
 														required="true" label="#{msgs.parentWpId}"
 														class="form-control" />
-													<h:message errorClass="text-danger"
-														for="itParentPackageNumber" />
+
 													<h:inputHidden value="#{workPackageController.parentWPId}" />
 												</div>
 											</div>
@@ -128,9 +126,8 @@
 													<h:inputText id="itWorkPackageNumber"
 														value="#{workPackageController.workPackage.packageNum}"
 														required="true" label="#{msgs.workPackageNumber}"
-														class="form-control" />
-													<h:message errorClass="text-danger"
-														for="itWorkPackageNumber" />
+														class="form-control"
+														style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}" />
 												</div>
 											</div>
 
@@ -142,8 +139,8 @@
 													<h:inputText id="itWorkPackageName"
 														value="#{workPackageController.workPackage.name}"
 														required="true" label="#{msgs.workPackageName}"
-														class="form-control" />
-													<h:message errorClass="text-danger" for="itWorkPackageName" />
+														class="form-control"
+														style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}" />
 												</div>
 											</div>
 
@@ -155,9 +152,8 @@
 													<h:inputTextarea id="itaWorkPackageDescription"
 														value="#{workPackageController.workPackage.description}"
 														required="true" label="#{msgs.workPackageDescription}"
-														cols="80" rows="10" class="form-control" />
-													<h:message errorClass="text-danger"
-														for="itaWorkPackageDescription" />
+														cols="80" rows="10" class="form-control"
+														style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}" />
 												</div>
 											</div>
 
@@ -183,13 +179,13 @@
 
 													<h:selectOneMenu id="mnSupervisor"
 														styleClass="form-control" required="true"
+														style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
 														value="#{workPackageController.reId}">
 														<f:selectItems
 															value="#{projectController.projectEmployees}"
 															var="employee" itemValue="#{employee.id}"
 															itemLabel="#{employee.firstName} #{employee.lastName}" />
 													</h:selectOneMenu>
-													<h:message errorClass="text-danger" for="mnSupervisor" />
 												</div>
 
 											</div>
@@ -203,7 +199,6 @@
 														label="#{msgs.isLeafOrNot}" class="form-control">
 														<p:ajax event="click" update="@form" />
 													</h:selectBooleanCheckbox>
-													<h:message errorClass="text-danger" for="isLeafOrNot" />
 												</div>
 											</div>
 
@@ -213,42 +208,46 @@
 														rendered="#{workPackageController.workPackage.leaf}">
 														<div class="panel-body">
 
-
 															<div class="form-group">
 																<h:outputLabel value="#{msgs.workPackageBudget}"
 																	class="col-sm-4 control-label" />
 																<div class="col-sm-2">
-																	<h:outputLabel value="#{msgs.p1}" />
+																	<h:outputLabel value="#{msgs.p1}" for="p1" />
 																	<h:inputText pt:placeholder="P1" id="p1"
+																		required="true"
 																		value="#{workPackageController.workPackage.budget.p1}"
-																		label="#{msgs.workPackageBudget}" class="form-control" />
-																	<h:message errorClass="text-danger" for="p1" />
+																		label="#{msgs.p1}" class="form-control"
+																		style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}" />
+
 																</div>
 																<div class="col-sm-2">
 																	<h:outputLabel value="#{msgs.p2}" />
 
 																	<h:inputText pt:placeholder="P2" id="p2"
+																		required="true"
 																		value="#{workPackageController.workPackage.budget.p2}"
-																		label="#{msgs.workPackageBudget}" class="form-control" />
-																	<h:message errorClass="text-danger" for="p2" />
+																		style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+																		label="#{msgs.p2}" class="form-control" />
 																</div>
 
 																<div class="col-sm-2">
 																	<h:outputLabel value="#{msgs.p3}" />
 
 																	<h:inputText pt:placeholder="P3" id="p3"
+																		required="true"
 																		value="#{workPackageController.workPackage.budget.p3}"
-																		label="#{msgs.workPackageBudget}" class="form-control" />
-																	<h:message errorClass="text-danger" for="p3" />
+																		style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+																		label="#{msgs.p3}" class="form-control" />
 																</div>
 
 																<div class="col-sm-2">
 																	<h:outputLabel value="#{msgs.p4}" />
 
 																	<h:inputText pt:placeholder="P4" id="p4"
+																		required="true"
 																		value="#{workPackageController.workPackage.budget.p4}"
-																		label="#{msgs.workPackageBudget}" class="form-control" />
-																	<h:message errorClass="text-danger" for="p4" />
+																		style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+																		label="#{msgs.p4}" class="form-control" />
 																</div>
 															</div>
 
@@ -258,35 +257,39 @@
 																	<h:outputLabel value="#{msgs.p5}" />
 
 																	<h:inputText pt:placeholder="P5" id="p5"
+																		required="true"
 																		value="#{workPackageController.workPackage.budget.p5}"
-																		label="#{msgs.workPackageBudget}" class="form-control" />
-																	<h:message errorClass="text-danger" for="p5" />
+																		style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+																		label="#{msgs.p5}" class="form-control" />
 																</div>
 																<div class="col-sm-2">
 																	<h:outputLabel value="#{msgs.ss}" />
 
 																	<h:inputText pt:placeholder="SS" id="SS"
+																		required="true"
 																		value="#{workPackageController.workPackage.budget.SS}"
-																		label="#{msgs.workPackageBudget}" class="form-control" />
-																	<h:message errorClass="text-danger" for="SS" />
+																		style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+																		label="#{msgs.ss}" class="form-control" />
 																</div>
 
 																<div class="col-sm-2">
 																	<h:outputLabel value="#{msgs.js}" />
 
 																	<h:inputText pt:placeholder="JS" id="JS"
+																		required="true"
 																		value="#{workPackageController.workPackage.budget.JS}"
-																		label="#{msgs.workPackageBudget}" class="form-control" />
-																	<h:message errorClass="text-danger" for="JS" />
+																		style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+																		label="#{msgs.js}" class="form-control" />
 																</div>
 
 																<div class="col-sm-2">
 																	<h:outputLabel value="#{msgs.ds}" />
 
 																	<h:inputText pt:placeholder="DS" id="DS"
+																		required="true"
 																		value="#{workPackageController.workPackage.budget.DS}"
-																		label="#{msgs.workPackageBudget}" class="form-control" />
-																	<h:message errorClass="text-danger" for="DS" />
+																		style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+																		label="#{msgs.ds}" class="form-control" />
 																</div>
 															</div>
 														</div>
@@ -305,6 +308,9 @@
 											</div>
 										</div>
 										<!-- /col -->
+										<div class="col-lg-5">
+											<h:messages class="error"/>
+										</div>
 
 									</div>
 									<!-- end of new employee data -->
