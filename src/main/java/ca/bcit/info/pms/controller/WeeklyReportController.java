@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.enterprise.context.Conversation;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -42,9 +41,6 @@ public class WeeklyReportController implements Serializable
 
 	@Inject
 	private TimesheetRowManager timeSheetRowMngr;
-
-	@Inject
-	private Conversation conversation;
 
 	private WorkPackage wp;
 
@@ -86,7 +82,6 @@ public class WeeklyReportController implements Serializable
 
 		statusReport.setWorkPackage( w );
 		statusReportMngr.persist( statusReport );
-		conversation.end();
 
 		return "mypage";
 	}
