@@ -64,7 +64,9 @@
 									<div class="col-sm-9">
 										<h:inputText id="itUserId"
 											value="#{empController.employee.id}" required="true"
-											label="#{msgs.id}" class="form-control" />
+											label="#{msgs.id}" class="form-control">
+											<f:validator validatorId="ca.bcit.pms.validation.UniqueEmployeeIdValidator" />
+										</h:inputText>
 										<h:message errorClass="text-danger" for="itUserId" />
 									</div>
 								</div>
