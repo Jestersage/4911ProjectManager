@@ -111,12 +111,17 @@ public class PayGradeManager implements Serializable
 	{
 
 		Query query = em
-		        .createNativeQuery(
-		                "select * " + "from paygrade " + "where name = :payName " + "and year = :year",
+		        .createNativeQuery( "select * from PayGrade where name = :payName and year = :year",
 		                PayLevel.class ).setParameter( "payName", name ).setParameter( "year", year );
-		PayLevel payLevel = ( PayLevel ) query.getSingleResult();
+		try
+		{
+			PayLevel payLevel = ( PayLevel ) query.getSingleResult();
+			return payLevel;
+		} catch ( Exception e )
+		{
+			return null;
+		}
 
-		return payLevel;
 	}
 
 }
