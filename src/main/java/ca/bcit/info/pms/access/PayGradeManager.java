@@ -49,13 +49,29 @@ public class PayGradeManager implements Serializable
 
 		for ( Map.Entry< String, BigDecimal > entry : entrySet )
 		{
-			PayLevel payLevel = new PayLevel();
 			String str = entry.getKey();
 			BigDecimal value = entry.getValue();
-			payLevel.setName( str );
-			payLevel.setYear( year );
-			payLevel.setCost( value );
-			em.persist( payLevel );
+
+			PayLevel payLevel = getPayLevel( str, year );
+
+			if ( payLevel != null )
+			{
+				// merge
+				payLevel.setName( str );
+				payLevel.setYear( year );
+				payLevel.setCost( value );
+				em.merge( payLevel );
+
+			} else
+			{
+				// create new
+				payLevel = new PayLevel();
+				payLevel.setName( str );
+				payLevel.setYear( year );
+				payLevel.setCost( value );
+				em.persist( payLevel );
+			}
+
 			payLevel = null;
 
 		}
@@ -89,6 +105,18 @@ public class PayGradeManager implements Serializable
 		BigDecimal cost = payLevel.getCost();
 
 		return cost.doubleValue();
+	}
+
+	public PayLevel getPayLevel( final String name, final int year )
+	{
+
+		Query query = em
+		        .createNativeQuery(
+		                "select * " + "from paygrade " + "where name = :payName " + "and year = :year",
+		                PayLevel.class ).setParameter( "payName", name ).setParameter( "year", year );
+		PayLevel payLevel = ( PayLevel ) query.getSingleResult();
+
+		return payLevel;
 	}
 
 }

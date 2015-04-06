@@ -137,7 +137,6 @@ p {
 .error {
 	color: red;
 }
-
 /********************************/
 
 /********** My page *************/
@@ -172,3 +171,22 @@ p {
 	width: 20px !important;
 	padding: 0 !important;
 }
+
+/* primefaces overwritten styles */
+.ui-widget-header {
+	border: 1px solid #ECF0F1 !important;
+	background-color: #ECF0F1 !important;
+	padding: .5em !important;
+	
+}
+table .ui-state-default
+{
+	background-color: #ECF0F1 !important;
+	padding: .5em !important;
+}
+
+.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td {
+	padding: .5em !important; // more space in cell tables
+}
+
+/********** Month Report page *************/

@@ -34,13 +34,13 @@
 							<h:form>
 								<ol class="breadcrumb">
 									<li><h:commandLink action="mypage" value="#{msgs.myPage}" /></li>
-									<li class="active">#{msgs.project}</li>
+									<li class="active">#{msgs.managedProjects}</li>
 								</ol>
 							</h:form>
 						</div>
 
 						<div id="pageTitle">
-							<h1>#{msgs.project}</h1>
+							<h1>#{msgs.managedProjects}</h1>
 						</div>
 						<ui:insert name="notificationArea">
 							<ui:include src="/templatesBootstrap/notificationArea.xhtml" />
@@ -58,35 +58,35 @@
 									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 									rowsPerPageTemplate="10,20,30">
 									<p:column headerText="#{msgs.projectNumber}">
-										<h:outputText value="#{project.id}" />
+										<h:outputText class="paddingHalf" value="#{project.id}" />
 									</p:column>
 
 									<p:column headerText="#{msgs.projectName}">
-										<h:commandLink value="#{project.name}" action="#{projectController.viewProjectDetails(project)}" />
+										<h:commandLink class="paddingHalf" value="#{project.name}" action="#{projectController.viewProjectDetails(project)}" />
 									</p:column>
 
 									<p:column headerText="#{msgs.startDate}">
-										<h:outputText value="#{project.startDate}" />
+										<h:outputText class="paddingHalf" value="#{project.startDate}" />
 									</p:column>
 
 									<p:column headerText="#{msgs.endDate}">
-										<h:outputText value="#{project.endDate}" />
+										<h:outputText class="paddingHalf" value="#{project.endDate}" />
 									</p:column>
 
 									<p:column headerText="#{msgs.status}">
-										<h:outputText value="#{project.status}" />
+										<h:outputText class="paddingHalf" value="#{project.status}" />
 									</p:column>
 
 									<p:column headerText="#{msgs.projectManager}">
-										<h:outputText value="#{project.projectManager.firstName}
+										<h:outputText class="paddingHalf" value="#{project.projectManager.firstName}
 												#{project.projectManager.lastName}" />
 									</p:column>
 									<p:column headerText="#{msgs.genReport}">
-										<h:outputText value="#{project.genReport}" />
+										<h:outputText class="paddingHalf" value="#{project.genReport}" />
 									</p:column>
 									<p:column>
-                                        <h:commandLink value="#{msgs.project_details}" action="#{projectController.viewProjectDetails(project)}" /> |
-                                        <h:commandLink value="#{msgs.viewMonthlyReport}" action="#{monthlyReport.viewMonthlyReport(project)}" /> |
+                                        <h:commandLink class="paddingHalf"  value="#{msgs.project_details}" action="#{projectController.viewProjectDetails(project)}" /> |
+                                        <h:commandLink  class="paddingHalf" value="#{msgs.viewMonthlyReport}" action="#{monthlyReport.viewMonthlyReport(project)}" /> |
 									</p:column>
 								</p:dataTable>
 							</h:form>

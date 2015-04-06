@@ -95,23 +95,23 @@
 								var="employee" value="#{empController.managedEmployees}">
 								<!--c:if employee isn't already assigned-->
 								<p:column headerText="#{msgs.id}">
-									<h:outputText value="#{employee.id}" />
+									<h:outputText class="paddingHalf" value="#{employee.id}" />
 								</p:column>
 
 								<p:column headerText="#{msgs.userName}">
-									<h:outputText value="#{employee.credential.username}" />
+									<h:outputText class="paddingHalf" value="#{employee.credential.username}" />
 								</p:column>
 
 								<p:column headerText="#{msgs.firstName}">
-									<h:outputText value="#{employee.firstName}" />
+									<h:outputText class="paddingHalf" value="#{employee.firstName}" />
 								</p:column>
 
 								<p:column headerText="#{msgs.lastName}">
-									<h:outputText value="#{employee.lastName}" />
+									<h:outputText class="paddingHalf" value="#{employee.lastName}" />
 								</p:column>
 
 								<p:column headerText="#{msgs.payLevel}">
-									<h:outputText value="#{employee.payGrade}" />
+									<h:outputText class="paddingHalf" value="#{employee.payGrade}" />
 								</p:column>
 								<p:column>
 									<h:commandLink value="Assign"

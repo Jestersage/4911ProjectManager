@@ -75,9 +75,9 @@
 									<br/>
 
 									<div class="row">
-										<div class="col=lg-12">
-											<p:dataTable value="#{monthlyReport.workPackages}"
-												var="workPackage">
+										<div id="monthReportTable" class="col-lg-12 text-center">
+											<p:dataTable  value="#{monthlyReport.workPackages}" cellspacing=".3em !important"
+												var="workPackage" styleClass="table table-bordered table-striped " >
 												<p:columnGroup type="header">
 
 													<p:row>
@@ -147,8 +147,8 @@
 									<!-- /row -->
 									<br/>
 									<div class="row">
-										<div class="col=lg-12">
-											<p:panelGrid styleClass="table-bordered">
+										<div class="col-lg-5 text-center">
+											<p:panelGrid styleClass="table table-bordered">
 												<f:facet name="header">
 													<p:row>
 														<p:column>#{msgs.total}</p:column>

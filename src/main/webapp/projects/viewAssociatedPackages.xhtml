@@ -58,7 +58,7 @@
 									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 									rowsPerPageTemplate="10,20,30">
 									<p:column headerText="#{msgs.projectNumber}">
-										<h:outputText value="#{package.project.id}" />
+										<h:outputText class="paddingHalf" value="#{package.project.id}" />
 									</p:column>
 
 								<!--	<p:column headerText="#{msgs.budgetID}">
@@ -70,27 +70,27 @@
 									</p:column>-->
 									
 									<p:column headerText="#{msgs.workPackageNumber}">
-										<h:outputText value="#{package.packageNum}" />
+										<h:outputText class="paddingHalf" value="#{package.packageNum}" />
 									</p:column>
 
 									<p:column headerText="#{msgs.workPackageName}">
-										<h:outputText value="#{package.name}" />
+										<h:outputText  class="paddingHalf" value="#{package.name}" />
 									</p:column>
 									
 									<p:column headerText="#{msgs.respEng}">
-										<h:outputText value="#{package.employee.firstName} #{package.employee.lastName}" />
+										<h:outputText class="paddingHalf"  value="#{package.employee.firstName} #{package.employee.lastName}" />
 									</p:column>
 
 									<p:column headerText="#{msgs.parentWpId}">
-										<h:outputText value="#{package.parentWP.packageNum}" />
+										<h:outputText class="paddingHalf" value="#{package.parentWP.packageNum}" />
 									</p:column>
 
 									<p:column headerText="#{msgs.status}">
-										<h:outputText value="#{package.status}" />
+										<h:outputText  class="paddingHalf" value="#{package.status}" />
 									</p:column>															
 
 									<p:column>
-									<h:commandLink value="#{msgs.package_details}" action="#{workPackageController.viewWorkPackageDetails(package)}" />
+									<h:commandLink class="paddingHalf" value="#{msgs.package_details}" action="#{workPackageController.viewWorkPackageDetails(package)}" />
 									</p:column>
 									
 								</p:dataTable>

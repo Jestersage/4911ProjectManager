@@ -146,6 +146,20 @@
 										</p:inputText>
 									</div>
 								</div>
+								
+								<div class="form-group">
+                                    <h:outputLabel for="payLevel6" value="#{msgs.p6}"
+                                        class="col-sm-2 control-label" />
+                                    <div class="col-sm-5">
+                                        <p:inputText id="payLevel6" value="#{payGradeController.p6}"
+                                            label="#{msgs.p6}"
+                                            style="#{ component.valid ? 'border-color:black;' : 'border-color:red;'}"
+                                            required="true" class="form-control"
+                                            validatorMessage="Value between 0.0 and 99.99">
+                                            <f:validateDoubleRange minimum="0.0" maximum="99.99" />
+                                        </p:inputText>
+                                    </div>
+                                </div>
 
 								<div class="form-group">
 									<h:outputLabel for="payLevelSS" value="#{msgs.ss}"

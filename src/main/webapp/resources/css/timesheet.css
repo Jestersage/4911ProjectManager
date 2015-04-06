@@ -95,10 +95,7 @@
 	padding: 0;
 	
 }
-.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td
-{
-	padding: 0 !important;
-}
+
 .ui-inputfield .ui-inputtextarea .ui-widget .ui-state-default .ui-corner-all .ui-inputtextarea-resizable{
 	width: 100%;
 	max-height: 200px;

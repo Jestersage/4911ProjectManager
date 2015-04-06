@@ -39,6 +39,7 @@
 						</div>
 
 						<div id="pageTitle">
+						<p>X</p>
 							<h1>#{msgs.manageEmployees}</h1>
 						</div>
 						<ui:insert name="notificationArea">
@@ -49,42 +50,42 @@
 
 
 				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12 ">
+					<div class="col-xs-12 col-sm-12 col-md-12">
 						<div id="employeesDataTable">
 							<h:form>
-								<p:dataTable id="empTable" styleClass="bg-none table" var="employee"
+								<p:dataTable id="empTable" styleClass="bg-none table table-bordered" var="employee"
 									value="#{empController.managedEmployees}" paginator="true"
 									paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 									rowsPerPageTemplate="10,20,30">
 									<p:column headerText="#{msgs.id}">
-										<h:outputText value="#{employee.id}" />
+										<h:outputText class="paddingHalf" value="#{employee.id}" />
 									</p:column>
 
 									<p:column headerText="#{msgs.userName}">
-										<h:outputText value="#{employee.credential.username}" />
+										<h:outputText class="paddingHalf" value="#{employee.credential.username}" />
                                         [ <h:commandLink value="#{msgs.emp_details}" action="#{empController.viewEmployee(employee)}" /> ]
 									</p:column>
 
 									<p:column headerText="#{msgs.firstName}">
-										<h:outputText value="#{employee.firstName}" />
+										<h:outputText class="paddingHalf" value="#{employee.firstName}" />
 									</p:column>
 
 									<p:column headerText="#{msgs.lastName}">
-										<h:outputText value="#{employee.lastName}" />
+										<h:outputText class="paddingHalf" value="#{employee.lastName}" />
 									</p:column>
 
 									<p:column headerText="#{msgs.payLevel}">
-										<h:outputText value="#{employee.payGrade}" />
+										<h:outputText class="paddingHalf" value="#{employee.payGrade}" />
 									</p:column>
 
 									<p:column headerText="#{msgs.supervisor}">
-										<h:outputText
+										<h:outputText class="paddingHalf"
 											value="#{employee.supervisor.firstName} #{employee.supervisor.lastName}" />
 									</p:column>
 
                                     <p:column headerText="#{msgs.timesheetApprover}">
                                         <h:inputHidden value="#{empController.employee.id}" />
-                                        <h:outputText
+                                        <h:outputText class="paddingHalf"
                                                 value="#{employee.timesheetApprover.firstName} #{employee.timesheetApprover.lastName}" />
                                         [ <h:commandLink action="#{empController.assignTsApprover(employee.id)}"
                                                          value="#{employee.timesheetApprover != null ? 'change' : 'assign' }" /> ]

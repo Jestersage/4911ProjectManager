@@ -33,6 +33,7 @@ public class PayGradeController implements Serializable
 	private BigDecimal P3;
 	private BigDecimal P4;
 	private BigDecimal P5;
+	private BigDecimal P6;
 	private BigDecimal SS;
 	private BigDecimal JS;
 	private BigDecimal DS;
@@ -152,6 +153,7 @@ public class PayGradeController implements Serializable
 		payLevelsMap.put( "P3", P3 );
 		payLevelsMap.put( "P4", P4 );
 		payLevelsMap.put( "P5", P5 );
+		payLevelsMap.put( "P6", P6 );
 		payLevelsMap.put( "SS", SS );
 		payLevelsMap.put( "DS", DS );
 		payLevelsMap.put( "JS", JS );
@@ -183,6 +185,16 @@ public class PayGradeController implements Serializable
 	public void setPayLevelList( List< PayLevel > payLevelList )
 	{
 		this.payLevelList = payLevelList;
+	}
+
+	public BigDecimal getP6()
+	{
+		return P6;
+	}
+
+	public void setP6( BigDecimal p6 )
+	{
+		P6 = p6;
 	}
 
 }
