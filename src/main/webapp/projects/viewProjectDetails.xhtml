@@ -11,14 +11,15 @@
 <h:head>
 	<title></title>
 </h:head>
-<h:body>	
+<h:body>
 	<ui:composition template="/templatesBootstrap/masterLayout.xhtml">
-	<f:metadata>
-		<f:event type="preRenderView"
-			listener="#{userController.checkAuthorization}" />
-		<f:attribute name="requiredRoles" value="Supervisor,Project Manager,Project Assistant" />
-	</f:metadata>
-	
+		<f:metadata>
+			<f:event type="preRenderView"
+				listener="#{userController.checkAuthorization}" />
+			<f:attribute name="requiredRoles"
+				value="Supervisor,Project Manager,Project Assistant" />
+		</f:metadata>
+
 		<ui:define name="windowTitle">#{msgs.project}</ui:define>
 		<ui:define name="additionalStyleSheets">
 			<h:outputStylesheet library="css" name="project.css" />
@@ -61,12 +62,14 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-6 ">
 							<h:form id="projectForm" styleClass="form-inline">
-								<h:inputHidden binding="#{projId}" value="#{projectController.project.id}" />
+								<h:inputHidden binding="#{projId}"
+									value="#{projectController.project.id}" />
 
-								<ui:fragment rendered="#{userController.isProjectManagerFor(projectId.value) or userController.isAssistantFor(projectId.value)}">
+								<ui:fragment
+									rendered="#{userController.isProjectManagerFor(projectId.value) or userController.isAssistantFor(projectId.value)}">
 									<h:commandButton value="#{msgs.edit_emp}"
-													 styleClass="btn btn-primary pull-right"
-													 action="#{projectController.goEditProject}"/>
+										styleClass="btn btn-primary pull-right"
+										action="#{projectController.goEditProject}" />
 								</ui:fragment>
 
 								<dl class="dl-horizontal">
@@ -77,20 +80,25 @@
 									<dd>#{projectController.project.name}</dd>
 
 									<dt>#{msgs.projectManager}</dt>
-									<dd>#{projectController.project.projectManager.firstName}
+									<dd>
+										#{projectController.project.projectManager.firstName}
 										#{projectController.project.projectManager.lastName}
-										<ui:fragment rendered="#{userController.isAuthorized('Supervisor')}">
+										<ui:fragment
+											rendered="#{userController.isAuthorized('Supervisor')}">
 											[ <h:commandLink value="#{msgs.changeManager}"
-															 action="#{projectController.changeManager}" /> ]
+												action="#{projectController.changeManager}" /> ]
 										</ui:fragment>
 									</dd>
 
 									<dt>#{msgs.projectAssistant}</dt>
-									<dd>#{projectController.project.assistant.firstName}
+									<dd>
+										#{projectController.project.assistant.firstName}
 										#{projectController.project.assistant.lastName}
-										<ui:fragment rendered="#{userController.isProjectManagerFor(projectId.value)}">
-											[ <h:commandLink value="#{(projectController.project.assistant == null) ? msgs.assignAssistant : msgs.changeAssistant}"
-															 action="#{projectController.changeAssistant}" /> ]
+										<ui:fragment
+											rendered="#{userController.isProjectManagerFor(projectId.value)}">
+											[ <h:commandLink
+												value="#{(projectController.project.assistant == null) ? msgs.assignAssistant : msgs.changeAssistant}"
+												action="#{projectController.changeAssistant}" /> ]
 										</ui:fragment>
 									</dd>
 
@@ -112,144 +120,176 @@
 									<dt>#{msgs.projectDescription}</dt>
 									<dd>#{projectController.project.description}</dd>
 
-									<ui:fragment rendered="#{userController.isProjectManagerFor(projectId.value) or userController.isAssistantFor(projectId.value)}">
-									<dt>#{msgs.genReport}</dt>
-									<dd>
-										<h:commandLink value="#{msgs.viewMonthlyReport}"
-														 action="#{monthlyReport.viewMonthlyReport(projId.value)}" />
-									</dd>
+									<ui:fragment
+										rendered="#{userController.isProjectManagerFor(projectId.value) or userController.isAssistantFor(projectId.value)}">
+										<dt>#{msgs.genReport}</dt>
+										<dd>
+											<h:commandLink value="#{msgs.viewMonthlyReport}"
+												action="#{monthlyReport.viewMonthlyReport(projId.value)}" />
+										</dd>
 									</ui:fragment>
 								</dl>
 							</h:form>
 						</div>
 
-						<ui:fragment rendered="#{userController.isProjectManagerFor(projectId.value)
+						<ui:fragment
+							rendered="#{userController.isProjectManagerFor(projectId.value)
 							or userController.isAssistantFor(projectId.value)
 							or userController.isAuthorized('Supervisor')}">
-						<div class="col-md-6">
-							<div class="panel panel-default">
-								<div class="panel-body">
+							<div class="col-md-6">
+								<div class="panel panel-default">
+									<div class="panel-body">
 
-									<div class="form-group">
-										<h:outputLabel value="#{msgs.workPackageBudget}"
-													   class="col-sm-2 control-label" />
-										<div class="col-sm-2">
-											<h:outputLabel value="#{msgs.p1}" />
-											<h:outputText pt:placeholder="P1"  id="P1"
-														  value="#{projectController.project.rateSheet.p1}"
-														  required="true" label="#{msgs.p1}" class="form-control" />
-											<h:message errorClass="text-danger" for="P1" />
-										</div>
-										<div class="col-sm-2">
-											<h:outputLabel value="#{msgs.p2}" />
+										<div class="form-group">
+											<h:outputLabel value="#{msgs.workPackageBudget}"
+												class="col-sm-2 control-label" />
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p1}" />
+												<h:outputText pt:placeholder="P1" id="P1"
+													value="#{projectController.project.rateSheet.p1}"
+													required="true" label="#{msgs.p1}" class="form-control" />
+												<h:message errorClass="text-danger" for="P1" />
+											</div>
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p2}" />
 
-											<h:outputText pt:placeholder="P2"  id="P2"
-														  value="#{projectController.project.rateSheet.p2}"
-														  required="true" label="#{msgs.p2}" class="form-control" />
-											<h:message errorClass="text-danger" for="P2" />
-										</div>
+												<h:outputText pt:placeholder="P2" id="P2"
+													value="#{projectController.project.rateSheet.p2}"
+													required="true" label="#{msgs.p2}" class="form-control" />
+												<h:message errorClass="text-danger" for="P2" />
+											</div>
 
-										<div class="col-sm-2">
-											<h:outputLabel value="#{msgs.p3}" />
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p3}" />
 
-											<h:outputText pt:placeholder="P3"  id="P3"
-														  value="#{projectController.project.rateSheet.p3}"
-														  required="true" label="#{msgs.p3}" class="form-control" />
-											<h:message errorClass="text-danger" for="P3" />
-										</div>
+												<h:outputText pt:placeholder="P3" id="P3"
+													value="#{projectController.project.rateSheet.p3}"
+													required="true" label="#{msgs.p3}" class="form-control" />
+												<h:message errorClass="text-danger" for="P3" />
+											</div>
 
-										<div class="col-sm-2">
-											<h:outputLabel value="#{msgs.p4}" />
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p4}" />
 
-											<h:outputText pt:placeholder="P4"  id="P4"
-														  value="#{projectController.project.rateSheet.p4}"
-														  required="true" label="#{msgs.p4}" class="form-control" />
-											<h:message errorClass="text-danger" for="P4" />
-										</div>
-									</div>
+												<h:outputText pt:placeholder="P4" id="P4"
+													value="#{projectController.project.rateSheet.p4}"
+													required="true" label="#{msgs.p4}" class="form-control" />
+												<h:message errorClass="text-danger" for="P4" />
+											</div>
 
-									<div class="form-group">
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.p5}" />
 
-										<div class="col-sm-2 col-sm-offset-2">
-											<h:outputLabel value="#{msgs.p5}" />
-
-											<h:outputText pt:placeholder="P5"  id="P5"
-														  value="#{projectController.project.rateSheet.p5}"
-														  required="true" label="#{msgs.p5}" class="form-control" />
-											<h:message errorClass="text-danger" for="P5" />
-										</div>
-										<div class="col-sm-2">
-											<h:outputLabel value="#{msgs.ss}" />
-
-											<h:outputText pt:placeholder="SS"  id="SS"
-														  value="#{projectController.project.rateSheet.SS}"
-														  required="true" label="#{msgs.ss}" class="form-control" />
-											<h:message errorClass="text-danger" for="SS" />
+												<h:outputText pt:placeholder="P5" id="P5"
+													value="#{projectController.project.rateSheet.p5}"
+													required="true" label="#{msgs.p5}" class="form-control" />
+												<h:message errorClass="text-danger" for="P5" />
+											</div>
 										</div>
 
-										<div class="col-sm-2">
-											<h:outputLabel value="#{msgs.js}" />
+										<div class="form-group">
 
-											<h:outputText pt:placeholder="JS"  id="JS"
-														  value="#{projectController.project.rateSheet.JS}"
-														  required="true" label="#{msgs.js}" class="form-control" />
-											<h:message errorClass="text-danger" for="JS" />
-										</div>
+											<div class="col-sm-2 col-sm-offset-2">
+												<h:outputLabel value="#{msgs.p6}" />
 
-										<div class="col-sm-2">
-											<h:outputLabel value="#{msgs.ds}" />
+												<h:outputText pt:placeholder="P6" id="P6"
+													value="#{projectController.project.rateSheet.p6}"
+													required="true" label="#{msgs.p6}" class="form-control" />
+												<h:message errorClass="text-danger" for="P6" />
+											</div>
 
-											<h:outputText pt:placeholder="DS"  id="DS"
-														  value="#{projectController.project.rateSheet.DS}"
-														  required="true" label="#{msgs.ds}" class="form-control" />
-											<h:message errorClass="text-danger" for="DS" />
+
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.ss}" />
+
+												<h:outputText pt:placeholder="SS" id="SS"
+													value="#{projectController.project.rateSheet.SS}"
+													required="true" label="#{msgs.ss}" class="form-control" />
+												<h:message errorClass="text-danger" for="SS" />
+											</div>
+
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.js}" />
+
+												<h:outputText pt:placeholder="JS" id="JS"
+													value="#{projectController.project.rateSheet.JS}"
+													required="true" label="#{msgs.js}" class="form-control" />
+												<h:message errorClass="text-danger" for="JS" />
+											</div>
+
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.ds}" />
+
+												<h:outputText pt:placeholder="DS" id="DS"
+													value="#{projectController.project.rateSheet.DS}"
+													required="true" label="#{msgs.ds}" class="form-control" />
+												<h:message errorClass="text-danger" for="DS" />
+											</div>
+
+											<div class="col-sm-2">
+												<h:outputLabel value="#{msgs.other}" />
+
+												<h:outputText pt:placeholder="Other" id="other"
+													value="#{projectController.project.rateSheet.other}"
+													required="true" label="#{msgs.other}" class="form-control" />
+												<h:message errorClass="text-danger" for="other" />
+											</div>
+
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 						</ui:fragment>
 					</div>
 					<div class="row">
 						<h:form>
-						<h:inputHidden binding="#{projectId}" value="#{projectController.project.id}" />
+							<h:inputHidden binding="#{projectId}"
+								value="#{projectController.project.id}" />
 
-						<div class="col-xs-12 col-sm-12 col-md-6 ">
-							<div class="panel panel-default">
-								<div class="panel-heading"><strong>#{msgs.workPackage}</strong></div>
-								<div class="panel-body">
-									<!-- controll buttons -->
-									<ui:fragment rendered="#{userController.isProjectManagerFor(projectId.value) or userController.isAssistantFor(projectId.value)}">
-										<h:commandButton value="#{msgs.newWorkPackage}"
-														 styleClass="btn btn-primary"
-														 action="#{workPackageController.goCreatePackage(projectId.value)}" />
-									</ui:fragment>
+							<div class="col-xs-12 col-sm-12 col-md-6 ">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<strong>#{msgs.workPackage}</strong>
+									</div>
+									<div class="panel-body">
+										<!-- controll buttons -->
+										<ui:fragment
+											rendered="#{userController.isProjectManagerFor(projectId.value) or userController.isAssistantFor(projectId.value)}">
+											<h:commandButton value="#{msgs.newWorkPackage}"
+												styleClass="btn btn-primary"
+												action="#{workPackageController.goCreatePackage(projectId.value)}" />
+										</ui:fragment>
+									</div>
+									<ul class="list-group">
+										<ui:repeat var="package"
+											value="#{projectController.topLevelPackages}">
+											<li class="list-group-item"><h:commandLink
+													value="#{package.name} (#{package.packageNum})"
+													action="#{workPackageController.viewWorkPackageDetails(package)}" />
+											</li>
+										</ui:repeat>
+									</ul>
 								</div>
-								<ul class="list-group">
-									<ui:repeat var="package" value="#{projectController.topLevelPackages}">
-										<li class="list-group-item">
-										<h:commandLink value="#{package.name} (#{package.packageNum})"
-													   action="#{workPackageController.viewWorkPackageDetails(package)}" />
-										</li>
-									</ui:repeat>
-								</ul>
 							</div>
-						</div>
-						<!-- / workpackages -->
-						<div class="col-xs-12 col-sm-12 col-md-6 ">
-							<div class="panel panel-default">
-								<div class="panel-heading"><strong>#{msgs.assignToProject}</strong></div>
-								<div class="panel-body">
-									<!-- controll buttons -->
+							<!-- / workpackages -->
+							<div class="col-xs-12 col-sm-12 col-md-6 ">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<strong>#{msgs.assignToProject}</strong>
+									</div>
+									<div class="panel-body">
+										<!-- controll buttons -->
+									</div>
+									<ul class="list-group">
+										<ui:repeat var="assigned"
+											value="#{projectController.project.employees.toArray()}">
+											<li class="list-group-item">#{assigned.firstName}
+												#{assigned.lastName}</li>
+										</ui:repeat>
+									</ul>
 								</div>
-								<ul class="list-group">
-									<ui:repeat var="assigned" value="#{projectController.project.employees.toArray()}">
-										<li class="list-group-item">#{assigned.firstName} #{assigned.lastName}</li>
-									</ui:repeat>
-								</ul>
 							</div>
-						</div>
-						<!-- employees -->
+							<!-- employees -->
 						</h:form>
 					</div>
 				</div>
