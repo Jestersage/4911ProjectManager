@@ -236,9 +236,14 @@ public class EmployeeController implements Serializable
 		return returnUrl;
 	}
 
-	public String disableEmployee() {
+	public String toggleEmployeeStatus() {
 		employee = empService.findEmployeeById(employee.getId());
-		employee.setActiveStatus(false);
+		if (employee.isActiveStatus()) {
+			employee.setActiveStatus(false);
+		} else {
+			employee.setActiveStatus(true);
+		}
+
 		empService.updateEmployee(employee);
 		return null;
 	}
