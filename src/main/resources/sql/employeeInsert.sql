@@ -192,3 +192,72 @@ INSERT INTO Employee
 VALUES
   (777, "777", "7@7.com", "7", "77", 123456, 1, "P6");
 --
+--
+--
+INSERT INTO Credentials
+  (username, password) 
+VALUES 
+  ("manager", "");
+INSERT INTO Employee
+  (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
+VALUES
+  (12345, "manager", "manager@default.com", "Ageis", "Man", 123456, 1, "P1");
+--
+INSERT INTO Credentials
+  (username, password) 
+VALUES 
+  ("assistant", "");
+INSERT INTO Employee
+  (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
+VALUES
+  (12346, "assistant", "assistant@default.com", "Shou", "Zhu", 123456, 1, "P1");
+--
+INSERT INTO Credentials
+  (username, password) 
+VALUES 
+  ("re", "");
+INSERT INTO Employee
+  (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
+VALUES
+  (12347, "re", "assistant@default.com", "Angie", "Rele", 123456, 1, "P1");
+--
+INSERT INTO Credentials
+  (username, password) 
+VALUES 
+  ("hr", "");
+INSERT INTO Employee
+  (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
+VALUES
+  (12347, "hr", "hr@default.com", "Angie", "Rele", 123456, 1, "P1");
+INSERT INTO HR
+  (employeeID)
+VALUES
+  (12347);
+--
+INSERT INTO Credentials
+  (username, password) 
+VALUES 
+  ("supervisor", "");
+INSERT INTO Employee
+  (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
+VALUES
+  (12348, "supervisor", "supervisor@default.com", "Lizhe", "Guan", 123456, 1, "P1");
+--
+INSERT INTO Credentials
+  (username, password) 
+VALUES 
+  ("approver", "");
+INSERT INTO Employee
+  (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
+VALUES
+  (12348, "approver", "approver@default.com", "Paul", "Apollo", 123456, 1, "P1");
+--
+INSERT INTO Credentials
+  (username, password) 
+VALUES 
+  ("peon", "");
+INSERT INTO Employee
+  (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
+VALUES
+  (12349, "peon", "peon@default.com", "Madao", "Ren", 12348, 1, "P6");
+--

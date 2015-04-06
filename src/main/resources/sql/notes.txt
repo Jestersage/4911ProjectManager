@@ -1,0 +1,33 @@
+Scripts may still need to be written for test case
+
+2 main:
+*Assign few user to wp (or other way around)
+**Only leaf work package can assign employee to can put budget on
+**so, make sure all the packages in project 10 is leaf
+*Assign budget to a few package
+* comb through all the users
+except for root
+
+1. create leaf work packages, and attach budget to them
+  - make sure all wp in project 10 are leaf workpackges
+  - make a few woirk package with child wp
+
+2. one user with each role, and that role only
+ - name the username as role (see below)
+ - name users with real names
+   usernames:
+ - Project Manager: manager
+ - Project assistant: assistant
+ - Release engineer: re
+ - HR: hr
+ - Supervisor: supervisor
+ - Timesheet Approver: approver
+ - Normal user: peon
+
+3. assign user to work packages
+ - so they have something to select
+ - just for the demoed users. no need to do all
+
+4. assign employees to supervisor & approver
+5. assign project to project manager and assistant
+6. assign work package to re (only leaft wp can be assigned)
