@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.enterprise.context.Conversation;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -42,6 +43,9 @@ public class WeeklyReportController implements Serializable
 	@Inject
 	private TimesheetRowManager timeSheetRowMngr;
 
+	@Inject
+	private Conversation conversation;
+
 	private WorkPackage wp;
 
 	private EngineerBudget engineerBudget;
@@ -58,7 +62,7 @@ public class WeeklyReportController implements Serializable
 
 	private String packageNum;
 
-	private String projectNumber;
+	private String projectID;
 
 	private Double p1;
 	private Double p2;
@@ -78,10 +82,11 @@ public class WeeklyReportController implements Serializable
 	public String save()
 	{
 		// WorkPackage w = workPackageMngr.find( id.intValue() );
-		WorkPackage w = workPackageMngr.findByPackageNum( id, projectNumber );
+		WorkPackage w = workPackageMngr.findByPackageNum( id );
 
 		statusReport.setWorkPackage( w );
 		statusReportMngr.persist( statusReport );
+		conversation.end();
 
 		return "mypage";
 	}
@@ -93,7 +98,8 @@ public class WeeklyReportController implements Serializable
 
 		// get wp
 		wp = new WorkPackage();
-		wp = workPackageMngr.findByPackageNum( id, projectNumber );
+
+		wp = workPackageMngr.findByPackageNum( id );
 		System.out.println( "WP = " + wp );
 
 		// wp doesn't exist
@@ -112,6 +118,19 @@ public class WeeklyReportController implements Serializable
 		if ( engBudgetNum != 0 )
 		{
 			engBudget = engineerBudgetMngr.find( engBudgetNum );
+			if ( engBudget.getP1() == null )
+			{
+				engBudget.setDS( 0 );
+				engBudget.setSS( 0 );
+				engBudget.setJS( 0 );
+				engBudget.setOther( 0 );
+				engBudget.setP1( 0 );
+				engBudget.setP2( 0 );
+				engBudget.setP3( 0 );
+				engBudget.setP4( 0 );
+				engBudget.setP5( 0 );
+				engBudget.setP6( 0 );
+			}
 
 		} else
 		{
@@ -339,16 +358,6 @@ public class WeeklyReportController implements Serializable
 		this.ds = ds;
 	}
 
-	public String getPackageNum()
-	{
-		return packageNum;
-	}
-
-	public void setPackageNum( String packageNum )
-	{
-		this.packageNum = packageNum;
-	}
-
 	public List< StatusReport > getReports()
 	{
 		return reports;
@@ -359,14 +368,14 @@ public class WeeklyReportController implements Serializable
 		this.reports = reports;
 	}
 
-	public String getProjectNumber()
+	public String getPackageNum()
 	{
-		return projectNumber;
+		return packageNum;
 	}
 
-	public void setProjectNumber( String projectNumber )
+	public void setPackageNum( String packageNum )
 	{
-		this.projectNumber = projectNumber;
+		this.packageNum = packageNum;
 	}
 
 }

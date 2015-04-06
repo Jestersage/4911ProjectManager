@@ -158,9 +158,8 @@ public class WorkPackageManager implements Serializable
 	 */
 	public List< WorkPackage > getWorkPackagesByAssignee( final String empId )
 	{
-		TypedQuery< WorkPackage > query = em.createQuery("SELECT wp FROM WorkPackage wp, " +
-				"IN (wp.employees) AS e "
-				+ "WHERE e.id = :empId", WorkPackage.class);
+		TypedQuery< WorkPackage > query = em.createQuery( "SELECT wp FROM WorkPackage wp, "
+		        + "IN (wp.employees) AS e " + "WHERE e.id = :empId", WorkPackage.class );
 		query.setParameter( "empId", empId );
 
 		return query.getResultList();
@@ -174,13 +173,12 @@ public class WorkPackageManager implements Serializable
 	 */
 	public List< WorkPackage > getManagedWorkPackage( final String empId )
 	{
-		TypedQuery< WorkPackage > query = em.createQuery("SELECT wp FROM WorkPackage wp "
-				+ "WHERE wp.employee.id = :empId", WorkPackage.class);
+		TypedQuery< WorkPackage > query = em.createQuery( "SELECT wp FROM WorkPackage wp "
+		        + "WHERE wp.employee.id = :empId", WorkPackage.class );
 		query.setParameter( "empId", empId );
 
 		return query.getResultList();
 	}
-
 
 	/**
 	 * @param parentWp
@@ -236,7 +234,7 @@ public class WorkPackageManager implements Serializable
 
 	public WorkPackage findByPackageNum( final String wpNum )
 	{
-		Query query = em.createNativeQuery( "select * from workpackage where packageNum = ?",
+		Query query = em.createNativeQuery( "select * from workpackage where packageID = ?",
 		        WorkPackage.class ).setParameter( 1, wpNum );
 		WorkPackage workPackage = null;
 		try
@@ -248,4 +246,5 @@ public class WorkPackageManager implements Serializable
 		}
 		return workPackage;
 	}
+
 }

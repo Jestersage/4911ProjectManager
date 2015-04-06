@@ -67,29 +67,16 @@
 											<span id="helpBlock" class="help-block">Enter the number of the Work Package and Project to search and press tab.</span>
 											
 											<div class="form-group">
-                                                <h:outputLabel for="itProjectNumber"
-                                                    value="#{msgs.projectNumber}"
-                                                    class="col-sm-4 control-label" />
-
-                                                <div class="col-sm-4">
-                                                    <h:inputText pt:placeholder="project number"
-                                                        class="form-control" id="itProjectNumber"
-                                                        required="true" value="#{weekReport.projectNumber}" label="#{msgs.projectNumber}">
-                                                    </h:inputText>
-                                                </div>
-                                            </div>
-											
-											<div class="form-group">
-												<h:outputLabel for="itWorkPackageNumber"
-													value="#{msgs.workPackageNumber}"
+												<h:outputLabel for="itWpID"
+													value="#{msgs.wpID}"
 													class="col-sm-4 control-label" />
 
 												<div class="col-sm-4">
 													<h:inputText pt:placeholder="type to search"
-														class="form-control" id="itWorkPackageNumber"
+														class="form-control" id="itWpID"
 														required="true" value="#{weekReport.id}" label="#{msgs.workPackageNumber}">
 														<p:ajax event="blur"
-															update="itWorkPackageName itProject summaryOfCost displayMsg"
+															update="itWorkPackageNumber itProject summaryOfCost displayMsg"
 															listener="#{weekReport.findWP}" />
 													</h:inputText>
 												</div>
@@ -99,13 +86,13 @@
 
 											<div class="form-group">
 
-												<h:outputLabel for="itWorkPackageName"
-													value="#{msgs.workPackageName}"
+												<h:outputLabel for="itWorkPackageNumber"
+													value="#{msgs.workPackageNumber}"
 													class="col-sm-4 control-label" />
 
 												<div class="col-sm-4">
-													<h:outputText id="itWorkPackageName" class="form-control"
-														value="#{weekReport.name}" />
+													<h:outputText id="itWorkPackageNumber" class="form-control"
+														value="#{weekReport.wp.packageNum}" />
 												</div>
 											</div>
 
