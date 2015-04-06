@@ -3,7 +3,9 @@
  */
 package ca.bcit.info.pms.controller;
 
+import ca.bcit.info.pms.model.Budget;
 import ca.bcit.info.pms.model.Employee;
+import ca.bcit.info.pms.model.EngineerBudget;
 import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.ProjectStatus;
 import ca.bcit.info.pms.model.WorkPackage;
@@ -53,20 +55,12 @@ public class WorkPackageController implements Serializable
 	@Inject
 	private Conversation conversation;
 	
-	@Inject
-	private ProjectController projectController;
-
-	private List<Employee> employees;
-	
-	private List<Employee> availableEmployees;
-	
 	private Employee employee;
 
 	private String reId;
 
 	private Integer parentWPId;
 	
-	private Project project;
 
 	private static final Logger logger = LogManager.getLogger( WorkPackageController.class );
 
@@ -155,6 +149,10 @@ public class WorkPackageController implements Serializable
 	public String goEditPackage(String id)
 	{
 		workPackage = workPackageService.findWorkPackageById(Integer.valueOf(id));
+		if(workPackage.getBudget()==null)
+			workPackage.setBudget(new Budget());
+		if(workPackage.getEngineerBudget()==null)
+			workPackage.setEngineerBudget(new EngineerBudget());
 
 		if(workPackage!=null && workPackage.getParentWP() != null)
 			parentWPId = workPackage.getParentWP().getId();
@@ -300,17 +298,5 @@ public class WorkPackageController implements Serializable
 	public void setReId(String reId) {
 		this.reId = reId;
 	}
-	
-	
-
-//	public EngineerBudget getEngBudget()
-//	{
-//		return engBudget;
-//	}
-//
-//	public void setEngBudget( EngineerBudget engBudget )
-//	{
-//		this.engBudget = engBudget;
-//	}
 
 }
