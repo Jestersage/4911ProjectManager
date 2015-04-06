@@ -13,13 +13,13 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 
-@FacesValidator("ca.bcit.pms.validation.UniqueEmployeeIdValidator")
-public class UniqueEmpIdValidator implements Validator {
+@FacesValidator("ca.bcit.pms.validation.UniqueUsernameValidator")
+public class UniqueUsernameValidator implements Validator {
 
     @Inject
     EmployeeService employeeService;
 
-    private static final Logger logger = LogManager.getLogger(UniqueEmpIdValidator.class);
+    private static final Logger logger = LogManager.getLogger(UniqueUsernameValidator.class);
 
     /**
      * validates uniqueness of WorkPackage
@@ -30,15 +30,15 @@ public class UniqueEmpIdValidator implements Validator {
             UIComponent component, Object value) {
         FacesMessage msg;
 
-        logger.info("unique employee id validator called.");
+        logger.info("unique username validator called.");
 
-        final String empId = (String) value;
-        final Employee match = employeeService.findEmployeeById(empId);
+        final String username = (String) value;
+        final Employee match = employeeService.findEmployeeByUsername(username);
 
         if (match != null) {
-            logger.info("employee id not unique.");
+            logger.info("username not unique.");
 
-            msg = new FacesMessage("Employee ID must be unique; this one already exits. Please try another one.");
+            msg = new FacesMessage("Username must be unique; this one already exits. Please try another one.");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }

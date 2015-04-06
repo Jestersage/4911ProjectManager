@@ -77,7 +77,9 @@
 									<div class="col-sm-9">
 										<h:inputText id="itUserName"
 											value="#{empController.employee.credential.username}"
-											required="true" label="#{msgs.userName}" class="form-control" />
+											required="true" label="#{msgs.userName}" class="form-control">
+											<f:validator validatorId="ca.bcit.pms.validation.UniqueUsernameValidator" />
+										</h:inputText>
 										<h:message errorClass="text-danger" for="itUserName" />
 									</div>
 								</div>
