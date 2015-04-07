@@ -176,9 +176,9 @@ VALUES
 --
 --assigned to project manager
 INSERT INTO Project
-(projectID, projectName, description, startDate, endDate, status, employeeID, genReport)
+(projectID, projectName, description, startDate, endDate, status, employeeID, genReport, assistantID)
 VALUES
-  (199999, "199999 project name", "199999 description.", "2015-01-01", "2015-02-06", 1, 12345, TRUE);
+  (199999, "199999 project name", "199999 description.", "2015-01-01", "2015-02-06", 1, 12345, TRUE, 12346);
 --
 INSERT INTO WorkPackage
   (packageID, projectID, packageNum, employeeID, isLead)
