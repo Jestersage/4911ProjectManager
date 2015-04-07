@@ -202,6 +202,8 @@ public class EditTimesheetController implements Serializable {
 	        isValid = sheetTotalsEqualForty();
 	        
 	        if(isValid == false) {
+	        	timesheet.setSubmitted(false);
+	        	saveTimesheet();
 	        	return null;
 	        }
     		
