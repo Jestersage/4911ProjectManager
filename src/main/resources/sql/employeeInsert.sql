@@ -215,20 +215,20 @@ VALUES
 INSERT INTO Credentials
   (username, password) 
 VALUES 
-  ("re", "1000:26e1732d706c7f563bd49e80ffc27cc6dea0c1dd960f0ffd:b87bb414f5d658ec2d2304de2152950f9d304b418b3b2e13");
+  ("engineer", "1000:26e1732d706c7f563bd49e80ffc27cc6dea0c1dd960f0ffd:b87bb414f5d658ec2d2304de2152950f9d304b418b3b2e13");
 INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
-  (12347, "re", "assistant@default.com", "Angie", "Rele", 123456, 1, "P1");
+  (12347, "engineer", "assistant@default.com", "Angie", "Rele", 123456, 1, "P1");
 --
 INSERT INTO Credentials
   (username, password) 
 VALUES 
-  ("hr", "1000:26e1732d706c7f563bd49e80ffc27cc6dea0c1dd960f0ffd:b87bb414f5d658ec2d2304de2152950f9d304b418b3b2e13");
+  ("hremp", "1000:26e1732d706c7f563bd49e80ffc27cc6dea0c1dd960f0ffd:b87bb414f5d658ec2d2304de2152950f9d304b418b3b2e13");
 INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
-  (12348, "hr", "hr@default.com", "Angie", "Rele", 123456, 1, "P1");
+  (12348, "hremp", "hr@default.com", "Angie", "Rele", 123456, 1, "P1");
 INSERT INTO HR
   (employeeID)
 VALUES
