@@ -239,7 +239,7 @@ public class ProjectController implements Serializable {
 	}
 	
 	public List<Employee> getProjectEmployees() {
-		   return employeeController.getManagedEmployees();
+		   return projService.getAssignedEmployee(project.getId());
 	}
 
 	/**

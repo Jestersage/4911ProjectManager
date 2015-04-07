@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 
+import ca.bcit.info.pms.model.Employee;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -125,6 +126,15 @@ public class ProjectManager implements Serializable{
                 .createQuery("SELECT p FROM Project p " +
                         "WHERE p.assistant.id = :assistantId", Project.class);
         query.setParameter("assistantId", empId);
+        return query.getResultList();
+    }
+
+    public List<Employee> getAssignedEmployees(final String projectId) {
+        TypedQuery<Employee> query = entityManager
+                .createQuery("SELECT e FROM Project p, " +
+                        "IN (p.employees) As e " +
+                        "WHERE p.id = :projectId", Employee.class);
+        query.setParameter("projectId", projectId);
         return query.getResultList();
     }
 }

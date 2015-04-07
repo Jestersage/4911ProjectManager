@@ -119,7 +119,7 @@ public class WorkPackageController implements Serializable
 		
 		logger.info("Attempting to save workpackage");
 		
-		workPackage.setParentWP( parentWP );
+		workPackage.setParentWP(parentWP);
 		workPackage.setEmployee(employee);
 		workPackageService.persistWorkPackage( workPackage );
 		
@@ -260,8 +260,23 @@ public class WorkPackageController implements Serializable
 		//logger.info( parentWPId );
 		if ( parentWPId != null )
 			parentWP = workPackageService.findWorkPackageById( parentWPId );
-			
+
 		workPackage.setParentWP( parentWP );
+
+		String engineerId = reId;
+		if (engineerId == null) {
+			engineerId = workPackage.getEmployee().getId();
+		}
+		Employee employee = employeeService.findEmployeeById(engineerId);
+		if(employee == null){
+			FacesContext.getCurrentInstance().addMessage( "newWorkPackageForm:mnSupervisor",
+					new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "Employee does not exist!: "
+							+ reId ) );
+			return null;
+		}
+
+		workPackage.setEmployee(employee);
+
 		workPackageService.updateWorkPackage(workPackage);
 		workPackage = workPackageService.findWorkPackageById(workPackage.getId());
 		//engineerBudgetMngr.merge(engBudget);

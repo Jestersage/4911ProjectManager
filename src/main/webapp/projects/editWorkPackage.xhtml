@@ -151,6 +151,11 @@
 								</div>
 								</ui:fragment>
 
+								<ui:fragment rendered="#{userController.isProjectManagerFor(workPackageController.workPackage.project.id)
+									or userController.isAssistantFor(workPackageController.workPackage.project.id)}">
+									<h:inputHidden value="#{workPackageController.workPackage.employee.id}" />
+								</ui:fragment>
+
 
 								<div class="form-group">
 									<h:outputLabel for="itStatus" value="#{msgs.status}"
