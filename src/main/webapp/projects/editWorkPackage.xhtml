@@ -134,6 +134,7 @@
 									</div>
 								</div>
 
+								<ui:fragment rendered="#{!userController.isEngineerFor(workPackageController.workPackage.id)}">
 								<div class="form-group">
 									<h:outputLabel for="mnSupervisor" value="#{msgs.respEng}"
 										class="col-sm-4 control-label" />
@@ -147,6 +148,7 @@
 										<h:message errorClass="text-danger" for="mnSupervisor" />
 									</div>
 								</div>
+								</ui:fragment>
 
 
 								<div class="form-group">
