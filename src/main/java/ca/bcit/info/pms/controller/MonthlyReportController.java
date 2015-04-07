@@ -179,7 +179,7 @@ public class MonthlyReportController implements Serializable {
 			totalEstimateCost = 0;
 			totalEngineerCost = 0;
 			
-			budget = budgetManager.getBudget(workPackages.get(i).getId());
+			budget = budgetManager.getBudget(workPackages.get(i).getId() + 1);
 			if (budget == null) {
 				totalCost = 0;
 			} else {
@@ -193,8 +193,8 @@ public class MonthlyReportController implements Serializable {
 				totalCost += budget.getP5() * payGradeManager.getCost("P5", todayDate);
 				totalCost += budget.getP6() * payGradeManager.getCost("P6", todayDate);
 			}
-			workPackages.get(i).setTotalBudget(budgetManager.getTotalBudget(workPackages.get(i).getId()));
-			totalProjectBudget += budgetManager.getTotalBudget(workPackages.get(i).getId());
+			workPackages.get(i).setTotalBudget(budgetManager.getTotalBudget(workPackages.get(i).getId() + 1));
+			totalProjectBudget += budgetManager.getTotalBudget(workPackages.get(i).getId() + 1);
 			workPackages.get(i).setTotalCost(totalCost);
 			totalProjectBudgetCost += totalCost;
 			
@@ -236,7 +236,7 @@ public class MonthlyReportController implements Serializable {
 					/ (double)budgetManager.getTotalBudget(workPackages.get(i).getId()))) * -100));
 			workPackages.get(i).setTotalVarianceCost(df.format(-100 * (1 - (totalEstimateCost / totalCost ))));
 			
-			engineerBudget = engineerBudgetManager.getBudget(workPackages.get(i).getId());
+			engineerBudget = engineerBudgetManager.getBudget(workPackages.get(i).getId() + 2);
 			if(engineerBudget == null) {
 				totalEngineerCost = 0;
 			} else {
@@ -250,9 +250,9 @@ public class MonthlyReportController implements Serializable {
 				totalEngineerCost += engineerBudget.getP5() * payGradeManager.getCost("P5", todayDate);
 				totalEngineerCost += engineerBudget.getP6() * payGradeManager.getCost("P6", todayDate);
 			}
-			workPackages.get(i).setEngineerManDays(engineerBudgetManager.getTotalBudget(workPackages.get(i).getId()));
-			totalEngineerBudget += budgetManager.getTotalBudget(workPackages.get(i).getId()) 
-					- engineerBudgetManager.getTotalBudget(workPackages.get(i).getId());
+			workPackages.get(i).setEngineerManDays(engineerBudgetManager.getTotalBudget(workPackages.get(i).getId() + 2));
+			totalEngineerBudget += budgetManager.getTotalBudget(workPackages.get(i).getId() + 2) 
+					- engineerBudgetManager.getTotalBudget(workPackages.get(i).getId() + 2);
 			workPackages.get(i).setTotalEngineerCost(totalEngineerCost);
 			totalEngineerBudgetCost += totalCost - totalEngineerCost;
 			
