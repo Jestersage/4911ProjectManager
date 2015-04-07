@@ -253,10 +253,7 @@ public class EditTimesheetController implements Serializable {
     
     public boolean verifyTimesheet() {
     	try {
-			
-    		Employee user = userController.getUser();
-            timesheet = timeService.getCurrentTimesheet(user);
-    		
+		  		
 			String data = timesheet.toString();
 			System.out.println("Verifying: " + data);
 			
