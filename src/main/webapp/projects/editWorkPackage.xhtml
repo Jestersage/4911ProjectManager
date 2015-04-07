@@ -134,7 +134,8 @@
 									</div>
 								</div>
 
-								<ui:fragment rendered="#{!userController.isEngineerFor(workPackageController.workPackage.id)}">
+								<ui:fragment rendered="#{userController.isProjectManagerFor(workPackageController.workPackage.project.id)
+									or userController.isAssistantFor(workPackageController.workPackage.project.id)}">
 								<div class="form-group">
 									<h:outputLabel for="mnSupervisor" value="#{msgs.respEng}"
 										class="col-sm-4 control-label" />
