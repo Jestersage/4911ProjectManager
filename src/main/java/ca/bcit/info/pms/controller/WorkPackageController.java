@@ -131,8 +131,15 @@ public class WorkPackageController implements Serializable
 
 	public WorkPackage getWorkPackage()
 	{
-		if (workPackage != null && workPackage.getParentWP() == null )
-			workPackage.setParentWP( new WorkPackage() );
+		if (workPackage != null) {
+			if (workPackage.getParentWP() == null) {
+				workPackage.setParentWP(new WorkPackage());
+			}
+			if (workPackage.getEmployee() == null) {
+				workPackage.setEmployee(new Employee());
+			}
+		}
+
 		return workPackage;
 	}
 
