@@ -25,6 +25,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -208,6 +209,21 @@ public class WorkPackageController implements Serializable
 		return workPackageService.findAssignedWorkPackages( userId );
 	}
 
+	/**
+	 * @return a list of leaf work packages an employee is assigned to.
+	 */
+	public List<WorkPackage> getMyLeafWorkPackages() {
+	    List<WorkPackage> leafPackages = new ArrayList<WorkPackage>();
+	    
+	    for(WorkPackage wp : getMyWorkPackages()) {
+	        if (wp.isLeaf()) {
+	            leafPackages.add(wp);
+	        }
+	    }
+	    
+	    return leafPackages;
+	}
+	
 	/**
 	 * @return a list of projects managed by current user.
 	 */
