@@ -90,7 +90,7 @@ VALUES
 -- Project 888 & Work Packages
 --  
 INSERT INTO Project
-(projectID, projectName, description, startDate, endDate,status, employeeID, genReport)
+(projectID, projectName, description, startDate, endDate, status, employeeID, genReport)
 VALUES
   (888, "888 project name", "888 description.", "2015-08-08", "2016-08-08", 1, 123456, TRUE);
 --  
@@ -174,27 +174,23 @@ INSERT INTO WorkPackage
 VALUES
   (14, 111, "9C", 4, 11, 1, 0);
 --
-INSERT INTO Project
-(projectID, projectName, description, startDate, endDate, status, employeeID, genReport)
-VALUES
-  (199999, "199999 project name", "199999 description.", "2015-01-01", "2015-02-06", 1, 12345, TRUE);
 --
 --
---assigned to project manager
+-- assigned to project manager
 INSERT INTO Project
 (projectID, projectName, description, startDate, endDate, status, employeeID, genReport)
 VALUES
   (199999, "199999 project name", "199999 description.", "2015-01-01", "2015-02-06", 1, 12349, TRUE);
 --
 INSERT INTO WorkPackage
-  (packageID, projectID, packageNum, isLead)
+  (packageID, projectID, employeeID, packageNum, isLead)
 VALUES
-  (901, 199999, "1A", 0);
+  (901, 199999, "1A", 12347, 0);
 --  
 INSERT INTO WorkPackage
-  (packageID, projectID, packageNum, isLead)
+  (packageID, projectID, employeeID, packageNum, isLead)
 VALUES
-  (902, 199999, "1A", 0);
+  (902, 199999, "1A", 12347, 0);
 --  
 INSERT INTO WorkPackage
   (packageID, projectID, packageNum, employeeID, parentwpID, status, isLead)
