@@ -184,7 +184,7 @@ INSERT INTO WorkPackage
   (packageID, projectID, packageNum, employeeID, isLead)
 VALUES
   (901, 199999, "1A", 12347, 0);
---  
+--
 INSERT INTO WorkPackage
   (packageID, projectID, packageNum, employeeID, isLead)
 VALUES
