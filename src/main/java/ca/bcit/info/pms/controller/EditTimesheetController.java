@@ -219,6 +219,7 @@ public class EditTimesheetController implements Serializable {
 			dsa.initSign(priv); //signing signature with private key
 
             if (timeService.getCurrentWeekEnd().equals(timesheet.getWeekEnding())) {
+            	System.out.println("Entered if statement");
                 Employee user = userController.getUser();
                 timesheet = timeService.getCurrentTimesheet(user);
             }
@@ -253,6 +254,9 @@ public class EditTimesheetController implements Serializable {
     public boolean verifyTimesheet() {
     	try {
 			
+    		Employee user = userController.getUser();
+            timesheet = timeService.getCurrentTimesheet(user);
+    		
 			String data = timesheet.toString();
 			System.out.println("Verifying: " + data);
 			
