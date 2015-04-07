@@ -25,6 +25,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -119,7 +120,7 @@ public class WorkPackageController implements Serializable
 		
 		logger.info("Attempting to save workpackage");
 		
-		workPackage.setParentWP( parentWP );
+		workPackage.setParentWP(parentWP);
 		workPackage.setEmployee(employee);
 		workPackageService.persistWorkPackage( workPackage );
 		
@@ -131,8 +132,15 @@ public class WorkPackageController implements Serializable
 
 	public WorkPackage getWorkPackage()
 	{
-		if (workPackage != null && workPackage.getParentWP() == null )
-			workPackage.setParentWP( new WorkPackage() );
+		if (workPackage != null) {
+			if (workPackage.getParentWP() == null) {
+				workPackage.setParentWP(new WorkPackage());
+			}
+			if (workPackage.getEmployee() == null) {
+				workPackage.setEmployee(new Employee());
+			}
+		}
+
 		return workPackage;
 	}
 
@@ -202,6 +210,21 @@ public class WorkPackageController implements Serializable
 	}
 
 	/**
+	 * @return a list of leaf work packages an employee is assigned to.
+	 */
+	public List<WorkPackage> getMyLeafWorkPackages() {
+	    List<WorkPackage> leafPackages = new ArrayList<WorkPackage>();
+	    
+	    for(WorkPackage wp : getMyWorkPackages()) {
+	        if (wp.isLeaf()) {
+	            leafPackages.add(wp);
+	        }
+	    }
+	    
+	    return leafPackages;
+	}
+	
+	/**
 	 * @return a list of projects managed by current user.
 	 */
 	public List<WorkPackage> getAssociatedWorkPackages() {
@@ -260,8 +283,23 @@ public class WorkPackageController implements Serializable
 		//logger.info( parentWPId );
 		if ( parentWPId != null )
 			parentWP = workPackageService.findWorkPackageById( parentWPId );
-			
+
 		workPackage.setParentWP( parentWP );
+
+		String engineerId = reId;
+		if (engineerId == null) {
+			engineerId = workPackage.getEmployee().getId();
+		}
+		Employee employee = employeeService.findEmployeeById(engineerId);
+		if(employee == null){
+			FacesContext.getCurrentInstance().addMessage( "newWorkPackageForm:mnSupervisor",
+					new FacesMessage( FacesMessage.SEVERITY_ERROR, "", "Employee does not exist!: "
+							+ reId ) );
+			return null;
+		}
+
+		workPackage.setEmployee(employee);
+
 		workPackageService.updateWorkPackage(workPackage);
 		workPackage = workPackageService.findWorkPackageById(workPackage.getId());
 		//engineerBudgetMngr.merge(engBudget);

@@ -115,7 +115,7 @@
                                                             <f:selectItem itemLabel="#{msgs.selectWP}"
                                                                 noSelectOption="true" />
                                                             <f:selectItems id="packageItem"
-                                                                value="#{workPackageController.myWorkPackages}"
+                                                                value="#{workPackageController.myLeafWorkPackages}"
                                                                 var="package" itemValue="#{package.id}"
                                                                 itemLabel="#{package.project.id}:#{package.packageNum}" />
                                                                 <f:ajax listener="#{editTimesheetController.populateWorkPackage(tsRow)}" />

@@ -174,7 +174,7 @@ INSERT INTO WorkPackage
 VALUES
   (14, 111, "9C", 4, 11, 1, 0);
 --
---assigned to project manager
+-- assigned to project manager
 INSERT INTO Project
 (projectID, projectName, description, startDate, endDate, status, employeeID, genReport, assistantID)
 VALUES
@@ -184,7 +184,7 @@ INSERT INTO WorkPackage
   (packageID, projectID, packageNum, employeeID, isLead)
 VALUES
   (901, 199999, "1A", 12347, 0);
---  
+--
 INSERT INTO WorkPackage
   (packageID, projectID, packageNum, employeeID, isLead)
 VALUES

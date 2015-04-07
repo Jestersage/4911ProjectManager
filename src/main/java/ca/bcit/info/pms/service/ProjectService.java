@@ -2,6 +2,7 @@ package ca.bcit.info.pms.service;
 
 import java.util.List;
 
+import ca.bcit.info.pms.model.Employee;
 import ca.bcit.info.pms.model.Project;
 import ca.bcit.info.pms.model.WorkPackage;
 
@@ -38,4 +39,6 @@ public interface ProjectService {
      * @return a list of top level work packages belongs to this project.
      */
     List<WorkPackage> getTopLevelPackages(final String id);
+
+    List<Employee> getAssignedEmployee(final String id);
 }
