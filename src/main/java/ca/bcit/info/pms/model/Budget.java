@@ -13,7 +13,7 @@ import javax.persistence.Id;
 public class Budget {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO )
+    //@GeneratedValue( strategy = GenerationType.AUTO )
     @Column(name = "budgetID")
     private Integer id=0;
 

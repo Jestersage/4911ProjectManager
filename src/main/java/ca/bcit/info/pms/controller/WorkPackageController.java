@@ -159,8 +159,12 @@ public class WorkPackageController implements Serializable
 		workPackage = workPackageService.findWorkPackageById(Integer.valueOf(id));
 		if(workPackage.getBudget()==null)
 			workPackage.setBudget(new Budget());
+			workPackage.getBudget().setId(workPackage.getId());
+			System.out.println("Budget id: " + workPackage.getBudget().getId());
 		if(workPackage.getEngineerBudget()==null)
 			workPackage.setEngineerBudget(new EngineerBudget());
+			workPackage.getEngineerBudget().setId(workPackage.getId());
+			System.out.println("Engineer Budget id: " + workPackage.getEngineerBudget().getId());
 
 		if(workPackage!=null && workPackage.getParentWP() != null)
 			parentWPId = workPackage.getParentWP().getId();

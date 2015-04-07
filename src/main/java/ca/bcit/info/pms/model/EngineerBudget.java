@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class EngineerBudget {
 	@Id
-	@GeneratedValue( strategy = GenerationType.AUTO )
+	//@GeneratedValue( strategy = GenerationType.AUTO )
     @Column(name = "engBudgetID")
     private Integer id=0;
 	
