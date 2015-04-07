@@ -250,7 +250,7 @@ VALUES
 INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
-  (12350, "approver", "approver@default.com", "Paul", "Apollo", 123456, 1, "P1");
+  (12350, "approver", "approver@default.com", "Paul", "Apollo", 12349, 1, "P1");
 --
 INSERT INTO Credentials
   (username, password) 
@@ -259,5 +259,5 @@ VALUES
 INSERT INTO Employee
   (employeeID, username, email, firstName, lastName, supervisorID, active, payGrade) 
 VALUES
-  (12351, "peon", "peon@default.com", "Madao", "Ren", 12348, 1, "P6");
+  (12351, "peon", "peon@default.com", "Madao", "Ren", 12349, 1, "P6");
 --
